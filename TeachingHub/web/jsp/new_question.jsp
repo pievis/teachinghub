@@ -19,9 +19,8 @@
                 <%@include file="/WEB-INF/jspf/header.jspf" %>
             </header>
             <div id="content">
-                <h1 class="longh">Nome del corso</h1>
+                <h1 class="longh">Crea una nuova discussione</h1>
                 
-                <h1 class="longh">Discussioni</h1>
             </div>
             <footer>
                 <%@include file="/WEB-INF/jspf/footer.jspf" %>
