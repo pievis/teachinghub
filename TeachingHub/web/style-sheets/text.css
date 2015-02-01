@@ -1,0 +1,14 @@
+/*
+Information about standard text style, nothing about structure
+*/
+
+body{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 13px;
+}
+
+h1 {
+    font-size: 15px;
+    text-decoration-style: solid;
+    font-weight: bold;
+}

@@ -1,0 +1,15 @@
+<%-- header of the website --%>
+<%@ page pageEncoding="UTF-8" %>
+<div>
+    <img id="banner" class="resize" src="multimedia/banner.png"/>
+</div>
+
+<div class="bar_right" id="profilo">
+    <span>Profilo</span>
+    <img class="resize" src="multimedia/icons/identification9.png"/>
+</div>
+<div class="bar_right" id="messaggi">
+    <img class="resize" src="multimedia/icons/envelope56.png"/>
+    <span id="number">1</span>
+</div>
+

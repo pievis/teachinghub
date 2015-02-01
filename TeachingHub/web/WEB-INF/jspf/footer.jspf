@@ -1,0 +1,5 @@
+<%-- this is the footer of the website, info and link should be provided --%>
+<%@ page pageEncoding="UTF-8" %>
+<div class="bar_right">Lista docenti</div>
+<div class="bar_right">About us</div>
+<div>Home <img class="resize" src="multimedia/icons/home153.png"/> </div>
