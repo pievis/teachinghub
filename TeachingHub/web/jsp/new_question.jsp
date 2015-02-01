@@ -18,20 +18,9 @@
             <header>
                 <%@include file="/WEB-INF/jspf/header.jspf" %>
             </header>
-            <div id="content" action="NewDiscussion">
-                <h1 class="longh">Nome del corso</h1>
-                <h2 class="longh">Crea una nuova discussione</h2>
-                <div class="container" >
-                    <form>
-                        Titolo:<br> <input type="text" name="title"><br>
-                        Descrizione:<br> <input class="longinput" type="text" name="description">
-                        <br><br>
-                        Contenuto Messaggio: <br>
-                        <textarea class="longinput" name="message" rows="8"></textarea>
-                    <br><br>
-                    <input class="btn" type="submit" value="Invia">    
-                    </form>
-                </div>
+            <div id="content">
+                <h1 class="longh">Crea una nuova discussione</h1>
+                
             </div>
             <footer>
                 <%@include file="/WEB-INF/jspf/footer.jspf" %>
