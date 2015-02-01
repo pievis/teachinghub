@@ -20,11 +20,13 @@
             </header>
             <div id="content">
                 <h1 class="longh">Login</h1>
-                <form action="../Login">
-			<p> Username: <input type="text" name="user"> </p>
-			<p> Password: <input type="text" name="pass"> </p>
-			<input type="submit" value="invia dati login">
-		</form>
+                <div class="container">
+                    <form action="../Login">
+                            <p> Username: <input type="text" name="user"> </p>
+                            <p> Password: <input type="text" name="pass"> </p>
+                            <input type="submit" value="invia dati login">
+                    </form>
+                </div>
             </div>
             <footer>
                 <%@include file="/WEB-INF/jspf/footer.jspf" %>

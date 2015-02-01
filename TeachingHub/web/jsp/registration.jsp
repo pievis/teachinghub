@@ -20,15 +20,17 @@
             </header>
             <div id="content">
                 <h1 class="longh">Registrati</h1>
-                <form action="../src/java/it/asw/access/Registration">
-			<p> Nome: <input type="text" name="nome"> </p>
-			<p> Cognome: <input type="text" name="cognome"> </p>
-                        <p> Classe: <input type="text" name="classe"> </p>
-			<p> Username: <input type="text" name="user"> </p>
-			<p> Password: <input type="text" name="pass"> </p>
-                        <!-- Ricordarsi di inserire qualcosa tipo "License of Agreement" -->
-			<input type="submit" value="invia dati registrazione">
-		</form>
+                <div class="container">
+                    <form action="../Registration">
+                            <p> Nome: <input type="text" name="nome"> </p>
+                            <p> Cognome: <input type="text" name="cognome"> </p>
+                            <p> Classe: <input type="text" name="classe"> </p>
+                            <p> Username: <input type="text" name="user"> </p>
+                            <p> Password: <input type="text" name="pass"> </p>
+                            <!-- Ricordarsi di inserire qualcosa tipo "License of Agreement" -->
+                            <input type="submit" value="invia dati registrazione">
+                    </form>
+                </div>
             </div>
             <footer>
                 <%@include file="/WEB-INF/jspf/footer.jspf" %>
