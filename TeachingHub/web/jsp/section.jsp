@@ -11,7 +11,7 @@
         <title>Teaching Hub - Section</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="style-sheets/main.css">
+        <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/style-sheets/main.css">
     </head>
     <body>
         <div id="wrapper">
@@ -19,9 +19,9 @@
                 <%@include file="/WEB-INF/jspf/header.jspf" %>
             </header>
             <div id="content">
-                <section>Nome del corso</section>
+                <h1 class="longh">Nome del corso</h1>
                 
-                <section>Discussioni</section>
+                <h1 class="longh">Discussioni</h1>
             </div>
             <footer>
                 <%@include file="/WEB-INF/jspf/footer.jspf" %>
