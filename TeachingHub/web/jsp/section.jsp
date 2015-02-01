@@ -19,7 +19,9 @@
                 <%@include file="/WEB-INF/jspf/header.jspf" %>
             </header>
             <div id="content">
-                <!-- Inserire qui il contenuto -->
+                <section>Nome del corso</section>
+                
+                <section>Discussioni</section>
             </div>
             <footer>
                 <%@include file="/WEB-INF/jspf/footer.jspf" %>
