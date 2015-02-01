@@ -22,7 +22,7 @@ il div container cambia di contenuto in base al contesto (sessione, utente, ecc)
             </header>
             <div id="content">
                 <div id="courses">
-                    <h1>Corsi:</h1>
+                    <h1 class="longh">Corsi:</h1>
                     <section>Matematica</section>
                     <section>Scienze</section>
                     <section>Fisica</section>
