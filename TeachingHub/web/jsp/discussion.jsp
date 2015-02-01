@@ -19,7 +19,9 @@
                 <%@include file="/WEB-INF/jspf/header.jspf" %>
             </header>
             <div id="content">
-                <!-- Insert here new content -->
+                <h1 class="longh"> Nome discussione </h1>
+                <h2 class="longh"> Descrizione </h2>
+                
             </div>
             <footer>
                 <%@include file="/WEB-INF/jspf/footer.jspf" %>

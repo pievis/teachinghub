@@ -22,11 +22,13 @@ il div container cambia di contenuto in base al contesto (sessione, utente, ecc)
             </header>
             <div id="content">
                 <div id="courses">
-                    <h1 class="longh">Corsi:</h1>
-                    <section>Matematica</section>
-                    <section>Scienze</section>
-                    <section>Fisica</section>
-                    <section>Informatica</section>
+                    <h1 class="longh">Corsi</h1>
+                        <a href="jsp/section.jsp?sectionid=Matematica">
+                            <section>Matematica</section></a>
+                        <a href="jsp/section.jsp?sectionid=Scienze">
+                            <section>Scienze</section></a>
+                        <section>Fisica</section>
+                        <section>Informatica</section>
                 </div>
             </div>
             <footer>

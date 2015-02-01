@@ -18,15 +18,57 @@ h1.longh {
     color: white;
     font-size: 15px;
     font-weight: bold;
-    width: 100%px;
+    width: 100%;
     background-color: #006633;
-    border-left: solid 10px #006600;
-    padding: 6px;
-    padding-left: 0;
+    border-left: solid 4px #003300;
+    padding: 5px;
+    padding-left: 10px;
 }
 
 h2 {
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: bold;
+}
+
+h2.longh {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 12px;
+    font-weight: 10;
+    width: 100%;
+    padding: 5px;
+    background-color: #009933;
+    border-left: solid 4px #003300;
+    color: snow;
+    padding-left: 15px;
+    border-bottom: 2px solid #003300;
+}
+
+a{
+     text-decoration: none;
+}
+
+/* unvisited link */
+a:link {
+    color: #ffffff;
+}
+
+/* visited link */
+a:visited {
+    color: #ffffff;
+}
+
+/* mouse over link */
+a:hover {
+    color: #cccccc;
+}
+
+/* selected link */
+a:active {
+    color: #cccccc;
+}
+
+ul {
+    list-style-type: circle;
+    padding-left: 10px;
 }

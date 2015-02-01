@@ -1,0 +1,17 @@
+.longinput {
+    width: 550px;
+}
+
+.btn {
+    color: white;
+    font-weight: bold;
+    border-radius: 20px;
+    padding: 5px 10px 5px 10px;
+    background: #009933;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.btn:hover {
+    background: #006633;
+}
+        

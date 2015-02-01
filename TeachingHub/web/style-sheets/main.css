@@ -4,10 +4,12 @@ Contains main style for the website
 
 @import url("reset.css");
 @import url("text.css");
+@import url("form.css");
 
 body{
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 13px;
+    background-image: url("../multimedia/bg/bg4.png");
 }
 
 #wrapper{
@@ -19,6 +21,14 @@ body{
     float: left;
     width: 99%;
     padding: 5px;
+    margin: 4px;
+}
+
+.container {
+    background: rgba(255,255,255,0.6);
+    padding: 10px 15px 10px 15px;
+    border-radius: 25px;
+    margin: 8px;
 }
 
 footer {
@@ -29,7 +39,7 @@ footer {
     width: inherit;
     color: white;
     font-weight: 10;
-    background-color: #339900;
+    background-color: #003300;
 }
 
 footer div{
@@ -60,7 +70,7 @@ header div{
 
 header div span{
     position: relative;
-    top: -50%;
+    top: -30%;
     /*background: gray;*/
 }
 
@@ -99,7 +109,6 @@ header img.resize {
 
 /*Main Page Style*/
 #courses{
-    background-color: gray;
     padding: 5px;
 }
 
@@ -120,3 +129,40 @@ header img.resize {
 }
 
 
+/*dbox*/
+.dbox {
+    font-family: Verdena, Geneva, sans-serif;
+    color: snow;
+    padding-left: 20px;
+    padding: 5px;
+    background: #006600;
+    width: 650px;
+    border: 2px solid #339900;
+    border-top-right-radius: 20px;
+}
+
+.dbox .right{
+    float: right;
+}
+
+.dbox .title{
+    font-weight: 100;
+    font-size: 15px;
+}
+
+.dbox span{
+    
+}
+
+.dbox .desc{
+    font-weight: 10;
+    font-size: 11px;
+}
+
+.dbox .autor{
+    font-style: italic;
+}
+.dbox .data{
+    font-style: italic;
+    font-size: 11px;
+}
