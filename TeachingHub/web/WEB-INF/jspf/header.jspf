@@ -1,15 +1,15 @@
 <%-- header of the website --%>
 <%@ page pageEncoding="UTF-8" %>
 <div>
-    <img id="banner" class="resize" src="multimedia/banner.png"/>
+    <img id="banner" class="resize" src="<%=request.getContextPath()%>/multimedia/banner.png"/>
 </div>
 
 <div class="bar_right" id="profilo">
     <span id="ename">Profilo</span>
-    <img class="resize" src="multimedia/icons/identification9.png"/>
+    <img class="resize" src="<%=request.getContextPath()%>/multimedia/icons/identification9.png"/>
 </div>
 <div class="bar_right" id="messaggi">
-    <img class="resize" src="multimedia/icons/envelope56.png"/>
+    <img class="resize" src="<%=request.getContextPath()%>/multimedia/icons/envelope56.png"/>
     <span id="number">new</span>
 </div>
 

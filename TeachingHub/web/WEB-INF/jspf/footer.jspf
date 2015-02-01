@@ -2,4 +2,4 @@
 <%@ page pageEncoding="UTF-8" %>
 <div class="bar_right">Lista docenti</div>
 <div class="bar_right">About us</div>
-<div>Home <img class="resize" src="multimedia/icons/home153.png"/> </div>
+<div>Home <img class="resize" src="<%=request.getContextPath()%>/multimedia/icons/home153.png"/></div>
