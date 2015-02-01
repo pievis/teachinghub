@@ -5,11 +5,11 @@
 </div>
 
 <div class="bar_right" id="profilo">
-    <span>Profilo</span>
+    <span id="ename">Profilo</span>
     <img class="resize" src="multimedia/icons/identification9.png"/>
 </div>
 <div class="bar_right" id="messaggi">
     <img class="resize" src="multimedia/icons/envelope56.png"/>
-    <span id="number">1</span>
+    <span id="number">new</span>
 </div>
 
