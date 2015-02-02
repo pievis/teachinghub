@@ -8,24 +8,23 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Teaching Hub - Login</title>
+        <title>Teaching Hub</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/style-sheets/main.css">
     </head>
     <body>
+        <%
+        session.invalidate();
+        %>
         <div id="wrapper">
             <header>
                 <%@include file="/WEB-INF/jspf/header.jspf" %>
             </header>
             <div id="content">
-                <h1 class="longh">Login</h1>
+                <h1 class="longh">Logout</h1>
                 <div class="container">
-                    <form action="../Login" method="post">
-                            <p> Username: <br><input type="text" name="user"> </p><br>
-                            <p> Password:<br> <input type="password" name="pass"> </p><br>
-                            <input class="btn" type="submit" value="invia dati login">
-                    </form>
+                    <p>You Logged out.</p>
                 </div>
             </div>
             <footer>

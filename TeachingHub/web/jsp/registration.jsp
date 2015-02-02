@@ -21,14 +21,16 @@
             <div id="content">
                 <h1 class="longh">Registrati</h1>
                 <div class="container">
-                    <form action="../Registration">
-                            <p> Nome: <input type="text" name="nome"> </p>
-                            <p> Cognome: <input type="text" name="cognome"> </p>
-                            <p> Classe: <input type="text" name="classe"> </p>
-                            <p> Username: <input type="text" name="user"> </p>
-                            <p> Password: <input type="text" name="pass"> </p>
+                    <form action="../Registration" method="post">
+                            <p> Nome: <br> <input type="text" name="nome"> </p><br>
+                            <p> Cognome: <br> <input type="text" name="cognome"> </p><br>
+                            <p> Classe: <br> <input type="text" name="classe"> </p><br>
+                            <p> Email: <br> <input type="text" name="email"> </p><br>
+                            <p> Username: <br> <input type="text" name="user"> </p><br>
+                            <p> Password: <br> <input type="password" name="pass"> </p><br>
+                            <p> Conferma Password: <br> <input type="password" name="cpass"> </p><br>
                             <!-- Ricordarsi di inserire qualcosa tipo "License of Agreement" -->
-                            <input type="submit" value="invia dati registrazione">
+                            <input class="btn" type="submit" value="invia dati registrazione"><br>
                     </form>
                 </div>
             </div>

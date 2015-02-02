@@ -1,15 +1,51 @@
 <%-- header of the website --%>
 <%@ page pageEncoding="UTF-8" %>
+
+<%
+    String userid = null;
+    if(session != null){
+        Object uidobj = session.getAttribute("user");
+        if(uidobj != null)
+            userid = (String) uidobj;
+    }
+%>
 <div>
     <img id="banner" class="resize" src="<%=request.getContextPath()%>/multimedia/banner.png"/>
 </div>
-
+<%
+    if(userid != null){
+%>
+<a href="<%=request.getContextPath()%>/Logout">
+    <div class="bar_right">
+        <span>Logout</span>
+        <img class="resize" src="<%=request.getContextPath()%>/multimedia/icons/lefta.png"/>
+    </div>
+</a>
 <div class="bar_right" id="profilo">
-    <span id="ename">Profilo</span>
+    <span id="ename"><%=userid%></span>
     <img class="resize" src="<%=request.getContextPath()%>/multimedia/icons/identification9.png"/>
 </div>
 <div class="bar_right" id="messaggi">
     <img class="resize" src="<%=request.getContextPath()%>/multimedia/icons/envelope56.png"/>
     <span id="number">new</span>
 </div>
+<%
+    }
+    else{
+%>
+<a href="<%=request.getContextPath()%>/jsp/login.jsp" >
+    <div class="bar_right">
+        <span>Login</span>
+        <img class="resize" src="<%=request.getContextPath()%>/multimedia/icons/college.png"/>
+    </div>
+</a>
+<a href="<%=request.getContextPath()%>/jsp/registration.jsp" >
+    <div class="bar_right">
+        <span>Registrati</span>
+        <img class="resize" src="<%=request.getContextPath()%>/multimedia/icons/clasic.png"/>
+    </div>
+</a>
+<%
+    }
+%>
 

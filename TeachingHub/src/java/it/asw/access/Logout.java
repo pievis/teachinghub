@@ -7,9 +7,7 @@ package it.asw.access;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,10 +15,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Lorenzo
+ * @author Pievis
  */
-@WebServlet(name = "Login", urlPatterns = {"/Login"})
-public class Login extends HttpServlet {
+public class Logout extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,40 +30,22 @@ public class Login extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        String user = request.getParameter("user");
-        String pass = request.getParameter("pass");
-        //TODO: change with db read
-        ServletContext application = getServletContext();
-        String userValue = (String)application.getAttribute("user");
-        String passValue = (String)application.getAttribute("pass");
-        
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+            HttpSession session = request.getSession(false);
+            if(session != null)
+                session.invalidate();
+            response.sendRedirect(request.getContextPath()+"/index.jsp");
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Login</title>");            
+            out.println("<title>Servlet Logout</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Login at " + request.getContextPath() + "</h1>");
-            // aggiunta
-            if(user != null && pass != null && user.equals(userValue) && pass.equals(passValue)) {
-                HttpSession session = request.getSession();
-                session.setAttribute("nome", application.getAttribute("nome"));
-                session.setAttribute("cognome", application.getAttribute("cognome"));
-                session.setAttribute("user", user);
-                out.println("Welcome "+application.getAttribute("nome")+" "+application.getAttribute("cognome"));
-                out.println("You are logged in as: "+request.getParameter("user"));
-                response.sendRedirect(request.getContextPath()+"/index.jsp");
-            }
-            else
-                out.println("<h2>Login Fallita</h2>");
+            out.println("<h1>Servlet Logout at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
