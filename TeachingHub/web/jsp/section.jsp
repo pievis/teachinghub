@@ -23,8 +23,12 @@
                 <%@include file="/WEB-INF/jspf/header.jspf" %>
             </header>
             <div id="content">
-                <h1 class="longh"><%=sectionId%></h1>
-                <h2 class="longh">Pagine & Appunti</h2>
+                <h1 class="longh">
+                    <img src="<%=request.getContextPath()%>/multimedia/icons/book245.png">
+                    <%=sectionId%></h1>
+                <h2 class="longh">
+                    <img src="<%=request.getContextPath()%>/multimedia/icons/book246.png">
+                    Pagine & Appunti</h2>
                 <div class="container">
                     <ul>
                         <li>Coffee</li>
@@ -32,14 +36,23 @@
                         <li>Milk</li>
                     </ul>
                 </div>
-                <h2 class="longh">Domande & Discussioni</h2>
+                <h2 class="longh">
+                    <img src="<%=request.getContextPath()%>/multimedia/icons/laptops.png">
+                    Domande & Discussioni</h2>
                 <div class="container">
                     <div class="dbox">
                         <span class="title">Titolo</span>
-                        <span class="autor right">creato da: Francesco Amadori</span>
+                        <span class="autor right minor">creato da: Francesco Amadori</span>
                         <br>
                         <span class="desc">Descrizione</span>
-                        <span class="data right">22/04/2007</span>
+                        <span class="data right minor">22/04/2007</span>
+                    </div>
+                    <div class="dbox">
+                        <span class="title">Come integrare la pasta</span>
+                        <span class="autor right minor">creato da: Francesco Amadori</span>
+                        <br>
+                        <span class="desc">Credevo che l'integrale fosse un tipo di pasta, mi si è aperto un mondo</span>
+                        <span class="data right minor">22/04/2007</span>
                     </div>
                 </div>
             </div>

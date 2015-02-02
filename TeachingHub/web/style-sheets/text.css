@@ -25,10 +25,20 @@ h1.longh {
     padding-left: 10px;
 }
 
+h1 img{
+    height: 16px;
+    width: auto;
+}
+
 h2 {
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     font-size: 14px;
     font-weight: bold;
+}
+
+h2 img {
+    height: 16px;
+    width: auto;
 }
 
 h2.longh {

@@ -137,8 +137,14 @@ header img.resize {
     padding: 5px;
     background: #006600;
     width: 650px;
-    border: 2px solid #339900;
-    border-top-right-radius: 20px;
+    border-bottom: 5px #00cc66 solid;
+    margin-bottom: 5px;
+    border-radius: 8px;
+}
+
+.dbox:hover{
+    border-bottom: 5px #ffff00 solid;
+/*    background: #00cc66;*/
 }
 
 .dbox .right{
@@ -150,8 +156,14 @@ header img.resize {
     font-size: 15px;
 }
 
-.dbox span{
-    
+.dbox .title{
+    font-weight: bold;
+    color: #00cc33;
+}
+
+.dbox .minor{
+    font-weight: 10;
+    color: #ccffcc;
 }
 
 .dbox .desc{
