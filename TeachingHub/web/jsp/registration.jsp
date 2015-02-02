@@ -12,6 +12,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/style-sheets/main.css">
+        <script src="<%=request.getContextPath()%>/js/formvalidation.js"></script>
     </head>
     <body>
         <div id="wrapper">
@@ -21,7 +22,7 @@
             <div id="content">
                 <h1 class="longh">Registrati</h1>
                 <div class="container">
-                    <form action="../Registration" method="post">
+                    <form name="regForm" action="../Registration" method="post" onsubmit="return validateRegistration()">
                             <p> Nome: <br> <input type="text" name="nome"> </p><br>
                             <p> Cognome: <br> <input type="text" name="cognome"> </p><br>
                             <p> Classe: <br> <input type="text" name="classe"> </p><br>
@@ -31,6 +32,13 @@
                             <p> Conferma Password: <br> <input type="password" name="cpass"> </p><br>
                             <!-- Ricordarsi di inserire qualcosa tipo "License of Agreement" -->
                             <input class="btn" type="submit" value="invia dati registrazione"><br>
+                            <div class="errorbox" id="errorbox">
+                                <!--<img src="<%=request.getContextPath()%>/multimedia/icons/delete85.png"-->
+                                <p>
+                                    Problema con i dati inseriti in form.
+                                </p>
+                            </div>
+                            <br>
                     </form>
                 </div>
             </div>
