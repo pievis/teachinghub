@@ -14,9 +14,19 @@
         <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/style-sheets/main.css">
     </head>
     <%
+        String sesUserId = null;
+        boolean canUpdateProfile = false;
+        if(session != null)
+            sesUserId = (String) session.getAttribute("userid");
         String reqUserId = request.getParameter("userid");
         String ctxPath = request.getContextPath();
+        //User info
+        String userId = sesUserId; 
+        String firstName = "Pierluigi";
+        String lastName = "Montagna";
         String avatarPath = ctxPath +  "multimedia/avatar0.png";
+        if(sesUserId != null && sesUserId.equals(reqUserId))
+            canUpdateProfile = true;
     %>
     <body>
         <div id="wrapper">

@@ -69,9 +69,9 @@ public class Login extends HttpServlet {
             // aggiunta
             if(user != null && pass != null && pass.equals(passValue)) {
                 HttpSession session = request.getSession();
-                session.setAttribute("nome", user.getFirstname());
-                session.setAttribute("cognome", user.getLastname());
-                session.setAttribute("user", user.getId());
+//                session.setAttribute("nome", user.getFirstname());
+//                session.setAttribute("cognome", user.getLastname());
+                session.setAttribute("userid", user.getId());
                 response.sendRedirect(request.getContextPath()+"/index.jsp");
             }
             else

@@ -4,7 +4,7 @@
 <%
     String userid = null;
     if(session != null){
-        Object uidobj = session.getAttribute("user");
+        Object uidobj = session.getAttribute("userid");
         if(uidobj != null)
             userid = (String) uidobj;
     }
