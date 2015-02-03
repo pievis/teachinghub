@@ -1,12 +1,17 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <users>
-	<user>
-		<id>Niaz</id>
-		<firstname>Lorenzo</firstname>
-		<lastname>Rocca</lastname>
-		<email>lorenzo.rocca@gmail.com</email>
-		<password>123456</password>
-		<avatar>avatar0.png</avatar>
-		<class>5 O</class>
-	</user>
+    <user>
+        <id>Niaz</id>
+        <email>lorenzo.rocca@gmail.com</email>
+        <lastname>Rocca</lastname>
+        <classe>5 O</classe>
+        <firstname>Lorenzo</firstname>
+        <avatar>avatar0.png</avatar>
+        <password>123456</password>
+    </user>
+    <user>
+        <id>Pievis</id>
+        <firstname>Montagna</firstname>
+        <avatar>avatar0.png</avatar>
+    </user>
 </users>

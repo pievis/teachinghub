@@ -5,8 +5,14 @@
  */
 package asw1028.access;
 
+import asw1028.db.StudentsXml;
+import asw1028.db.structs.User;
+import asw1028.db.structs.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +20,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.xml.bind.JAXBException;
 
 /**
  *
@@ -34,12 +41,20 @@ public class Login extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String user = request.getParameter("user");
+        String userid = request.getParameter("user");
         String pass = request.getParameter("pass");
-        //TODO: change with db read
-        ServletContext application = getServletContext();
-        String userValue = (String)application.getAttribute("user");
-        String passValue = (String)application.getAttribute("pass");
+        String passValue = null;
+//        ServletContext application = getServletContext();
+        
+        User user = null;
+        try {
+            user = getUserFromDb(userid);
+        } catch (JAXBException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(user != null){
+            passValue = user.getPassword();
+        }
         
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
@@ -52,13 +67,11 @@ public class Login extends HttpServlet {
             out.println("<body>");
             out.println("<h1>Servlet Login at " + request.getContextPath() + "</h1>");
             // aggiunta
-            if(user != null && pass != null && user.equals(userValue) && pass.equals(passValue)) {
+            if(user != null && pass != null && pass.equals(passValue)) {
                 HttpSession session = request.getSession();
-                session.setAttribute("nome", application.getAttribute("nome"));
-                session.setAttribute("cognome", application.getAttribute("cognome"));
-                session.setAttribute("user", user);
-                out.println("Welcome "+application.getAttribute("nome")+" "+application.getAttribute("cognome"));
-                out.println("You are logged in as: "+request.getParameter("user"));
+                session.setAttribute("nome", user.getFirstname());
+                session.setAttribute("cognome", user.getLastname());
+                session.setAttribute("user", user.getId());
                 response.sendRedirect(request.getContextPath()+"/index.jsp");
             }
             else
@@ -68,6 +81,30 @@ public class Login extends HttpServlet {
         }
         
     }
+    
+    //Ritorna null se non trova l'utente nel db
+    private User getUserFromDb(String userid) throws JAXBException{
+        
+        String filePath = getServletContext().getRealPath("/WEB-INF/xml/students.xml");
+        String filePath2 = getServletContext().getRealPath("/WEB-INF/xml/teachers.xml");
+//        User user = null;
+        
+        Users users = StudentsXml.getUsers(filePath);
+        List<User> userlist = users.getUsers();
+        for(User u : userlist){
+            if(u.getId().equals(userid))
+                return u;
+        }
+        Users users2 = StudentsXml.getUsers(filePath2);
+        List<User> userlist2 = users2.getUsers();
+        for(User u : userlist2){
+            if(u.getId().equals(userid))
+                return u;
+        }
+        
+        return null;
+    }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

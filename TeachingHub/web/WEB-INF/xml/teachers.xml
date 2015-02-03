@@ -1,1 +1,16 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><users><user><lastname>mook kim</lastname><firstname>yong</firstname></user></users>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<users>
+    <user>
+        <id>NiazTeacher</id>
+        <email>lorenzo.rocca@gmail.com</email>
+        <lastname>Rocca</lastname>
+        <firstname>Lorenzo</firstname>
+        <avatar>avatar0.png</avatar>
+        <password>123456</password>
+    </user>
+    <user>
+        <id>Pievis</id>
+        <firstname>Montagna</firstname>
+        <avatar>avatar0.png</avatar>
+    </user>
+</users>

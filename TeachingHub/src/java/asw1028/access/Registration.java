@@ -5,14 +5,22 @@
  */
 package asw1028.access;
 
+import asw1028.db.StudentsXml;
+import asw1028.db.structs.User;
+import asw1028.db.structs.Users;
+import asw1028.utils.SysKb;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.AccessController;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.bind.JAXBException;
 
 /**
  *
@@ -35,13 +43,33 @@ public class Registration extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             //i dati di registrzioni non sono dati di sessione, ma devono rimanere associati alla web application
-            ServletContext application = getServletContext();
-		// TODO: checkout
-                // TODO: write in db
-            application.setAttribute("nome", request.getParameter("nome"));
-            application.setAttribute("cognome", request.getParameter("cognome"));
-            application.setAttribute("user", request.getParameter("user"));
-            application.setAttribute("pass", request.getParameter("pass"));
+//            ServletContext application = getServletContext();
+//            application.setAttribute("nome", request.getParameter("nome"));
+//            application.setAttribute("cognome", request.getParameter("cognome"));
+//            application.setAttribute("user", request.getParameter("user"));
+//            application.setAttribute("pass", request.getParameter("pass"));
+            
+            //Leggo la richiesta
+            User newUser = new User();
+            newUser.setId(request.getParameter("user"));
+            newUser.setFirstname(request.getParameter("nome"));
+            newUser.setLastname(request.getParameter("cognome"));
+            newUser.setEmail(request.getParameter("email"));
+            newUser.setPassword(request.getParameter("pass"));
+            newUser.setClasse(request.getParameter("classe"));
+            newUser.setAvatar(SysKb.defaultAvatar);
+            
+            //TODO CHECK SE UTENTE ESISTE
+            
+            //TODO aggiungere check da remoto + robustezza
+            
+            //Salvo sul db
+            try {
+                saveInDb(newUser);
+            } catch (JAXBException ex) {
+                Logger.getLogger(Registration.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("Errore durante il salvataggio su db.");
+            }
             
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -53,6 +81,19 @@ public class Registration extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
         }
+    }
+    
+    /*
+    * Saves the registration data in the db
+    */
+    private void saveInDb(User newUser) throws JAXBException
+    {
+        String filePath = getServletContext().getRealPath("/WEB-INF/xml/students.xml");
+        System.out.println("PRINT: " + filePath);
+        Users users = StudentsXml.getUsers(filePath);
+        users.getUsers().add(newUser);
+        StudentsXml.setUsers(users,filePath);
+//        System.out.println("SAVED");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
