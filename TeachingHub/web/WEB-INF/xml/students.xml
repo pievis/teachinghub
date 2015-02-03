@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<users>
+	<user>
+		<id>Niaz</id>
+		<firstname>Lorenzo</firstname>
+		<lastname>Rocca</lastname>
+		<email>lorenzo.rocca@gmail.com</email>
+		<password>123456</password>
+		<avatar>avatar0.png</avatar>
+		<class>5 O</class>
+	</user>
+</users>
