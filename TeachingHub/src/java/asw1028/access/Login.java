@@ -14,7 +14,9 @@ import asw1028.db.structs.Teacher;
 import asw1028.db.structs.User;
 import asw1028.db.structs.Users;
 import asw1028.utils.WebUtils;
+import asw1028.utils.xml.ManageXML;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.List;
@@ -28,6 +30,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.xml.bind.JAXBException;
+import org.w3c.dom.Document;
 
 /**
  *
@@ -48,41 +51,61 @@ public class Login extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String userid = request.getParameter("user");
-        String pass = request.getParameter("pass");
-        String passValue = null;
-        boolean isTeacher = false;
-//        ServletContext application = getServletContext();
-        
-        IUser user = null;
+        InputStream is = request.getInputStream();
+        HttpSession session = request.getSession();
+        //response.setContentType("text/xml;charset=UTF-8");
+        //OutputStream os = response.getOutputStream();
+        System.out.println("Sono la servlet");
         try {
-            user = getUserFromDb(userid);
-        } catch (JAXBException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("sono nel try");
+            ManageXML mngXML = new ManageXML();
+            Document data = mngXML.parse(is);
+            is.close();
+            System.out.println(data.toString());
+            System.out.println("Ho stampato");
+            //Document answer= operations(data,session,mngXML);
+            //mngXML.transform(os, answer);
+            //os.close();
         }
-        if(user != null){
-            passValue = user.getPassword();
-            if(user instanceof Teacher)
-                isTeacher = true;
+        catch (Exception e){ 
+            System.out.println(e);
         }
-            // aggiunta
-            if(user != null && pass != null && pass.equals(passValue)) {
-                HttpSession session = request.getSession();
-//                session.setAttribute("nome", user.getFirstname());
-//                session.setAttribute("cognome", user.getLastname());
-                session.setAttribute("userid", user.getId());
-                //condizionale
-                if(isTeacher)
-                    session.setAttribute("teacher", true);
-                response.sendRedirect(request.getContextPath()+"/index.jsp");
-            }
-            else{
-                response.setContentType("text/xml;charset=UTF-8");
-                //Sends back an error message to the client
-                OutputStream out = response.getOutputStream();
-                WebUtils.sendErrorMessage("Nome utente o password errata.", out);
-            }
-        
+//        
+//        String userid = request.getParameter("user");
+//        String pass = request.getParameter("pass");
+//        String passValue = null;
+//        boolean isTeacher = false;
+////        ServletContext application = getServletContext();
+//        
+//        IUser user = null;
+//        try {
+//            user = getUserFromDb(userid);
+//        } catch (JAXBException ex) {
+//            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        if(user != null){
+//            passValue = user.getPassword();
+//            if(user instanceof Teacher)
+//                isTeacher = true;
+//        }
+//            // aggiunta
+//            if(user != null && pass != null && pass.equals(passValue)) {
+//                HttpSession session = request.getSession();
+////                session.setAttribute("nome", user.getFirstname());
+////                session.setAttribute("cognome", user.getLastname());
+//                session.setAttribute("userid", user.getId());
+//                //condizionale
+//                if(isTeacher)
+//                    session.setAttribute("teacher", true);
+//                response.sendRedirect(request.getContextPath()+"/index.jsp");
+//            }
+//            else{
+//                response.setContentType("text/xml;charset=UTF-8");
+//                //Sends back an error message to the client
+//                OutputStream out = response.getOutputStream();
+//                WebUtils.sendErrorMessage("Nome utente o password errata.", out);
+//            }
+//        
     }
     
     //Ritorna null se non trova l'utente nel db

@@ -13,6 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/style-sheets/main.css">
         <script src="<%=request.getContextPath()%>/js/login.js"></script>
+        <!-- <script type="text/javascript" src="<%=request.getContextPath()%>/js/lib/jquery/jquery.js"></script> -->
     </head>
     <body>
         <div id="wrapper">
@@ -23,8 +24,8 @@
                 <h1 class="longh">Login</h1>
                 <div class="container">
                     <form onsubmit="getXmlHttpRequest(); return false;">
-                            <p> Username: <br><input type="text" name="user"> </p><br>
-                            <p> Password:<br> <input type="password" name="pass"> </p><br>
+                            <p> Username: <input type="text" name="user" id="txtUser"> </p>
+                            <p> Password:<input type="password" name="pass" id="txtPass"> </p>
                             <input class="btn" type="submit" value="invia dati login">
                     </form>
                     <div class="errorbox" id="errorbox">

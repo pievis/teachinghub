@@ -4,7 +4,7 @@
 */
 
 function getXmlHttpRequest(){
-    console.log("CIAO");
+    
     var x = this;
     //For modern browsers
     if(window.XMLHttpRequest)
@@ -13,9 +13,9 @@ function getXmlHttpRequest(){
     else if(window.ActiveXObject){
         x.xmlhttp = new ActiveObject("Microsoft.XMLHTTP");
     }
-    
+
     //method, ServletName, se è sincrono
-    x.xmlhttp.open("POST", "Login", true);
+    x.xmlhttp.open("POST", "../Login", true);
     x.xmlhttp.setRequestHeader('Content-Type', 'text/xml');
     //Callback
     x.xmlhttp.onreadystatechange = function (){
@@ -24,8 +24,18 @@ function getXmlHttpRequest(){
             updateErrorBox("Prova");
         }
     }
+    //create the data to send
+    var data = document.implementation.createDocument("", "login", null);
+    var usrId = data.createElement("userid");
+    var passId = data.createElement("password");
+    var contentUsr = data.createTextNode(document.getElementById("txtUser").value);
+    var contentPass = data.createTextNode(document.getElementById("txtPass").value);
+    usrId.appendChild(contentUsr);
+    passId.appendChild(contentPass);
+    data.documentElement.appendChild(usrId);
+    data.documentElement.appendChild(passId);
     //Invio al server
-    sendDataToServer(x.xmlhttp);
+    x.xmlhttp.send(data);
 }
 
 function updateErrorBox(text){
