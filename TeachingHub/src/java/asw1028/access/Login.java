@@ -8,6 +8,7 @@ package asw1028.access;
 import asw.interfaces.IUser;
 import asw1028.db.StudentsXml;
 import asw1028.db.TeachersXml;
+import asw1028.db.UsersManager;
 import asw1028.db.structs.Student;
 import asw1028.db.structs.Teacher;
 import asw1028.db.structs.User;
@@ -94,12 +95,11 @@ public class Login extends HttpServlet {
     
     //Ritorna null se non trova l'utente nel db
     private IUser getUserFromDb(String userid) throws JAXBException{
-        String filePath = getServletContext().getRealPath("/WEB-INF/xml/students.xml");
+        String studentsPath = getServletContext().getRealPath("/WEB-INF/xml/students.xml");
+        String teachersPath = getServletContext().getRealPath("/WEB-INF/xml/teachers.xml");
+        UsersManager mng = new UsersManager(teachersPath, studentsPath);
+        IUser users = mng.getUserById(userid);
         
-        IUser users = StudentsXml.getStudentById(userid, filePath);
-        if(users == null) {
-            users = TeachersXml.getTeacherById(userid, filePath);
-        }        
         return users;
     }
     
