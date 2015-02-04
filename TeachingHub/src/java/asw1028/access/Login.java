@@ -97,6 +97,7 @@ public class Login extends HttpServlet {
     private IUser getUserFromDb(String userid) throws JAXBException{
         String studentsPath = getServletContext().getRealPath("/WEB-INF/xml/students.xml");
         String teachersPath = getServletContext().getRealPath("/WEB-INF/xml/teachers.xml");
+//        System.out.println(studentsPath + "\n" + teachersPath);
         UsersManager mng = new UsersManager(teachersPath, studentsPath);
         IUser users = mng.getUserById(userid);
         

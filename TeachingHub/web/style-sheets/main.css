@@ -6,6 +6,10 @@ Contains main style for the website
 @import url("text.css");
 @import url("form.css");
 
+html,body{
+    height: 100%;
+}
+
 body{
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 13px;
@@ -15,6 +19,8 @@ body{
 #wrapper{
     margin: 0 auto;
     width: 100%;
+    min-height: 100%;
+    padding-bottom: 0px;
 }
 
 #content {
@@ -32,14 +38,13 @@ body{
 }
 
 footer {
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    float: left;
-    width: inherit;
+    position: relative;
+    margin-top: -25px;
+    height: 25px;
     color: white;
     font-weight: 10;
     background-color: #003300;
+    clear: both;
 }
 
 footer div{
@@ -149,8 +154,6 @@ header img.resize {
     text-align: center;
 }
 
-
-
 /*dbox*/
 .dbox {
     font-family: Verdena, Geneva, sans-serif;
@@ -199,4 +202,93 @@ header img.resize {
 .dbox .data{
     font-style: italic;
     font-size: 11px;
+}
+
+.avatar img{
+    border: 2px solid #333333;
+    max-height: 100px;
+    width: auto;
+}
+
+/*Profile*/
+
+.profile .profileinfo{
+    float: left;
+    padding: 10px;
+    /*border: 2px solid #333333;*/
+    width: 30%;
+    margin-left: 2%;
+}
+
+.profile .avatar{
+    float: left;
+    padding: 10px;
+}
+
+.profile{
+    overflow: auto;
+}
+
+/*discussion*/
+
+.message
+{
+    background: rgba(255,255,255,0.6);
+    padding: 10px 15px 10px 15px;
+    border-radius: 25px;
+    margin: 8px;
+    margin-bottom: 0;
+    overflow: auto;
+}
+
+.message .avatar{
+    text-align: center;
+    float: left;
+    background: #ccffcc;
+    width: 105px;
+    margin: 5px;
+    padding: 5px;
+    border:#00cc66 solid;
+    border-radius: 10px;
+}
+
+.message .avatar img{
+    float: left;
+}
+
+.message .content{
+    float: right;
+    width: 88%;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    /*background: #00cc33;*/
+    padding: 5px;
+    overflow: auto;
+    padding-bottom: 25px;
+}
+
+.message .files{
+    clear: both;
+    margin-top: 10px;
+}
+
+.message .files .attach{
+    float:right;
+    text-align: center;
+    padding: 5px;
+    background: #006600;
+    color:#00cc66;
+    border-radius: 25px;
+}
+
+.message .files .attach:hover{
+    color: snow;
+    background: #00cc66;
+}
+
+.files .attach img{
+    margin-left: auto;
+    margin-right: auto;
+    height: 16px;
+    width: auto;
 }

@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<users>
-    <user>
+<students>
+    <student>
         <id>Nyaz</id>
         <email>lorenzo.rocca@gmail.com</email>
         <lastname>Rocca</lastname>
@@ -8,10 +7,14 @@
         <firstname>Lorenzo</firstname>
         <avatar>avatar0.png</avatar>
         <password>123456</password>
-    </user>
-    <user>
+    </student>
+    <student>
         <id>Pievis</id>
-        <firstname>Montagna</firstname>
+        <email>p.m@gmail.com</email>
+        <lastname>M</lastname>
+        <classe>5 O</classe>
+        <firstname>Lorenzo</firstname>
         <avatar>avatar0.png</avatar>
-    </user>
-</users>
+        <password>123456</password>s
+    </student>
+</students>

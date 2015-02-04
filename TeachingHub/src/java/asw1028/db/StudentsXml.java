@@ -47,6 +47,7 @@ public class StudentsXml {
     **/
     public static Student getStudentById(String id, String filePath) throws JAXBException {
         Students users = getStudents(filePath);
+        if(users != null)
         for(Student t : users.getUserList())
             if(t.getId().equals(id))
                 return t;

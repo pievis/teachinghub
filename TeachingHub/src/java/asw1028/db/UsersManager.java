@@ -12,6 +12,7 @@ import asw1028.db.structs.Student;
 import asw1028.db.structs.Students;
 import asw1028.db.structs.Teacher;
 import asw1028.db.structs.Teachers;
+import asw1028.utils.SysKb;
 import java.util.List;
 import javax.xml.bind.JAXBException;
 
@@ -29,6 +30,12 @@ public class UsersManager {
     public UsersManager(String teachersPath, String studentsPath) {
         this.teachersPath = teachersPath;
         this.studentsPath = studentsPath;
+    }
+    
+    public UsersManager(String contextPath) {
+        this.teachersPath = contextPath + SysKb.xmlDbTeachers;
+        this.studentsPath = contextPath + SysKb.xmlDbStudents;
+        System.out.println("\n TP:"+teachersPath+"\n SP:" + studentsPath +"\n--------");
     }
     
     public List<IUser> getAllUsers(){

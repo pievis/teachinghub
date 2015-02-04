@@ -10,7 +10,9 @@
     }
 %>
 <div>
-    <img id="banner" class="resize" src="<%=request.getContextPath()%>/multimedia/banner.png"/>
+    <a href="<%=request.getContextPath()%>/index.jsp">
+        <img id="banner" class="resize" src="<%=request.getContextPath()%>/multimedia/banner.png"/>
+    </a>
 </div>
 <%
     if(userid != null){
@@ -21,10 +23,12 @@
         <img class="resize" src="<%=request.getContextPath()%>/multimedia/icons/lefta.png"/>
     </div>
 </a>
-<div class="bar_right" id="profilo">
-    <span id="ename"><%=userid%></span>
-    <img class="resize" src="<%=request.getContextPath()%>/multimedia/icons/identification9.png"/>
-</div>
+<a href="<%=request.getContextPath()%>/jsp/profile.jsp?userid=<%=userid%>">
+    <div class="bar_right" id="profilo">
+        <span id="ename"><%=userid%></span>
+        <img class="resize" src="<%=request.getContextPath()%>/multimedia/icons/identification9.png"/>
+    </div>
+</a>
 <div class="bar_right" id="messaggi">
     <img class="resize" src="<%=request.getContextPath()%>/multimedia/icons/envelope56.png"/>
     <span id="number">new</span>

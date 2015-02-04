@@ -31,9 +31,10 @@ il div container cambia di contenuto in base al contesto (sessione, utente, ecc)
                         <section>Informatica</section>
                 </div>
             </div>
+            
+        </div>
             <footer>
                 <%@include file="/WEB-INF/jspf/footer.jspf" %>
             </footer>
-        </div>
     </body>
 </html>

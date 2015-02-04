@@ -41,6 +41,11 @@ h2 img {
     width: auto;
 }
 
+b{
+    font-weight: bold;
+    color: #006633;
+}
+
 h2.longh {
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     font-size: 12px;
@@ -81,6 +86,16 @@ a:active {
 ul {
     list-style-type: circle;
     padding-left: 10px;
+}
+
+p{
+    margin-bottom: 4px;
+}
+
+.autor{
+    color: #009933;
+    padding-left: 10px;
+    font-size: 11px;
 }
 
 /*input*/

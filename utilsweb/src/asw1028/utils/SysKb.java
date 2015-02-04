@@ -11,5 +11,13 @@ package asw1028.utils;
  */
 public class SysKb {
     
-    public static String defaultAvatar = "avatar0.png";
+    //Web constant
+    public static final String avatarPath = "/multimedia/avatars/";
+    public static final String defaultAvatar = "avatar0.png";
+    //xml
+    
+    public static final String msgXmlPrefix = "msgs";
+    public static final String xmlDbPath = "/WEB-INF/xml/";
+    public static final String xmlDbStudents = "/WEB-INF/xml/students.xml";
+    public static final String xmlDbTeachers = "/WEB-INF/xml/teachers.xml";
 }

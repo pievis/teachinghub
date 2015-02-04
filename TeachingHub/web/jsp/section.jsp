@@ -31,22 +31,24 @@
                     Pagine & Appunti</h2>
                 <div class="container">
                     <ul>
-                        <li>Coffee</li>
-                        <li>Tea</li>
-                        <li>Milk</li>
+                        <li>Coffee <span class="autor">(Creato da Qualcuno)</span></li>
+                        <li>Tea <span class="autor">(Creato da Qualcuno)</span></li>
+                        <li>Milk <span class="autor">(Creato da Qualcuno)</span></li>
                     </ul>
                 </div>
                 <h2 class="longh">
                     <img src="<%=request.getContextPath()%>/multimedia/icons/laptops.png">
                     Domande & Discussioni</h2>
                 <div class="container">
-                    <div class="dbox">
-                        <span class="title">Titolo</span>
-                        <span class="autor right minor">creato da: Francesco Amadori</span>
-                        <br>
-                        <span class="desc">Descrizione</span>
-                        <span class="data right minor">22/04/2007</span>
-                    </div>
+                    <a href="<%=request.getContextPath()%>/jsp/discussion.jsp?id=0">
+                        <div class="dbox">
+                            <span class="title">Titolo</span>
+                            <span class="autor right minor">creato da: Francesco Amadori</span>
+                            <br>
+                            <span class="desc">Descrizione</span>
+                            <span class="data right minor">22/04/2007</span>
+                        </div>
+                    </a>
                     <div class="dbox">
                         <span class="title">Come integrare la pasta</span>
                         <span class="autor right minor">creato da: Francesco Amadori</span>
@@ -56,9 +58,9 @@
                     </div>
                 </div>
             </div>
+        </div>
             <footer>
                 <%@include file="/WEB-INF/jspf/footer.jspf" %>
             </footer>
-        </div>
     </body>
 </html>

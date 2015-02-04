@@ -42,9 +42,9 @@
                     </form>
                 </div>
             </div>
+        </div>
             <footer>
                 <%@include file="/WEB-INF/jspf/footer.jspf" %>
             </footer>
-        </div>
     </body>
 </html>
