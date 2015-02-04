@@ -22,7 +22,7 @@
             <div id="content">
                 <h1 class="longh">Login</h1>
                 <div class="container">
-                    <form action="../Login" method="post" onsubmit="getXmlHttpRequest(); return false;">
+                    <form onsubmit="getXmlHttpRequest(); return false;">
                             <p> Username: <br><input type="text" name="user"> </p><br>
                             <p> Password:<br> <input type="password" name="pass"> </p><br>
                             <input class="btn" type="submit" value="invia dati login">
