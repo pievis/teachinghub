@@ -23,6 +23,9 @@
             <div id="content">
                 <h1 class="longh">Login</h1>
                 <div class="container">
+                    <%
+                    if(userid == null){
+                    %>
                     <form onsubmit="getXmlHttpRequest(); return false;">
                             <p> Username: <input type="text" name="user" id="txtUser"> </p>
                             <p> Password:<input type="password" name="pass" id="txtPass"> </p>
@@ -34,6 +37,10 @@
                                     Problema con i dati inseriti in form.
                                 </p>
                     </div>
+                <%
+                    }else
+                    out.println("<p>Sei loggato come "+ userid +"</p>");
+                %>
                 </div>
             </div>
         </div>

@@ -1,8 +1,9 @@
 <teachers>
     <teacher>
-        <id>NyazTeacher</id>
+        <id>NyazProf</id>
         <email>lorenzo.rocca@gmail.com</email>
         <lastname>Rocca</lastname>
+        <classe>5 O</classe>
         <firstname>Lorenzo</firstname>
         <avatar>avatar0.png</avatar>
         <password>123456</password>
