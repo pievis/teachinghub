@@ -12,6 +12,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/style-sheets/main.css">
+        <script src="<%=request.getContextPath()%>/js/login.js"></script>
     </head>
     <body>
         <div id="wrapper">
@@ -21,16 +22,22 @@
             <div id="content">
                 <h1 class="longh">Login</h1>
                 <div class="container">
-                    <form action="../Login" method="post">
+                    <form action="../Login" method="post" onsubmit="getXmlHttpRequest(); return false;">
                             <p> Username: <br><input type="text" name="user"> </p><br>
                             <p> Password:<br> <input type="password" name="pass"> </p><br>
                             <input class="btn" type="submit" value="invia dati login">
                     </form>
+                    <div class="errorbox" id="errorbox">
+                                <!--<img src="<%=request.getContextPath()%>/multimedia/icons/delete85.png"-->
+                                <p>
+                                    Problema con i dati inseriti in form.
+                                </p>
+                    </div>
                 </div>
             </div>
-            <footer>
-                <%@include file="/WEB-INF/jspf/footer.jspf" %>
-            </footer>
         </div>
+        <footer>
+          <%@include file="/WEB-INF/jspf/footer.jspf" %>
+        </footer>
     </body>
 </html>

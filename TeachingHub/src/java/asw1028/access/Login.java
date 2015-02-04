@@ -13,7 +13,9 @@ import asw1028.db.structs.Student;
 import asw1028.db.structs.Teacher;
 import asw1028.db.structs.User;
 import asw1028.db.structs.Users;
+import asw1028.utils.WebUtils;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.logging.Level;
@@ -63,17 +65,6 @@ public class Login extends HttpServlet {
             if(user instanceof Teacher)
                 isTeacher = true;
         }
-        
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Login</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Login at " + request.getContextPath() + "</h1>");
             // aggiunta
             if(user != null && pass != null && pass.equals(passValue)) {
                 HttpSession session = request.getSession();
@@ -85,11 +76,12 @@ public class Login extends HttpServlet {
                     session.setAttribute("teacher", true);
                 response.sendRedirect(request.getContextPath()+"/index.jsp");
             }
-            else
-                out.println("<h2>Login Fallita</h2>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+            else{
+                response.setContentType("text/xml;charset=UTF-8");
+                //Sends back an error message to the client
+                OutputStream out = response.getOutputStream();
+                WebUtils.sendErrorMessage("Nome utente o password errata.", out);
+            }
         
     }
     
