@@ -1,7 +1,7 @@
 package asw1028.db;
 
-import asw1028.db.structs.User;
-import asw1028.db.structs.Users;
+import asw1028.db.structs.Student;
+import asw1028.db.structs.Students;
 import asw1028.utils.xml.XmlFile;
 import java.io.File;
 import javax.xml.bind.JAXBContext;
@@ -19,12 +19,13 @@ public class StudentsXml {
     static String filePath = "..\\TeachingHub\\web\\WEB-INF\\xml\\students.xml"; 
     //non safe ma utile
     
-    public static Users getUsers(String filePath) throws JAXBException{
+    public static Students getStudents(String filePath) throws JAXBException{
+        
         //unmarshall
-        JAXBContext jaxbContext = JAXBContext.newInstance(Users.class);
+        JAXBContext jaxbContext = JAXBContext.newInstance(Students.class);
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
      
-        Users users = (Users) jaxbUnmarshaller.unmarshal( new File(filePath) );
+        Students users = (Students) jaxbUnmarshaller.unmarshal( new File(filePath) );
      
 //        for(User emp : users.getUsers())
 //        {
@@ -35,13 +36,26 @@ public class StudentsXml {
         return users;
     }
     
-    public static Users getUsers() throws JAXBException{
-        return getUsers(filePath);
+    public static Students getStudents() throws JAXBException{
+        return getStudents(filePath);
     }
     
-    public static void setUsers(Users users, String filePath) throws PropertyException, JAXBException{
+    /**
+     * Return the (unique) student having the required id
+     * @param id the id to seach
+     * @return The student, null otherwise
+    **/
+    public static Student getStudentById(String id, String filePath) throws JAXBException {
+        Students users = getStudents(filePath);
+        for(Student t : users.getUserList())
+            if(t.getId().equals(id))
+                return t;
+        return null;
+    }
+    
+    public static void setStudents(Students users, String filePath) throws PropertyException, JAXBException{
         //marshall
-        JAXBContext jaxbContext = JAXBContext.newInstance(Users.class);
+        JAXBContext jaxbContext = JAXBContext.newInstance(Students.class);
         Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
         jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
@@ -53,21 +67,21 @@ public class StudentsXml {
         jaxbMarshaller.marshal(users, new File(filePath));
     }
     
-    public static void setUsers(Users users) throws PropertyException, JAXBException{
-        setUsers(users, filePath);
+    public static void setStudents(Students users) throws PropertyException, JAXBException{
+        setStudents(users, filePath);
     }
     
     //for testing
     public static void main(String[] args) throws JAXBException{
         //read
-        Users users = StudentsXml.getUsers();
-        User newu = new User();
+        Students users = StudentsXml.getStudents();
+        Student newu = new Student();
         newu.setAvatar("avatar0.png");
         newu.setId("Pievis");
         newu.setFirstname("Pierluigi");
         newu.setFirstname("Montagna");
-        users.getUsers().add(newu);
-        StudentsXml.setUsers(users, filePath);
+        users.getUserList().add(newu);
+        StudentsXml.setStudents(users, filePath);
     }
     
 }

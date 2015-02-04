@@ -5,7 +5,11 @@
  */
 package asw1028.access;
 
+import asw.interfaces.IUser;
 import asw1028.db.StudentsXml;
+import asw1028.db.TeachersXml;
+import asw1028.db.structs.Student;
+import asw1028.db.structs.Teacher;
 import asw1028.db.structs.User;
 import asw1028.db.structs.Users;
 import java.io.IOException;
@@ -44,9 +48,10 @@ public class Login extends HttpServlet {
         String userid = request.getParameter("user");
         String pass = request.getParameter("pass");
         String passValue = null;
+        boolean isTeacher = false;
 //        ServletContext application = getServletContext();
         
-        User user = null;
+        IUser user = null;
         try {
             user = getUserFromDb(userid);
         } catch (JAXBException ex) {
@@ -54,6 +59,8 @@ public class Login extends HttpServlet {
         }
         if(user != null){
             passValue = user.getPassword();
+            if(user instanceof Teacher)
+                isTeacher = true;
         }
         
         response.setContentType("text/html;charset=UTF-8");
@@ -72,6 +79,9 @@ public class Login extends HttpServlet {
 //                session.setAttribute("nome", user.getFirstname());
 //                session.setAttribute("cognome", user.getLastname());
                 session.setAttribute("userid", user.getId());
+                //condizionale
+                if(isTeacher)
+                    session.setAttribute("teacher", true);
                 response.sendRedirect(request.getContextPath()+"/index.jsp");
             }
             else
@@ -83,26 +93,14 @@ public class Login extends HttpServlet {
     }
     
     //Ritorna null se non trova l'utente nel db
-    private User getUserFromDb(String userid) throws JAXBException{
-        
+    private IUser getUserFromDb(String userid) throws JAXBException{
         String filePath = getServletContext().getRealPath("/WEB-INF/xml/students.xml");
-        String filePath2 = getServletContext().getRealPath("/WEB-INF/xml/teachers.xml");
-//        User user = null;
         
-        Users users = StudentsXml.getUsers(filePath);
-        List<User> userlist = users.getUsers();
-        for(User u : userlist){
-            if(u.getId().equals(userid))
-                return u;
-        }
-        Users users2 = StudentsXml.getUsers(filePath2);
-        List<User> userlist2 = users2.getUsers();
-        for(User u : userlist2){
-            if(u.getId().equals(userid))
-                return u;
-        }
-        
-        return null;
+        IUser users = StudentsXml.getStudentById(userid, filePath);
+        if(users == null) {
+            users = TeachersXml.getTeacherById(userid, filePath);
+        }        
+        return users;
     }
     
 

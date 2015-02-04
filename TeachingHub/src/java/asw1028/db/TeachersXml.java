@@ -1,8 +1,9 @@
 package asw1028.db;
 
-import asw1028.db.structs.User;
-import asw1028.db.structs.Users;
+import asw1028.db.structs.Teacher;
+import asw1028.db.structs.Teachers;
 import java.io.File;
+import java.util.List;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -19,24 +20,36 @@ public class TeachersXml {
     /*
     * Get the data from the xml db
     */
-    public static Users getUsers(String filePath) throws JAXBException{
+    public static Teachers getTeachers(String filePath) throws JAXBException{
         //unmarshall
-        JAXBContext jaxbContext = JAXBContext.newInstance(Users.class);
+        JAXBContext jaxbContext = JAXBContext.newInstance(Teachers.class);
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-        Users users = (Users) jaxbUnmarshaller.unmarshal( new File(filePath) );
+        Teachers users = (Teachers) jaxbUnmarshaller.unmarshal( new File(filePath) );
         return users;
     }
     
-    public static Users getUsers() throws JAXBException{
-        return getUsers(filePath);
+    public static Teachers getTeachers() throws JAXBException{
+        return getTeachers(filePath);
     }
     
+    /**
+     * Return the (unique) teacher having the required id
+     * @param id the id to seach
+     * @return The teacher, null otherwise
+    **/
+    public static Teacher getTeacherById(String id, String filePath) throws JAXBException {
+        Teachers teachers = getTeachers(filePath);
+        for(Teacher t : teachers.getTeacherList())
+            if(t.getId().equals(id))
+                return t;
+        return null;
+    }
     /*
     * Set the modified data in the xml db and commit the changes
     */
-    public static void setUsers(Users users, String filePath) throws PropertyException, JAXBException{
+    public static void setTeachers(Teachers users, String filePath) throws PropertyException, JAXBException{
         //marshall
-        JAXBContext jaxbContext = JAXBContext.newInstance(Users.class);
+        JAXBContext jaxbContext = JAXBContext.newInstance(Teachers.class);
         Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
         jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
@@ -51,20 +64,20 @@ public class TeachersXml {
     /*
     * Set the modified data in the xml db and commit the changes
     */
-    public static void setUsers(Users users) throws PropertyException, JAXBException{
-        setUsers(users, filePath);
+    public static void setTeachers(Teachers users) throws PropertyException, JAXBException{
+        setTeachers(users, filePath);
     }
     
     //for testing
     public static void main(String[] args) throws JAXBException{
         //read
-        Users users = TeachersXml.getUsers();
-        User newu = new User();
+        Teachers users = TeachersXml.getTeachers();
+        Teacher newu = new Teacher();
         newu.setAvatar("avatar0.png");
         newu.setId("Pievis");
         newu.setFirstname("Pierluigi");
         newu.setLastname("Montagna");
-        users.getUsers().add(newu);
-        TeachersXml.setUsers(users, filePath);
+        users.getTeacherList().add(newu);
+        TeachersXml.setTeachers(users, filePath);
     }
 }

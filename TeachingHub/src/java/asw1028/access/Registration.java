@@ -6,6 +6,8 @@
 package asw1028.access;
 
 import asw1028.db.StudentsXml;
+import asw1028.db.structs.Student;
+import asw1028.db.structs.Students;
 import asw1028.db.structs.User;
 import asw1028.db.structs.Users;
 import asw1028.utils.SysKb;
@@ -50,7 +52,7 @@ public class Registration extends HttpServlet {
 //            application.setAttribute("pass", request.getParameter("pass"));
             
             //Leggo la richiesta
-            User newUser = new User();
+            Student newUser = new Student();
             newUser.setId(request.getParameter("user"));
             newUser.setFirstname(request.getParameter("nome"));
             newUser.setLastname(request.getParameter("cognome"));
@@ -86,13 +88,13 @@ public class Registration extends HttpServlet {
     /*
     * Saves the registration data in the db
     */
-    private void saveInDb(User newUser) throws JAXBException
+    private void saveInDb(Student newUser) throws JAXBException
     {
         String filePath = getServletContext().getRealPath("/WEB-INF/xml/students.xml");
         System.out.println("PRINT: " + filePath);
-        Users users = StudentsXml.getUsers(filePath);
-        users.getUsers().add(newUser);
-        StudentsXml.setUsers(users,filePath);
+        Students users = StudentsXml.getStudents(filePath);
+        users.getUserList().add(newUser);
+        StudentsXml.setStudents(users,filePath);
 //        System.out.println("SAVED");
     }
 

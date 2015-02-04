@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<users>
-    <user>
-        <id>NiazTeacher</id>
+<teachers>
+    <teacher>
+        <id>NyazTeacher</id>
         <email>lorenzo.rocca@gmail.com</email>
         <lastname>Rocca</lastname>
         <firstname>Lorenzo</firstname>
         <avatar>avatar0.png</avatar>
         <password>123456</password>
-    </user>
-    <user>
+    </teacher>
+    <teacher>
         <id>Pievis</id>
         <firstname>Montagna</firstname>
         <avatar>avatar0.png</avatar>
-    </user>
-</users>
+    </teacher>
+</teachers>
