@@ -4,8 +4,16 @@
         <servlet-name>Logout</servlet-name>
         <servlet-class>asw1028.access.Logout</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetThreads</servlet-name>
+        <servlet-class>asw1028.access.GetThreads</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Logout</servlet-name>
         <url-pattern>/Logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetThreads</servlet-name>
+        <url-pattern>/GetThreads</url-pattern>
     </servlet-mapping>
 </web-app>

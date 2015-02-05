@@ -6,6 +6,10 @@
 package asw1028.utils;
 
 import asw1028.utils.xml.ManageXML;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -86,6 +90,30 @@ public class WebUtils {
         }
         
         return content;
+    }
+    
+        /**
+     * Get the content of the xml file and puts it on the outputstream
+     * @param filePath
+     * @param out
+     **/
+    public static void fileToOutputStream(String filePath, OutputStream out){
+        try {
+            FileInputStream in = new FileInputStream(filePath);
+            copyStream(in, out);
+        } catch (Exception ex) {
+            Logger.getLogger(WebUtils.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+        }
+    }
+    
+    private static void copyStream(InputStream input, OutputStream output) throws IOException{
+        byte[] buffer = new byte[1024]; // Adjust if you want
+        int bytesRead;
+        while ((bytesRead = input.read(buffer)) != -1)
+        {
+            output.write(buffer, 0, bytesRead);
+        }
     }
     
 }

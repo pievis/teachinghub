@@ -6,7 +6,7 @@
 package asw1028.utils;
 
 /**
- *
+ * Classe di appoggio
  * @author Pievis
  */
 public class SysKb {
@@ -20,4 +20,12 @@ public class SysKb {
     public static final String xmlDbPath = "/WEB-INF/xml/";
     public static final String xmlDbStudents = "/WEB-INF/xml/students.xml";
     public static final String xmlDbTeachers = "/WEB-INF/xml/teachers.xml";
+    
+    private static final String xmlDbThreadsRel = "/WEB-INF/xml/sections/[SECTION]/threads/threads.xml";
+
+    public static String getThreadsPathForSection(String section) {
+        return xmlDbThreadsRel.replace("[SECTION]", section);
+    }
+    
+    
 }

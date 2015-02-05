@@ -15,13 +15,15 @@ public class Thread
 {
     private String id;
 
+    private Lastupdate lastupdate;
+
     private String title;
 
     private String autor;
 
     private String description;
 
-    private String creationdate;
+    private Creationdate creationdate;
 
     public String getId ()
     {
@@ -31,6 +33,16 @@ public class Thread
     public void setId (String id)
     {
         this.id = id;
+    }
+
+    public Lastupdate getLastupdate ()
+    {
+        return lastupdate;
+    }
+
+    public void setLastupdate (Lastupdate lastupdate)
+    {
+        this.lastupdate = lastupdate;
     }
 
     public String getTitle ()
@@ -63,15 +75,13 @@ public class Thread
         this.description = description;
     }
 
-    public String getCreationdate ()
+    public Creationdate getCreationdate ()
     {
         return creationdate;
     }
 
-    public void setCreationdate (String creationdate)
+    public void setCreationdate (Creationdate creationdate)
     {
         this.creationdate = creationdate;
     }
 }
-			
-			

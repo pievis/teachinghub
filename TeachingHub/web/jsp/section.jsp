@@ -39,22 +39,17 @@
                 <h2 class="longh">
                     <img src="<%=request.getContextPath()%>/multimedia/icons/laptops.png">
                     Domande & Discussioni</h2>
-                <div class="container">
-                    <a href="<%=request.getContextPath()%>/jsp/discussion.jsp?id=0">
-                        <div class="dbox">
-                            <span class="title">Titolo</span>
-                            <span class="autor right minor">creato da: Francesco Amadori</span>
-                            <br>
-                            <span class="desc">Descrizione</span>
-                            <span class="data right minor">22/04/2007</span>
-                        </div>
-                    </a>
-                    <div class="dbox">
-                        <span class="title">Come integrare la pasta</span>
-                        <span class="autor right minor">creato da: Francesco Amadori</span>
-                        <br>
-                        <span class="desc">Credevo che l'integrale fosse un tipo di pasta, mi si è aperto un mondo</span>
-                        <span class="data right minor">22/04/2007</span>
+                <div class="container" id="threadsblock" ctx-url="<%=request.getContextPath()%>">
+                    <div data-bind="foreach: threads" >
+                        <a data-bind="attr: {href: url}" href="<%=request.getContextPath()%>/jsp/discussion.jsp?id=0">
+                            <div class="dbox">
+                                <span data-bind="text: title" class="title">Titolo</span>
+                                <span data-bind="text: autor" class="autor right minor">creato da: Francesco Amadori</span>
+                                <br>
+                                <span data-bind="text: description" class="desc">Descrizione</span>
+                                <span data-bind="text: datetime" class="data right minor">22/04/2007</span>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -63,4 +58,8 @@
                 <%@include file="/WEB-INF/jspf/footer.jspf" %>
             </footer>
     </body>
+    <!-- Questa posizione è richiesta da knockout -->
+    <script src="<%=request.getContextPath()%>/js/lib/jquery/jquery.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/js/lib/knockout/knockout-3.2.0.js"></script>
+    <script src="<%=request.getContextPath()%>/js/managethreads.js"></script>
 </html>
