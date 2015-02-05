@@ -12,6 +12,9 @@ import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerConfigurationException;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.Text;
 
 /**
  * Static methods used for communication purpose
@@ -24,17 +27,65 @@ public class WebUtils {
      **/
     public static void sendErrorMessage(String text, OutputStream out)
     {
+        sendSimpleMessage("error", text, out);
+    }
+    
+    /**
+     * Writes on the output stream a simple xml in 
+     * the format of <rootTag>text</rootTag>
+     * @param text
+     * @param rootTag
+     * @param out
+     **/
+    public static void sendSimpleMessage(String rootTag, String text, OutputStream out)
+    {
         try {
             ManageXML mXml = new ManageXML();
             //root elem is error
-            Document doc = mXml.newDocument("error");
-            doc.createTextNode(text);
+            Document doc = mXml.newDocument(rootTag);
+            Text el = doc.createTextNode(text);
+            doc.getDocumentElement().appendChild(el);
             mXml.transform(out, doc);
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Errore nell'invio del messaggio: " + text);
         }
+    }
+    
+    /**
+     * Returns the content of a node of the xml document as string.
+     * @param doc
+     * @param path is an array of strings where each string is a node to visit
+     * to get to the interested content.
+     * Example:
+     * <root>
+     *  <tag1>
+     *   <tag2>
+     *       content
+     *   </tag2>
+     *  </tag1>
+     * </root>
+     * path = ["tag1","tag2"]
+     * @return the content as string
+     **/
+    public static String getContentFromNode(Document doc, String[] path)
+    {
+        String content = null;
+        try{
+            Element holder = doc.getDocumentElement();
+            for(String str : path){
+//                System.out.println("debug "+ holder.getNodeName());
+                Node nholder = holder.getElementsByTagName(str).item(0);
+                if(nholder.getNodeType() == Node.ELEMENT_NODE)
+                    holder = (Element) nholder;
+            }
+            content = holder.getTextContent();
+        }catch(Exception e){
+            System.out.println("Errore dutante la ricerca del contenuto.");
+            e.printStackTrace();
+        }
         
+        return content;
     }
     
 }

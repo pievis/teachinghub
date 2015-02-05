@@ -14,7 +14,10 @@ public class ManageXML {
     private DocumentBuilder builder;
     
     public ManageXML() throws TransformerConfigurationException, ParserConfigurationException {
-        builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();        
+        builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+        //Instanzio il transformer con la factory
+        transformer=TransformerFactory.newInstance().newTransformer();
+        transformer.setOutputProperty(OutputKeys.INDENT,"yes");
     }
 
     /**

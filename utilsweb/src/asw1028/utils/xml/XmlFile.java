@@ -105,13 +105,13 @@ public class XmlFile {
         return doc.getDocumentElement();
     }
     
-    //Used for testing
-    public static void main(String[] args){
-        String ctx = System.getProperty("user.dir");
-        System.out.println("Starting test \nContext:  "+ ctx);
-        testWrite();
-//        testRead();
-    }
+//    //Used for testing
+//    public static void main(String[] args){
+//        String ctx = System.getProperty("user.dir");
+//        System.out.println("Starting test \nContext:  "+ ctx);
+//        testWrite();
+////        testRead();
+//    }
     
     private static void testRead(){
         try {
