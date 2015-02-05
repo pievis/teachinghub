@@ -40,9 +40,13 @@ function getXmlHttpRequest(){
 }
 
 function updateErrorBox(text){
-    var errorDiv = document.getElementById("errorbox");
+    //qui ora proviamo knockout.js
+    /*var errorDiv = document.getElementById("errorbox");
     errorDiv.style.visibility = "visible";
-    errorDiv.innerHTML = "<p>" + text +"</p>"
+    errorDiv.innerHTML = "<p>" + text +"</p>"*/
+    viewModel.errorMsg = text;
+    viewModel.loginOk = 0;
+    
 }
 
 function sendDataToServer(xmlhttp){
