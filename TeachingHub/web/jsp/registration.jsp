@@ -32,10 +32,11 @@
                             <p> Conferma Password: <br> <input type="password" name="cpass"> </p><br>
                             <!-- Ricordarsi di inserire qualcosa tipo "License of Agreement" -->
                             <input class="btn" type="submit" value="invia dati registrazione"><br>
-                            <div class="errorbox" id="errorbox">
+                            <div class="errorbox" id="errorbox" data-bind="visible: showMsg() >0">
                                 <!--<img src="<%=request.getContextPath()%>/multimedia/icons/delete85.png"-->
                                 <p>
-                                    Problema con i dati inseriti in form.
+                                    Problema con i dati inseriti in form:
+                                    <span data-bind="text: errorMsg"></span>
                                 </p>
                             </div>
                             <br>
@@ -47,4 +48,7 @@
                 <%@include file="/WEB-INF/jspf/footer.jspf" %>
             </footer>
     </body>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/js/lib/jquery/jquery.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/js/lib/knockout/knockout-3.2.0.js"></script>
+    <script src="<%=request.getContextPath()%>/js/registration.js"></script>
 </html>

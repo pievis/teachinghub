@@ -3,8 +3,7 @@
  * e i messaggi di errori ricevuti dal server.
 */
 
-function getXmlHttpRequest(){
-    
+function getXmlHttpRequest(){    
     var x = this;
     //For modern browsers
     if(window.XMLHttpRequest)
@@ -25,12 +24,12 @@ function getXmlHttpRequest(){
             if(errorTags.length > 0){
                 var errorTag = errorTags[0];
                 var text = errorTag.childNodes[0].nodeValue;
-                updateErrorBox(text);
+                updateErrorBox("Problema con i dati inseriti in form: "+text);
             }
             var successTags = xmlDoc.getElementsByTagName("success");
             if(successTags.length > 0){
                 //ricarica la pagina
-                updateErrorBox("Accesso avvenuto!");
+                updateErrorBox("Accesso avvenuto!!!");
                 location.reload();
             }
         }
@@ -44,9 +43,10 @@ function updateErrorBox(text){
     /*var errorDiv = document.getElementById("errorbox");
     errorDiv.style.visibility = "visible";
     errorDiv.innerHTML = "<p>" + text +"</p>"*/
-    viewModel.errorMsg = text;
-    viewModel.loginOk = 0;
-    
+    //viewModel.errorMsg = text;
+    //viewModel.showMsg = 1;
+    viewModel.errorMsg(text);
+    viewModel.showMsg(1);
 }
 
 function sendDataToServer(xmlhttp){
@@ -64,3 +64,10 @@ function sendDataToServer(xmlhttp){
     //Invio al server
     xmlhttp.send(data);
 }
+
+var viewModel = {
+    showMsg: ko.observable(0), //1 is true
+    errorMsg: ko.observable("")    
+};
+
+ko.applyBindings(viewModel);

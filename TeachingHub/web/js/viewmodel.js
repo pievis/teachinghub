@@ -5,8 +5,12 @@
  */
 
 var viewModel = {
-    loginOk: ko.observable(1), //1 is true
-    errorMsg: ko.observable("")
+    showMsg: ko.observable(0), //1 is true
+    errorMsg: ko.observable(""),    
+    setMsg : function(text) {
+        this.showMsg(1);
+        this.errorMsg(text);
+    }
 };
 
 ko.applyBindings(viewModel);

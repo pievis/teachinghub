@@ -12,7 +12,11 @@ import asw1028.db.structs.Students;
 import asw1028.db.structs.User;
 import asw1028.db.structs.Users;
 import asw1028.utils.SysKb;
+import asw1028.utils.WebUtils;
+import asw1028.utils.xml.ManageXML;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.security.AccessController;
 import java.util.logging.Level;
@@ -24,6 +28,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.bind.JAXBException;
+import org.w3c.dom.Document;
 
 /**
  *
@@ -43,7 +48,60 @@ public class Registration extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        InputStream in = request.getInputStream();
         response.setContentType("text/html;charset=UTF-8");
+        OutputStream out = response.getOutputStream();
+        boolean xmlReceived = true;
+        
+        String userid = null;
+        String pass = null;
+        String nome = null;
+        String cognome = null;
+        String classe = null;
+        String email = null;
+        
+        ManageXML mxml;
+        try {
+            mxml = new ManageXML();
+            Document doc = mxml.parse(in);
+            userid = WebUtils.getContentFromNode(doc, new String[] { "userid"});
+            pass = WebUtils.getContentFromNode(doc, new String[] { "password"});
+            nome = WebUtils.getContentFromNode(doc, new String[] { "name"});
+            cognome = WebUtils.getContentFromNode(doc, new String[] { "surname"});
+            classe = WebUtils.getContentFromNode(doc, new String[] { "class"});
+            email = WebUtils.getContentFromNode(doc, new String[] { "email"});
+        } catch (Exception e){
+            e.printStackTrace();
+            WebUtils.sendErrorMessage("Error(s) in received data", out);
+            xmlReceived = false;
+        }
+        
+        //TODO: registration checks here
+        
+        //Creo il nuovo utente
+        if(xmlReceived) {
+            Student newUser = new Student();
+            newUser.setId(userid);
+            newUser.setFirstname(nome);
+            newUser.setLastname(cognome);
+            newUser.setEmail(email);
+            newUser.setPassword(pass);
+            newUser.setClasse(classe);
+            newUser.setAvatar(SysKb.defaultAvatar);
+        
+            //Salvo sul db
+            try {
+                saveInDb(newUser);
+            } catch (JAXBException ex) {
+                Logger.getLogger(Registration.class.getName()).log(Level.SEVERE, null, ex);
+                WebUtils.sendErrorMessage("Error(s) while saving the data", out);
+                System.out.println("Errore durante il salvataggio su db.");
+            }
+
+            WebUtils.sendSimpleMessage("success", "Registrazione avvenuta con successo", out);
+            System.out.println("Registration Invio...");
+        }
+        /*
         try (PrintWriter out = response.getWriter()) {
             //i dati di registrzioni non sono dati di sessione, ma devono rimanere associati alla web application
 //            ServletContext application = getServletContext();
@@ -60,7 +118,7 @@ public class Registration extends HttpServlet {
             newUser.setEmail(request.getParameter("email"));
             newUser.setPassword(request.getParameter("pass"));
             newUser.setClasse(request.getParameter("classe"));
-            newUser.setAvatar(SysKb.defaultAvatar);
+            newUser.setAvatar(SysKb.defaultAvatar);            
             
             //TODO CHECK SE UTENTE ESISTE
             
@@ -84,6 +142,7 @@ public class Registration extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
         }
+        */
     }
     
     /*

@@ -12,7 +12,6 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/style-sheets/main.css">
-        <script src="<%=request.getContextPath()%>/js/login.js"></script>
         
     </head>
     <body>
@@ -31,10 +30,9 @@
                             <p> Password:<input type="password" name="pass" id="txtPass"> </p>
                             <input class="btn" type="submit" value="invia dati login">
                     </form>
-                    <div class="errorbox" id="errorbox" data-bind="visible: loginOk() == 0">
+                    <div class="errorbox" id="errorbox" data-bind="visible: showMsg() >0">
                         <!--<img src="<%=request.getContextPath()%>/multimedia/icons/delete85.png"-->
                         <p>
-                            Problema con i dati inseriti in form:
                             <span data-bind="text: errorMsg"></span>
                         </p>
                     </div>
@@ -52,4 +50,5 @@
     <!-- Questa posizione è richiesta da knockout -->
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/lib/jquery/jquery.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/lib/knockout/knockout-3.2.0.js"></script>
+    <script src="<%=request.getContextPath()%>/js/login.js"></script>
 </html>

@@ -136,7 +136,6 @@ header img.resize {
 /*errorbox*/
 .errorbox
 {
-    visibility: hidden;
     background: #ffcc33;
     min-height: 40px;
     width: 300px;
