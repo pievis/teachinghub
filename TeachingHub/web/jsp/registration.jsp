@@ -19,10 +19,10 @@
             <header>
                 <%@include file="/WEB-INF/jspf/header.jspf" %>
             </header>
-            <div id="content">
+            <div id="content" id="content" ctx-url ="<%=request.getContextPath()%>">
                 <h1 class="longh">Registrati</h1>
                 <div class="container">
-                    <form name="regForm" method="post" onsubmit="return validateRegistration()">
+                    <form name="regForm" method="post" onsubmit="getXmlHttpRequest(); return false;">
                             <p> Nome: <br> <input type="text" name="nome"> </p><br>
                             <p> Cognome: <br> <input type="text" name="cognome"> </p><br>
                             <p> Classe: <br> <input type="text" name="classe"> </p><br>
@@ -50,5 +50,5 @@
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/lib/jquery/jquery.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/lib/knockout/knockout-3.2.0.js"></script>
     <script src="<%=request.getContextPath()%>/js/registration.js"></script>
-    <script src="<%=request.getContextPath()%>/js/formvalidation.js"></script>
+    <!--script src="<%=request.getContextPath()%>/js/formvalidation.js"></script-->
 </html>

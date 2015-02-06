@@ -19,7 +19,7 @@
             <header>
                 <%@include file="/WEB-INF/jspf/header.jspf" %>
             </header>
-            <div id="content">
+            <div>
                 <h1 class="longh">Login</h1>
                 <div class="container">
                     <%
