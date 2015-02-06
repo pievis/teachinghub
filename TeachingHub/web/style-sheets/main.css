@@ -137,6 +137,10 @@ header img.resize {
 .errorbox
 {
     background: #ffcc33;
+    background-image: url('../multimedia/icons/wrench73.png');
+    background-size: 32px 32px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
     min-height: 40px;
     width: 300px;
     padding: 5px;
@@ -151,6 +155,7 @@ header img.resize {
 }
 .errorbox p{
     text-align: center;
+    padding-left: 52px;
 }
 
 /*dbox*/
