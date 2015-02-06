@@ -43,11 +43,12 @@ function updateViewModel($xml){
       var thread = new Thread(id, title, description, autor, datetime);
 //      console.log("INFO: "  + id );
 //      console.log("INFO: "  + title );
-      console.log("INFO: "  + autor );
-      console.log("INFO: "  + datetime );
+//      console.log("INFO: "  + autor );
+//      console.log("INFO: "  + datetime );
 //      console.log("--------------");
 //      
       viewModel.threads.push(thread);
+      viewModel.displayAdvancedOptions(true); //animate
     });
 //    console.log("log. SORTING");
     //TODO sort
@@ -66,7 +67,24 @@ var Thread = function(id, title, description, autor, datetime) {
 }
 
 var viewModel = {
-    threads: ko.observableArray()
+    threads: ko.observableArray(),
+    displayAdvancedOptions : ko.observable(false) //Inizialmente invisibile
+};
+
+// Here's a custom Knockout binding that makes elements shown/hidden via jQuery's fadeIn()/fadeOut() methods
+// Could be stored in a separate utility library
+ko.bindingHandlers.fadeVisible = {
+    init: function(element, valueAccessor) {
+        // Initially set the element to be instantly visible/hidden depending on the value
+        var value = valueAccessor();
+        $(element).toggle(ko.unwrap(value)); // Use "unwrapObservable" so we can handle values that may or may not be observable
+    },
+    update: function(element, valueAccessor) {
+        // Whenever the value subsequently changes, slowly fade the element in or out
+        var value = valueAccessor();
+        ko.unwrap(value) ? $(element).fadeIn() : $(element).fadeOut();
+    }
 };
 
 ko.applyBindings(viewModel);
+

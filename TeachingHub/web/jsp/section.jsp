@@ -39,7 +39,7 @@
                 <h2 class="longh">
                     <img src="<%=request.getContextPath()%>/multimedia/icons/laptops.png">
                     Domande & Discussioni</h2>
-                <div class="container" id="threadsblock" ctx-url="<%=request.getContextPath()%>">
+                <div data-bind='fadeVisible: displayAdvancedOptions' class="container" id="threadsblock" ctx-url="<%=request.getContextPath()%>">
                     <div data-bind="foreach: threads" >
                         <a data-bind="attr: {href: url}" href="<%=request.getContextPath()%>/jsp/discussion.jsp?id=0">
                             <div class="dbox">
