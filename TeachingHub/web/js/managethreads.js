@@ -9,7 +9,9 @@ function getParameterByName(name) {
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
+//for the urls
 var ctxurl = document.getElementById('threadsblock').getAttribute('ctx-url');
+var sectionid = document.getElementById('threadsblock').getAttribute('sectionid');
 var discRelUrl = "/jsp/discussion.jsp?id="
 
 $(function() {
@@ -39,8 +41,15 @@ function updateViewModel($xml){
       var description = $elem.find( "description" ).text();
       var autor = $elem.find( "autor:first" ).text();
       var $datetime = $elem.find( "datetime:first" );
+      var $lastupdate = $elem.find( "lastupdate" );
+      //es: 22/04/2010 11:22:44
       var datetime = $datetime.find( "date" ).text() + " " + $datetime.find( "time" ).text();
       var thread = new Thread(id, title, description, autor, datetime);
+      if($lastupdate != null){
+        thread.lastupdate.autor = $lastupdate.find( "autor" );
+        var datetimelu = $lastupdate.find( "date" ).text() + " " + $lastupdate.find( "time" ).text();
+        thread.lastupdate.datetime = datetimelu;
+      }
 //      console.log("INFO: "  + id );
 //      console.log("INFO: "  + title );
 //      console.log("INFO: "  + autor );
@@ -51,7 +60,34 @@ function updateViewModel($xml){
       viewModel.displayAdvancedOptions(true); //animate
     });
 //    console.log("log. SORTING");
-    //TODO sort
+    sortArrayThreads("DESC", "creationdate");
+}
+
+function sortArrayThreads(order, attribute){
+    var orderf;
+    var cmpf = function(left,right){
+        if(order === "DESC")
+            return left.datetime > right.datetime ? -1 : 1;
+        else if (order === "ASC")
+            return left.datetime > right.datetime ? 1 : -1;
+    };
+    if(attribute == "creationdate"){
+        orderf = function(left, right) {
+            return left.datetime == right.datetime ? 0 : cmpf(left.datetime,right.datetime);
+        };
+    }
+    if(attribute == "id"){
+        orderf = function(left, right) {
+            return left.id == right.id ? 0 : cmpf(left.id,right.id);
+        };
+    }
+    if(attribute == "lastupdate"){
+        orderf = function(left, right) {
+            return left.lastupdate.datetime == right.lastupdate.datetime ? 0 : cmpf(left.lastupdate.datetime,right.lastupdate.datetime);
+        };
+    }
+    viewModel.threads.sort(orderf);
+    console.log("log. SORTING " + order + " " + attribute);
 }
 
 //view model with knockout
@@ -63,7 +99,10 @@ var Thread = function(id, title, description, autor, datetime) {
     this.description = description;
     this.autor = autor;
     this.datetime = datetime;
-    this.url = ctxurl + discRelUrl + id;
+    //discussion.jsp?id=0&sectionid=Matematica
+    this.url = ctxurl + discRelUrl + id + "&sectionid=" + sectionid;
+    //other
+    this.lastupdate = {};
 }
 
 var viewModel = {

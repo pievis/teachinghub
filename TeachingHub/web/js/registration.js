@@ -3,8 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 function getXmlHttpRequest(){    
     var x = this;
     //For modern browsers
@@ -58,6 +56,7 @@ function sendDataToServer(xmlhttp){
     var classId = data.createElement("class");
     var emailId = data.createElement("email");
     //insert text within the nodes
+    console.log($("form[name='regForm'] input[name='user']").val());
     var contentUsr = data.createTextNode(document.getElementByName("user").value);
     var contentPass = data.createTextNode(document.getElementByName("pass").value);
     var contentName = data.createTextNode(document.getElementByName("nome").value);
@@ -77,6 +76,8 @@ function sendDataToServer(xmlhttp){
     data.documentElement.appendChild(surnameId);
     data.documentElement.appendChild(classId);
     data.documentElement.appendChild(emailId);
+    var xmlString = (new XMLSerializer()).serializeToString(data);
+    console.log(xmlString);
 //    updateErrorBox(data);
     //Invio al server
     xmlhttp.send(data);

@@ -12,7 +12,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/style-sheets/main.css">
-        <script src="<%=request.getContextPath()%>/js/formvalidation.js"></script>
+        
     </head>
     <body>
         <div id="wrapper">
@@ -22,7 +22,7 @@
             <div id="content">
                 <h1 class="longh">Registrati</h1>
                 <div class="container">
-                    <form name="regForm" action="../Registration" method="post" onsubmit="return validateRegistration()">
+                    <form name="regForm" method="post" onsubmit="return validateRegistration()">
                             <p> Nome: <br> <input type="text" name="nome"> </p><br>
                             <p> Cognome: <br> <input type="text" name="cognome"> </p><br>
                             <p> Classe: <br> <input type="text" name="classe"> </p><br>
@@ -33,7 +33,6 @@
                             <!-- Ricordarsi di inserire qualcosa tipo "License of Agreement" -->
                             <input class="btn" type="submit" value="invia dati registrazione"><br>
                             <div class="errorbox" id="errorbox" data-bind="visible: showMsg() >0">
-                                <!--<img src="<%=request.getContextPath()%>/multimedia/icons/delete85.png"-->
                                 <p>
                                     Problema con i dati inseriti in form:
                                     <span data-bind="text: errorMsg"></span>
@@ -51,4 +50,5 @@
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/lib/jquery/jquery.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/lib/knockout/knockout-3.2.0.js"></script>
     <script src="<%=request.getContextPath()%>/js/registration.js"></script>
+    <script src="<%=request.getContextPath()%>/js/formvalidation.js"></script>
 </html>

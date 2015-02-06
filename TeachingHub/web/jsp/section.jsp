@@ -7,16 +7,15 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    <%
+    String sectionId = request.getParameter("sectionid");
+    %>
     <head>
-        <title>Teaching Hub - Section</title>
+        <title>Teaching Hub - <%=sectionId%></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/style-sheets/main.css">
     </head>
-    <%
-    String sectionId = request.getParameter("sectionid");
-    //TODO prendere le info per le discussioni e pagine in base a sectionid
-    %>
     <body>
         <div id="wrapper">
             <header>
@@ -39,7 +38,8 @@
                 <h2 class="longh">
                     <img src="<%=request.getContextPath()%>/multimedia/icons/laptops.png">
                     Domande & Discussioni</h2>
-                <div data-bind='fadeVisible: displayAdvancedOptions' class="container" id="threadsblock" ctx-url="<%=request.getContextPath()%>">
+                <div data-bind='fadeVisible: displayAdvancedOptions' class="container" id="threadsblock"
+                            sectionid='<%=sectionId%>' ctx-url="<%=request.getContextPath()%>">
                     <div data-bind="foreach: threads" >
                         <a data-bind="attr: {href: url}" href="<%=request.getContextPath()%>/jsp/discussion.jsp?id=0">
                             <div class="dbox">

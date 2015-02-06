@@ -49,7 +49,7 @@ public class Registration extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         InputStream in = request.getInputStream();
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/xml;charset=UTF-8");
         OutputStream out = response.getOutputStream();
         boolean xmlReceived = true;
         
