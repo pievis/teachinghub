@@ -24,11 +24,19 @@ il div container cambia di contenuto in base al contesto (sessione, utente, ecc)
                 <div id="courses">
                     <h1 class="longh">Corsi</h1>
                         <a href="jsp/section.jsp?sectionid=Matematica">
-                            <section>Matematica</section></a>
+                            <div class="section">Matematica
+                                <p>Algebra, Geometria, Analisi</p>
+                            </div></a>
                         <a href="jsp/section.jsp?sectionid=Scienze">
-                            <section>Scienze</section></a>
-                        <section>Fisica</section>
-                        <section>Informatica</section>
+                            <div class="section">Scienze
+                                <p>Biologia, Astronomia, Scienze della terra</p>
+                            </div></a>
+                        <div class="section">Fisica
+                            <p>Dinamica, Ellettronica</p>
+                        </div>
+                        <div class="section">Informatica
+                            <p>Programmazione, Database, Web</p>
+                        </div>
                 </div>
             </div>
             

@@ -107,7 +107,23 @@ var Thread = function(id, title, description, autor, datetime) {
 
 var viewModel = {
     threads: ko.observableArray(),
-    displayAdvancedOptions : ko.observable(false) //Inizialmente invisibile
+    displayAdvancedOptions : ko.observable(false), //Inizialmente invisibile
+    selectedAtr: ko.observable(),
+    atrs: ["lastupdate", "creationdate"],
+    atrToText: function(item){
+        if(item == "creationdate")
+            return "Data Creazione";
+        if(item == "lastupdate")
+            return "Ultimo Aggiornamento";
+    },
+    selectedOrd: ko.observable(),
+    ords: ["DESC", "ASC"],
+    ordsToText: function(item){
+        if(item == "DESC")
+            return "Descrescente";
+        if(item == "ASC")
+            return "Ascendente";
+    }
 };
 
 // Here's a custom Knockout binding that makes elements shown/hidden via jQuery's fadeIn()/fadeOut() methods

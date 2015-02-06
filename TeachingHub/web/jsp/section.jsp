@@ -38,6 +38,19 @@
                 <h2 class="longh">
                     <img src="<%=request.getContextPath()%>/multimedia/icons/laptops.png">
                     Domande & Discussioni</h2>
+                    <div class="options">
+                        <p>
+                            Ordina per
+                            <select data-bind="value: selectedAtr,
+                                               options: atrs,
+                                               optionsText: atrToText"
+                                               ></select>
+                            <select data-bind="value: selectedOrd,
+                                               options: ords,
+                                               optionsText: ordsToText"
+                            ></select>
+                        </p>
+                    </div> 
                 <div data-bind='fadeVisible: displayAdvancedOptions' class="container" id="threadsblock"
                             sectionid='<%=sectionId%>' ctx-url="<%=request.getContextPath()%>">
                     <div data-bind="foreach: threads" >

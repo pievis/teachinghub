@@ -117,19 +117,32 @@ header img.resize {
     padding: 5px;
 }
 
-#courses section{
+#courses div.section{
+    background: #006600;
+    background-image: url('../multimedia/icons/books44.png');
+    background-size: 32px 32px;
+    background-position: 10px center;
+    background-repeat: no-repeat;
     color: white;
     font-family: "Arial Black", Gadget, sans-serif;
     font-weight: 200;
     font-size: 16px;
-    width: 200px;
+    width: 300px;
+    height: 32px;
     padding: 10px;
-    padding-left: 20px;
-    background: #9999ff;
+    padding-left: 52px;
     margin-top: 10px;
+    border-radius: 20px;
 }
 
-#courses section:hover{
+#courses div.section p{
+    color: #00cc66;
+    font-weight: 100;
+    font-size: 12px;
+    padding: 5px 0px 0px 10px;
+}
+
+#courses div.section:hover{
     margin-left: 15px;
 }
 
