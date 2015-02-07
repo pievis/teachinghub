@@ -46,7 +46,7 @@ function updateViewModel($xml){
       var datetime = $datetime.find( "date" ).text() + " " + $datetime.find( "time" ).text();
       var thread = new Thread(id, title, description, autor, datetime);
       if($lastupdate != null){
-        thread.lastupdate.autor = $lastupdate.find( "autor" );
+        thread.lastupdate.autor = $lastupdate.find( "autor" ).text();
         var datetimelu = $lastupdate.find( "date" ).text() + " " + $lastupdate.find( "time" ).text();
         thread.lastupdate.datetime = datetimelu;
       }
@@ -60,20 +60,20 @@ function updateViewModel($xml){
       viewModel.displayAdvancedOptions(true); //animate
     });
 //    console.log("log. SORTING");
-    sortArrayThreads("DESC", "creationdate");
+    sortArrayThreads("DESC", "lastupdate");
 }
 
 function sortArrayThreads(order, attribute){
     var orderf;
     var cmpf = function(left,right){
         if(order === "DESC")
-            return left.datetime > right.datetime ? -1 : 1;
-        else if (order === "ASC")
-            return left.datetime > right.datetime ? 1 : -1;
+            return left > right ? -1 : 1;
+        else
+            return left > right ? 1 : -1;
     };
     if(attribute == "creationdate"){
         orderf = function(left, right) {
-            return left.datetime == right.datetime ? 0 : cmpf(left.datetime,right.datetime);
+            return left.datetime == right.datetime ? 0 : cmpf(parseDate(left.datetime),parseDate(right.datetime));
         };
     }
     if(attribute == "id"){
@@ -81,13 +81,27 @@ function sortArrayThreads(order, attribute){
             return left.id == right.id ? 0 : cmpf(left.id,right.id);
         };
     }
+    if(attribute == "autor"){
+        orderf = function(left, right) {
+            return left.autor == right.autor ? 0 : cmpf(left.autor,right.autor);
+        };
+    }
     if(attribute == "lastupdate"){
         orderf = function(left, right) {
-            return left.lastupdate.datetime == right.lastupdate.datetime ? 0 : cmpf(left.lastupdate.datetime,right.lastupdate.datetime);
+            return left.lastupdate.datetime == right.lastupdate.datetime ? 0 : cmpf(parseDate(left.lastupdate.datetime),parseDate(right.lastupdate.datetime));
         };
     }
     viewModel.threads.sort(orderf);
-    console.log("log. SORTING " + order + " " + attribute);
+//    console.log("log. SORTING " + order + " " + attribute);
+}
+
+//return the milliseconds from date
+//specified in the format dd/MM/yyyy HH:mm:ss
+function parseDate(dateStr){
+    var dateStr0 = dateStr.replace(/\s/g, ""); 
+    var value = Date.parseExact(dateStr0, "dd/MM/yyyyHH:mm:ss");
+//    console.log("DATA: " + value.getTime() + " origin "+ dateStr0);
+    return value.getTime();
 }
 
 //view model with knockout
@@ -109,10 +123,12 @@ var viewModel = {
     threads: ko.observableArray(),
     displayAdvancedOptions : ko.observable(false), //Inizialmente invisibile
     selectedAtr: ko.observable(),
-    atrs: ["lastupdate", "creationdate"],
+    atrs: ["lastupdate", "creationdate", "autor"],
     atrToText: function(item){
         if(item == "creationdate")
             return "Data Creazione";
+        if(item == "autor")
+            return "Autore";
         if(item == "lastupdate")
             return "Ultimo Aggiornamento";
     },
@@ -122,7 +138,7 @@ var viewModel = {
         if(item == "DESC")
             return "Descrescente";
         if(item == "ASC")
-            return "Ascendente";
+            return "Crescente";
     }
 };
 
@@ -143,3 +159,15 @@ ko.bindingHandlers.fadeVisible = {
 
 ko.applyBindings(viewModel);
 
+//Eventi di riordinamento per le opzioni dei thread
+viewModel.selectedAtr.subscribe(function(atrValue){
+    var selOrder = viewModel.selectedOrd();
+//    console.log("SEL ORDER " + selOrder);
+    sortArrayThreads(selOrder,atrValue);
+});
+
+viewModel.selectedOrd.subscribe(function(ordValue){
+    var selAttribute = viewModel.selectedAtr();
+//    console.log("SEL ORDER " + selOrder);
+    sortArrayThreads(ordValue,selAttribute);
+});

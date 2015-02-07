@@ -51,16 +51,25 @@
                             ></select>
                         </p>
                     </div> 
-                <div data-bind='fadeVisible: displayAdvancedOptions' class="container" id="threadsblock"
+                <div data-bind='fadeVisible: displayAdvancedOptions' class="container upmargin" id="threadsblock"
                             sectionid='<%=sectionId%>' ctx-url="<%=request.getContextPath()%>">
                     <div data-bind="foreach: threads" >
                         <a data-bind="attr: {href: url}" href="<%=request.getContextPath()%>/jsp/discussion.jsp?id=0">
                             <div class="dbox">
-                                <span data-bind="text: title" class="title">Titolo</span>
-                                <span data-bind="text: autor" class="autor right minor">creato da: Francesco Amadori</span>
-                                <br>
-                                <span data-bind="text: description" class="desc">Descrizione</span>
-                                <span data-bind="text: datetime" class="data right minor">22/04/2007</span>
+                                <p>
+                                    <span data-bind="text: title" class="title">Titolo</span>
+                                    <span data-bind="text: autor" class="autor right minor">creato da: Francesco Amadori</span>
+                                </p>
+                                <p>
+                                    <span data-bind="text: description" class="desc">Descrizione</span>
+                                    <span data-bind="text: datetime" class="data right minor">22/04/2007</span>
+                                </p>
+                                <p class="minor">
+                                    Ultimo aggiornamento: 
+                                    <span data-bind="text: lastupdate.datetime" class="data">datetime</span>
+                                    di
+                                    <span data-bind="text: lastupdate.autor" class="data">Autor</span>
+                                </p>
                             </div>
                         </a>
                     </div>
@@ -73,6 +82,7 @@
     </body>
     <!-- Questa posizione è richiesta da knockout -->
     <script src="<%=request.getContextPath()%>/js/lib/jquery/jquery.js"></script>
+    <script src="<%=request.getContextPath()%>/js/lib/date.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/lib/knockout/knockout-3.2.0.js"></script>
     <script src="<%=request.getContextPath()%>/js/managethreads.js"></script>
 </html>
