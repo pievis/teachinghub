@@ -119,7 +119,7 @@ header img.resize {
 
 #courses div.section{
     background: #006600;
-    background-image: url('../multimedia/icons/books44.png');
+    /* background-image: url('../multimedia/icons/books44.png'); */
     background-size: 32px 32px;
     background-position: 10px center;
     background-repeat: no-repeat;

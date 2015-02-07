@@ -15,7 +15,7 @@ public class SysKb {
     public static final String avatarPath = "/multimedia/avatars/";
     public static final String defaultAvatar = "avatar0.png";
     //xml
-    
+    public static final String xmlDbSections = "/WEB-INF/xml/sections/sections.xml";
     public static final String msgXmlPrefix = "msgs";
     public static final String xmlDbPath = "/WEB-INF/xml/";
     public static final String xmlDbStudents = "/WEB-INF/xml/students.xml";
