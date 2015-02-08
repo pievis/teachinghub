@@ -25,10 +25,10 @@
                 <h1 class="longh">
                     <img src="<%=request.getContextPath()%>/multimedia/icons/book245.png">
                     <%=sectionId%></h1>
-                <h2 class="longh">
+                <h2 class="longh" data-bind="click: showHidePages">
                     <img src="<%=request.getContextPath()%>/multimedia/icons/book246.png">
                     Pagine & Appunti</h2>
-                <div class="container">
+                <div class="container" data-bind="visible: pagesVisible">
                     <ul>
                         <li>Coffee <span class="autor">(Creato da Qualcuno)</span></li>
                         <li>Tea <span class="autor">(Creato da Qualcuno)</span></li>
@@ -38,16 +38,41 @@
                 <h2 class="longh">
                     <img src="<%=request.getContextPath()%>/multimedia/icons/laptops.png">
                     Domande & Discussioni</h2>
+                    <!--bottone che fa foward alla view per la nuova discussione-->
+                    <button class="btn" data-bind="click: fowardToNewQuestion">
+                        Crea una nuova discussione</button>
+                    <div class="options">
+                        <p>
+                            Ordina per
+                            <select data-bind="value: selectedAtr,
+                                               options: atrs,
+                                               optionsText: atrToText"
+                                               ></select>
+                            <select data-bind="value: selectedOrd,
+                                               options: ords,
+                                               optionsText: ordsToText"
+                            ></select>
+                        </p>
+                    </div> 
                 <div data-bind='fadeVisible: displayAdvancedOptions' class="container" id="threadsblock"
                             sectionid='<%=sectionId%>' ctx-url="<%=request.getContextPath()%>">
                     <div data-bind="foreach: threads" >
                         <a data-bind="attr: {href: url}" href="<%=request.getContextPath()%>/jsp/discussion.jsp?id=0">
                             <div class="dbox">
-                                <span data-bind="text: title" class="title">Titolo</span>
-                                <span data-bind="text: autor" class="autor right minor">creato da: Francesco Amadori</span>
-                                <br>
-                                <span data-bind="text: description" class="desc">Descrizione</span>
-                                <span data-bind="text: datetime" class="data right minor">22/04/2007</span>
+                                <p>
+                                    <span data-bind="text: title" class="title">Titolo</span>
+                                    <span data-bind="text: autor" class="autor right minor">creato da: Francesco Amadori</span>
+                                </p>
+                                <p>
+                                    <span data-bind="text: description" class="desc">Descrizione</span>
+                                    <span data-bind="text: datetime" class="data right minor">22/04/2007</span>
+                                </p>
+                                <p class="minor">
+                                    Ultimo aggiornamento: 
+                                    <span data-bind="text: lastupdate.datetime" class="data">datetime</span>
+                                    di
+                                    <span data-bind="text: lastupdate.autor" class="data">Autor</span>
+                                </p>
                             </div>
                         </a>
                     </div>
@@ -60,6 +85,7 @@
     </body>
     <!-- Questa posizione è richiesta da knockout -->
     <script src="<%=request.getContextPath()%>/js/lib/jquery/jquery.js"></script>
+    <script src="<%=request.getContextPath()%>/js/lib/date.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/lib/knockout/knockout-3.2.0.js"></script>
     <script src="<%=request.getContextPath()%>/js/managethreads.js"></script>
 </html>

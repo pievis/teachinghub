@@ -75,9 +75,32 @@ public class Registration extends HttpServlet {
             WebUtils.sendErrorMessage("Error(s) in received data", out);
             xmlReceived = false;
         }
+        //registration checks here
+        String errors= "Errori nei campi inviati: ";
+        boolean error = false;
+        if(pass.length() < 5){
+            errors+= "<p>Password troppo corta</p>";
+            error = true;
+        }
+        if(WebUtils.isValidEmailAddress(email)){
+            errors+= "<p>Email non valida</p>";
+            error = true;
+        }
+        UsersManager um = new UsersManager(SysKb.xmlDbTeachers,SysKb.xmlDbStudents);
+        try {
+            if(um.getUserById(userid) != null){
+                errors+= "<p>L'username selezionato è in uso</p>";
+                error = true;
+            }
+        } catch (JAXBException ex) {
+            Logger.getLogger(Registration.class.getName()).log(Level.SEVERE, null, ex);
+            error = true;
+        }
         
-        //TODO: registration checks here
-        
+        if(error){
+            WebUtils.sendErrorMessage(errors, out);
+            return; //termina la servlet
+        }
         //Creo il nuovo utente
         if(xmlReceived) {
             Student newUser = new Student();
@@ -99,50 +122,7 @@ public class Registration extends HttpServlet {
             }
 
             WebUtils.sendSimpleMessage("success", "Registrazione avvenuta con successo", out);
-            System.out.println("Registration Invio...");
         }
-        /*
-        try (PrintWriter out = response.getWriter()) {
-            //i dati di registrzioni non sono dati di sessione, ma devono rimanere associati alla web application
-//            ServletContext application = getServletContext();
-//            application.setAttribute("nome", request.getParameter("nome"));
-//            application.setAttribute("cognome", request.getParameter("cognome"));
-//            application.setAttribute("user", request.getParameter("user"));
-//            application.setAttribute("pass", request.getParameter("pass"));
-            
-            //Leggo la richiesta
-            Student newUser = new Student();
-            newUser.setId(request.getParameter("user"));
-            newUser.setFirstname(request.getParameter("nome"));
-            newUser.setLastname(request.getParameter("cognome"));
-            newUser.setEmail(request.getParameter("email"));
-            newUser.setPassword(request.getParameter("pass"));
-            newUser.setClasse(request.getParameter("classe"));
-            newUser.setAvatar(SysKb.defaultAvatar);            
-            
-            //TODO CHECK SE UTENTE ESISTE
-            
-            //TODO aggiungere check da remoto + robustezza
-            
-            //Salvo sul db
-            try {
-                saveInDb(newUser);
-            } catch (JAXBException ex) {
-                Logger.getLogger(Registration.class.getName()).log(Level.SEVERE, null, ex);
-                System.out.println("Errore durante il salvataggio su db.");
-            }
-            
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Registration</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Registration at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-        */
     }
     
     /*
@@ -152,7 +132,7 @@ public class Registration extends HttpServlet {
     {
         String teachersPath = getServletContext().getRealPath("/WEB-INF/xml/teachers.xml");
         String studentsPath = getServletContext().getRealPath("/WEB-INF/xml/students.xml");
-        System.out.println("PRINT: " + studentsPath);
+//        System.out.println("PRINT: " + studentsPath);
         UsersManager mng = new UsersManager(teachersPath, studentsPath);
         mng.addStudentToDb(newUser);
 //        System.out.println("SAVED");

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sections>
+    <section>
+        <name>Matematica</name>
+        <description>Analisi, Algebra, Geometria</description>
+        <icon>/multimedia/icons/schoolmaterials9.png</icon>
+        <color></color>
+    </section>
+    <section>
+        <name>Scienze</name>
+        <description>Biologia, Asronomia, Scienze della terra</description>
+        <icon>/multimedia/icons/science25.png</icon>
+        <color></color>
+    </section>
+    <section>
+        <name>Fisica</name>
+        <description>Dinamica, Elettrotecnica</description>
+        <icon>/multimedia/icons/readingglasses1.png</icon>
+        <color></color>
+    </section>
+    <section>
+        <name>Informatica</name>
+        <description>Programmazione, Database, Web</description>
+        <icon>/multimedia/icons/laptops.png</icon>
+        <color></color>
+    </section>
+</sections>
