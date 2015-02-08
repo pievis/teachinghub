@@ -86,7 +86,9 @@ public class Registration extends HttpServlet {
             errors+= "<p>Email non valida</p>";
             error = true;
         }
-        UsersManager um = new UsersManager(SysKb.xmlDbTeachers,SysKb.xmlDbStudents);
+        String teachersPath = getServletContext().getRealPath(SysKb.xmlDbTeachers);
+        String studentsPath = getServletContext().getRealPath(SysKb.xmlDbStudents);
+        UsersManager um = new UsersManager(teachersPath, studentsPath);
         try {
             if(um.getUserById(userid) != null){
                 errors+= "<p>L'username selezionato è in uso</p>";

@@ -4,7 +4,7 @@
 function checkAndSendDiscussion(){
     var title = $("input[name=title]").val();
     var desc = $("input[name=description]").val();
-    var msg = $("input[name=message]").val();
+    var msg = $("textarea[name=message]").val();
     if(!checkValues(title, desc, msg))
         return;
     
@@ -12,11 +12,11 @@ function checkAndSendDiscussion(){
 
 function checkValues(title, desc, msg){
     console.log("Msg:: " + title + desc + msg);
-    if(title == undefined || title.length < 5){
+    if(title == undefined || title.length < 4){
         showErrorMsg("Titolo troppo corto.");
         return false;
     }
-    if(title == undefined || msg.lenght < 5){
+    if(msg == undefined || msg.length < 5){
         showErrorMsg("Scrivi un messaggio significativo.");
         return false;
     }
