@@ -121,7 +121,7 @@ function sendDataToServer(xmlhttp, contentUsr, contentPass, contentName, content
     data.documentElement.appendChild(surnameId);
     data.documentElement.appendChild(classId);
     data.documentElement.appendChild(emailId);
-    var xmlString = (new XMLSerializer()).serializeToString(data);
+    //var xmlString = (new XMLSerializer()).serializeToString(data);
     //console.log(xmlString);
 //    updateErrorBox(data);
     //Invio al server

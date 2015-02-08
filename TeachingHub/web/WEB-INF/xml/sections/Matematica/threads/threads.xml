@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<threads>
+    <section>
+        matematica
+    </section>
+    <thread>
+        <id>0</id>
+        <title>
+            Titolo0
+        </title>
+        <description>
+            Descrizione molto bella della discussione
+        </description>
+        <autor>
+            UserId
+        </autor>
+        <creationdate>
+            22/04/07
+        </creationdate>
+    </thread>
+    <thread>
+        <id>1</id>
+        <title>
+            Titolo1
+        </title>
+        <description>
+            Descrizione molto bella della discussione!
+        </description>
+        <autor>
+            UserId
+        </autor>
+        <creationdate>
+            23/05/07
+        </creationdate>
+    </thread>
+</threads>
