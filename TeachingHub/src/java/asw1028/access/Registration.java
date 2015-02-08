@@ -76,14 +76,14 @@ public class Registration extends HttpServlet {
             xmlReceived = false;
         }
         //registration checks here
-        String errors= "Errori nei campi inviati: ";
+        String errors= "Errori nei campi inviati - ";
         boolean error = false;
         if(pass.length() < 5){
-            errors+= "<p>Password troppo corta</p>";
+            errors+= "Password troppo corta. ";
             error = true;
         }
-        if(WebUtils.isValidEmailAddress(email)){
-            errors+= "<p>Email non valida</p>";
+        if(!WebUtils.isValidEmailAddress(email)){
+            errors+= "Email non valida. ";
             error = true;
         }
         String teachersPath = getServletContext().getRealPath(SysKb.xmlDbTeachers);
@@ -91,7 +91,7 @@ public class Registration extends HttpServlet {
         UsersManager um = new UsersManager(teachersPath, studentsPath);
         try {
             if(um.getUserById(userid) != null){
-                errors+= "<p>L'username selezionato è in uso</p>";
+                errors+= "L'username selezionato è in uso. ";
                 error = true;
             }
         } catch (JAXBException ex) {

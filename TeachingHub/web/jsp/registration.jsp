@@ -34,7 +34,6 @@
                             <input class="btn" type="submit" value="invia dati registrazione"><br>
                             <div class="errorbox" id="errorbox" data-bind="visible: showMsg() >0">
                                 <p>
-                                    Problema con i dati inseriti in form:
                                     <span data-bind="text: errorMsg"></span>
                                 </p>
                             </div>
