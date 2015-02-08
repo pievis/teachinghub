@@ -1,0 +1,9 @@
+Descrizione del servizio offerto dal sito
+Il sito teachingHub offre un servizio di supporto alla didattica per studenti e docenti di scuole e università.
+Per utilizzare il servizio, gli studenti devono iscriversi attraverso una form di registrazione o accedere attraverso un login. Saranno disponibili le sezioni per diverse materie in cui sarà possibile porre delle domande a gli altri partecipanti. Studenti e docenti possono contribuire alle discussioni rispondendo alle domande con dei post.
+I docenti posono inoltre aprire dei post, utili per gli studenti, in cui sono stati caricati degli appunti.
+Contrariamente agli studenti, i docenti non hanno una form di registrazione, poichè gestiti dagi amministratori del sistema, ma utilizzano la stessa form di login.
+L'obiettivo non funzionale del progetto è quello di fornire un servizio immediato e responsivo.
+
+Registrazione.java
+L'utente può registrarsi. Le risposte del server non provocano un ricaricamento della pagina, ma un aggiornamento dinamico del contenuto. Ad esempio, la registrazione completata può fornire delle informazioni, mentre un falimento dei dati utili alla correzione.

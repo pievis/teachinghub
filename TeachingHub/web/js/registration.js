@@ -43,6 +43,7 @@ function getXmlHttpRequest(){
     var contentClass = $("form[name='regForm'] input[name='classe']").val();
     var contentEmail = $("form[name='regForm'] input[name='email']").val();
     var canGo = validateRegistration(contentUsr, contentEmail, contentPass, confirmPass);
+    console.log(contentUsr+contentPass);
     if(canGo) {
         var x = this;
         //For modern browsers
