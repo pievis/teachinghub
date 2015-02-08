@@ -25,10 +25,10 @@
                 <h1 class="longh">
                     <img src="<%=request.getContextPath()%>/multimedia/icons/book245.png">
                     <%=sectionId%></h1>
-                <h2 class="longh">
+                <h2 class="longh" data-bind="click: showHidePages">
                     <img src="<%=request.getContextPath()%>/multimedia/icons/book246.png">
                     Pagine & Appunti</h2>
-                <div class="container">
+                <div class="container" data-bind="visible: pagesVisible">
                     <ul>
                         <li>Coffee <span class="autor">(Creato da Qualcuno)</span></li>
                         <li>Tea <span class="autor">(Creato da Qualcuno)</span></li>
@@ -38,6 +38,9 @@
                 <h2 class="longh">
                     <img src="<%=request.getContextPath()%>/multimedia/icons/laptops.png">
                     Domande & Discussioni</h2>
+                    <!--bottone che fa foward alla view per la nuova discussione-->
+                    <button class="btn" data-bind="click: fowardToNewQuestion">
+                        Crea una nuova discussione</button>
                     <div class="options">
                         <p>
                             Ordina per
@@ -51,7 +54,7 @@
                             ></select>
                         </p>
                     </div> 
-                <div data-bind='fadeVisible: displayAdvancedOptions' class="container upmargin" id="threadsblock"
+                <div data-bind='fadeVisible: displayAdvancedOptions' class="container" id="threadsblock"
                             sectionid='<%=sectionId%>' ctx-url="<%=request.getContextPath()%>">
                     <div data-bind="foreach: threads" >
                         <a data-bind="attr: {href: url}" href="<%=request.getContextPath()%>/jsp/discussion.jsp?id=0">

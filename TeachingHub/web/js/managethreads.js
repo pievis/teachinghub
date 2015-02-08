@@ -12,6 +12,7 @@ function getParameterByName(name) {
 //for the urls
 var ctxurl = document.getElementById('threadsblock').getAttribute('ctx-url');
 var sectionid = document.getElementById('threadsblock').getAttribute('sectionid');
+var newQuestionUrl = "/jsp/new_question.jsp?sectionid=";
 var discRelUrl = "/jsp/discussion.jsp?id="
 
 $(function() {
@@ -139,6 +140,15 @@ var viewModel = {
             return "Descrescente";
         if(item == "ASC")
             return "Crescente";
+    },
+    pagesVisible: ko.observable(true), //pagine inizialmente visibili
+    showHidePages: function(){
+        var value = this.pagesVisible();
+        this.pagesVisible(!value);
+//        console.log("CLICKED " + value);
+    },
+    fowardToNewQuestion: function(){
+        window.location.href = ctxurl + newQuestionUrl + sectionid;
     }
 };
 
