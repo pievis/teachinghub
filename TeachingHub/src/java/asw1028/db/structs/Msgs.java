@@ -1,6 +1,7 @@
 
 package asw1028.db.structs;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -30,6 +31,8 @@ public class Msgs
 
     public List<Msg> getMsg ()
     {
+        if(msg == null)
+            msg = new ArrayList<Msg>();
         return msg;
     }
 

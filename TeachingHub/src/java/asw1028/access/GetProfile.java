@@ -71,7 +71,7 @@ public class GetProfile extends HttpServlet {
             JAXBContext jaxbContext = JAXBContext.newInstance(c);
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-            jaxbMarshaller.marshal(user, System.out);
+//            jaxbMarshaller.marshal(user, System.out);
             jaxbMarshaller.marshal(user, out);
         }catch(Exception e){
             e.printStackTrace();

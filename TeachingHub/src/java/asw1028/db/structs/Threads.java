@@ -1,6 +1,7 @@
 
 package asw1028.db.structs;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -22,6 +23,8 @@ public class Threads
 
     public List<Thread> getThread ()
     {
+        if(thread == null)
+            thread = new ArrayList<Thread>();
         return thread;
     }
 

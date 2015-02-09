@@ -4,26 +4,41 @@
  */
 package asw1028.access;
 
+import asw.interfaces.IUser;
+import asw1028.db.MessagesXml;
 import asw1028.db.ThreadsXml;
+import asw1028.db.structs.Datetime;
+import asw1028.db.structs.Lastupdate;
+import asw1028.db.structs.Msg;
+import asw1028.db.structs.Msgs;
 import asw1028.utils.SysKb;
 import asw1028.utils.WebUtils;
 import asw1028.utils.xml.ManageXML;
 import asw1028.db.structs.Thread;
+import asw1028.db.structs.Threads;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.util.Pair;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 /**
  * Questa servlet riceve un xml con informazioni sulla nuova discussione,
@@ -32,6 +47,8 @@ import org.w3c.dom.Document;
  */
 public class NewDiscussion extends HttpServlet {
 
+    ManageXML mxml;
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -50,15 +67,19 @@ public class NewDiscussion extends HttpServlet {
         
         String userid = null, sectionid = null;
         Document doc = null;
-        ManageXML mxml;
+        
         try {
             mxml = new ManageXML();
             doc = mxml.parse(in);
             userid = WebUtils.getContentFromNode(doc, new String[] { "userid"});
             sectionid = WebUtils.getContentFromNode(doc, new String[] { "sectionid"});
         } catch (Exception e){
+            WebUtils.sendErrorMessage("Impossibile ottenere le informazioni necessarie dalla richiesta", out);
             e.printStackTrace();
+            return;
         }
+        
+//        System.out.println("ui " + userid + "\nSessione: " + session.getAttribute("userid"));
         
         if(!userid.equals(session.getAttribute("userid"))){
             //L'utente non è quello in sessione, è un errore
@@ -85,12 +106,49 @@ public class NewDiscussion extends HttpServlet {
             WebUtils.sendErrorMessage("Messaggio troppo corto", out);
             return;
         }
-        //Passa alla creazione del thread con nuovo messaggio
+        String xmlDbThreadsPath = getServletContext().getRealPath(SysKb.getThreadsPathForSection(sectionid));
+        try{
+            //nuovo thread id
+            String threadId = ThreadsXml.getNewThreadId(xmlDbThreadsPath);
+            //Passa alla creazione del thread con nuovo messaggio
+            createNewThread(threadId, title, description, userid, sectionid);
+            //Aggiungi un nuovo messaggio alla discussione
+            addNewMsgToThread("0", threadId, sectionid, userid, msg);
+            //Rispondi al client con success e le info sulla nuova discussione
+            sendSuccessMsg(threadId, out);
+        }catch(Exception e){
+            e.printStackTrace();
+            WebUtils.sendErrorMessage("Errore nella creazione del messaggio.", out);
+        }
+        
     }
     
-    private void createNewThread(String title, String description, String userid, String sectionid){
-        String xmlDbThreadsPath = SysKb.getThreadsPathForSection(sectionid);
-        String threadId = ThreadsXml.getNewThreadId(xmlDbThreadsPath);
+    private void sendSuccessMsg(String threadId, OutputStream out){
+        List<Pair<String, String>> elements;
+        elements = new ArrayList<Pair<String,String>>();
+        elements.add(new Pair<String,String>("threaid", threadId));
+        WebUtils.sendElementsMessage("success", elements, out);
+    }
+    
+    private void addNewMsgToThread(String msgId, String threadId, String sectionid, String userId, String content) throws JAXBException{
+        String xmlDbMsgsPath = getServletContext().getRealPath(SysKb.getMsgsPath(sectionid, threadId));
+        Msg msg = new Msg();
+        msg.setAutor(userId);
+        msg.setContent(content);
+        //TODO msg.setDatafiles(null);
+        msg.setId(msgId);
+        Lastupdate lu = new Lastupdate();
+        lu.setDatetime(new Datetime(new Date()));
+        lu.setAutor(userId);
+        msg.setLastupdate(lu);
+        Msgs msgs = MessagesXml.getMessages(xmlDbMsgsPath);
+        msgs.getMsg().add(msg);
+        MessagesXml.setMsgs(msgs, xmlDbMsgsPath); //commit
+    }
+    
+    private void createNewThread(String threadId, String title, String description, String userid, String sectionid){
+        String xmlDbThreadsPath = getServletContext().getRealPath(SysKb.getThreadsPathForSection(sectionid));
+        String msgsFilePath = getServletContext().getRealPath(SysKb.getMsgsPath(sectionid, threadId));
         if(threadId == null){
             //la sezione è vuota
             threadId = "0";
@@ -105,13 +163,38 @@ public class NewDiscussion extends HttpServlet {
         newThread.setLastupdate(currentDate, userid);
         
         try {
-            List<Thread> threads = ThreadsXml.getThreads(xmlDbThreadsPath).getThread();
-            
+            Threads ts = ThreadsXml.getThreads(xmlDbThreadsPath);
+            ts.getThread().add(newThread);
+            ThreadsXml.setThreads(ts, xmlDbThreadsPath);
         } catch (Exception ex) {
             Logger.getLogger(NewDiscussion.class.getName()).log(Level.SEVERE, null, ex);
             ex.printStackTrace();
         }
-        
+        //Create a new msgID.xml file
+        Msgs msgs = new Msgs();
+        msgs.setThreadid(threadId);
+        File msgXml = new File(msgsFilePath);
+        try {
+            marshallMsgs(msgs, new FileOutputStream(msgXml));
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(NewDiscussion.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+        }
+    }
+    
+    /**
+     * Codifica Msgs in xml e lo scrive sull'outputstream 
+     **/
+    private void marshallMsgs(Msgs msgs, OutputStream out){
+        try{
+            JAXBContext jaxbContext = JAXBContext.newInstance(Msgs.class);
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+//            jaxbMarshaller.marshal(msgs, System.out);
+            jaxbMarshaller.marshal(msgs, out);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

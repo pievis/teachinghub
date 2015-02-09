@@ -67,7 +67,7 @@ function sendDataToServer(xmlhttp){
 
 var viewModel = {
     showMsg: ko.observable(0), //1 is true
-    errorMsg: ko.observable("")    
+    errorMsg: ko.observable("")
 };
 
 ko.applyBindings(viewModel);

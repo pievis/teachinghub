@@ -21,7 +21,7 @@
             <header>
                 <%@include file="/WEB-INF/jspf/header.jspf" %>
             </header>
-            <div id="content" action="NewDiscussion">
+            <div id="content" ctx-url="<%=request.getContextPath()%>" userid="<%=userid%>">
                 <h1 class="longh">
                     <img src="<%=request.getContextPath()%>/multimedia/icons/book245.png">
                     <%=sectionid%></h1>

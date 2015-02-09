@@ -51,11 +51,12 @@ public class ThreadsXml {
     {
         int intId = -1;
         Threads threads = getThreads(filePath);
-        for(Thread t : threads.getThread()){
-            int val = Integer.parseInt( t.getId());
-            if(intId < val)
-                intId = val;
-        }
+        if(threads.getThread() != null)
+            for(Thread t : threads.getThread()){
+                int val = Integer.parseInt( t.getId());
+                if(intId < val)
+                    intId = val;
+            }
         return intId;
     }
     
