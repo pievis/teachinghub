@@ -19,16 +19,25 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Student extends User implements IStudent
 {
     private String classe;
+    private String hobby;
 
-    @Override
     public String getClasse ()
     {
         return classe;
     }
 
-    @Override
     public void setClasse (String classe)
     {
         this.classe = classe;
+    }
+    
+    public String getHobby ()
+    {
+        return hobby;
+    }
+
+    public void setHobby (String hobby)
+    {
+        this.hobby = hobby;
     }
 }

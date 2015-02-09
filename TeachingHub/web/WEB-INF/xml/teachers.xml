@@ -3,9 +3,32 @@
         <id>NyazProf</id>
         <email>lorenzo.rocca@gmail.com</email>
         <lastname>Rocca</lastname>
-        <classe>5 O</classe>
         <firstname>Lorenzo</firstname>
         <avatar>avatar0.png</avatar>
         <password>123456</password>
+        <subjects>
+            <subject>
+                Matematica
+            </subject>
+            <subject>
+                Scienze
+            </subject>
+        </subjects>
+    </teacher>
+    <teacher>
+        <id>Prof0</id>
+        <email>lorenzo.rocca@gmail.com</email>
+        <lastname>Montagna</lastname>
+        <firstname>Pierluigi</firstname>
+        <avatar>avatar0.png</avatar>
+        <password>asdasd</password>
+        <subjects>
+            <subject>
+                Informatica
+            </subject>
+            <subject>
+                Fisica
+            </subject>
+        </subjects>
     </teacher>
 </teachers>

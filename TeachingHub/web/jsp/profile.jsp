@@ -36,45 +36,46 @@
             <header>
                 <%@include file="/WEB-INF/jspf/header.jspf" %>
             </header>
-            <div id="content">
+            <div id="content" ctx-url="<%=request.getContextPath()%>">
                 <h1 class="longh">Visualizza profilo di <%=reqUserId%></h1>
                 <div class="container">
-                    <%if(user == null)
-                        out.println("<p>Errore nel reperire il profilo utente richiesto.</p>");
-                    else{            
-            String userId = user.getId();
-            String firstName = user.getFirstname();
-            String lastName = user.getLastname();
-            String email = user.getEmail();
-            String avatarPath = ctxPath +  SysKb.avatarPath + user.getAvatar();
-                    %>
                     <div class="profile">
                         <div class="avatar">
-                            <img src="<%=avatarPath%>"/>
+                            <img data-bind="attr:{ href: avatarUrl, title: 'Avatar'}" 
+                                src="<%=request.getContextPath()%>/multimedia/avatars/avatar0.png"/>
                         </div>
                         <div class="profileinfo">
                             <p>
-                                <b>Username</b>: <%= userId %>
+                                <b>Username</b>: <span data-bind="text: username"></span>
                             </p>
                             <p>
-                                <b>Nome</b>: <%= firstName %>
+                                <b>Nome</b>: <span data-bind="text: firstname"></span>
                             </p>
                             <p>
-                                <b>Cognome</b>: <%= lastName %>
+                                <b>Cognome</b>: <span data-bind="text: lastname"></span>
                             </p>
                             <p>
-                                <b>Email</b>: <%= email %>
+                                <b>Email</b>: <span data-bind="text: email"></span>
                             </p>
-                            <p>
+                            <p data-bind="visible: showClasse">
+                                <b>Classe</b>: 
+                                <span data-bind="text: classe"></span>
+                            </p>
+                            <p data-bind="visible: showHobby">
                                 <b>Interessi</b>: <br>
-                                BLABLABLBALBALBALBLABLBALBLABLBLABLLBALBALBAL
-                                LBALBALLBALBALBALBLABLBALBLABLBLABLLBALBALBAL
-                                LBALBALLBALBALBALBLABLBALBLABLBLABLLBALBALBAL
-                                LBALBALLBALBALBALBLABLBALBLABLBLABLLBALBALBAL
+                                <span data-bind="text: hobby"></span>
+                            </p>
+                            <p data-bind="visible: showSubjects">
+                                <b>Materie</b>: <br>
+                                <span data-bind="text: subjects"></span>
                             </p>
                         </div>
                     </div>
-                    <%}%>
+                </div>
+                <div class="errorbox" id="errorbox" data-bind="visible: showErrorMsg">
+                        <p>
+                            <span data-bind="text: errorMsg"></span>
+                        </p>
                 </div>
             </div>
         </div>
@@ -82,4 +83,8 @@
                 <%@include file="/WEB-INF/jspf/footer.jspf" %>
             </footer>
     </body>
+    <!--knockout-->
+    <script type="text/javascript" src="<%=request.getContextPath()%>/js/lib/jquery/jquery.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/js/lib/knockout/knockout-3.2.0.js"></script>
+    <script src="<%=request.getContextPath()%>/js/checkprofile.js"></script>
 </html>

@@ -60,11 +60,7 @@ public class StudentsXml {
         Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
         jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-
-        //Marshal the employees list in console
-        //jaxbMarshaller.marshal(users, System.out);
-
-        //Marshal the employees list in file
+        
         jaxbMarshaller.marshal(users, new File(filePath));
     }
     

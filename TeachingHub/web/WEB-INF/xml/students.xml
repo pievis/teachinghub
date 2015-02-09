@@ -7,6 +7,9 @@
         <firstname>Lorenzo</firstname>
         <avatar>avatar0.png</avatar>
         <password>123456</password>
+        <hobby>
+            Magic, Lettura
+        </hobby>
     </student>
     <student>
         <id>Pievis</id>
@@ -15,6 +18,9 @@
         <classe>5 O</classe>
         <firstname>Lorenzo</firstname>
         <avatar>avatar0.png</avatar>
-        <password>123456</password>s
+        <password>123456</password>
+        <hobby>
+            VideoGamez
+        </hobby>
     </student>
 </students>
