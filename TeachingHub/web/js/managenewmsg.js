@@ -3,6 +3,7 @@
 var ctxurl = document.getElementById('content').getAttribute('ctx-url');
 var userid = document.getElementById('content').getAttribute('userid');
 var sectionid = getParameterByName("sectionid");
+var threadUrl = "/jsp/discussion.jsp?id=[ID]&sectionid=[SECTION]";
 
 //functions
 function checkAndSendDiscussion(){
@@ -76,6 +77,8 @@ function sendNewThreadToServer(userid, sectionid, title, description, msg){
     x.xmlhttp.onreadystatechange = function (){
         if(x.xmlhttp.readyState == 4){
             var xmlDoc = x.xmlhttp.responseXML;
+            var xmlString = (new XMLSerializer()).serializeToString(xmlDoc);
+            console.log("log. Data: " + xmlString);
             var errorTags = xmlDoc.getElementsByTagName("error");
             if(errorTags.length > 0){
                 var errorTag = errorTags[0];
@@ -84,17 +87,24 @@ function sendNewThreadToServer(userid, sectionid, title, description, msg){
             }
             var successTags = xmlDoc.getElementsByTagName("success");
             if(successTags.length > 0){
-                var threadid = $(xmlDoc).find("threadid").text();
-                console.log("Thread id "+ threadid + " " + $(successTags).find("threadid"));
+                var threadid = $(successTags).find("threadid").text();
+//                console.log("Thread id: " + threadid + " ");
                 //Forward alla discussione
                 updateErrorBox("Messaggio inviato con successo");
-                //location.reload();
+                forwardToThreadPage(threadid, sectionid);
             }
         }
     };
 //    var xmlString = (new XMLSerializer()).serializeToString(data);
 //    console.log("log. Data: " + xmlString);
     x.xmlhttp.send(data);
+}
+
+function forwardToThreadPage(threadid, sectionid){
+    var url = ctxurl + threadUrl.replace("[ID]", threadid).replace("[SECTION]", sectionid);
+    setTimeout(function() {
+                        location.replace(url); 
+                    } ,1000);
 }
 
 function updateErrorBox(text){

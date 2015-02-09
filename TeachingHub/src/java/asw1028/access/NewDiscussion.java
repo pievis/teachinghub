@@ -126,7 +126,7 @@ public class NewDiscussion extends HttpServlet {
     private void sendSuccessMsg(String threadId, OutputStream out){
         List<Pair<String, String>> elements;
         elements = new ArrayList<Pair<String,String>>();
-        elements.add(new Pair<String,String>("threaid", threadId));
+        elements.add(new Pair<String,String>("threadid", threadId));
         WebUtils.sendElementsMessage("success", elements, out);
     }
     
