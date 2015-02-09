@@ -7,14 +7,15 @@ package asw1028.utils;
 
 import asw1028.utils.xml.ManageXML;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerConfigurationException;
+import javafx.util.Pair;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -53,6 +54,32 @@ public class WebUtils {
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Errore nell'invio del messaggio: " + text);
+        }
+    }
+    
+     /**
+     * Writes on the output stream an xml specified with rootTag and elements 
+     * in the format of <rootTag><key1>value1</key1> ...</rootTag>
+     * @param elements a pair of key values where the key is the tag name and the
+     * value is the tag content
+     * @param rootTag
+     * @param out
+     **/
+    public static void sendElementsMessage(String rootTag, List<Pair<String, String>> elements, OutputStream out)
+    {
+        try {
+            ManageXML mXml = new ManageXML();
+            //root elem is error
+            Document doc = mXml.newDocument(rootTag);
+            for(Pair<String, String> e : elements){
+                Element elem = doc.createElement(e.getKey());
+                elem.appendChild(doc.createTextNode(e.getValue()));
+                doc.getDocumentElement().appendChild(elem);
+            }
+            mXml.transform(out, doc);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Errore nell'invio del messaggio");
         }
     }
     
@@ -116,11 +143,20 @@ public class WebUtils {
         }
     }
     
-    
     public static boolean isValidEmailAddress(String email) {
         String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
         java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
         java.util.regex.Matcher m = p.matcher(email);
         return m.matches();
+    }
+    
+    public static String getDateStrFromDate(Date date){
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        return df.format(date);
+    }
+    
+    public static String getTimeStrFromDate(Date date){
+        SimpleDateFormat df = new SimpleDateFormat("kk:mm:ss");
+        return df.format(date);
     }
 }
