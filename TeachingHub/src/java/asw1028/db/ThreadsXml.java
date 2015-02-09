@@ -2,6 +2,7 @@
 package asw1028.db;
 
 import asw1028.db.structs.Threads;
+import asw1028.db.structs.Thread;
 import java.io.File;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -43,5 +44,32 @@ public class ThreadsXml {
         jaxbMarshaller.marshal(threads, new File(filePath));
     }
     
+    /**
+     *  Ritorna l'ultimo id del thread.
+     **/
+    private static int getLastThreadId(String filePath) throws JAXBException
+    {
+        int intId = -1;
+        Threads threads = getThreads(filePath);
+        for(Thread t : threads.getThread()){
+            int val = Integer.parseInt( t.getId());
+            if(intId < val)
+                intId = val;
+        }
+        return intId;
+    }
+    
+    /**
+     * Ottiene un nuovo id per il thread specificato da filePath
+     **/
+    public static String getNewThreadId(String filePath){
+        try{
+            int id = getLastThreadId(filePath) + 1;
+            return id + "";
+        }catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }   
+    }
     
 }

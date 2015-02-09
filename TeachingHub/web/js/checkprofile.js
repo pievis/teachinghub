@@ -64,7 +64,6 @@ function setUserView(userid, email, firstname, lastname, avatar){
     viewModel.lastname(lastname);
     viewModel.avatarUrl(ctxurl + avatarPath + avatar);
     viewModel.email(email);
-    console.log(viewModel.avatarUrl());
 }
 
 function setStudent(classe, hobby){
@@ -93,7 +92,24 @@ var viewModel = {
     email : ko.observable(""),
     hobby : ko.observable(""),
     subjects : ko.observable(""), //E' una stringa con le materie di fila
-    avatarUrl : ko.observable()
+    avatarUrl : ko.observable(),
+    updateVisible: ko.observable(false), //Invisibile l'update
+    btnUpdateText: ko.observable("Aggiorna Profilo"),
+    updateOpen : false,
+    updateProfileInfo: function(){
+        //Apre / chiude il menù per aggiornare il profilo
+        if(!this.updateOpen){
+            this.updateOpen = true;
+            this.updateVisible(true);
+            this.btnUpdateText("Annulla");
+        }else{
+            this.updateOpen = false;
+            this.updateVisible(false);
+            this.btnUpdateText("Modifica il profilo");
+        }
+            
+        
+    }
 };
 
 ko.applyBindings(viewModel);

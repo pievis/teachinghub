@@ -12,6 +12,10 @@
         <servlet-name>GetSections</servlet-name>
         <servlet-class>asw1028.access.GetSections</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NewDiscussion</servlet-name>
+        <servlet-class>asw1028.access.NewDiscussion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Logout</servlet-name>
         <url-pattern>/Logout</url-pattern>
@@ -23,5 +27,9 @@
     <servlet-mapping>
         <servlet-name>GetSections</servlet-name>
         <url-pattern>/GetSections</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewDiscussion</servlet-name>
+        <url-pattern>/NewDiscussion</url-pattern>
     </servlet-mapping>
 </web-app>

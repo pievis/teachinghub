@@ -1,9 +1,3 @@
-<%-- 
-    Document   : login
-    Created on : Feb 1, 2015, 4:22:39 PM
-    Author     : Lorenzo
---%>
-
 <%@page import="asw1028.utils.SysKb"%>
 <%@page import="asw1028.db.UsersManager"%>
 <%@page import="asw.interfaces.IUser"%>
@@ -71,6 +65,16 @@
                             </p>
                         </div>
                     </div>
+                </div>
+                <%
+                if(canUpdateProfile){
+                    %>
+                    <button class="btn" data-bind="click: updateProfileInfo, text: btnUpdateText">Modifica Profilo</button>
+                <%
+                }
+                %>
+                <div class="container" data-bind="visible: updateVisible">
+                    
                 </div>
                 <div class="errorbox" id="errorbox" data-bind="visible: showErrorMsg">
                         <p>

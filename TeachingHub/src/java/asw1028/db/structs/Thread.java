@@ -1,6 +1,9 @@
 
 package asw1028.db.structs;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javafx.scene.input.DataFormat;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -83,5 +86,18 @@ public class Thread
     public void setCreationdate (Creationdate creationdate)
     {
         this.creationdate = creationdate;
+    }
+    
+    public void setCreationdate(Date date){
+        Creationdate cd = new Creationdate();
+        cd.setDatetime(new Datetime(date));
+        setCreationdate(cd);
+    }
+
+    public void setLastupdate(Date date, String autor) {
+        Lastupdate lu = new Lastupdate();
+        lu.setAutor(autor);
+        lu.setDatetime(new Datetime(date));
+        setLastupdate(lu);
     }
 }
