@@ -8,21 +8,17 @@ package asw1028.access;
 import asw.interfaces.IUser;
 import asw1028.db.UsersManager;
 import asw1028.db.structs.Student;
-import asw1028.db.structs.Students;
 import asw1028.db.structs.Teacher;
-import asw1028.db.structs.User;
 import asw1028.utils.SysKb;
 import asw1028.utils.WebUtils;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 
 /**
@@ -53,6 +49,7 @@ public class GetProfile extends HttpServlet {
             sendError("L'utente richiesto non esiste", out);
             return;
         }
+        user.setPassword(null); //non voglio inviare la password
         if(user instanceof Student){
             //Lavora con studenti
             marshallUser(user, Student.class, out);

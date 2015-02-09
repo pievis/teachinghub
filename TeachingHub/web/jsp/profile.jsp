@@ -41,7 +41,7 @@
                 <div class="container">
                     <div class="profile">
                         <div class="avatar">
-                            <img data-bind="attr:{ href: avatarUrl, title: 'Avatar'}" 
+                            <img data-bind="attr:{ src: avatarUrl, title: 'Avatar'}" 
                                 src="<%=request.getContextPath()%>/multimedia/avatars/avatar0.png"/>
                         </div>
                         <div class="profileinfo">

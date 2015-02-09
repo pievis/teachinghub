@@ -44,6 +44,15 @@ function updateViewModel($xml){
     if(isStudent){
         var classe = $xml.find("classe").text();
         var hobby = $xml.find("hobby").text();
+        setStudent(classe, hobby);
+    }else{
+        //è un insegnante
+        var subjects = "";
+        $xml.find("subject").each(function (){
+            subjects += $(this).text() + ", "; 
+        });
+        subjects = subjects.substring(0, subjects.length - 2);
+        setTeacher(subjects);
     }
 //    console.log("isStudent: " + isStudent + " id " + userid + $xml.find("student"));
     setUserView(userid, email, firstname, lastname, avatar);
@@ -55,6 +64,19 @@ function setUserView(userid, email, firstname, lastname, avatar){
     viewModel.lastname(lastname);
     viewModel.avatarUrl(ctxurl + avatarPath + avatar);
     viewModel.email(email);
+    console.log(viewModel.avatarUrl());
+}
+
+function setStudent(classe, hobby){
+    viewModel.classe(classe);
+    viewModel.hobby(hobby);
+    viewModel.showClasse(true);
+    viewModel.showHobby(true);
+}
+
+function setTeacher(subjects){
+    viewModel.subjects(subjects);
+    viewModel.showSubjects(true);
 }
 
 //ViewModel
