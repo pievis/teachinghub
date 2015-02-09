@@ -5,6 +5,7 @@
  */
 package asw1028.db;
 
+import asw1028.db.structs.Msg;
 import asw1028.db.structs.Msgs;
 import java.io.File;
 import javax.xml.bind.JAXBContext;
@@ -45,5 +46,13 @@ public class MessagesXml {
 
         jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
         jaxbMarshaller.marshal(msgs, new File(filePath));
+    }
+    
+    public static void addMsg(Msg message, String filePath) throws JAXBException {
+        Msgs messages = getMessages(filePath);
+        int last = messages.getMsg().size();
+        message.setId(last+"");
+        messages.getMsg().add(message);
+        setMsgs(messages, filePath);
     }
 }

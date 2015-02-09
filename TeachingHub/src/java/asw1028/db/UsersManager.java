@@ -32,11 +32,11 @@ public class UsersManager {
         this.studentsPath = studentsPath;
     }
     
-    public UsersManager(String contextPath) {
-        this.teachersPath = contextPath + SysKb.xmlDbTeachers;
-        this.studentsPath = contextPath + SysKb.xmlDbStudents;
-        System.out.println("\n TP:"+teachersPath+"\n SP:" + studentsPath +"\n--------");
-    }
+//    public UsersManager(String contextPath) {
+//        this.teachersPath = contextPath + SysKb.xmlDbTeachers;
+//        this.studentsPath = contextPath + SysKb.xmlDbStudents;
+//        System.out.println("\n TP:"+teachersPath+"\n SP:" + studentsPath +"\n--------");
+//    }
     
     public List<IUser> getAllUsers(){
         //TODO add code here
