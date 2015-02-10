@@ -32,7 +32,8 @@ import org.w3c.dom.*;
  * @author Lorenzo
  * 
  */
-@WebServlet(name = "NewMsgAsync", urlPatterns = {"/NewMsgAsync"})
+//male che va: NewMsgAsync
+@WebServlet(name = "NewMsgAsync", urlPatterns = {"/NewMessage"})
 public class NewMsgAsync extends HttpServlet {
 
     /**
@@ -72,7 +73,11 @@ public class NewMsgAsync extends HttpServlet {
         switch(operation) {
             case "newMsg":
                 // creo un nuovo messaggio nel db
-                CreateMessage(data);
+                String success = CreateMessage(data);
+                if(success.isEmpty())
+                    WebUtils.sendSimpleMessage("success", "Messaggio creato con successo.", response.getOutputStream());
+                else
+                    WebUtils.sendErrorMessage(success, response.getOutputStream());
                 break;
             case "waitMsg":
                 
@@ -80,7 +85,7 @@ public class NewMsgAsync extends HttpServlet {
         }
     }
     
-    private void CreateMessage(Document data) {
+    private String CreateMessage(Document data) {
         String section = null; // eg. Matematica
         String idDisc = null; //discussion eg. polinomi
         String userid = null; // eg. Nyaz
@@ -94,6 +99,7 @@ public class NewMsgAsync extends HttpServlet {
         }
         catch (Exception e) {
             System.out.println("DANGER! Error in message's data fields");
+            return "Error in message's data fields";
         }
         String msgPath = getServletContext().getRealPath(SysKb.getMsgsPath(section, idDisc));
         Msg msg = new Msg();
@@ -108,7 +114,9 @@ public class NewMsgAsync extends HttpServlet {
             MessagesXml.addMsg(msg, msgPath);
         } catch (JAXBException ex) {
             Logger.getLogger(NewMsgAsync.class.getName()).log(Level.SEVERE, null, ex);
+            return "Error while writing on the db";
         }
+        return ""; // "" stands for no errors
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
