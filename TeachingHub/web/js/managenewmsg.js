@@ -1,3 +1,7 @@
+/*
+ * Manages file for new_question
+*/
+
 //Variables
 
 var ctxurl = document.getElementById('content').getAttribute('ctx-url');

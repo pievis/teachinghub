@@ -36,7 +36,7 @@
                     <div class="profile">
                         <div class="avatar">
                             <img data-bind="attr:{ src: avatarUrl, title: 'Avatar'}" 
-                                src="<%=request.getContextPath()%>/multimedia/avatars/avatar0.png"/>
+                                id="avatar" src="<%=request.getContextPath()%>/multimedia/avatars/avatar0.png"/>
                         </div>
                         <div class="profileinfo">
                             <p>
@@ -68,13 +68,42 @@
                 </div>
                 <%
                 if(canUpdateProfile){
+                    //Parte dell'html che deve gestire la modifica del profilo lato client
                     %>
                     <button class="btn" data-bind="click: updateProfileInfo, text: btnUpdateText">Modifica Profilo</button>
                 <%
                 }
                 %>
                 <div class="container" data-bind="visible: updateVisible">
-                    
+                        <h3 class="longh">Modifica profilo</h3>
+                            <p>
+                                <b>Nome</b>: <input data-bind="value: firstname"></input>
+                            </p>
+                            <p>
+                                <b>Cognome</b>: <input data-bind="value: lastname"></input>
+                            </p>
+                            <p>
+                                <b>Email</b>: <input data-bind="value: email"></input>
+                            </p>
+                            <p data-bind="visible: showClasse">
+                                <b>Classe</b>: 
+                                <select data-bind="options: availableYears,
+                                value: selectedYear"></select>
+                                <select data-bind="options: availableClass,
+                                value: selectedClass"></select>
+                            </p>
+                            <p data-bind="visible: showHobby">
+                                <b>Interessi</b>: <br>
+                                <textarea rows="5" class="areabox" data-bind="value: hobby"></textarea>
+                            </p>
+                            <p>
+                                <b>Avatar</b>: <br>
+                                <input id="selAvatar" type="file" name="avatarfile" accept="image/gif, image/jpeg, image/png"
+                                       />
+                            </p>
+                            <button class="btn" data-bind="click: updateProfile">
+                                Aggiorna
+                            </button>
                 </div>
                 <div class="errorbox" id="errorbox" data-bind="visible: showErrorMsg">
                         <p>

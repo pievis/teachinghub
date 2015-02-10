@@ -2,6 +2,10 @@
     width: 550px;
 }
 
+.areabox{
+    min-width: 300px;
+}
+
 .btn {
     color: white;
     font-weight: bold;
