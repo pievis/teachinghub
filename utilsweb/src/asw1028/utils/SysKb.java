@@ -20,6 +20,7 @@ public class SysKb {
     public static final String xmlDbPath = "/WEB-INF/xml/";
     public static final String xmlDbStudents = "/WEB-INF/xml/students.xml";
     public static final String xmlDbTeachers = "/WEB-INF/xml/teachers.xml";
+    public static final String xmlDbPendingTeachers = "/WEB-INF/xml/pendingteachers.xml";
     
     private static final String xmlDbThreadsRel = "/WEB-INF/xml/sections/[SECTION]/threads/threads.xml";
     private static final String xmlDbMsgsRel = "/WEB-INF/xml/sections/[SECTION]/threads/" + msgXmlPrefix + "[ID].xml";
