@@ -134,7 +134,7 @@ public class WebUtils {
         }
     }
     
-    private static void copyStream(InputStream input, OutputStream output) throws IOException{
+    public static void copyStream(InputStream input, OutputStream output) throws IOException{
         byte[] buffer = new byte[1024]; // Adjust if you want
         int bytesRead;
         while ((bytesRead = input.read(buffer)) != -1)
@@ -158,5 +158,26 @@ public class WebUtils {
     public static String getTimeStrFromDate(Date date){
         SimpleDateFormat df = new SimpleDateFormat("kk:mm:ss");
         return df.format(date);
+    }
+    
+    /**
+     * Returns a new file name in the forms of: prefixNUMBERS.extension
+     * where the numbers are based on current creation time.
+     * @param filename the name of the file you want to change
+     * @param prefix the new prefix
+     * @return a new file name
+     **/
+    public static String newFileName(String filename, String prefix){
+        String extension = filename.split("\\.")[1];
+        String numbs = getTimeStrFromDate(new Date()).replace(":", "");
+        return prefix + numbs + "." + extension;
+    }
+    
+    public static String getFileNameFromContentDisp(String contentDisposition){
+//        String cd = file.getHeader("content-disposition");
+        String filename = contentDisposition.split("filename=")[1];
+        filename = filename.split(";")[0];
+        filename = filename.replace("\"", "");
+        return filename;
     }
 }

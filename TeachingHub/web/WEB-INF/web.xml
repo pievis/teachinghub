@@ -16,6 +16,10 @@
         <servlet-name>NewDiscussion</servlet-name>
         <servlet-class>asw1028.access.NewDiscussion</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UploadFile</servlet-name>
+        <servlet-class>asw1028.access.UploadFile</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Logout</servlet-name>
         <url-pattern>/Logout</url-pattern>
@@ -31,5 +35,9 @@
     <servlet-mapping>
         <servlet-name>NewDiscussion</servlet-name>
         <url-pattern>/NewDiscussion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UploadFile</servlet-name>
+        <url-pattern>/UploadFile</url-pattern>
     </servlet-mapping>
 </web-app>

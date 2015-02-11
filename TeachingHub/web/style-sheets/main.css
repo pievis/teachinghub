@@ -326,3 +326,11 @@ header img.resize {
 .upmargin {
     margin-top: 30px;
 }
+
+.loader {
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+    background-image: url("../multimedia/loader.gif");
+    background-repeat: none;
+}

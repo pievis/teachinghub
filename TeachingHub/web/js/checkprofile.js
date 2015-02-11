@@ -13,16 +13,15 @@ function getParameterByName(name) {
 var ctxurl = document.getElementById('content').getAttribute('ctx-url');
 var sectionUrl = "jsp/section.jsp?sectionid=";
 var avatarPath = "/multimedia/avatars/";
+var changedAvatar = false;
+var currentAvatar;
 //
 
 $(function() {
     //When the document is ready
     //do a get to the servlet
+    changedAvatar = false;
     var userid = getParameterByName("userid");
-//    var requestData = document.implementation.createDocument("", "get", null);
-//    var usrIdE = requestData.createElement("userid");
-//    usrIdE.appendChild(requestData.createTextNode(userid));
-//    requestData.documentElement.appendChild(usrIdE);
     var requestData = "<get><userid>"+userid+"</userid></get>";
     $.post( "../Profile", requestData,
         function( data ){
@@ -51,6 +50,7 @@ function updateViewModel($xml){
     var firstname = $xml.find("firstname").text();
     var lastname = $xml.find("lastname").text();
     var avatar = $xml.find("avatar").text();
+    currentAvatar = avatar; //memorizza l'avatar corrente da reinviare
     var firstname = $xml.find("firstname").text();
     if(isStudent){
         var classe = $xml.find("classe").text();
@@ -89,16 +89,66 @@ function setTeacher(subjects){
     viewModel.showSubjects(true);
 }
 
+var avatarFile; //salvo l'avatar se viene cambiato
+
 function readUrlImage(input){
 //    console.log("I CHANGED");
     if (input.files && input.files[0]) {
-        console.log(input.files[0]);
+//        console.log(input.files[0]);
+        avatarFile = input.files[0];
         var reader = new FileReader();
         reader.onload = function (e) {
             viewModel.avatarUrl(e.target.result);
         };
         reader.readAsDataURL(input.files[0]);
     }
+}
+
+//Carica l'immagine sul server poi effettua la richiesta di aggiornamento
+function uploadImageAndSendInfo(){
+    var dataf = new FormData(); //form data per l'invio dei file
+    //key, value
+    dataf.append("filetype", "avatar");
+    dataf.append("file", avatarFile);
+    
+    $.ajax({
+        url: '../UploadFile',
+        type: 'POST',
+        data: dataf,
+        cache: false,
+        processData: false, // Don't process the files
+        contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+        success: function(data, textStatus, jqXHR)
+        {
+            $xml = $(data);
+            var errorTags = $xml.find("error");
+            if(errorTags.length == 0)
+            {
+                // tutto ok,
+                // estrapolo il nome del nuovo avatar
+                $xml = $(data);
+                currentAvatar = $xml.find("avatar").text();
+                // invio i dati della form
+                sendUpdatedInfo();
+            }
+            else
+            {
+                // Errori
+                viewModel.canUpdate(true);
+                viewModel.showLoader(false);
+                showError(errorTags.find("error").text());
+                console.log('ERRORS: ' + errorTags.find("error").text());
+            }
+        },
+        error: function(jqXHR, textStatus, errorThrown)
+        {
+            //Errori
+            console.log('ERRORS: ' + textStatus);
+            //Nascondi il loader
+            viewModel.canUpdate(true);
+            viewModel.showLoader(false);
+        }
+    });
 }
 
 function updateClass(text){
@@ -116,6 +166,8 @@ function sendUpdatedInfo(){
     var userE;
     var useridE = doc.createElement("userid");
     useridE.appendChild(doc.createTextNode(viewModel.username()));
+    var avatarE = doc.createElement("avatar");
+    avatarE.appendChild(doc.createTextNode(currentAvatar)); //this avatar can change from it's original
     var firstNameE = doc.createElement("firstname");
     firstNameE.appendChild(doc.createTextNode(viewModel.firstname()));
     var lastNameE = doc.createElement("lastname");
@@ -139,6 +191,7 @@ function sendUpdatedInfo(){
     userE.appendChild(firstNameE);
     userE.appendChild(lastNameE);
     userE.appendChild(emailE);
+    userE.appendChild(avatarE)
     doc.documentElement.appendChild(userE);
     var updateData = new XMLSerializer().serializeToString(doc.documentElement);
 //    console.log(updateData);
@@ -154,8 +207,10 @@ function sendUpdatedInfo(){
     );
 }
 
+
 //cambia la view dell'avatar
 $("#selAvatar").change(function (){
+    changedAvatar = true;
     readUrlImage(this);
 });
 
@@ -198,9 +253,18 @@ var viewModel = {
         "M","N","O","P","Q","R","S","T","U","V","Z"
         ]),
     selectedClass: ko.observable(),
-    updateProfile : function(){
-        sendUpdatedInfo();
-    }
+    sendUpdatedProfile : function(){
+        if(changedAvatar){ //se ho aggiornato l'avatar prima faccio l'upload dell'immagine
+            this.showLoader(true); //mostra un caricamento
+            this.canUpdate(false); //nascondi il bottone
+            uploadImageAndSendInfo();
+        }
+        else{ //altrimenti invia direttamente
+            sendUpdatedInfo();
+        }
+    },
+    showLoader: ko.observable(false),
+    canUpdate: ko.observable(true)
 };
 
 ko.applyBindings(viewModel);

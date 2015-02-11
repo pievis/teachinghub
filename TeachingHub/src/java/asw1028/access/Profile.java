@@ -7,10 +7,12 @@ package asw1028.access;
 
 import asw.interfaces.IUser;
 import asw1028.db.StudentsXml;
+import asw1028.db.TeachersXml;
 import asw1028.db.UsersManager;
 import asw1028.db.structs.Student;
 import asw1028.db.structs.Students;
 import asw1028.db.structs.Teacher;
+import asw1028.db.structs.Teachers;
 import asw1028.utils.SysKb;
 import asw1028.utils.WebUtils;
 import asw1028.utils.xml.ManageXML;
@@ -106,6 +108,7 @@ public class Profile extends HttpServlet {
         String firstname = WebUtils.getContentFromNode(doc, new String[]{userTag, "firstname"});
         String lastname = WebUtils.getContentFromNode(doc, new String[]{userTag, "lastname"});
         String email = WebUtils.getContentFromNode(doc, new String[]{userTag, "email"});
+        String avatar = WebUtils.getContentFromNode(doc, new String[]{userTag, "avatar"});
         //e aggiorno il db
         if(isStudent){
             String classe = WebUtils.getContentFromNode(doc, new String[]{userTag, "classe"});
@@ -127,10 +130,9 @@ public class Profile extends HttpServlet {
                 updStd.setFirstname(firstname);
                 updStd.setLastname(lastname);
                 updStd.setEmail(email);
-//                updStd.setAvatar(classe); //TODO
+                updStd.setAvatar(avatar);
                 updStd.setHobby(hobby);
                 updStd.setClasse(classe);
-//                stds.setUserList(students); //maybe useless
                 StudentsXml.setStudents(stds, xmlDbStudentsPath); //commit
             } catch (JAXBException ex) {
                 ex.printStackTrace();
@@ -140,7 +142,30 @@ public class Profile extends HttpServlet {
         }
         else{
             //è un isegnante
-            
+            String xmlDbTeachersPath = getServletContext().getRealPath(SysKb.xmlDbTeachers);
+            try {
+                Teachers ths = TeachersXml.getTeachers(xmlDbTeachersPath);
+                List<Teacher> teachers = ths.getTeacherList();
+                Teacher updTh = null;
+                for(Teacher t : teachers){
+                    if(t.getId().equals(reqUser)){
+                        updTh = t;
+                    }
+                }
+                if(updTh == null){
+                    sendError("Impossibile trovare l'insegnante richiesto", out);
+                    return;
+                }
+                updTh.setFirstname(firstname);
+                updTh.setLastname(lastname);
+                updTh.setEmail(email);
+                updTh.setAvatar(avatar);
+                TeachersXml.setTeachers(ths, xmlDbTeachersPath); //commit
+            } catch (JAXBException ex) {
+                ex.printStackTrace();
+                sendError("Errore nel salvataggio dello studente", out);
+                return;
+            }
         }
         WebUtils.sendSimpleMessage("success", "Update del profilo riuscito", out);
     }
