@@ -23,25 +23,25 @@
             <header>
                 <%@include file="/WEB-INF/jspf/header.jspf" %>
             </header>
-            <div id="content" sectionid="<%=sectionId%>" discid="<%=discussionId%>" userid="<%=userid%> ctx-url="<%=request.getContextPath()%>">
+            <div id="content" sectionid="<%=sectionId%>" discid="<%=discussionId%>" userid="<%=userid%>" ctx-url="<%=request.getContextPath()%>">
                 <h1 class="longh"> Titolone bello bello </h1>
                 <h2 class="longh"> descrizione bella </h2>
                 
-                <div data-bind="foreach: messages" class="container" >
+                <div data-bind="foreach: messages" class="container">
                     <div class="message">
                         <div class="avatar">
                             <img src="<%=request.getContextPath()%>/multimedia/avatars/avatar0.png"/>
-                            <b><span data-bind="text: user"></span></b>
+                            <b><span data-bind="text: autor"></span></b>
                         </div>
                         <div class="content">
                             <span data-bind="text: content"></span>
                         </div>
-                            <div class="files">
-                                <span class="attach" >
-                                    <img src="<%=request.getContextPath()%>/multimedia/icons/attach13.png"/>
-                                    file.pdf
-                                </span>
-                            </div>
+                        <div class="files">
+                            <span class="attach">
+                                <img src="<%=request.getContextPath()%>/multimedia/icons/attach13.png"/>
+                                file.pdf
+                            </span>
+                        </div>
                     </div>
                 </div>
                 <!-- Da fare solo se sei loggato -->

@@ -12,8 +12,10 @@ import asw1028.db.structs.Msg;
 import asw1028.utils.SysKb;
 import asw1028.utils.WebUtils;
 import asw1028.utils.xml.ManageXML;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.Date;
 import java.util.logging.Level;
@@ -52,6 +54,7 @@ public class NewMsgAsync extends HttpServlet {
         response.setContentType("text/xml;charset=UTF-8");
 
         try {
+            System.out.println("Parsing xml file");
             ManageXML mngXML = new ManageXML();
             Document data = mngXML.parse(is);
             is.close();
@@ -65,19 +68,23 @@ public class NewMsgAsync extends HttpServlet {
     
     private void operations(Document data, HttpServletRequest request, HttpServletResponse response, ManageXML mngXML) 
             throws Exception {
-        
         HttpSession session = request.getSession();
         //name of operation is message root
         Element root = data.getDocumentElement();
         String operation = root.getTagName();
+        OutputStream out = response.getOutputStream();
+        String success;
         switch(operation) {
+            case "firstTimeAcces":
+                takeAllMessages(data, out);
+                break;
             case "newMsg":
                 // creo un nuovo messaggio nel db
-                String success = CreateMessage(data);
+                success = CreateMessage(data);
                 if(success.isEmpty())
-                    WebUtils.sendSimpleMessage("success", "Messaggio creato con successo.", response.getOutputStream());
+                    WebUtils.sendSimpleMessage("success", "Messaggio creato con successo.", out);
                 else
-                    WebUtils.sendErrorMessage(success, response.getOutputStream());
+                    WebUtils.sendErrorMessage(success, out);
                 break;
             case "waitMsg":
                 
@@ -117,6 +124,34 @@ public class NewMsgAsync extends HttpServlet {
             return "Error while writing on the db";
         }
         return ""; // "" stands for no errors
+    }
+    
+    private void takeAllMessages(Document data, OutputStream out) {
+        String section = null; // eg. Matematica
+        String idDisc = null; //discussion eg. polinomi
+        
+        try {
+            section = WebUtils.getContentFromNode(data, new String[] { "section"});
+            idDisc = WebUtils.getContentFromNode(data, new String[] { "iddisc"});
+        }
+        catch (Exception e) {
+            System.out.println("DANGER! Error in the request for message data fields");
+            WebUtils.sendErrorMessage( "Errore nei dati inviati", out);
+            return;
+        }
+        if(section == null || idDisc == null) {
+            WebUtils.sendErrorMessage( "Impossibile trovare la discussione specificata", out);
+            return;
+        }
+        String xmlMsgsFilePath = getServletContext().getRealPath(
+                            SysKb.getMsgsPath(section, idDisc));
+        
+        if(!(new File(xmlMsgsFilePath).exists())){
+            //handle not existing file case
+            WebUtils.sendErrorMessage("Impossibile trovare i messaggi della discussione specificata.", out);
+            return;
+        }
+        WebUtils.fileToOutputStream(xmlMsgsFilePath, out);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -158,4 +193,7 @@ public class NewMsgAsync extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    public static void main() {
+        
+    }
 }
