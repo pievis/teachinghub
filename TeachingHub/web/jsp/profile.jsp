@@ -100,10 +100,15 @@
                                 <b>Avatar</b>: <br>
                                 <input id="selAvatar" type="file" name="avatarfile" accept="image/gif, image/jpeg, image/png"
                                        />
+                                
+                            
                             </p>
-                            <button class="btn" data-bind="click: updateProfile">
-                                Aggiorna
-                            </button>
+                            <p>
+                                <button class="btn" data-bind="click: sendUpdatedProfile, visible: canUpdate">
+                                    Aggiorna
+                                </button>
+                                <div class="loader" data-bind="visible: showLoader"></div>
+                            </p>
                 </div>
                 <div class="errorbox" id="errorbox" data-bind="visible: showErrorMsg">
                         <p>
