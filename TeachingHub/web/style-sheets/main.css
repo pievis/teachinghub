@@ -279,8 +279,7 @@ header img.resize {
 }
 
 .message .content{
-    float: right;
-    width: 88%;
+    width: auto;
     margin-bottom: 10px;
     margin-top: 5px;
     /*background: #00cc33;*/
@@ -298,9 +297,14 @@ header img.resize {
     float:right;
     text-align: center;
     padding: 5px;
+    padding-left: 25px;
     background: #006600;
     color:#00cc66;
     border-radius: 25px;
+    background-image: url('../multimedia/icons/attach13.png');
+    background-position: 4px 2px;
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
 }
 
 .message .files .attach:hover{

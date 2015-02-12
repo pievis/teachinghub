@@ -48,7 +48,6 @@
                         </div>
                         <div class="files">
                             <span class="attach">
-                                <img src="<%=request.getContextPath()%>/multimedia/icons/attach13.png"/>
                                 file.pdf
                             </span>
                         </div>
