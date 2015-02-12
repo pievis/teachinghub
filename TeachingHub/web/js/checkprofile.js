@@ -35,6 +35,16 @@ $(function() {
     );
 });
 
+//Avatar in grande è nascosto
+$("#avatar").hover(function(){
+  $(".hiddenImage").show(); //mostra l'avatar in grande
+}
+);
+$(".hiddenImage").hover(null,function(){
+    $(".hiddenImage").hide(); //quando esco da hiddenimage
+}
+);
+
 function showError(text){
     viewModel.showErrorMsg(true);
     viewModel.errorMsg(text);

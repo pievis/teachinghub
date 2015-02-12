@@ -40,10 +40,10 @@ function getXmlHttpRequest(){
     var confirmPass = $("form[name='regForm'] input[name='cpass']").val();
     var contentName = $("form[name='regForm'] input[name='nome']").val();
     var contentSurname = $("form[name='regForm'] input[name='cognome']").val();
-    var contentClass = $("form[name='regForm'] input[name='classe']").val();
+    var contentClass = viewModelReg.selectedYear() + viewModelReg.selectedClass();
     var contentEmail = $("form[name='regForm'] input[name='email']").val();
     var canGo = validateRegistration(contentUsr, contentEmail, contentPass, confirmPass);
-    console.log(contentUsr+contentPass);
+//    console.log(contentUsr+contentPass);
     if(canGo) {
         var x = this;
         //For modern browsers
@@ -69,13 +69,13 @@ function getXmlHttpRequest(){
                 }
                 var successTags = xmlDoc.getElementsByTagName("success");
                 if(successTags.length > 0){
-                    
+                    var msg = successTags[0].childNodes[0].nodeValue;
                     // gli diciamo che verrà reindirizzato alla pagina
-                    updateErrorBox("Registrazione avvenuta! Sarai reindirizzato alla pagina principale in 5 secondi");
+                    updateErrorBox(msg + " Sarai reindirizzato alla pagina principale in 5 secondi");
                     
                     //ricarica la pagina
                     var ctxPath = $("#content").attr("ctx-url");
-                    console.log(ctxPath);
+//                    console.log(ctxPath);
                     setTimeout(function() {
                         location.replace(ctxPath+"/index.jsp"); 
                     } ,5000);
@@ -95,12 +95,14 @@ function sendDataToServer(xmlhttp, contentUsr, contentPass, contentName, content
     //create the data to send
     var data = document.implementation.createDocument("", "registration", null);
     //Create the main nodes of xml file
+    var isStudent = viewModelReg.showStudentInput();
     var usrId = data.createElement("userid");
     var passId = data.createElement("password");
     var nameId = data.createElement("name");
     var surnameId = data.createElement("surname");
     var classId = data.createElement("class");
     var emailId = data.createElement("email");
+    var subjectId = data.createElement("subject");
     //insert text within the nodes
     
 //    var contentUsr = $("form[name='regForm'] input[name='user']").val();
@@ -116,11 +118,15 @@ function sendDataToServer(xmlhttp, contentUsr, contentPass, contentName, content
     surnameId.appendChild(data.createTextNode(contentSurname));
     classId.appendChild(data.createTextNode(contentClass));
     emailId.appendChild(data.createTextNode(contentEmail));
+    subjectId.appendChild(data.createTextNode(viewModelReg.selectedSubject()));
     data.documentElement.appendChild(usrId);
     data.documentElement.appendChild(passId);
     data.documentElement.appendChild(nameId);
     data.documentElement.appendChild(surnameId);
-    data.documentElement.appendChild(classId);
+    if(isStudent)
+        data.documentElement.appendChild(classId);
+    else
+        data.documentElement.appendChild(subjectId);
     data.documentElement.appendChild(emailId);
     //var xmlString = (new XMLSerializer()).serializeToString(data);
     //console.log(xmlString);
@@ -135,6 +141,35 @@ var viewModelReg = {
     setMsg : function(text) {
         this.showMsg(1);
         this.errorMsg(text);
+    },
+    availableYears: ko.observableArray([
+        "1","2","3","4","5"
+        ]),
+    selectedYear: ko.observable(),
+    availableClass: ko.observableArray([
+        "A","B","C","D","E","F","G","H","I","L",
+        "M","N","O","P","Q","R","S","T","U","V","Z"
+        ]),
+    availableSubjects: ko.observableArray([
+        "Matematica","Fisica","Informatica","Scienze",
+        "Chimica","Italiano","Inglese","Francese","Tedesco","Latino"
+        ]),
+    selectedSubject: ko.observable(),
+    selectedClass: ko.observable(),
+    userTypeSel: ko.observable("student"), //inizialmente student
+    showStudentInput: ko.observable(true),
+    showTeacherInput: ko.observable(false),
+    changeSelectedUserType: function(){
+        var userTypeSel = this.userTypeSel();
+//        console.log("CALLED "+ userTypeSel)
+        if(userTypeSel != "student"){
+            this.showStudentInput(true);
+            this.showTeacherInput(false);
+        }
+        else{
+            this.showStudentInput(false);
+            this.showTeacherInput(true);
+        }
     }
 };
 

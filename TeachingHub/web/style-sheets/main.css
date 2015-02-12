@@ -228,7 +228,7 @@ header img.resize {
 
 .avatar img{
     border: 2px solid #333333;
-    max-height: 100px;
+    height: 100px;
     width: auto;
 }
 
@@ -333,4 +333,10 @@ header img.resize {
     display: inline-block;
     background-image: url("../multimedia/loader.gif");
     background-repeat: none;
+}
+
+.hiddenImage{
+    display: none;
+    position: absolute;
+    z-index: 2;
 }

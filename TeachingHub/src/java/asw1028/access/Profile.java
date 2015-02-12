@@ -176,7 +176,7 @@ public class Profile extends HttpServlet {
     private void getProfileForClient(Document doc, OutputStream out){
         String userId = WebUtils.getContentFromNode(doc, new String[]{"userid"});
         IUser user = getUserFromDb(userId);
-        System.out.println("Getting profile of "  + userId);
+//        System.out.println("Getting profile of "  + userId);
         if(user == null){
             //Questo utente non esiste
             sendError("L'utente richiesto non esiste", out);

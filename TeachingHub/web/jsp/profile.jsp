@@ -34,6 +34,8 @@
                 <h1 class="longh">Visualizza profilo di <%=reqUserId%></h1>
                 <div class="container">
                     <div class="profile">
+                        <img data-bind="attr:{ src: avatarUrl, title: 'Avatar'}" 
+                                class="hiddenImage" src="<%=request.getContextPath()%>/multimedia/avatars/avatar0.png"/>
                         <div class="avatar">
                             <img data-bind="attr:{ src: avatarUrl, title: 'Avatar'}" 
                                 id="avatar" src="<%=request.getContextPath()%>/multimedia/avatars/avatar0.png"/>

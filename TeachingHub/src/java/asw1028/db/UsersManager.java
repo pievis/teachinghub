@@ -13,6 +13,7 @@ import asw1028.db.structs.Students;
 import asw1028.db.structs.Teacher;
 import asw1028.db.structs.Teachers;
 import asw1028.utils.SysKb;
+import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.JAXBException;
 
@@ -71,13 +72,27 @@ public class UsersManager {
     
     public void addStudentToDb(Student newUser) throws JAXBException {
         Students users = StudentsXml.getStudents(studentsPath);
-        users.getUserList().add(newUser);
+        List<Student> tl = users.getUserList();
+        if(tl != null)
+            tl.add(newUser);
+        else{
+            tl = new ArrayList<Student>();
+            tl.add(newUser);
+            users.setUserList(tl);
+        }  
         StudentsXml.setStudents(users,studentsPath);
     }
     
     public void addTeacherToDb(Teacher newUser) throws JAXBException {
         Teachers users = TeachersXml.getTeachers(teachersPath);
-        users.getTeacherList().add(newUser);
+        List<Teacher> tl = users.getTeacherList();
+        if(tl != null)
+            tl.add(newUser);
+        else{
+            tl = new ArrayList<Teacher>();
+            tl.add(newUser);
+            users.setTeacherList(tl);
+        }    
         TeachersXml.setTeachers(users,teachersPath);
     }
 }

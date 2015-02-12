@@ -5,23 +5,19 @@
  */
 package asw1028.access;
 
-import asw1028.db.StudentsXml;
 import asw1028.db.UsersManager;
 import asw1028.db.structs.Student;
-import asw1028.db.structs.Students;
+import asw1028.db.structs.Subjects;
+import asw1028.db.structs.Teacher;
 import asw1028.db.structs.User;
-import asw1028.db.structs.Users;
 import asw1028.utils.SysKb;
 import asw1028.utils.WebUtils;
 import asw1028.utils.xml.ManageXML;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.security.AccessController;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -59,16 +55,23 @@ public class Registration extends HttpServlet {
         String cognome = null;
         String classe = null;
         String email = null;
-        
+        String materia = null;
+        boolean isStudent = false;
         ManageXML mxml;
         try {
             mxml = new ManageXML();
             Document doc = mxml.parse(in);
+             //se ha il parametro classe allora lo è
+            if(doc.getDocumentElement().getElementsByTagName("class").getLength() != 0)
+                isStudent = true;
             userid = WebUtils.getContentFromNode(doc, new String[] { "userid"});
             pass = WebUtils.getContentFromNode(doc, new String[] { "password"});
             nome = WebUtils.getContentFromNode(doc, new String[] { "name"});
             cognome = WebUtils.getContentFromNode(doc, new String[] { "surname"});
-            classe = WebUtils.getContentFromNode(doc, new String[] { "class"});
+            if(isStudent)
+                classe = WebUtils.getContentFromNode(doc, new String[] { "class"});
+            else
+                materia = WebUtils.getContentFromNode(doc, new String[] { "subject"});
             email = WebUtils.getContentFromNode(doc, new String[] { "email"});
         } catch (Exception e){
             e.printStackTrace();
@@ -105,30 +108,65 @@ public class Registration extends HttpServlet {
         }
         //Creo il nuovo utente
         if(xmlReceived) {
-            Student newUser = new Student();
-            newUser.setId(userid);
-            newUser.setFirstname(nome);
-            newUser.setLastname(cognome);
-            newUser.setEmail(email);
-            newUser.setPassword(pass);
-            newUser.setClasse(classe);
-            newUser.setAvatar(SysKb.defaultAvatar);
-        
-            //Salvo sul db
-            try {
-                saveInDb(newUser);
-            } catch (JAXBException ex) {
-                Logger.getLogger(Registration.class.getName()).log(Level.SEVERE, null, ex);
-                WebUtils.sendErrorMessage("Error(s) while saving the data", out);
-                System.out.println("Errore durante il salvataggio su db.");
+//            User newUser;
+//            newUser = new User();
+//            newUser.setId(userid);
+//            newUser.setFirstname(nome);
+//            newUser.setLastname(cognome);
+//            newUser.setEmail(email);
+//            newUser.setPassword(pass);
+//            newUser.setAvatar(SysKb.defaultAvatar);
+            if(isStudent){
+                Student newUser;
+                newUser = new Student();
+                newUser.setId(userid);
+                newUser.setFirstname(nome);
+                newUser.setLastname(cognome);
+                newUser.setEmail(email);
+                newUser.setPassword(pass);
+                newUser.setAvatar(SysKb.defaultAvatar);
+                newUser.setClasse(classe);
+                
+                //Salvo sul db
+                try {
+                    saveInDb(newUser);
+                } catch (JAXBException ex) {
+                    Logger.getLogger(Registration.class.getName()).log(Level.SEVERE, null, ex);
+                    WebUtils.sendErrorMessage("Error(s) while saving the data", out);
+                    System.out.println("Errore durante il salvataggio su db.");
+                }
+                //notifico
+                WebUtils.sendSimpleMessage("success", "Registrazione avvenuta con successo", out);
+            }else{
+                //E' un insegnante
+                Teacher newUser;
+                newUser = new Teacher();
+                newUser.setId(userid);
+                newUser.setFirstname(nome);
+                newUser.setLastname(cognome);
+                newUser.setEmail(email);
+                newUser.setPassword(pass);
+                newUser.setAvatar(SysKb.defaultAvatar);
+                Subjects sbjs = new Subjects();
+                sbjs.setSubject(new String[]{materia});
+                newUser.setSubjects(sbjs);
+                
+                //Salvo sul db
+                try {
+                    saveInDb(newUser);
+                } catch (JAXBException ex) {
+                    Logger.getLogger(Registration.class.getName()).log(Level.SEVERE, null, ex);
+                    WebUtils.sendErrorMessage("Error(s) while saving the data", out);
+                    System.out.println("Errore durante il salvataggio su db.");
+                }
+                //notifico
+                WebUtils.sendSimpleMessage("success", "Richiesta di registrazione inviata, attendere notizie dagli amministratori.", out);
             }
-
-            WebUtils.sendSimpleMessage("success", "Registrazione avvenuta con successo", out);
         }
     }
     
     /*
-    * Saves the registration data in the db
+    * Saves the registration data in the db for a student
     */
     private void saveInDb(Student newUser) throws JAXBException
     {
@@ -137,6 +175,18 @@ public class Registration extends HttpServlet {
 //        System.out.println("PRINT: " + studentsPath);
         UsersManager mng = new UsersManager(teachersPath, studentsPath);
         mng.addStudentToDb(newUser);
+//        System.out.println("SAVED");
+    }
+    
+    /*
+    * Saves the registration data in the pending db for the teacher
+    */
+    private void saveInDb(Teacher newUser) throws JAXBException
+    {
+        String teachersPath = getServletContext().getRealPath(SysKb.xmlDbPendingTeachers);
+        String studentsPath = getServletContext().getRealPath("/WEB-INF/xml/students.xml");
+        UsersManager mng = new UsersManager(teachersPath, studentsPath);
+        mng.addTeacherToDb(newUser);
 //        System.out.println("SAVED");
     }
 
