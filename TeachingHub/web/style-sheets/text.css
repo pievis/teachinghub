@@ -115,6 +115,17 @@ p{
     font-size: 11px;
 }
 
+.titleTxt{
+    font-size: 15px;
+}
+
+.descriptionTxt{
+    font-family: sans-serif;
+    font-style: italic;
+    font-size: 12px;
+    padding-left: 10px;
+}
+
 /*input*/
 /*input {
    margin-left: 16px;

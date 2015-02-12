@@ -12,7 +12,15 @@ ko.bindingHandlers.fadeVisible = {
     }
 };
 
+var sectionPartialUrl = "/jsp/section.jsp?sectionid=[ID]";
+var ctxUrl = $("#content").attr("ctx-url");
+var sectionId = $("#content").attr("sectionid");
+
 $(function() {
+    //setup section url
+    ViewModelDisc.sectionUrl(ctxUrl + sectionPartialUrl.replace("[ID]", sectionId));
+    ViewModelDisc.sectionTxt(sectionId);
+    //do the greeting
     var xmlForGreeting = sendGreetings();
     var stringXml = new XMLSerializer().serializeToString(xmlForGreeting);    
     //When the document is ready do a post to the servlet
@@ -169,7 +177,11 @@ var ViewModelDisc = {
     errorMsg : ko.observable("Nessun problema"),
     //Invisible at the beginning
     showErrorMsg : ko.observable(false), 
-    displayAdvancedOptions : ko.observable(false)
+    displayAdvancedOptions : ko.observable(false),
+    discTitleText: ko.observable("Titolo"),
+    discDescriptionText: ko.observable("Descrizione"),
+    sectionUrl : ko.observable(),
+    sectionTxt : ko.observable()
 };
 
 ko.applyBindings(ViewModelDisc);

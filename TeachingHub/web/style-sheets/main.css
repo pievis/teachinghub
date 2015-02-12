@@ -340,3 +340,12 @@ header img.resize {
     position: absolute;
     z-index: 2;
 }
+
+.backSection{
+    background-image: url('../multimedia/icons/left224.png');
+    background-repeat: no-repeat;
+    background-size: 22px 22px;
+    background-position-y: 2px;
+    padding-left: 25px;
+    font-size: 18px;
+}

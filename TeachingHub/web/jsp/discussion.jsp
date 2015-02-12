@@ -24,8 +24,18 @@
                 <%@include file="/WEB-INF/jspf/header.jspf" %>
             </header>
             <div id="content" sectionid="<%=sectionId%>" discid="<%=discussionId%>" userid="<%=userid%>" ctx-url="<%=request.getContextPath()%>">
-                <h1 class="longh"> Titolone bello bello </h1>
-                <h2 class="longh"> descrizione bella </h2>
+                <h1 class="longh"> 
+                    <a href="<%=request.getContextPath()%>/jsp/section.jsp?sectionid=Matematica"
+                       data-bind="attr:{href: sectionUrl}">
+                        <span data-bind="text: sectionTxt" class="backSection">Sezione</span> 
+                    </a>
+                </h1>
+                <h2 class="longh">
+                    <span data-bind="text: discTitleText" class="titleTxt"></span>
+                    <p>
+                        <span data-bind="text: discDescriptionText" class="descriptionTxt"></span>
+                    </p>
+                </h2>
                 
                 <div data-bind="foreach: messages" class="container">
                     <div class="message">
