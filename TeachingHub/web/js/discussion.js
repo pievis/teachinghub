@@ -19,6 +19,7 @@ $(function() {
     $.post("../NewMessage",stringXml,
         function(data) {
             //once data has arrived
+            console.log(data);
             var $xml = $(data);
             updateViewModel($xml); //update the viewmodel (and with it, the view)
         }
