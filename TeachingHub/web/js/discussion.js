@@ -27,19 +27,19 @@ $(function() {
     $.post("../NewMessage",stringXml,
         function(data) {
             //once data has arrived
-            console.log(data);
             var $xml = $(data);
-            updateViewModel($xml); //update the viewmodel (and with it, the view)
+            //update the viewmodel (and with it, the view)
+            updateViewModel($xml, 'msg'); 
             askNewMsgs();
         }
     );
 });
 
 //Updates the viewmodel with respect of the xml doc parameter
-function updateViewModel($xml){
+function updateViewModel($xml, tagName){
     clientid=$xml.find('clientid').text();
     //foreach message
-    $xml.find('msg').each(function() {
+    $xml.find(tagName).each(function() {
       //take autor, content and the composed type lastupdate
       var $elem = $(this);
       var content = $elem.find("content").text();
@@ -61,8 +61,6 @@ function updateViewModel($xml){
       ViewModelDisc.messages.push(msg);
       ViewModelDisc.displayAdvancedOptions(true); //animate
     });
-//    console.log("log. SORTING");
-    //sortArrayThreads("DESC", "lastupdate");
 }
 
 function getXmlHttpRequest() {
@@ -163,10 +161,12 @@ function askNewMsgs() {
     xmlhttpComet.onreadystatechange=function(){
         if (xmlhttpComet.readyState == 4 && xmlhttpComet.status==200) {                            
             answer = xmlhttpComet.responseXML;
-            if (answer.documentElement.tagName == "msgs") {
-                console.log(answer);
+            var expectedTag = answer.documentElement.tagName;
+            //console.log(answer);
+            if (expectedTag == "newMsg" || expectedTag == "cometmsgs") {
+                console.log(expectedTag);
                 var $xml = $(answer);
-                updateViewModel($xml); //update the viewmodel (and with it, the view)
+                updateViewModel($xml, expectedTag); //update the viewmodel (and with it, the view)
             }
             askNewMsgs();
         }
@@ -188,8 +188,8 @@ function askNewMsgs() {
     data.documentElement.appendChild(sectionId);
     data.documentElement.appendChild(discussionId);
     data.documentElement.appendChild(clientIdNode);
-    
     xmlhttpComet.send(data);
+    console.log("Async request sent");
 }
 
 // message class
