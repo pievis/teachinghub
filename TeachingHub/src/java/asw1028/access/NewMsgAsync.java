@@ -35,6 +35,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.xml.bind.JAXBException;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
@@ -79,7 +80,7 @@ public class NewMsgAsync extends HttpServlet {
     
     private void operations(Document data, HttpServletRequest request, HttpServletResponse response, ManageXML mngXML) 
             throws Exception {
-        HttpSession session = request.getSession();
+        
         //name of operation is message root
         Element root = data.getDocumentElement();
         String operation = root.getTagName();
@@ -89,27 +90,26 @@ public class NewMsgAsync extends HttpServlet {
             case "firstTimeAcces":
                 System.out.println("First Time Access received: creating greetings document");
                 //create the greetings (root) element
-                Document greetings = mngXML.newDocument("greetings"); 
-                success = createGreetingsDoc(data, greetings, mngXML, out);
-                System.out.println("greetings doc created, but...");
-                mngXML.transform(System.out,greetings);
+                success = createGreetingsDoc(data, mngXML, out);
                 if(!(success.isEmpty())) {
                     //send the data to the client
                     WebUtils.sendErrorMessage(success, out);
                 }
                 break;
             case "newMsg":
+                System.out.println("Operation newMsg received");
                 // creo un nuovo messaggio nel db
                 success = CreateMessage(data);
                 if(success.isEmpty())
                     WebUtils.sendSimpleMessage("success", "Messaggio creato con successo.", out);
                 else
                     WebUtils.sendErrorMessage(success, out);
+                forwardNewMsg(data, mngXML);
                 break;
             case "waitMsg":
-                System.out.println("waiting received");
+                System.out.println("Operation waiting for msgs received");
 		// (long) polling, meaning if there are new messages, give them to me
-                askNewMsg(data);
+                askNewMsg(data, request, response, mngXML);
                 break;
         }
     }
@@ -119,7 +119,7 @@ public class NewMsgAsync extends HttpServlet {
         String idDisc = null; //discussion eg. polinomi
         String userid = null; // eg. Nyaz
         String content = null;
-        
+        //TODO: devi modificar questo!
         try {
             section = WebUtils.getContentFromNode(data, new String[] { "section"});
             idDisc = WebUtils.getContentFromNode(data, new String[] { "iddisc"});
@@ -148,23 +148,14 @@ public class NewMsgAsync extends HttpServlet {
         return ""; // "" stands for no errors
     }
     
-    private String createGreetingsDoc(Document data, Document responseDoc, ManageXML mngXML, OutputStream out) {
-        String section = null; // eg. Matematica
-        String idDisc = null; //discussion eg. polinomi
-        
-        try {
-            section = WebUtils.getContentFromNode(data, new String[] { "section"});
-            idDisc = WebUtils.getContentFromNode(data, new String[] { "iddisc"});
-        }
-        catch (Exception e) {
-            System.out.println("DANGER! Error in the request for message data fields");
-            return "Errore nei dati inviati";
-        }
-        if(section == null || idDisc == null) {
+    private String createGreetingsDoc(Document data, ManageXML mngXML, OutputStream out) {
+        String section = getSectionId(data); // eg. Matematica
+        String idDisc = getDiscussionId(data); //discussion eg. polinomi
+
+        if(section.isEmpty() || idDisc.isEmpty()) {
             return "Impossibile trovare la discussione specificata";
         }
-        String xmlMsgsFilePath = getServletContext().getRealPath(
-                            SysKb.getMsgsPath(section, idDisc));
+        String xmlMsgsFilePath = getServletContext().getRealPath(SysKb.getMsgsPath(section, idDisc));
         FileInputStream msgsFile;
         try {
             msgsFile = new FileInputStream(xmlMsgsFilePath);
@@ -179,12 +170,12 @@ public class NewMsgAsync extends HttpServlet {
         try {
             //System.out.println("Trying to parse msgs at path: "+xmlMsgsFilePath);
             msgs = mngXML.parse(msgsFile);
-        } catch (Exception ex) {
+        } catch (IOException | SAXException ex) {
             Logger.getLogger(NewMsgAsync.class.getName()).log(Level.SEVERE, null, ex);
             return "Errore nella creazione dei dati del protocollo di greetings";
         }
         
-        responseDoc = mngXML.newDocument("greetings");
+        Document responseDoc = mngXML.newDocument("greetings");
         //create the node containing the pseudo-id
         //System.out.println("Attempting to create id element");
         Element clientId = responseDoc.createElement("clientid");
@@ -198,9 +189,7 @@ public class NewMsgAsync extends HttpServlet {
         System.out.println("Sending greetings.");
         try {
             mngXML.transform(out,responseDoc);
-        } catch (TransformerException ex) {
-            Logger.getLogger(NewMsgAsync.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
+        } catch (TransformerException | IOException ex) {
             Logger.getLogger(NewMsgAsync.class.getName()).log(Level.SEVERE, null, ex);
         }
         return "";
@@ -220,28 +209,72 @@ public class NewMsgAsync extends HttpServlet {
         return pseudoId;
     }
     
-    private void askNewMsg(Document data) {
-        //if there are new msg send them to client
-        String section = null; // eg. Matematica
+    private String getDiscussionId(Document data) {
         String idDisc = null; //discussion eg. polinomi
-        String clientId = null;
         
         try {
-            section = WebUtils.getContentFromNode(data, new String[] { "section"});
             idDisc = WebUtils.getContentFromNode(data, new String[] { "iddisc"});
-            clientId = WebUtils.getContentFromNode(data, new String[] { "idclient" });
         }
         catch (Exception e) {
             System.out.println("DANGER! Error in the request for message data fields");
-            //return "Errore nei dati inviati";
+            return "";
         }
-        if(section == null || idDisc == null || clientId == null) {
-            //return "Impossibile trovare la discussione specificata";
+        if(idDisc == null) {
+            return "";
+        }
+        return idDisc;
+    }
+    
+    private String getSectionId(Document data) {
+        String section = null; // eg. Matematica    
+        
+        try {
+            section = WebUtils.getContentFromNode(data, new String[] { "section"});
+        }
+        catch (Exception e) {
+            System.out.println("DANGER! Error in the request for message data fields");
+            return "";
+        }
+        if(section == null) {
+            return "";
+        }
+        return section;
+    }
+    
+    private String getClientId(Document data) {
+        String clientId = null;
+        try {
+            clientId = WebUtils.getContentFromNode(data, new String[] { "idclient" }); 
+        }
+        catch (Exception e) {
+            System.out.println("DANGER! Error in the request for message data fields");
+            return "";
+        }
+        
+        if(clientId == null) {
+            return "";
+        }
+        return clientId;
+    }
+    
+    private void askNewMsg(Document data, HttpServletRequest request, HttpServletResponse response, ManageXML mngXML) {
+        //if there are new msg send them to client
+        Document msgsToSend = mngXML.newDocument("cometmsgs");
+        System.out.println("accessing data fields");
+        String section = getSectionId(data); // eg. Matematica
+        String idDisc = getDiscussionId(data); //discussion eg. polinomi
+        String clientId = getClientId(data);
+        
+        if(section.isEmpty() || idDisc.isEmpty() || clientId.isEmpty()) {
+            System.out.print("Error while reading some fields: ");
         }
         
         boolean async;
         synchronized (this) {
+            System.out.println("Entering in synchronized area");
             HashMap<String, Object> clients = ctxHandler.get(section+idDisc);
+            System.out.println("Getting message list");
+            //TODO: il problema è qui!!
             LinkedList<Document> list = (LinkedList<Document>) clients.get(clientId);
             if (async = list.isEmpty()) { //non ci sono messaggi disponibili
                 //codice della richiesta che si blocca in attesa 
@@ -254,15 +287,16 @@ public class NewMsgAsync extends HttpServlet {
                             ManageXML mngXML = new ManageXML();
                             //ottiene il contesto che ha generato l'evento -->
                             AsyncContext asyncContext = e.getAsyncContext();
+                            // da modificare
                             HttpServletRequest reqAsync = (HttpServletRequest) asyncContext.getRequest();
                             String user = (String) reqAsync.getSession().getAttribute("user");
-                            System.out.println("timeout event launched for: " + user);
+                            System.out.println("timeout event launched");
                              // --> in questo modo può mandare dati sulla response
                             Document answer = mngXML.newDocument("timeout");
                             boolean confirm;
                             synchronized (NewMsgAsync.this) {
-                                if (confirm = (contexts.get(user) instanceof AsyncContext)) {
-                                    contexts.put(user, new LinkedList<Document>());
+                                if (confirm = (clients.get(user) instanceof AsyncContext)) {
+                                    clients.put(user, new LinkedList<Document>());
                                 }
                             }
                             if (confirm) {
@@ -272,20 +306,58 @@ public class NewMsgAsync extends HttpServlet {
                                 // chiude la response e dichiara completata la gestione asincrona della richiesta (diattiva timeout)
                                 asyncContext.complete();
                             }
-                        } catch (Exception ex) {
+                        } catch (ParserConfigurationException | IOException | TransformerException ex) {
+                            System.out.print("Error in timeout handler: ");
                             System.out.println(ex);
                         }
                     }
                 });
-                contexts.put(user, asyncContext); // lo memorizzo perchè un'altra richiesta risveglierà l'asyncContext
+                System.out.println("putting client in contexts");
+                clients.put(clientId, asyncContext); // lo memorizzo perchè un'altra richiesta risveglierà l'asyncContext
             } else {
-                answer = list.removeFirst();
+                // fetch all the elements for a client
+                for(Document msg : list) {
+                    msgsToSend.appendChild(msg);
+                }
             }
         }
         if (!async) {
-            os = response.getOutputStream();
-            mngXML.transform(os, answer);
-            os.close();
+            try {
+                OutputStream os = response.getOutputStream();
+                mngXML.transform(os, msgsToSend);
+                os.close();
+            } catch (IOException | TransformerException ex) {
+                System.out.print("Error while sending the messages enqueue to clients");
+                Logger.getLogger(NewMsgAsync.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        System.out.println("Ending data fields");
+    }
+    
+    private void forwardNewMsg(Document data, ManageXML mngXML) {
+        String section = getSectionId(data); // eg. Matematica
+        String idDisc = getDiscussionId(data); //discussion eg. polinomi
+        
+        synchronized (this) { // la servlet può essere contattata da più client -> race condition
+            HashMap<String, Object> clients = ctxHandler.get(section+idDisc);
+            
+            for (String destUser : clients.keySet()) {
+                Object value = clients.get(destUser); //questi object sono
+                if (value instanceof AsyncContext) { //AsyncContext se i client sono in attesa su una pop
+                    try {
+                        OutputStream aos = ((AsyncContext) value).getResponse().getOutputStream();
+                        mngXML.transform(aos, data);
+                        aos.close();
+                    } catch (IOException | TransformerException ex) {
+                        Logger.getLogger(NewMsgAsync.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    
+                    ((AsyncContext) value).complete();
+                    clients.put(destUser, new LinkedList<Document>());
+                } else { //code di messaggi associati agli username se non hanno ancora effettuato una pop
+                    ((LinkedList<Document>) value).addLast(data);
+                }
+            }
         }
     }
 

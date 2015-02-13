@@ -30,12 +30,14 @@ $(function() {
             console.log(data);
             var $xml = $(data);
             updateViewModel($xml); //update the viewmodel (and with it, the view)
+            askNewMsgs();
         }
     );
 });
 
 //Updates the viewmodel with respect of the xml doc parameter
 function updateViewModel($xml){
+    clientid=$xml.find('clientid').text();
     //foreach message
     $xml.find('msg').each(function() {
       //take autor, content and the composed type lastupdate
@@ -63,7 +65,7 @@ function updateViewModel($xml){
     //sortArrayThreads("DESC", "lastupdate");
 }
 
-function getXmlHttpRequest(actionType) {
+function getXmlHttpRequest() {
     //console.log("Dentro la xmlhttpreq")
     var x = this;
     //For modern browsers
@@ -97,14 +99,10 @@ function getXmlHttpRequest(actionType) {
         }
     };
     
-    //console.log("prma della send")
-    var data;
-    if(actionType=="newMsg") //send the new message to the server
-        data = sendDataToServer();
-    if(actionType=="subscribe") //require push operation for new message
-        data = askComet();
+    //push new message to the server
+    var data = sendDataToServer();
     x.xmlhttp.send(data);
-    //console.log("fuori dalla send --> fine");
+    
     return false; // blocks the refresh of the page
 }
 
@@ -116,21 +114,25 @@ function sendDataToServer() {
     var usrId = data.createElement("userid");
     var sectionId = data.createElement("section");
     var discussionId = data.createElement("iddisc");
+    var clientIdNode = data.createElement("idclient");
     var content = data.createElement("content");
     // content of the nodes
     var txtDisc = data.createTextNode($("#content").attr("discid"));
     var txtSection = data.createTextNode($("#content").attr("sectionid"));
     var txtUser = data.createTextNode($("#content").attr("userid"));
+    var txtClientId = data.createTextNode(clientid);
     var txtContent = data.createTextNode(ViewModelDisc.newMsgContent());
     // adds content in the nodes
     usrId.appendChild(txtUser);
     sectionId.appendChild(txtSection);
     discussionId.appendChild(txtDisc);
+    clientIdNode.appendChild(txtClientId);
     content.appendChild(txtContent);
     // add nodes in the document
     data.documentElement.appendChild(usrId);
     data.documentElement.appendChild(sectionId);
     data.documentElement.appendChild(discussionId);
+    data.documentElement.appendChild(clientIdNode);
     data.documentElement.appendChild(content);
     return data;
 }
@@ -153,6 +155,43 @@ function sendGreetings() {
     return data;
 }
 
+// xmlhttpComet, answer is global
+function askNewMsgs() {
+    var data;
+    xmlhttpComet = new XMLHttpRequest();
+    xmlhttpComet.open("POST", "../NewMessage", true);
+    xmlhttpComet.onreadystatechange=function(){
+        if (xmlhttpComet.readyState == 4 && xmlhttpComet.status==200) {                            
+            answer = xmlhttpComet.responseXML;
+            if (answer.documentElement.tagName == "msgs") {
+                console.log(answer);
+                var $xml = $(answer);
+                updateViewModel($xml); //update the viewmodel (and with it, the view)
+            }
+            askNewMsgs();
+        }
+    };
+    data = document.implementation.createDocument("", "waitMsg", null); 
+    //nodes in data
+    var sectionId = data.createElement("section");
+    var discussionId = data.createElement("iddisc");
+    var clientIdNode = data.createElement("idclient")
+    // content of the nodes
+    var txtDisc = data.createTextNode($("#content").attr("discid"));
+    var txtSection = data.createTextNode($("#content").attr("sectionid"));
+    var txtClientId = data.createTextNode(clientid);
+    // adds content in the nodes
+    sectionId.appendChild(txtSection);
+    discussionId.appendChild(txtDisc);
+    clientIdNode.appendChild(txtClientId);
+    // add nodes in the document
+    data.documentElement.appendChild(sectionId);
+    data.documentElement.appendChild(discussionId);
+    data.documentElement.appendChild(clientIdNode);
+    
+    xmlhttpComet.send(data);
+}
+
 // message class
 var Message = function(autor, cont) {
     this.autor = autor;
@@ -169,6 +208,10 @@ function updateErrorBox(text){
     ViewModelDisc.errorMsg(text);
     ViewModelDisc.showErrorMsg(1);
 }
+
+var clientid = ""; //client's pseudo id
+var xmlhttpComet;
+var answer;
 
 //ViewModel
 var ViewModelDisc = {
