@@ -173,8 +173,10 @@ public class WebUtils {
         return prefix + numbs + "." + extension;
     }
     
+    @Deprecated
     public static String getFileNameFromContentDisp(String contentDisposition){
 //        String cd = file.getHeader("content-disposition");
+//        System.out.println("TEST C: " + contentDisposition);
         String filename = contentDisposition.split("filename=")[1];
         filename = filename.split(";")[0];
         filename = filename.replace("\"", "");
