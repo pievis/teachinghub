@@ -10,7 +10,6 @@
     <%
     String sectionId = request.getParameter("sectionid");
     String discussionId = request.getParameter("id"); //TODO: discid - discussion
-    //String userId = request.getParameter("userid");
     %>
     <head>
         <title>Teaching Hub - <%=discussionId%></title>
@@ -40,36 +39,38 @@
                 <div data-bind="foreach: messages" class="container">
                     <div class="message">
                         <div class="avatar">
-                            <img src="<%=request.getContextPath()%>/multimedia/avatars/avatar0.png"/>
+                            <img data-bind="attr:{src: avatarPath}"/>
                             <b><span data-bind="text: autor"></span></b>
                         </div>
                         <div class="content">
                             <span data-bind="text: content"></span>
                         </div>
                         <div class="files">
-                            <span class="attach">
+                            <span data-bind="visible: hasFile" class="attach">
                                 file.pdf
                             </span>
                         </div>
                     </div>
                 </div>
-                <!-- Da fare solo se sei loggato -->
-                <h1 class="longh">Rispondi</h1>
-                <div class="container">
-                    <form onsubmit="getXmlHttpRequest('newMsg'); return false;">
-                        Contenuto Messaggio: <br>
-                        <textarea data-bind="value: newMsgContent" class="longinput" name="message" rows="8"></textarea>
-                        <p>Allegato: <input type="file" name="datafile" size="40">
-                        </p>
-                        <input class="btn" type="submit" value="Invia">    
-                    </form>
-                </div>
-                <div class="errorbox" id="errorbox" data-bind="visible: showErrorMsg() >0">
-                        <!--<img src="<%=request.getContextPath()%>/multimedia/icons/delete85.png"-->
-                        <p>
-                            Errore - <span data-bind="text: errorMsg"></span>
-                        </p>
-                </div>
+                <% if(userid != null) { %>
+                    <!-- Da fare solo se sei loggato -->
+                    <h1 class="longh">Rispondi</h1>
+                    <div class="container">
+                        <form onsubmit="getXmlHttpRequest('newMsg'); return false;">
+                            Contenuto Messaggio: <br>
+                            <textarea data-bind="value: newMsgContent" class="longinput" name="message" rows="8"></textarea>
+                            <p>Allegato: <input type="file" name="datafile" size="40">
+                            </p>
+                            <input class="btn" type="submit" value="Invia">    
+                        </form>
+                    </div>
+                    <div class="errorbox" id="errorbox" data-bind="visible: showErrorMsg() >0">
+                            <!--<img src="<%=request.getContextPath()%>/multimedia/icons/delete85.png"-->
+                            <p>
+                                Errore - <span data-bind="text: errorMsg"></span>
+                            </p>
+                    </div>
+                <% } %>
             </div>
         </div>
             <footer>

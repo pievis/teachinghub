@@ -1,20 +1,45 @@
-// Here's a custom Knockout binding that makes elements shown/hidden via jQuery's fadeIn()/fadeOut() methods
-ko.bindingHandlers.fadeVisible = {
-    init: function(element, valueAccessor) {
-        // Initially set the element to be instantly visible/hidden depending on the value
-        var value = valueAccessor();
-        $(element).toggle(ko.unwrap(value)); // Use "unwrapObservable" so we can handle values that may or may not be observable
-    },
-    update: function(element, valueAccessor) {
-        // Whenever the value subsequently changes, slowly fade the element in or out
-        var value = valueAccessor();
-        ko.unwrap(value) ? $(element).fadeIn() : $(element).fadeOut();
+// message class
+var Message = function(autor, cont) {
+    this.autor = autor;
+    this.content = cont;
+    this.lastupdate = {};
+    this.avatarPath = "";
+    this.filePath = "";
+    this.hasFile = false;
+    this.setAvatarPath = function(path) {
+        avatarPath = ctxUrl + "/multimedia/avatars/" + path;
+    }
+    this.getAvatarPath = function() {
+        return avatarPath;
     }
 };
+//    XXX private String id;
+//    private String content;
+//    private Lastupdate lastupdate;
+//    private String autor;
+//    MISSING private Datafiles datafiles;
 
+// global (private) variable
+var clientid = ""; //client's pseudo id
+var xmlhttpComet;
+var answer;
 var sectionPartialUrl = "/jsp/section.jsp?sectionid=[ID]";
 var ctxUrl = $("#content").attr("ctx-url");
 var sectionId = $("#content").attr("sectionid");
+
+//ViewModel
+var ViewModelDisc = {
+    messages : ko.observableArray(),
+    newMsgContent : ko.observable(),
+    errorMsg : ko.observable("Nessun problema"),
+    //Invisible at the beginning
+    showErrorMsg : ko.observable(false), 
+    displayAdvancedOptions : ko.observable(false),
+    discTitleText: ko.observable("Titolo"),
+    discDescriptionText: ko.observable("Descrizione"),
+    sectionUrl : ko.observable(),
+    sectionTxt : ko.observable(),
+};
 
 $(function() {
     //setup section url
@@ -41,31 +66,44 @@ $(function() {
 function updateViewModel($xml, tagName){
     //foreach message
     $xml.find(tagName).each(function() {
-      //take autor, content and the composed type lastupdate
-      var $elem = $(this);
-      var content = $elem.find("content").text();
-      var autor = $elem.find( "autor:first" ).text();
-      var msg = new Message(autor, content);
-      var $lastupdate = $elem.find( "lastupdate" );
-      //es: 22/04/2010 11:22:44      
-      if($lastupdate != null){
-        msg.lastupdate.autor = $lastupdate.find( "autor" ).text();
-        var datetimelu = $lastupdate.find( "date" ).text() + " " + $lastupdate.find( "time" ).text();
-        msg.lastupdate.datetime = datetimelu;
-      }
-//      console.log("INFO: "  + id );
-//      console.log("INFO: "  + title );
-//      console.log("INFO: "  + autor );
-//      console.log("INFO: "  + datetime );
-//      console.log("--------------");
-//      
-      ViewModelDisc.messages.push(msg);
-      ViewModelDisc.displayAdvancedOptions(true); //animate
+        //take autor, content and the composed type lastupdate
+        var $elem = $(this);
+        var content = $elem.find("content").text();
+        var autor = $elem.find( "autor:first" ).text();
+        var msg = new Message(autor, content);
+        var $lastupdate = $elem.find( "lastupdate" );
+        //es: 22/04/2010 11:22:44      
+        if($lastupdate != null){
+            msg.lastupdate.autor = $lastupdate.find( "autor" ).text();
+            var datetimelu = $lastupdate.find( "date" ).text() + " " + $lastupdate.find( "time" ).text();
+            msg.lastupdate.datetime = datetimelu;
+        }
+//        console.log("INFO: "  + autor );
+//        console.log("--------------");
+          
+        //ViewModelDisc.messages.push(msg);
+        ViewModelDisc.displayAdvancedOptions(true); //animate
+        // create the xml document that have to be send to the server
+        var data = prepareAvatarRequest(autor);
+        var stringXml = new XMLSerializer().serializeToString(data);    
+        $.post("../Profile",stringXml,
+            function(dataResp) {
+                //once data has arrived
+                var $xml = $(dataResp);
+                var avatar = $xml.find('avatar').text();
+                // clojure
+                //msg.setAvatarPath(avatar);
+                msg.avatarPath = ctxUrl + "/multimedia/avatars/" + avatar;
+                //console.log(avatar);
+                //console.log(msg.autor);
+                ViewModelDisc.messages.push(msg);
+            }
+        );
     });
 }
 
 function getXmlHttpRequest() {
-    //console.log("Dentro la xmlhttpreq")
+    
     var x = this;
     //For modern browsers
     if(window.XMLHttpRequest)
@@ -154,6 +192,18 @@ function sendGreetings() {
     return data;
 }
 
+function prepareAvatarRequest(autor) {
+    //creates the new xml messge
+    var data = document.implementation.createDocument("", "get", null);
+    // nodes in data
+    var userId = data.createElement("userid");
+    //content for userId nodes
+    var txtUser = data.createTextNode(autor);
+    userId.appendChild(txtUser);
+    data.documentElement.appendChild(userId);
+    return data;
+}
+
 // xmlhttpComet, answer is global
 function askNewMsgs() {
     var data;
@@ -193,39 +243,23 @@ function askNewMsgs() {
     console.log("Async request sent");
 }
 
-// message class
-var Message = function(autor, cont) {
-    this.autor = autor;
-    this.content = cont;
-    this.lastupdate = {};
-};
-//    XXX private String id;
-//    private String content;
-//    private Lastupdate lastupdate;
-//    private String autor;
-//    MISSING private Datafiles datafiles;
-
 function updateErrorBox(text){
     ViewModelDisc.errorMsg(text);
     ViewModelDisc.showErrorMsg(1);
 }
 
-var clientid = ""; //client's pseudo id
-var xmlhttpComet;
-var answer;
-
-//ViewModel
-var ViewModelDisc = {
-    messages : ko.observableArray(),
-    newMsgContent : ko.observable(),
-    errorMsg : ko.observable("Nessun problema"),
-    //Invisible at the beginning
-    showErrorMsg : ko.observable(false), 
-    displayAdvancedOptions : ko.observable(false),
-    discTitleText: ko.observable("Titolo"),
-    discDescriptionText: ko.observable("Descrizione"),
-    sectionUrl : ko.observable(),
-    sectionTxt : ko.observable()
+// Here's a custom Knockout binding that makes elements shown/hidden via jQuery's fadeIn()/fadeOut() methods
+ko.bindingHandlers.fadeVisible = {
+    init: function(element, valueAccessor) {
+        // Initially set the element to be instantly visible/hidden depending on the value
+        var value = valueAccessor();
+        $(element).toggle(ko.unwrap(value)); // Use "unwrapObservable" so we can handle values that may or may not be observable
+    },
+    update: function(element, valueAccessor) {
+        // Whenever the value subsequently changes, slowly fade the element in or out
+        var value = valueAccessor();
+        ko.unwrap(value) ? $(element).fadeIn() : $(element).fadeOut();
+    }
 };
 
 ko.applyBindings(ViewModelDisc);
