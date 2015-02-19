@@ -29,10 +29,11 @@
                     <img src="<%=request.getContextPath()%>/multimedia/icons/book246.png">
                     Pagine & Appunti</h2>
                 <div class="container" data-bind="visible: pagesVisible">
-                    <ul>
-                        <li>Coffee <span class="autor">(Creato da Qualcuno)</span></li>
-                        <li>Tea <span class="autor">(Creato da Qualcuno)</span></li>
-                        <li>Milk <span class="autor">(Creato da Qualcuno)</span></li>
+                    <ul data-bind="foreach: pages">
+                        <a data-bind="attr:{href: url}">
+                            <li><span data-bind="text: name">Coffee</span>
+                                <span class="autor" >(Creato da <span data-bind="text: autor">Qualcuno</span>)</span></li>
+                        </a>
                     </ul>
                 </div>
                 <h2 class="longh">

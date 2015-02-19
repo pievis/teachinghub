@@ -37,7 +37,7 @@
                             <textarea placeholder="Contenuto della pagina" class="longinput" name="pagecontent" rows="8"></textarea>
                         </p>
                         <h3 class="longh">Allegati</h3>
-                        <input id="selFiles" type="file" name="files"
+                        <input id="selFiles" type="file" name="files" multiple="multiple"
                                />
                         <p></p>
                     <p>

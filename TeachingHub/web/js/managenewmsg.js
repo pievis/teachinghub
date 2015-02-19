@@ -144,7 +144,7 @@ function uploadFilesAndSendInfo(input, callingfn){
     dataf.append("filetype", "attachement");
     //prendi i file dall'input
     for(var i = 0; i < input.files.length; i++){
-        dataf.append("file"+i, input.files[0]);
+        dataf.append("file"+i, input.files[i]);
 //        console.log("sel file" + input.files[0]);
     }
     
@@ -238,6 +238,7 @@ function sendNewPageToServer(userid, sectionid, title, description, msg){
     var descE = data.createElement("description");
     descE.appendChild(data.createTextNode(description));
     var msgE = data.createElement("msg");
+//    msg = encodeStringForWeb(msg);
     msgE.appendChild(data.createTextNode(msg));
     var contentE = data.createElement("content");
     var filesE = data.createElement("files");
@@ -308,3 +309,10 @@ var viewModel = {
 };
 
 ko.applyBindings(viewModel);
+
+//Utils
+
+function encodeStringForWeb(str){
+    var newStr = str.replace(/\n/g, "<br />");
+    return newStr;
+}

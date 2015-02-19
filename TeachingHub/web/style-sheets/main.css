@@ -305,6 +305,7 @@ header img.resize {
     background-position: 4px 2px;
     background-repeat: no-repeat;
     background-size: 16px 16px;
+    margin: 2px;
 }
 
 .message .files .attach:hover{

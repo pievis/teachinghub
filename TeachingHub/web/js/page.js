@@ -2,12 +2,11 @@
  * File che gestirà la visualizzazione di una pagina scritta da un docente
  */
 
-
-
 var sectionPartialUrl = "/jsp/section.jsp?sectionid=[ID]";
 var ctxUrl = $("#content").attr("ctx-url");
 var sectionId = $("#content").attr("sectionid");
 var pageId = getParameterByName("id");
+var profilePartialUrl = "/jsp/profile.jsp?userid=[USERID]"
 
 $(function() {
     //setup section url
@@ -32,12 +31,15 @@ function updateViewModel($xml){
     var description = $page.find("description").text();
     var msg = $page.find("msg").text();
     var autor = $page.find("autor").text();
-    
+    msg = encodeStringForWeb(msg);
 //    console.log(".log INFO: " + title + " " + autor);
     viewModel.discTitleText(title);
     viewModel.discDescriptionText(description);
-    viewModel.autor(autor);
+//    viewModel.autor(autor);
     viewModel.content(msg);
+    viewModel.autorName(autor);
+    var profileUrl = ctxUrl + profilePartialUrl.replace("[USERID]", autor);
+    viewModel.autorProfileUrl(profileUrl);
     
     //aggiungi i files al viewmodel
     $page.find("datafile").each(function (){
@@ -67,7 +69,9 @@ var viewModel = {
     sectionUrl : ko.observable(),
     sectionTxt : ko.observable(),
     autor : ko.observable(),
-    content: ko.observable()
+    content: ko.observable(),
+    autorProfileUrl: ko.observable(),
+    autorName: ko.observable()
 };
 
 ko.applyBindings(viewModel);
@@ -80,4 +84,9 @@ function getParameterByName(name) {
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
         results = regex.exec(location.search);
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+function encodeStringForWeb(str){
+    var newStr = str.replace(/\n/g, "<br />");
+    return newStr;
 }

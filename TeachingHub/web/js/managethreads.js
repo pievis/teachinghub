@@ -13,13 +13,20 @@ function getParameterByName(name) {
 var ctxurl = document.getElementById('threadsblock').getAttribute('ctx-url');
 var sectionid = document.getElementById('threadsblock').getAttribute('sectionid');
 var newQuestionUrl = "/jsp/new_question.jsp?sectionid=";
-var discRelUrl = "/jsp/discussion.jsp?id="
+var discRelUrl = "/jsp/discussion.jsp?id=";
+var sectionPartialUrl = "/jsp/section.jsp?sectionid=[ID]";
+var pageUrl = "/jsp/page.jsp?id=[ID]&sectionid=[SECTION]";
 
 $(function() {
     //When the document is ready
     var sectionid = getParameterByName("sectionid");
-    //do a get to the servlet
-    $.get( "../GetThreads", { section: sectionid },
+    //get information from the server
+    getThreads();
+    getPages();
+});
+
+function getThreads(){
+    $.post( "../GetThreads", { section: sectionid },
         function( data ){
             //This is the success function
             var xmlDoc = data;
@@ -27,13 +34,29 @@ $(function() {
 //            console.log("log. Data: " + xmlString);
             var $xml = $(xmlDoc);
             //TODO handle errors
-            updateViewModel($xml);
+            updateViewModelThreads($xml);
         }
     );
-});
+}
+
+function getPages(){
+    var requestData = "<getpages><section>"+sectionid+"</section></getpages>";
+    $.post( "../GetPage", requestData,
+        function( data ){
+            //This is the success function
+            var xmlDoc = data;
+//            console.log(data);
+//            var xmlString = (new XMLSerializer()).serializeToString(xmlDoc);
+//            console.log("log. Data: " + xmlString);
+            var $xml = $(xmlDoc);
+            //TODO handle errors
+            updateViewModelPages($xml);
+        }
+    );
+}
 
 //Updates the viewmodel with respect of the xml doc parameter
-function updateViewModel($xml){
+function updateViewModelThreads($xml){
     $xml.find('thread').each(function() {
       //foreach thread element
       var $elem = $(this);
@@ -96,6 +119,23 @@ function sortArrayThreads(order, attribute){
 //    console.log("log. SORTING " + order + " " + attribute);
 }
 
+function updateViewModelPages($xml){
+    $xml.find("page").each(function (){
+       //for each page tag found
+       var $elem = $(this);
+       var id = $elem.find("id").text();
+       var title = $elem.find("title").text();
+       var autor = $elem.find("autor").text();
+       console.log("id" + id +
+                "title" + title);
+       //aggiungo la pagina al viewmodel
+       var purl = pageUrl.replace("[ID]", id).replace("[SECTION]", sectionid);
+       var url = ctxurl + purl;
+       var p = new Page(title, autor, url);
+       viewModel.pages.push(p);
+    });
+}
+
 //return the milliseconds from date
 //specified in the format dd/MM/yyyy HH:mm:ss
 function parseDate(dateStr){
@@ -118,6 +158,12 @@ var Thread = function(id, title, description, autor, datetime) {
     this.url = ctxurl + discRelUrl + id + "&sectionid=" + sectionid;
     //other
     this.lastupdate = {};
+}
+
+var Page = function (name, autor, url){
+    this.name = name;
+    this.autor = autor;
+    this.url = url;
 }
 
 var viewModel = {
@@ -149,7 +195,8 @@ var viewModel = {
     },
     fowardToNewQuestion: function(){
         window.location.href = ctxurl + newQuestionUrl + sectionid;
-    }
+    },
+    pages : ko.observableArray()
 };
 
 // Here's a custom Knockout binding that makes elements shown/hidden via jQuery's fadeIn()/fadeOut() methods

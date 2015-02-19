@@ -64,10 +64,10 @@ public class GetPage extends HttpServlet {
                 getPage(doc, out);
                 break;
             case "getpages":
+                getPages(doc, out);
                 break;
             default:
                 sendError("Impossibile eseguire l'azione richiesta", out);
-                return;
         }
     }
     
@@ -98,6 +98,15 @@ public class GetPage extends HttpServlet {
             e.printStackTrace();
             sendError("Errore nel reperire la pagina richiesta.", out);
         }
+    }
+    
+    /**
+     * manda in output tutte le pagine per la sezione specificata in doc
+     **/
+    private void getPages(Document doc, OutputStream out){
+        String sectionid = WebUtils.getContentFromNode(doc, new String[] { "section"});
+        String xmlPagesPath = getServletContext().getRealPath(SysKb.getPagesPathForSection(sectionid));
+        WebUtils.fileToOutputStream(xmlPagesPath, out);
     }
     
     /**

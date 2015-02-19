@@ -166,7 +166,7 @@ public class NewPage extends HttpServlet {
         newPage.setMsg(msg);
         newPage.setTitle(pagename);
         newPage.setDescription(description);
-        if(attachements.getDatafile().size() > 0)
+        if(attachements.getDatafile() != null)
             newPage.setDatafiles(attachements);
         //Scrivi sul file xml / db
         try{

@@ -7,6 +7,7 @@ body{
     font-size: 13px;
 }
 
+
 h1 {
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     font-size: 15px;
@@ -124,6 +125,30 @@ p{
     font-style: italic;
     font-size: 12px;
     padding-left: 10px;
+}
+
+li {
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+ul a{
+    font-weight: bold;
+    color: #006633;
+}
+
+/* unvisited link */
+ul a:link {
+    color: #006633;
+}
+
+/* visited link */
+ul a:visited {
+    color: #006633;
+}
+
+ul a:hover{
+    color: #00cc66;
 }
 
 /*input*/

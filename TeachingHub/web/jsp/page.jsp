@@ -32,12 +32,12 @@
                 
                 <div class="container">
                     <div class="message">
-                        <div class="avatar">
+<!--                        <div class="avatar">
                             <img src="<%=request.getContextPath()%>/multimedia/avatars/avatar0.png"/>
                             <b><span data-bind="text: autor"></span></b>
-                        </div>
+                        </div>-->
                         <div class="content">
-                            <span data-bind="text: content"></span>
+                            <content data-bind="html: content"></content>
                         </div>
                         <div class="files" data-bind="foreach: datafiles">
                             <a src="" data-bind="attr:{href:url}">
@@ -48,6 +48,12 @@
                         </div>
                     </div>
                 </div>
+                <h1 class="longh">
+                    Autore della pagina: 
+                    <a data-bind="attr:{href: autorProfileUrl}">
+                        <span class='autorh1' data-bind="text: autorName"> </span>
+                    </a>
+                </h1>
                 <div class="errorbox" id="errorbox" data-bind="visible: showErrorMsg() >0">
                         <!--<img src="<%=request.getContextPath()%>/multimedia/icons/delete85.png"-->
                         <p>
