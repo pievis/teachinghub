@@ -30,6 +30,8 @@ $(function() {
             var $xml = $(data);
             //update the viewmodel (and with it, the view)
             updateViewModel($xml, 'msg'); 
+            //memorize the clientid
+            clientid=$xml.find('clientid').text();
             askNewMsgs();
         }
     );
@@ -37,7 +39,6 @@ $(function() {
 
 //Updates the viewmodel with respect of the xml doc parameter
 function updateViewModel($xml, tagName){
-    clientid=$xml.find('clientid').text();
     //foreach message
     $xml.find(tagName).each(function() {
       //take autor, content and the composed type lastupdate
@@ -109,7 +110,7 @@ function sendDataToServer() {
     //create the new xml message
     var data = document.implementation.createDocument("","newMsg", null);
     //nodes in data
-    var usrId = data.createElement("userid");
+    var usrId = data.createElement("autor");
     var sectionId = data.createElement("section");
     var discussionId = data.createElement("iddisc");
     var clientIdNode = data.createElement("idclient");

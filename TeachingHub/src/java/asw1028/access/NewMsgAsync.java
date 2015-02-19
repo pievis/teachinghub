@@ -117,11 +117,11 @@ public class NewMsgAsync extends HttpServlet {
     private String CreateMessage(Document data) {
         String section = getSectionId(data); // eg. Matematica
         String idDisc = getDiscussionId(data); //discussion eg. polinomi
-        String userid = null; // eg. Nyaz
+        String userid = null; // Alias autor eg. Nyaz
         String content = null;
         
         try {
-            userid = WebUtils.getContentFromNode(data, new String[] { "userid"});
+            userid = WebUtils.getContentFromNode(data, new String[] { "autor"});
             content = WebUtils.getContentFromNode(data, new String[] { "content"});
         }
         catch (Exception e) {
@@ -277,6 +277,9 @@ public class NewMsgAsync extends HttpServlet {
         String clientId = getClientId(data);
         
         if(section.isEmpty() || idDisc.isEmpty() || clientId.isEmpty()) {
+            System.out.println("section: "+section);
+            System.out.println("disc: "+idDisc);
+            System.out.println("client: "+clientId);
             System.out.print("Error while reading some fields: ");
         }
         
@@ -354,7 +357,8 @@ public class NewMsgAsync extends HttpServlet {
                 Object value = clients.get(destUser); //questi object sono
                 if (value instanceof AsyncContext) { //AsyncContext se i client sono in attesa su una pop
                     try {
-                        System.out.println("Forwarding a new message");
+                        System.out.println("Forwarding a new message: ");
+                        mngXML.transform(System.out, data);
                         OutputStream aos = ((AsyncContext) value).getResponse().getOutputStream();
                         mngXML.transform(aos, data);
                         aos.close();
