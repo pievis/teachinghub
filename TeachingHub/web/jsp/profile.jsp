@@ -102,8 +102,6 @@
                                 <b>Avatar</b>: <br>
                                 <input id="selAvatar" type="file" name="avatarfile" accept="image/gif, image/jpeg, image/png"
                                        />
-                                
-                            
                             </p>
                             <p>
                                 <button class="btn" data-bind="click: sendUpdatedProfile, visible: canUpdate">

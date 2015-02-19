@@ -3,6 +3,8 @@ package asw1028.access;
 
 import asw1028.utils.SysKb;
 import asw1028.utils.WebUtils;
+import asw1028.utils.xml.ManageXML;
+import com.sun.javafx.scene.accessibility.Attribute;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -21,8 +23,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
-import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 /**
  *
@@ -32,9 +38,7 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 public class UploadFile extends HttpServlet {
 
     private boolean isMultipart;
-    private String filePath;
-    private int maxFileSize = 50 * 1024;
-    private int maxMemSize = 4 * 1024;
+//    ManageXML mxml;
     HttpSession session;
     
     /**
@@ -68,20 +72,55 @@ public class UploadFile extends HttpServlet {
             return;
         }
         String fileType = request.getParameter("filetype");
-        Part filePart = request.getPart("file");
         //        System.out.println("FILE TYPE: " + fileType + "\nPart " + filePart);
+        List<Pair<String,String>> tags = new ArrayList<Pair<String,String>>(); //per memorizzare i nomi dei file da ritornare al client
         //switch sul filetype
         switch(fileType){
             case "avatar":
+                Part filePart = request.getPart("file"); // un solo file
                 String avatarPath = getServletContext().getRealPath(SysKb.avatarPath);
                  //il nome dell'utente è il prefisso per il file
                 String newFileName = storeFileOnServer(avatarPath, userid, filePart);
-                List<Pair<String,String>> tags = new ArrayList<Pair<String,String>>();
+                
                 tags.add(new Pair("avatar", newFileName));
                 WebUtils.sendElementsMessage("success", tags, out); //ritorna il nome dell'avatar al client
                 return;
             case "attachement":
-                //TODO
+                ManageXML mxml = null;
+        try {
+            mxml = new ManageXML();
+        } catch (Exception e){
+            e.printStackTrace();
+            sendError("Errore del server (manage xml)", out);
+            return;
+        }
+                Document successDoc = mxml.newDocument("success");
+                String filesPath = getServletContext().getRealPath(SysKb.attachmentsPath);
+                String prefix = userid;
+                String nfn;
+                int i = 0;
+                for(Part fp : request.getParts()){
+                    if(!fp.getName().equals("filetype")){ //quel datapart è null
+                        nfn = storeFileOnServer(filesPath, prefix+i, fp);
+                        //aggiungo le info al successDoc
+                        Element fE = successDoc.createElement("file");
+                        Element fnE = successDoc.createElement("name");
+                        fnE.appendChild(successDoc.createTextNode(fp.getSubmittedFileName()));
+                        Element fpE = successDoc.createElement("path");
+                        fpE.appendChild(successDoc.createTextNode(nfn));
+                        fE.appendChild(fpE);
+                        fE.appendChild(fnE);
+                        successDoc.getDocumentElement().appendChild(fE);
+                    }
+                    i++;
+                }
+        {
+            try {
+                mxml.transform(out, successDoc); //ritorna i nomi dei file al client
+            } catch (TransformerException ex) {
+                Logger.getLogger(UploadFile.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
                 return;
             default:
                 sendError("Impossibile eseguire l'azione per il filetype: " + fileType , out);
@@ -97,7 +136,11 @@ public class UploadFile extends HttpServlet {
      **/
     private String storeFileOnServer(String filePath, String newFilePrefix, Part fileP){
         //Genero un nuovo nome per il file
-        String filename = WebUtils.getFileNameFromContentDisp(fileP.getHeader("content-disposition"));
+        System.out.println("Storing file part: " + fileP.getSubmittedFileName());
+        System.out.println("FP name: " + fileP.getName());
+        System.out.println("Ct: " + fileP.getContentType());
+        System.out.println("at path: " + filePath);
+        String filename = fileP.getSubmittedFileName();
         //new file name eg: userid220915.jpg
         String newFileName = WebUtils.newFileName(filename, newFilePrefix);
         String newFilePath = filePath + File.separator + newFileName;

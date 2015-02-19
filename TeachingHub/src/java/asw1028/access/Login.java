@@ -6,24 +6,15 @@
 package asw1028.access;
 
 import asw.interfaces.IUser;
-import asw1028.db.StudentsXml;
-import asw1028.db.TeachersXml;
 import asw1028.db.UsersManager;
-import asw1028.db.structs.Student;
 import asw1028.db.structs.Teacher;
-import asw1028.db.structs.User;
-import asw1028.db.structs.Users;
 import asw1028.utils.WebUtils;
 import asw1028.utils.xml.ManageXML;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,8 +22,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.xml.bind.JAXBException;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerConfigurationException;
 import org.w3c.dom.Document;
 
 /**
@@ -93,7 +82,7 @@ public class Login extends HttpServlet {
                 session.setAttribute("userid", user.getId());
                 //condizionale
                 if(isTeacher)
-                    session.setAttribute("teacher", true);
+                    session.setAttribute("teacher", true); //contiene informazioni sul grado dell'utente
                 WebUtils.sendSimpleMessage("success", "Accesso avvenuto con successo.", out);
 //                response.sendRedirect(request.getContextPath()+"/index.jsp");
             }

@@ -20,6 +20,14 @@
         <servlet-name>UploadFile</servlet-name>
         <servlet-class>asw1028.access.UploadFile</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NewPage</servlet-name>
+        <servlet-class>asw1028.access.NewPage</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetPage</servlet-name>
+        <servlet-class>asw1028.access.GetPage</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Logout</servlet-name>
         <url-pattern>/Logout</url-pattern>
@@ -39,5 +47,13 @@
     <servlet-mapping>
         <servlet-name>UploadFile</servlet-name>
         <url-pattern>/UploadFile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewPage</servlet-name>
+        <url-pattern>/NewPage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetPage</servlet-name>
+        <url-pattern>/GetPage</url-pattern>
     </servlet-mapping>
 </web-app>
