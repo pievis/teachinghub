@@ -9,6 +9,10 @@
 <html>
     <%
     String sectionId = request.getParameter("sectionid");
+    boolean isTeacher = false;
+    if(session != null)
+        if(session.getAttribute("teacher") != null)
+            isTeacher = true;
     %>
     <head>
         <title>Teaching Hub - <%=sectionId%></title>
@@ -28,6 +32,11 @@
                 <h2 class="longh" data-bind="click: showHidePages">
                     <img src="<%=request.getContextPath()%>/multimedia/icons/book246.png">
                     Pagine & Appunti</h2>
+                <%if(isTeacher){%>
+                    <!--bottone che fa foward alla view per la nuova pagina-->
+                    <button class="btn right" data-bind="click: fowardToNewPage">
+                        Crea una nuova pagina</button>
+                <%}%>
                 <div class="container" data-bind="visible: pagesVisible">
                     <ul data-bind="foreach: pages">
                         <a data-bind="attr:{href: url}">
@@ -39,9 +48,11 @@
                 <h2 class="longh">
                     <img src="<%=request.getContextPath()%>/multimedia/icons/laptops.png">
                     Domande & Discussioni</h2>
+                    <%if(userid != null){%>
                     <!--bottone che fa foward alla view per la nuova discussione-->
-                    <button class="btn" data-bind="click: fowardToNewQuestion">
+                    <button class="btn right" data-bind="click: fowardToNewQuestion">
                         Crea una nuova discussione</button>
+                    <%}%>
                     <div class="options">
                         <p>
                             Ordina per

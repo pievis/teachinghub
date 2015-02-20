@@ -13,6 +13,7 @@ function getParameterByName(name) {
 var ctxurl = document.getElementById('threadsblock').getAttribute('ctx-url');
 var sectionid = document.getElementById('threadsblock').getAttribute('sectionid');
 var newQuestionUrl = "/jsp/new_question.jsp?sectionid=";
+var newPageUrl = "/jsp/new_page.jsp?sectionid=";
 var discRelUrl = "/jsp/discussion.jsp?id=";
 var sectionPartialUrl = "/jsp/section.jsp?sectionid=[ID]";
 var pageUrl = "/jsp/page.jsp?id=[ID]&sectionid=[SECTION]";
@@ -126,8 +127,8 @@ function updateViewModelPages($xml){
        var id = $elem.find("id").text();
        var title = $elem.find("title").text();
        var autor = $elem.find("autor").text();
-       console.log("id" + id +
-                "title" + title);
+//       console.log("id" + id +
+//                "title" + title);
        //aggiungo la pagina al viewmodel
        var purl = pageUrl.replace("[ID]", id).replace("[SECTION]", sectionid);
        var url = ctxurl + purl;
@@ -195,6 +196,9 @@ var viewModel = {
     },
     fowardToNewQuestion: function(){
         window.location.href = ctxurl + newQuestionUrl + sectionid;
+    },
+    fowardToNewPage: function(){
+        window.location.href = ctxurl + newPageUrl + sectionid;
     },
     pages : ko.observableArray()
 };
