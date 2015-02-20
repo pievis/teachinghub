@@ -20,10 +20,20 @@ $(function() {
             //once data has arrived
             var $xml = $(data);
             //update the viewmodel (and with it, the view)
-            updateViewModel($xml); 
+            var hasError = handleIfError($xml);
+            if(!hasError)
+                updateViewModel($xml); 
         }
-    );
+    ).fail(function(){
+        //Gestione degli errori di rete
+        updateErrorBox("Errore nel contattare il server remoto.");
+    });
 });
+
+//returns true if the message contains an error 
+function handleIfError($xml){
+    return false;
+}
 
 function updateViewModel($xml){
     var $page = $xml.find("page");
@@ -89,4 +99,9 @@ function getParameterByName(name) {
 function encodeStringForWeb(str){
     var newStr = str.replace(/\n/g, "<br />");
     return newStr;
+}
+
+function updateErrorBox(text){
+    viewModel.errorMsg(text);
+    viewModel.showMsg(1);
 }

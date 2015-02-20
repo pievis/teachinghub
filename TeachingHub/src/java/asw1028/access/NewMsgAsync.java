@@ -65,7 +65,7 @@ public class NewMsgAsync extends HttpServlet {
         
         InputStream is = request.getInputStream();
         response.setContentType("text/xml;charset=UTF-8");
-
+        request.setAttribute("org.apache.catalina.ASYNC_SUPPORTED", true);
         try {
             ManageXML mngXML = new ManageXML();
             Document data = mngXML.parse(is);
@@ -198,6 +198,7 @@ public class NewMsgAsync extends HttpServlet {
         System.out.println("Sending greetings to "+id);
         try {
             OutputStream out = response.getOutputStream();
+//            mngXML.transform(System.out,responseDoc);
             mngXML.transform(out,responseDoc);
             out.close();
         } catch (TransformerException | IOException ex) {
@@ -352,13 +353,13 @@ public class NewMsgAsync extends HttpServlet {
         
         synchronized (this) { // la servlet può essere contattata da più client -> race condition
             HashMap<String, Object> clients = ctxHandler.get(section+idDisc);
-            
+//            System.out.println("FORWARDING NEW MSG");
             for (String destUser : clients.keySet()) {
                 Object value = clients.get(destUser); //questi object sono
                 if (value instanceof AsyncContext) { //AsyncContext se i client sono in attesa su una pop
                     try {
                         System.out.println("Forwarding a new message: ");
-                        mngXML.transform(System.out, data);
+//                        mngXML.transform(System.out, data);
                         OutputStream aos = ((AsyncContext) value).getResponse().getOutputStream();
                         mngXML.transform(aos, data);
                         aos.close();

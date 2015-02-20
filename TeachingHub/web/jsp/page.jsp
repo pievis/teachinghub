@@ -57,7 +57,7 @@
                 <div class="errorbox" id="errorbox" data-bind="visible: showErrorMsg() >0">
                         <!--<img src="<%=request.getContextPath()%>/multimedia/icons/delete85.png"-->
                         <p>
-                            Errore - <span data-bind="text: errorMsg"></span>
+                            <span data-bind="text: errorMsg"></span>
                         </p>
                 </div>
             </div>

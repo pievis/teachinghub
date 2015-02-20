@@ -208,7 +208,8 @@ function askNewMsgs() {
     xmlhttpComet.open("POST", "../NewMessage", true);
     xmlhttpComet.onreadystatechange=function(){
         if (xmlhttpComet.readyState == 4 && xmlhttpComet.status==200) {                            
-            answer = xmlhttpComet.responseXML;
+            var answer = xmlhttpComet.responseXML;
+            console.log("RISPOSTA: "+answer);
             var expectedTag = answer.documentElement.tagName;
             //console.log(answer);
             if (expectedTag == "newMsg" || expectedTag == "cometmsgs") {

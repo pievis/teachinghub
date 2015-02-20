@@ -272,7 +272,7 @@ header img.resize {
     text-align: center;
     float: left;
     background: #ccffcc;
-    width: 105px;
+    width: 155px;
     margin: 5px;
     padding: 5px;
     border:#00cc66 solid;
@@ -281,6 +281,8 @@ header img.resize {
 
 .message .avatar img{
     float: left;
+    width: 150px;
+    height: auto;
 }
 
 .message .content{
