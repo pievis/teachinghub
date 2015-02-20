@@ -12,13 +12,11 @@ import asw1028.db.structs.Msg;
 import asw1028.utils.SysKb;
 import asw1028.utils.WebUtils;
 import asw1028.utils.xml.ManageXML;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -33,9 +31,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
@@ -74,6 +72,7 @@ public class NewMsgAsync extends HttpServlet {
             operations(data, request, response, mngXML);
             
         } catch (Exception ex) {
+            ex.printStackTrace();
             System.out.println(ex);
         }
     }
@@ -86,6 +85,7 @@ public class NewMsgAsync extends HttpServlet {
         String operation = root.getTagName();
         OutputStream out = response.getOutputStream();
         String success;
+//        mngXML.transform(System.out,data);
         switch(operation) {
             case "firstTimeAcces":
                 System.out.println("First Time Access received: creating greetings document");
@@ -99,11 +99,12 @@ public class NewMsgAsync extends HttpServlet {
             case "newMsg":
                 System.out.println("Operation newMsg received");
                 // creo un nuovo messaggio nel db
-                success = CreateMessage(data);
-                if(success.isEmpty())
+                Msg msg = CreateMessage(data, out);
+                if(msg != null)
                     WebUtils.sendSimpleMessage("success", "Messaggio creato con successo.", out);
                 else
-                    WebUtils.sendErrorMessage(success, out);
+                    return; //C'è stato un errore
+                data = addContentMsg(data, msg);
                 forwardNewMsg(data, mngXML);
                 break;
             case "waitMsg":
@@ -114,7 +115,26 @@ public class NewMsgAsync extends HttpServlet {
         }
     }
     
-    private String CreateMessage(Document data) {
+    /**
+     * Aggiunge al tag content di data le informazioni sul messaggio
+     **/
+    private Document addContentMsg(Document data, Msg msg) throws JAXBException, TransformerConfigurationException, ParserConfigurationException, TransformerException, IOException
+    {
+//        ManageXML mxml = new ManageXML();
+//        mxml.transform(System.out,data);
+        Datetime dt = msg.getLastupdate().getDatetime();
+        Element lastupdateE = data.createElement("lastupdate");
+        Element dateE = data.createElement("date");
+        Element timeE = data.createElement("time");
+        dateE.appendChild(data.createTextNode(dt.getDate()));
+        timeE.appendChild(data.createTextNode(dt.getTime()));
+        lastupdateE.appendChild(timeE);
+        lastupdateE.appendChild(dateE);
+        data.getDocumentElement().appendChild(lastupdateE);
+        return data;
+    }
+    
+    private Msg CreateMessage(Document data, OutputStream out) {
         String section = getSectionId(data); // eg. Matematica
         String idDisc = getDiscussionId(data); //discussion eg. polinomi
         String userid = null; // Alias autor eg. Nyaz
@@ -125,8 +145,10 @@ public class NewMsgAsync extends HttpServlet {
             content = WebUtils.getContentFromNode(data, new String[] { "content"});
         }
         catch (Exception e) {
+            e.printStackTrace();
             System.out.println("DANGER! Error in message's data fields");
-            return "Error in message's data fields";
+            WebUtils.sendErrorMessage("Error in message's data fields", out);
+            return null;
         }
         String msgPath = getServletContext().getRealPath(SysKb.getMsgsPath(section, idDisc));
         Msg msg = new Msg();
@@ -137,13 +159,16 @@ public class NewMsgAsync extends HttpServlet {
         lastUpTime.setDatetime(new Datetime(new Date()));
         msg.setLastupdate(lastUpTime);
         msg.setDatafiles(null);
+//        Document msgDoc = null;
         try {
             MessagesXml.addMsg(msg, msgPath);
-        } catch (JAXBException ex) {
+//            msgDoc = WebUtils.marshallObjInDocument(Msg.class, msg);
+        } catch (Exception ex) {
             Logger.getLogger(NewMsgAsync.class.getName()).log(Level.SEVERE, null, ex);
-            return "Error while writing on the db";
+            WebUtils.sendErrorMessage("Error while writing on the DataBase.", out);
+            return null;
         }
-        return ""; // "" stands for no errors
+        return msg;
     }
     
     private String createGreetingsDoc(Document data, HttpServletRequest request, HttpServletResponse response, ManageXML mngXML) {
@@ -185,13 +210,6 @@ public class NewMsgAsync extends HttpServlet {
         //System.out.println("...and messages like: "+msgs.getDocumentElement().getNodeName());
         responseDoc.getDocumentElement().appendChild(responseDoc.importNode(msgs.getDocumentElement(), true));
         
-        System.out.println("Adding data to the hashMap");
-        synchronized(this) {
-            HashMap<String, Object> newClient = new HashMap<String, Object>();
-            newClient.put(id, new LinkedList<Document>());
-            ctxHandler.put(section+id,newClient);
-        }
-        
         //Bind session
         request.getSession().setAttribute("clientid", id);
         
@@ -208,16 +226,28 @@ public class NewMsgAsync extends HttpServlet {
         return "";
     }
     
-    private String addDiscussionViewer(String section, String discussion) {
+    private String addDiscussionViewer(String section, String idDisc) {
         // greetings message: give to clients a pseudo-random identifier
         Date day = new Date();
         Random rnd = new Random(day.getTime());
         String pseudoId = "" + Calendar.HOUR_OF_DAY + Calendar.MINUTE + Calendar.MILLISECOND + rnd.nextInt();
+        String id = pseudoId;
+        System.out.println("Adding data to the hashMap");
         synchronized(this) {
-            //viewer of a discussion
-            HashMap<String, Object> viewer = new HashMap<String, Object>();
-            viewer.put(pseudoId, new LinkedList<Document>());
-            ctxHandler.put(section+discussion, viewer);
+            
+            HashMap<String, Object> Clients = ctxHandler.get(section+idDisc);
+            if(Clients != null){
+                //Se la lista dei clients in attesa per quella discussione esiste già
+                Clients.put(id, new LinkedList<Document>()); //inseriscici l'utente
+                System.out.println("ID UTENTE GREETINGS: " + id);
+            }
+            else{
+                //altrimenti cre la nuova lista con l'utente attuale
+                Clients = new HashMap<String, Object>();
+                Clients.put(id, new LinkedList<Document>());
+                System.out.println("ID UTENTE GREETINGS PRIMO: " + id);
+                ctxHandler.put(section+idDisc,Clients);
+            }
         }
         return pseudoId;
     }
@@ -284,54 +314,62 @@ public class NewMsgAsync extends HttpServlet {
             System.out.print("Error while reading some fields: ");
         }
         
-        boolean async;
+        boolean async = true;
         synchronized (this) {
             HashMap<String, Object> clients = ctxHandler.get(section+idDisc);
             //TODO: il problema è qui!!
-            LinkedList<Document> list = (LinkedList<Document>) clients.get(clientId);
-            async = list.isEmpty();
-            if (async) { //non ci sono messaggi disponibili -> crea il contesto asincrono
-                //codice della richiesta che si blocca in attesa 
-                AsyncContext asyncContext = request.startAsync(); //blocca l'invio della risposta per la richiesta e restituisce un oggetto AsyncContext
-                asyncContext.setTimeout(10 * 1000); //set timeout oggetto AsyncContext
-                asyncContext.addListener(new AsyncAdapter() {
-                    @Override
-                    public void onTimeout(AsyncEvent e) {
-                        try {
-                            ManageXML mngXML = new ManageXML();
-                            //ottiene il contesto che ha generato l'evento -->
-                            AsyncContext asyncContext = e.getAsyncContext();
-                            // TODO da modificare
-                            HttpServletRequest reqAsync = (HttpServletRequest) asyncContext.getRequest();
-                            String user = (String) reqAsync.getSession().getAttribute("clientid");
-                            System.out.println("timeout event launched");
-                             // --> in questo modo può mandare dati sulla response
-                            Document answer = mngXML.newDocument("timeout");
-                            boolean confirm;
-                            synchronized (NewMsgAsync.this) {
-                                if (confirm = (clients.get(user) instanceof AsyncContext)) {
-                                    clients.put(user, new LinkedList<Document>());
+            if(clients != null){
+                LinkedList<Document> list;
+                Object gt = clients.get(clientId);
+                System.out.println("CLIENT ID "+clientId);
+                System.out.println("GT " + gt);
+                list = (LinkedList<Document>) gt;
+                async = list.isEmpty();
+                if (async) { //non ci sono messaggi disponibili -> crea il contesto asincrono
+                    //codice della richiesta che si blocca in attesa 
+                    AsyncContext asyncContext = request.startAsync(); //blocca l'invio della risposta per la richiesta e restituisce un oggetto AsyncContext
+                    asyncContext.setTimeout(10 * 1000); //set timeout oggetto AsyncContext
+                    asyncContext.addListener(new AsyncAdapter() {
+                        @Override
+                        public void onTimeout(AsyncEvent e) {
+                            try {
+                                ManageXML mngXML = new ManageXML();
+                                //ottiene il contesto che ha generato l'evento -->
+                                AsyncContext asyncContext = e.getAsyncContext();
+                                // TODO da modificare
+                                HttpServletRequest reqAsync = (HttpServletRequest) asyncContext.getRequest();
+                                String user = (String) reqAsync.getSession().getAttribute("clientid");
+                                System.out.println("timeout event launched");
+                                 // --> in questo modo può mandare dati sulla response
+                                Document answer = mngXML.newDocument("timeout");
+                                boolean confirm;
+                                synchronized (NewMsgAsync.this) {
+                                    if (confirm = (clients.get(user) instanceof AsyncContext)) {
+                                        clients.put(user, new LinkedList<Document>());
+                                    }
                                 }
+                                if (confirm) {
+                                    //manda il timeout solo se il client era effettivamente in attesa
+                                    OutputStream tos = asyncContext.getResponse().getOutputStream();
+                                    mngXML.transform(tos, answer);
+                                    tos.close();
+                                    // chiude la response e dichiara completata la gestione asincrona della richiesta (diattiva timeout)
+                                    asyncContext.complete();
+                                    System.out.println("TOLGO ASYNC PER "+ user);
+                                }
+                            } catch (ParserConfigurationException | IOException | TransformerException ex) {
+                                System.out.print("Error in timeout handler: ");
+                                System.out.println(ex);
                             }
-                            if (confirm) {
-                                //manda il timeout solo se il client era effettivamente in attesa
-                                OutputStream tos = asyncContext.getResponse().getOutputStream();
-                                mngXML.transform(tos, answer);
-                                tos.close();
-                                // chiude la response e dichiara completata la gestione asincrona della richiesta (diattiva timeout)
-                                asyncContext.complete();
-                            }
-                        } catch (ParserConfigurationException | IOException | TransformerException ex) {
-                            System.out.print("Error in timeout handler: ");
-                            System.out.println(ex);
                         }
+                    });
+                    System.out.println("INSERISCO ASYNC " + clientId);
+                    clients.put(clientId, asyncContext); // lo memorizzo perchè un'altra richiesta risveglierà l'asyncContext
+                } else {
+                    // fetch all the elements for a client
+                    for(Document msg : list) {
+                        msgsToSend.appendChild(msg);
                     }
-                });
-                clients.put(clientId, asyncContext); // lo memorizzo perchè un'altra richiesta risveglierà l'asyncContext
-            } else {
-                // fetch all the elements for a client
-                for(Document msg : list) {
-                    msgsToSend.appendChild(msg);
                 }
             }
         }
@@ -348,29 +386,40 @@ public class NewMsgAsync extends HttpServlet {
     }
     
     private void forwardNewMsg(Document data, ManageXML mngXML) {
+//        try {
+//            mngXML.transform(System.out,data);
+//        } catch (TransformerException ex) {
+//            Logger.getLogger(NewMsgAsync.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (IOException ex) {
+//            Logger.getLogger(NewMsgAsync.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+        
         String section = getSectionId(data); // eg. Matematica
         String idDisc = getDiscussionId(data); //discussion eg. polinomi
-        
+        System.out.println("SECTION " + section + " DISC:" + idDisc);
         synchronized (this) { // la servlet può essere contattata da più client -> race condition
             HashMap<String, Object> clients = ctxHandler.get(section+idDisc);
-//            System.out.println("FORWARDING NEW MSG");
-            for (String destUser : clients.keySet()) {
-                Object value = clients.get(destUser); //questi object sono
-                if (value instanceof AsyncContext) { //AsyncContext se i client sono in attesa su una pop
-                    try {
-                        System.out.println("Forwarding a new message: ");
-//                        mngXML.transform(System.out, data);
-                        OutputStream aos = ((AsyncContext) value).getResponse().getOutputStream();
-                        mngXML.transform(aos, data);
-                        aos.close();
-                    } catch (IOException | TransformerException ex) {
-                        Logger.getLogger(NewMsgAsync.class.getName()).log(Level.SEVERE, null, ex);
+//            System.out.println("FORWARDING NEW MSG " + clients);
+            if(clients != null){
+                for (String destUser : clients.keySet()) {
+                    Object value = clients.get(destUser); //questi object sono
+                    if (value instanceof AsyncContext) { //AsyncContext se i client sono in attesa su una pop
+                        try {
+                            System.out.println("Forwarding a new message: ");
+    //                        mngXML.transform(System.out, data);
+                            OutputStream aos = ((AsyncContext) value).getResponse().getOutputStream();
+    //                        mngXML.transform(System.out, data);
+                            mngXML.transform(aos, data);
+                            aos.close();
+                        } catch (IOException | TransformerException ex) {
+                            Logger.getLogger(NewMsgAsync.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+                        ((AsyncContext) value).complete();
+                        clients.put(destUser, new LinkedList<Document>());
+                    } else { //code di messaggi associati agli username se non hanno ancora effettuato una pop
+                        ((LinkedList<Document>) value).addLast(data);
                     }
-                    
-                    ((AsyncContext) value).complete();
-                    clients.put(destUser, new LinkedList<Document>());
-                } else { //code di messaggi associati agli username se non hanno ancora effettuato una pop
-                    ((LinkedList<Document>) value).addLast(data);
                 }
             }
         }

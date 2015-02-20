@@ -28,9 +28,10 @@ function getXmlHttpRequest(){
             }
             var successTags = xmlDoc.getElementsByTagName("success");
             if(successTags.length > 0){
-                //ricarica la pagina
                 updateErrorBox("Accesso avvenuto!!!");
-                location.reload();
+//                location.reload();
+                //Torna alla pagina precedente
+                window.history.back();
             }
         }
     };

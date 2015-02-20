@@ -12,14 +12,23 @@ var pageUrl = "/jsp/page.jsp?id=[ID]&sectionid=[SECTION]";
 var returnedFiles; //this is an xml element/node that stores the name of the uploaded files on the server
 //it's null if no upload happened
 
+//global but setted by the check
+var title;
+var desc;
+var msg;
+
 //functions
 function checkAndSendDiscussion(){
-    var title = $("input[name=title]").val();
-    var desc = $("input[name=description]").val();
-    var msg = $("textarea[name=message]").val();
+    title = $("input[name=title]").val();
+    desc = $("input[name=description]").val();
+    msg = $("textarea[name=message]").val();
     if(!checkValues(title, desc, msg))
         return false;
-    sendNewThreadToServer(userid, sectionid, title, desc, msg);
+    var input = $('#selFiles')[0];
+    if(input.files.length == 0) // se non ci sono file allora manda direttamente la richiesta al server
+        sendNewThreadToServer(userid, sectionid, title, desc, msg);
+    else
+        uploadFilesAndSendInfo(input, "newdisc"); //altrimenti prima esegui l'upload dei file
     return false;
 }
 
@@ -60,6 +69,15 @@ function sendNewThreadToServer(userid, sectionid, title, description, msg){
     var msgE = data.createElement("msg");
     msgE.appendChild(data.createTextNode(msg));
     var contentE = data.createElement("content");
+    var filesE = data.createElement("files");
+    //manage uploaded files
+    if(returnedFiles != null && returnedFiles != undefined)
+    {
+        returnedFiles.each(function () {
+           filesE.appendChild(this); //aggiunge il file
+        });
+    }
+    contentE.appendChild(filesE);
     contentE.appendChild(descE);
     contentE.appendChild(titleE);
     contentE.appendChild(msgE);
@@ -77,6 +95,9 @@ function sendNewThreadToServer(userid, sectionid, title, description, msg){
         x.xmlhttp = new ActiveObject("Microsoft.XMLHTTP");
     }
     
+//    var xmlString = (new XMLSerializer()).serializeToString(data);
+//    console.log("log. SendingData: " + xmlString);
+//    
     //method, ServletName, se è sincrono
     x.xmlhttp.open("POST", "../NewDiscussion", true);
     x.xmlhttp.setRequestHeader('Content-Type', 'text/xml');
@@ -84,7 +105,7 @@ function sendNewThreadToServer(userid, sectionid, title, description, msg){
     x.xmlhttp.onreadystatechange = function (){
         if(x.xmlhttp.readyState == 4){
             var xmlDoc = x.xmlhttp.responseXML;
-            var xmlString = (new XMLSerializer()).serializeToString(xmlDoc);
+//            var xmlString = (new XMLSerializer()).serializeToString(xmlDoc);
 //            console.log("log. Data: " + xmlString);
             var errorTags = xmlDoc.getElementsByTagName("error");
             if(errorTags.length > 0){
@@ -169,7 +190,7 @@ function uploadFilesAndSendInfo(input, callingfn){
                 if(callingfn == "newpage")
                    sendNewPageToServer(userid, sectionid, title, desc, msg); //deve includere i file salvati
                 else
-                    sendNewThreadToServer();
+                    sendNewThreadToServer(userid, sectionid, title, desc, msg);
             }
             else
             {
@@ -207,10 +228,6 @@ function checkValuesPage(title, desc, msg){
     }
     return true;
 }
-
-var title;
-var desc;
-var msg;
 
 function checkAndSendPage(){
     title = $("input[name=pagename]").val();

@@ -89,6 +89,11 @@
                         </a>
                     </div>
                 </div>
+                <div class="errorbox" id="errorbox" data-bind="visible: showErrorMsg() >0">
+                        <p>
+                            <span data-bind="text: errorMsg"></span>
+                        </p>
+                </div>
             </div>
         </div>
             <footer>

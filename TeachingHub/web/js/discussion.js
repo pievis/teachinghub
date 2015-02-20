@@ -1,18 +1,3 @@
-// message class
-var Message = function(autor, cont) {
-    this.autor = autor;
-    this.content = cont;
-    this.lastupdate = {};
-    this.avatarPath = "";
-    this.filePath = "";
-    this.hasFile = false;
-    this.setAvatarPath = function(path) {
-        avatarPath = ctxUrl + "/multimedia/avatars/" + path;
-    }
-    this.getAvatarPath = function() {
-        return avatarPath;
-    }
-};
 //    XXX private String id;
 //    private String content;
 //    private Lastupdate lastupdate;
@@ -27,6 +12,30 @@ var sectionPartialUrl = "/jsp/section.jsp?sectionid=[ID]";
 var ctxUrl = $("#content").attr("ctx-url");
 var sectionId = $("#content").attr("sectionid");
 
+// message class
+var Message = function(autor, cont) {
+    this.autor = autor;
+    this.content = cont;
+    this.lastupdate = {};
+    this.avatarPath = "";
+//    this.filePath = "";
+    this.hasFile = false;
+    this.fileName = "";
+    this.fileUrl = "";
+    this.setAvatarPath = function(path) {
+        avatarPath = ctxUrl + "/multimedia/avatars/" + path;
+    }
+    this.getAvatarPath = function() {
+        return avatarPath;
+    }
+    this.setFile = function(filename, filepath){
+        this.hasFile = true;
+        this.fileName = filename;
+        this.fileUrl = ctxUrl + "/multimedia/attaches/" + filepath;
+        console.log("FILE SETTED " + filename);
+    }
+};
+
 //ViewModel
 var ViewModelDisc = {
     messages : ko.observableArray(),
@@ -38,7 +47,7 @@ var ViewModelDisc = {
     discTitleText: ko.observable("Titolo"),
     discDescriptionText: ko.observable("Descrizione"),
     sectionUrl : ko.observable(),
-    sectionTxt : ko.observable(),
+    sectionTxt : ko.observable()
 };
 
 $(function() {
@@ -53,6 +62,8 @@ $(function() {
         function(data) {
             //once data has arrived
             var $xml = $(data);
+//            var stringXml = new XMLSerializer().serializeToString(data);  
+//            console.log(stringXml);
             //update the viewmodel (and with it, the view)
             updateViewModel($xml, 'msg'); 
             //memorize the clientid
@@ -70,10 +81,12 @@ function updateViewModel($xml, tagName){
         var $elem = $(this);
         var content = $elem.find("content").text();
         var autor = $elem.find( "autor:first" ).text();
+        content = encodeStringForWeb(content); //Gestisce i newline
         var msg = new Message(autor, content);
         var $lastupdate = $elem.find( "lastupdate" );
+        var $datafile = $elem.find("datafile");
         //es: 22/04/2010 11:22:44      
-        if($lastupdate != null){
+        if($lastupdate.length > 0){
             msg.lastupdate.autor = $lastupdate.find( "autor" ).text();
             var datetimelu = $lastupdate.find( "date" ).text() + " " + $lastupdate.find( "time" ).text();
             msg.lastupdate.datetime = datetimelu;
@@ -81,6 +94,9 @@ function updateViewModel($xml, tagName){
 //        console.log("INFO: "  + autor );
 //        console.log("--------------");
           
+        if($datafile.length > 0){
+            msg.setFile($datafile.find("name").text(), $datafile.find("url").text());
+        }
         //ViewModelDisc.messages.push(msg);
         ViewModelDisc.displayAdvancedOptions(true); //animate
         // create the xml document that have to be send to the server
@@ -128,7 +144,6 @@ function getXmlHttpRequest() {
             if(successTags.length > 0){
                 //ricarica la pagina
                 updateErrorBox("Messaggio inviato!!!");
-                
             }
         }
     };
@@ -209,11 +224,10 @@ function askNewMsgs() {
     xmlhttpComet.onreadystatechange=function(){
         if (xmlhttpComet.readyState == 4 && xmlhttpComet.status==200) {                            
             var answer = xmlhttpComet.responseXML;
-            console.log("RISPOSTA: "+answer);
+//            console.log("RISPOSTA: "+answer);
             var expectedTag = answer.documentElement.tagName;
-            //console.log(answer);
             if (expectedTag == "newMsg" || expectedTag == "cometmsgs") {
-                console.log(expectedTag);
+//                console.log(expectedTag);
                 var $xml = $(answer);
                 updateViewModel($xml, expectedTag); //update the viewmodel (and with it, the view)
             }
@@ -224,7 +238,7 @@ function askNewMsgs() {
     //nodes in data
     var sectionId = data.createElement("section");
     var discussionId = data.createElement("iddisc");
-    var clientIdNode = data.createElement("idclient")
+    var clientIdNode = data.createElement("idclient");
     // content of the nodes
     var txtDisc = data.createTextNode($("#content").attr("discid"));
     var txtSection = data.createTextNode($("#content").attr("sectionid"));
@@ -265,3 +279,11 @@ ko.bindingHandlers.fadeVisible = {
 };
 
 ko.applyBindings(ViewModelDisc);
+
+
+
+//Utils
+function encodeStringForWeb(str){
+    var newStr = str.replace(/\n/g, "<br />");
+    return newStr;
+}
