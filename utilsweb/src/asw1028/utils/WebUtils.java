@@ -6,6 +6,7 @@
 package asw1028.utils;
 
 import asw1028.utils.xml.ManageXML;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,6 +17,13 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.util.Pair;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.PropertyException;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -172,7 +180,6 @@ public class WebUtils {
         String numbs = getTimeStrFromDate(new Date()).replace(":", "");
         return prefix + numbs + "." + extension;
     }
-    
     @Deprecated
     public static String getFileNameFromContentDisp(String contentDisposition){
 //        String cd = file.getHeader("content-disposition");
@@ -181,5 +188,18 @@ public class WebUtils {
         filename = filename.split(";")[0];
         filename = filename.replace("\"", "");
         return filename;
+    }
+    
+    public static Document marshallObjInDocument(Class c, Object obj) throws PropertyException, JAXBException, ParserConfigurationException
+    {
+        // Create the Document
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+        DocumentBuilder db = dbf.newDocumentBuilder();
+        Document doc = db.newDocument();
+        JAXBContext jaxbContext = JAXBContext.newInstance(c);
+        Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+        jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        jaxbMarshaller.marshal(obj, doc);
+        return doc;
     }
 }
