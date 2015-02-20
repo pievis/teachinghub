@@ -92,10 +92,7 @@ function updateViewModel($xml, tagName){
                 var $xml = $(dataResp);
                 var avatar = $xml.find('avatar').text();
                 // clojure
-                //msg.setAvatarPath(avatar);
                 msg.avatarPath = ctxUrl + "/multimedia/avatars/" + avatar;
-                //console.log(avatar);
-                //console.log(msg.autor);
                 ViewModelDisc.messages.push(msg);
             }
         );
@@ -241,6 +238,10 @@ function askNewMsgs() {
     data.documentElement.appendChild(clientIdNode);
     xmlhttpComet.send(data);
     console.log("Async request sent");
+}
+
+function getDiscussionInfo() {
+    
 }
 
 function updateErrorBox(text){

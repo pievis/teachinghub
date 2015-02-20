@@ -18,10 +18,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * This servlet returns a list of threads of the specified section.
+ * This servlet returns a list of discussions of the specified section.
  * @author Pierluigi
  */
-public class GetThreads extends HttpServlet {
+public class ManageDiscussions extends HttpServlet {
 
     /**
      * Returns the threads xml for the specified section

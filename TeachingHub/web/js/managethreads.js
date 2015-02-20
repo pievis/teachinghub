@@ -26,7 +26,7 @@ $(function() {
 });
 
 function getThreads(){
-    $.post( "../GetThreads", { section: sectionid },
+    $.post( "../ManageDiscussions", { section: sectionid },
         function( data ){
             //This is the success function
             var xmlDoc = data;
