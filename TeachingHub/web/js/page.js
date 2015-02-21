@@ -32,7 +32,11 @@ $(function() {
 
 //returns true if the message contains an error 
 function handleIfError($xml){
-    return false;
+    var errorMsg = $xml.find("error").text();
+    if(errorMsg == null || errorMsg == undefined || errorMsg == '')
+        return false;
+    updateErrorBox(errorMsg);
+    return true;
 }
 
 function updateViewModel($xml){

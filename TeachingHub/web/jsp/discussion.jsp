@@ -46,9 +46,14 @@
                             <span data-bind="text: content"></span>
                         </div>
                         <div class="files">
-                            <span data-bind="visible: hasFile" class="attach">
-                                file.pdf
-                            </span>
+                            <a href="#" data-bind="visible: hasFile,attr:{href:fileUrl}">
+                                <span data-bind=" text: fileName" class="attach">
+                                    file.pdf
+                                </span>
+                            </a>
+                        </div>
+                        <div class="datebox">
+                            <span class="date" data-bind="text: lastupdate.datetime">22/11/14 - 11:22:55</span>
                         </div>
                     </div>
                 </div>

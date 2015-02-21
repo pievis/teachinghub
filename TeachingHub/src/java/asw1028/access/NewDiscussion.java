@@ -7,6 +7,8 @@ package asw1028.access;
 import asw.interfaces.IUser;
 import asw1028.db.MessagesXml;
 import asw1028.db.ThreadsXml;
+import asw1028.db.structs.Datafile;
+import asw1028.db.structs.Datafiles;
 import asw1028.db.structs.Datetime;
 import asw1028.db.structs.Lastupdate;
 import asw1028.db.structs.Msg;
@@ -39,6 +41,8 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  * Questa servlet riceve un xml con informazioni sulla nuova discussione,
@@ -106,6 +110,8 @@ public class NewDiscussion extends HttpServlet {
             WebUtils.sendErrorMessage("Messaggio troppo corto", out);
             return;
         }
+        //Get the datafiles if any
+        Datafiles attachements = getDataFilesFromDoc(doc);
         String xmlDbThreadsPath = getServletContext().getRealPath(SysKb.getThreadsPathForSection(sectionid));
         try{
             //nuovo thread id
@@ -113,7 +119,7 @@ public class NewDiscussion extends HttpServlet {
             //Passa alla creazione del thread con nuovo messaggio
             createNewThread(threadId, title, description, userid, sectionid);
             //Aggiungi un nuovo messaggio alla discussione
-            addNewMsgToThread("0", threadId, sectionid, userid, msg);
+            addNewMsgToThread("0", threadId, sectionid, userid, msg, attachements);
             //Rispondi al client con success e le info sulla nuova discussione
             sendSuccessMsg(threadId, out);
         }catch(Exception e){
@@ -123,6 +129,28 @@ public class NewDiscussion extends HttpServlet {
         
     }
     
+    /**
+     * Returns the datafiles from the doc
+     **/ 
+    private Datafiles getDataFilesFromDoc(Document doc){
+        Datafiles attachements = new Datafiles();
+        NodeList filesN = doc.getElementsByTagName("file");
+        for(int i = 0; i < filesN.getLength(); i++){
+            Node n = filesN.item(i);
+            if(n.getNodeType() == Node.ELEMENT_NODE){
+                Element e = (Element) n;
+                Datafile df = new Datafile();
+                String name = e.getElementsByTagName("name").item(0).getTextContent();
+                String path = e.getElementsByTagName("path").item(0).getTextContent();
+                df.setUrl(path);
+                df.setName(name);
+                attachements.addDataFile(df);
+//                System.out.println("FILES: " + name + " " + path);
+            }
+        }
+        return attachements;
+    }
+    
     private void sendSuccessMsg(String threadId, OutputStream out){
         List<Pair<String, String>> elements;
         elements = new ArrayList<Pair<String,String>>();
@@ -130,7 +158,8 @@ public class NewDiscussion extends HttpServlet {
         WebUtils.sendElementsMessage("success", elements, out);
     }
     
-    private void addNewMsgToThread(String msgId, String threadId, String sectionid, String userId, String content) throws JAXBException{
+    private void addNewMsgToThread(String msgId, String threadId, String sectionid, 
+            String userId, String content, Datafiles attachements) throws JAXBException{
         String xmlDbMsgsPath = getServletContext().getRealPath(SysKb.getMsgsPath(sectionid, threadId));
         Msg msg = new Msg();
         msg.setAutor(userId);
@@ -141,6 +170,8 @@ public class NewDiscussion extends HttpServlet {
         lu.setDatetime(new Datetime(new Date()));
         lu.setAutor(userId);
         msg.setLastupdate(lu);
+        if(attachements.getDatafile() != null)
+            msg.setDatafiles(attachements);
         Msgs msgs = MessagesXml.getMessages(xmlDbMsgsPath);
         msgs.getMsg().add(msg);
         MessagesXml.setMsgs(msgs, xmlDbMsgsPath); //commit

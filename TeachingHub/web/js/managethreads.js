@@ -44,11 +44,25 @@ function getThreads(){
 //            var xmlString = (new XMLSerializer()).serializeToString(xmlDoc);
 //            console.log("log. Data: " + xmlString);
             var $xml = $(xmlDoc);
-            //TODO handle errors
-            updateViewModelThreads($xml);
+            var hasError = handleIfError($xml);
+            if(!hasError)
+                updateViewModelThreads($xml);
         }
     );
         }
+    ).fail(function(){
+        updateErrorBox("Errore nel contattare il server remoto.");
+    });
+}
+
+//returns true if the message contains an error 
+function handleIfError($xml){
+    var errorMsg = $xml.find("error").text();
+    if(errorMsg == null || errorMsg == undefined || errorMsg == '')
+        return false;
+    updateErrorBox(errorMsg);
+    return true;
+}
 
 function getPages(){
     var requestData = "<getpages><section>"+sectionid+"</section></getpages>";
@@ -210,7 +224,9 @@ var viewModel = {
     fowardToNewPage: function(){
         window.location.href = ctxurl + newPageUrl + sectionid;
     },
-    pages : ko.observableArray()
+    pages : ko.observableArray(),
+    errorMsg : ko.observable(),
+    showErrorMsg : ko.observable(false)
 };
 
 // Here's a custom Knockout binding that makes elements shown/hidden via jQuery's fadeIn()/fadeOut() methods
@@ -242,3 +258,8 @@ viewModel.selectedOrd.subscribe(function(ordValue){
 //    console.log("SEL ORDER " + selOrder);
     sortArrayThreads(ordValue,selAttribute);
 });
+
+function updateErrorBox(text){
+    viewModel.errorMsg(text);
+    viewModel.showMsg(1);
+}

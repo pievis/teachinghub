@@ -3,12 +3,20 @@ package asw1028.db;
 
 import asw1028.db.structs.Threads;
 import asw1028.db.structs.Thread;
+import asw1028.utils.xml.ManageXML;
 import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.PropertyException;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import org.w3c.dom.Document;
 
 /**
  * Interface for reading and writing to the threads xml as if it's a table
@@ -71,6 +79,40 @@ public class ThreadsXml {
             e.printStackTrace();
             return null;
         }   
+    }
+    
+    /**
+     * Get the thread with given ID
+     * @param filePath File position
+     * @param id Threads identifier
+     * @return Return null if no thread match the given ID
+     */
+    public static Document getThreadById(String filePath, String id) throws JAXBException, TransformerConfigurationException, ParserConfigurationException {
+        //unmarshall
+        JAXBContext jaxbContext = JAXBContext.newInstance(Threads.class);
+        Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+     
+        Threads threads = (Threads) jaxbUnmarshaller.unmarshal( new File(filePath) );
+        Thread selectedThread = null;
+        for(Thread t : threads.getThread()) {
+            if(t.getId().equals(id))
+                selectedThread = t;
+        }
+        if(selectedThread == null) 
+            return null; 
+        jaxbContext = JAXBContext.newInstance(Thread.class);
+        Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+        jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        ManageXML mngXML = new ManageXML();
+        Document threadXml = mngXML.newDocument("");
+        jaxbMarshaller.marshal(selectedThread, threadXml);
+        try {
+            mngXML.transform(System.out, threadXml);
+        } catch (Exception ex) {
+            System.out.println("Broken document");
+            Logger.getLogger(ThreadsXml.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return threadXml;
     }
     
 }

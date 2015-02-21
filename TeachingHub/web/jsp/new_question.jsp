@@ -36,9 +36,14 @@
                         <p>
                             <textarea placeholder="Testo del messaggio" class="longinput" name="message" rows="8"></textarea>
                         </p>
+                        <h3 class="longh">Carica allegato: </h3>
+                        <input id="selFiles" type="file" name="files"
+                               />
+                        <p></p>
                     <p>
                         <!--<button class="btn">Annulla</button>-->
-                        <input class="btn" type="submit" value="Invia">
+                        <input class="btn" type="submit" value="Invia" data-bind="visible: showSubmit"/>
+                        <div class="loader" data-bind="visible: showLoader"></div>
                     </p>
                     </form>
                     <div class="errorbox" id="errorbox" data-bind="visible: showErrorMsg">
