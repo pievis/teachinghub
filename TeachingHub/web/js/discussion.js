@@ -32,7 +32,7 @@ var Message = function(autor, cont) {
         this.hasFile = true;
         this.fileName = filename;
         this.fileUrl = ctxUrl + "/multimedia/attaches/" + filepath;
-        console.log("FILE SETTED " + filename);
+//        console.log("FILE SETTED " + filename);
     }
 };
 
@@ -110,9 +110,26 @@ function updateViewModel($xml, tagName){
                 // clojure
                 msg.avatarPath = ctxUrl + "/multimedia/avatars/" + avatar;
                 ViewModelDisc.messages.push(msg);
+                sortMessages("ASC");
             }
         );
     });
+}
+
+function sortMessages(order)
+{
+    var cmpf = function(left,right){
+        if(order === "DESC")
+            return left > right ? -1 : 1;
+        else
+            return left > right ? 1 : -1;
+    };
+    var orderf = function(left, right) {
+//            console.log( left);
+            return left.lastupdate.datetime == right.lastupdate.datetime ? 0 : cmpf(parseDate(left.lastupdate.datetime),parseDate(right.lastupdate.datetime));
+        };
+    ViewModelDisc.messages.sort(orderf);
+    console.log("SORTED "  + ViewModelDisc.messages.length);
 }
 
 function getXmlHttpRequest() {
@@ -255,9 +272,9 @@ function askNewMsgs() {
     console.log("Async request sent");
 }
 
-function getDiscussionInfo() {
-    
-}
+//function getDiscussionInfo() {
+//    
+//}
 
 function updateErrorBox(text){
     ViewModelDisc.errorMsg(text);
@@ -280,10 +297,17 @@ ko.bindingHandlers.fadeVisible = {
 
 ko.applyBindings(ViewModelDisc);
 
-
-
 //Utils
 function encodeStringForWeb(str){
     var newStr = str.replace(/\n/g, "<br />");
     return newStr;
+}
+
+//return the milliseconds from date
+//specified in the format dd/MM/yyyy HH:mm:ss
+function parseDate(dateStr){
+    var dateStr0 = dateStr.replace(/\s/g, ""); 
+    var value = Date.parseExact(dateStr0, "dd/MM/yyyyHH:mm:ss");
+//    console.log("DATA: " + value + " origin "+ dateStr0);
+    return value.getTime();
 }

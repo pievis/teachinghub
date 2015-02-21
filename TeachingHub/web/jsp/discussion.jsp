@@ -43,7 +43,7 @@
                             <b><span data-bind="text: autor"></span></b>
                         </div>
                         <div class="content">
-                            <span data-bind="text: content"></span>
+                            <content data-bind="text: content"></content>
                         </div>
                         <div class="files">
                             <a href="#" data-bind="visible: hasFile,attr:{href:fileUrl}">
@@ -83,6 +83,7 @@
             </footer>
     </body>
     <script src="<%=request.getContextPath()%>/js/lib/jquery/jquery.js"></script>
+    <script src="<%=request.getContextPath()%>/js/lib/date.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/lib/knockout/knockout-3.2.0.js"></script>
     <script src="<%=request.getContextPath()%>/js/discussion.js"></script>
 </html>

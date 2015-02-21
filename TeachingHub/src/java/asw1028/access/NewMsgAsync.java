@@ -199,7 +199,6 @@ public class NewMsgAsync extends HttpServlet {
             Logger.getLogger(NewMsgAsync.class.getName()).log(Level.SEVERE, null, ex);
             return "Errore nella creazione dei dati del protocollo di greetings";
         }
-        
         //Bind session
         HttpSession session = request.getSession();
         Object idobj = session.getAttribute("clientid");
