@@ -48,8 +48,6 @@ function getThreads(){
             if(!hasError)
                 updateViewModelThreads($xml);
         }
-    );
-        }
     ).fail(function(){
         updateErrorBox("Errore nel contattare il server remoto.");
     });
