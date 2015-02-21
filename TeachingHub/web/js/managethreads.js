@@ -27,7 +27,17 @@ $(function() {
 });
 
 function getThreads(){
-    $.post( "../ManageDiscussions", { section: sectionid },
+    var data = document.implementation.createDocument("","getDiscussion", null);
+    //nodes in data
+    var sectionId = data.createElement("section");
+    // content of the nodes
+    var txtSection = data.createTextNode(sectionid);
+    // adds content in the nodes
+    sectionId.appendChild(txtSection);
+    // add nodes in the document
+    data.documentElement.appendChild(sectionId);
+    var stringXml = new XMLSerializer().serializeToString(data);
+    $.post( "../ManageDiscussions", stringXml,
         function( data ){
             //This is the success function
             var xmlDoc = data;
@@ -38,7 +48,7 @@ function getThreads(){
             updateViewModelThreads($xml);
         }
     );
-}
+        }
 
 function getPages(){
     var requestData = "<getpages><section>"+sectionid+"</section></getpages>";
