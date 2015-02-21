@@ -43,7 +43,7 @@
                             <b><span data-bind="text: autor"></span></b>
                         </div>
                         <div class="content">
-                            <content data-bind="text: content"></content>
+                            <content data-bind="html: content"></content>
                         </div>
                         <div class="files">
                             <a href="#" data-bind="visible: hasFile,attr:{href:fileUrl}">

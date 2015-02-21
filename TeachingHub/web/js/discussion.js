@@ -129,7 +129,7 @@ function sortMessages(order)
             return left.lastupdate.datetime == right.lastupdate.datetime ? 0 : cmpf(parseDate(left.lastupdate.datetime),parseDate(right.lastupdate.datetime));
         };
     ViewModelDisc.messages.sort(orderf);
-    console.log("SORTED "  + ViewModelDisc.messages.length);
+//    console.log("SORTED "  + ViewModelDisc.messages.length);
 }
 
 function getXmlHttpRequest() {
@@ -242,13 +242,33 @@ function askNewMsgs() {
         if (xmlhttpComet.readyState == 4 && xmlhttpComet.status==200) {                            
             var answer = xmlhttpComet.responseXML;
 //            console.log("RISPOSTA: "+answer);
-            var expectedTag = answer.documentElement.tagName;
-            if (expectedTag == "newMsg" || expectedTag == "cometmsgs") {
-//                console.log(expectedTag);
-                var $xml = $(answer);
-                updateViewModel($xml, expectedTag); //update the viewmodel (and with it, the view)
+            if(answer != null && answer != undefined){
+                var expectedTag = answer.documentElement.tagName;
+                if (expectedTag == "newMsg" || expectedTag == "cometmsgs") {
+    //                console.log(expectedTag);
+                    var $xml = $(answer);
+                    updateViewModel($xml, expectedTag); //update the viewmodel (and with it, the view)
+                }
             }
             askNewMsgs();
+        }
+        if(xmlhttpComet.readyState == 4 && (xmlhttpComet.status==500 || xmlhttpComet.status==404)){
+            setTimeout(function(){
+                var xmlForGreeting = sendGreetings();
+                var stringXml = new XMLSerializer().serializeToString(xmlForGreeting);    
+                //When the document is ready do a post to the servlet
+                $.post("../NewMessage",stringXml,
+                    function(data) {
+                        //once data has arrived
+                        var $xml = $(data);
+                        ViewModelDisc.messages.removeAll();
+                        updateViewModel($xml, 'msg'); 
+                        //memorize the clientid
+                        clientid=$xml.find('clientid').text();
+                        askNewMsgs();
+                    }
+                );   
+            },5000);
         }
     };
     data = document.implementation.createDocument("", "waitMsg", null); 
