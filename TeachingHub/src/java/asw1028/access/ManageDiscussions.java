@@ -5,17 +5,30 @@
  */
 package asw1028.access;
 
+import asw1028.db.ThreadsXml;
 import asw1028.utils.SysKb;
 import asw1028.utils.WebUtils;
+import asw1028.utils.xml.ManageXML;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.bind.JAXBException;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.xml.sax.SAXException;
 
 /**
  * This servlet returns a list of discussions of the specified section.
@@ -32,12 +45,69 @@ public class ManageDiscussions extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        InputStream is = request.getInputStream();
         response.setContentType("text/xml;charset=UTF-8");
-        String section = request.getParameter("section"); //the requested section
+        try {
+            ManageXML mngXML = new ManageXML();
+            Document data = mngXML.parse(is);
+            is.close();
+
+            operations(data, request, response, mngXML);
+            
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    private void operations(Document data, HttpServletRequest request, HttpServletResponse response, ManageXML mngXML) throws IOException {
+        Element root = data.getDocumentElement();
+        String operation = root.getTagName();
         OutputStream out = response.getOutputStream();
-        if(section == null){
-            //Errore se non conosco la sezione
-            sendError("Il parametro section non è specificato.", out);
+        String success;
+        switch(operation) {
+            case "getDiscussion" : //this replace the service provided by the old servlet GetThreads
+                getAllDiscussions(data, out);
+                break;
+            case "getDiscussionInfo" :
+                getDiscussionInfo(data,out,mngXML);
+                break;
+        }
+    }
+    
+    /***
+     * Send into the output stream the XML containing all the discussions for a given section
+     * @param data Data received form the client, containing the section id
+     * @param out Output stream, where redirect the xml file
+     */
+    private void getAllDiscussions(Document data, OutputStream out) {
+        //Take the section id in the received document
+        String section = getSectionId(data);
+        
+        if(section.isEmpty()) {
+            System.out.println("Error in data received form the client");
+            return;
+        }
+
+        String xmlThredsFilePath = getServletContext().getRealPath(
+                            SysKb.getThreadsPathForSection(section));
+        
+        if(!(new File(xmlThredsFilePath).exists())){
+            //Se non esiste è un altro errore
+            sendError("Impossibile trovare i threads della sezione specificata.", out);
+            return;
+        }
+        //Recupero il file e lo ritorno in output come response
+        WebUtils.fileToOutputStream(xmlThredsFilePath, out);
+    }
+    
+    private void getDiscussionInfo(Document data, OutputStream out, ManageXML mngXML) {
+        //Take the section id and the discussion id in the received document
+        String section = getSectionId(data);
+        String discussion = getDiscussionId(data);
+        
+        if(section.isEmpty() || discussion.isEmpty()) {
+            System.out.println("Error in data received form the client");
             return;
         }
         String xmlThredsFilePath = getServletContext().getRealPath(
@@ -47,8 +117,57 @@ public class ManageDiscussions extends HttpServlet {
             sendError("Impossibile trovare i threads della sezione specificata.", out);
             return;
         }
-        //Recupero il file e lo ritorno in output come response
-        WebUtils.fileToOutputStream(xmlThredsFilePath, out);
+        FileInputStream discussionFile = null;
+        try {
+            discussionFile = new FileInputStream(xmlThredsFilePath);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(ManageDiscussions.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            Document discXml = ThreadsXml.getThreadById(xmlThredsFilePath, section);
+            System.out.print("Dalla servlet: ");
+            mngXML.transform(System.out, discXml);
+        } catch (JAXBException | TransformerConfigurationException | ParserConfigurationException ex) {
+            Logger.getLogger(ManageDiscussions.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (TransformerException | IOException ex) {
+            Logger.getLogger(ManageDiscussions.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+    }
+    
+    private String getSectionId(Document data) {
+        String section = null; // eg. Matematica    
+        
+        try {
+            section = WebUtils.getContentFromNode(data, new String[] { "section"});
+        }
+        catch (Exception e) {
+            System.out.println("DANGER! Error in the request for message data fields");
+            return "";
+        }
+        if(section == null) {
+            return "";
+        }
+        return section;
+    }
+    
+    private String getDiscussionId(Document data) {
+        String idDisc = null; //discussion eg. polinomi
+        
+        try {
+            idDisc = WebUtils.getContentFromNode(data, new String[] { "iddisc"});
+        }
+        catch (Exception e) {
+            System.out.println("DANGER! Error in the request for message data fields");
+            return "";
+        }
+        if(idDisc == null) {
+            return "";
+        }
+        return idDisc;
     }
     
     void sendError(String text, OutputStream out){
