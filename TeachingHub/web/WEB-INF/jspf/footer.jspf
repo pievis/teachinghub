@@ -1,7 +1,10 @@
 <%-- this is the footer of the website, info and link should be provided --%>
 <%@ page pageEncoding="UTF-8" %>
-<div class="bar_right">Lista docenti</div>
-<div class="bar_right">About us</div>
-
+<a href="<%=request.getContextPath()%>/Docenti">
+    <div class="bar_right">Lista docenti</div>
+</a>
+<a href="<%=request.getContextPath()%>/AboutUs">
+    <div class="bar_right">About us</div>
+</a>
 <div><a href="<%=request.getContextPath()%>/index.jsp">Home <img class="resize" src="<%=request.getContextPath()%>/multimedia/icons/home153.png"/></a>
 </div>

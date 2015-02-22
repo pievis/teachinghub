@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aboutus>
+    <content>
+        Questo è un messaggio di prova per l'aboutus.
+        &lt;br&gt;
+Autori del sito:
+&lt;ul&gt;
+&lt;li&gt;Pierluigi Montagna&lt;/li&gt;
+&lt;li&gt;Lorenzo Rocca&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/eqQgJxA76Bc&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+    </content>
+    <lastupdate>
+            <autor>Pievis</autor>
+            <datetime>
+                <time>13:38:16</time>
+                <date>22/02/2015</date>
+            </datetime>
+        </lastupdate>
+</aboutus>

@@ -29,10 +29,10 @@
         <img class="resize" src="<%=request.getContextPath()%>/multimedia/icons/identification9.png"/>
     </div>
 </a>
-<div class="bar_right" id="messaggi">
+<!--<div class="bar_right" id="messaggi">
     <img class="resize" src="<%=request.getContextPath()%>/multimedia/icons/envelope56.png"/>
     <span id="number">new</span>
-</div>
+</div>-->
 <%
     }
     else{

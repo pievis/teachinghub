@@ -295,6 +295,15 @@ header img.resize {
     padding-bottom: 25px;
 }
 
+.message .content a{
+    font-weight: bolder;
+    color: #006600;
+}
+
+.message .content a:hover{
+    color:#00cc66;
+}
+
 .message .files{
     clear: both;
     margin-top: 10px;
