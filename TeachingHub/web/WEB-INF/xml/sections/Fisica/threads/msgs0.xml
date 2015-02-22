@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<msgs>
+    <threadid>0</threadid>
+    <msg>
+        <id>0</id>
+        <content>Potreste aiutarmi a capire come si svolge l'esercizio in allegato?</content>
+        <lastupdate>
+            <autor>Nyaz</autor>
+            <datetime>
+                <time>15:43:50</time>
+                <date>22/02/2015</date>
+            </datetime>
+        </lastupdate>
+        <autor>Nyaz</autor>
+        <datafiles>
+            <datafile>
+                <name>esfisica.png</name>
+                <url>Nyaz1154349.png</url>
+            </datafile>
+        </datafiles>
+    </msg>
+    <msg>
+        <id>1</id>
+        <content>Bisogna applicare delle formule di trigonometria, la forza P viene decomposta nelle due componenti tangenziale e normale al piano.
+
+Per trigonometria :
+Ft = sin(30) * P
+
+L'accellerazione acquisita sarà:
+a = Ft / m = 4,905 m/s^2
+</content>
+        <lastupdate>
+            <autor>NyazProf</autor>
+            <datetime>
+                <time>15:52:04</time>
+                <date>22/02/2015</date>
+            </datetime>
+        </lastupdate>
+        <autor>NyazProf</autor>
+    </msg>
+</msgs>

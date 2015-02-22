@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<msgs>
+    <threadid>1</threadid>
+    <msg>
+        <id>0</id>
+        <content>Ho sentito spesso parlare di knockout, ma fino ad ora non ho ben capito a cosa serve, non basta usare jquery/javascript ?</content>
+        <lastupdate>
+            <autor>Pievis</autor>
+            <datetime>
+                <time>16:08:16</time>
+                <date>22/02/2015</date>
+            </datetime>
+        </lastupdate>
+        <autor>Pievis</autor>
+    </msg>
+</msgs>

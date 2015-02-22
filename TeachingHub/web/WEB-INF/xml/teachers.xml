@@ -1,10 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <teachers>
     <teacher>
         <id>NyazProf</id>
         <email>lorenzo.rocca@gmail.com</email>
         <lastname>Rocca</lastname>
         <firstname>Lorenzo</firstname>
-        <avatar>avatar0.png</avatar>
+        <avatar>NyazProf161152.jpg</avatar>
         <password>123456</password>
         <subjects>
             <subject>

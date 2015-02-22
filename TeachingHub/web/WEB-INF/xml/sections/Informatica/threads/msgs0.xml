@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<msgs>
+    <threadid>0</threadid>
+    <msg>
+        <id>0</id>
+        <content>Di recente ho visto il film the imitation game, vorrei sapere di più sui lavori Alan Turing, come hanno influenzato l'ambito dell'informatica?</content>
+        <lastupdate>
+            <autor>Nyaz</autor>
+            <datetime>
+                <time>15:40:29</time>
+                <date>22/02/2015</date>
+            </datetime>
+        </lastupdate>
+        <autor>Nyaz</autor>
+    </msg>
+    <msg>
+        <id>1</id>
+        <content>Su wikipedia puoi trovare tutte le informazioni su Turing:
+&lt;a href="http://en.wikipedia.org/wiki/Alan_Turing"&gt;link&lt;/a&gt;</content>
+        <lastupdate>
+            <autor>NyazProf</autor>
+            <datetime>
+                <time>15:53:45</time>
+                <date>22/02/2015</date>
+            </datetime>
+        </lastupdate>
+        <autor>NyazProf</autor>
+    </msg>
+    <msg>
+        <id>2</id>
+        <content>Spero di riuscire a vedere anche io quel film! Turing era un genio :)</content>
+        <lastupdate>
+            <autor>Pievis</autor>
+            <datetime>
+                <time>16:06:06</time>
+                <date>22/02/2015</date>
+            </datetime>
+        </lastupdate>
+        <autor>Pievis</autor>
+    </msg>
+</msgs>

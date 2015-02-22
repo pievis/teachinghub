@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<threads>
+    <thread>
+        <id>0</id>
+        <lastupdate>
+            <autor>Nyaz</autor>
+            <datetime>
+                <time>15:40:29</time>
+                <date>22/02/2015</date>
+            </datetime>
+        </lastupdate>
+        <title>Chi era turing?</title>
+        <autor>Nyaz</autor>
+        <description></description>
+        <creationdate>
+            <datetime>
+                <time>15:40:29</time>
+                <date>22/02/2015</date>
+            </datetime>
+        </creationdate>
+    </thread>
+    <thread>
+        <id>1</id>
+        <lastupdate>
+            <autor>Pievis</autor>
+            <datetime>
+                <time>16:08:16</time>
+                <date>22/02/2015</date>
+            </datetime>
+        </lastupdate>
+        <title>[web] knockout.js</title>
+        <autor>Pievis</autor>
+        <description>cos'è?</description>
+        <creationdate>
+            <datetime>
+                <time>16:08:16</time>
+                <date>22/02/2015</date>
+            </datetime>
+        </creationdate>
+    </thread>
+    <section>
+        Informatica
+    </section>
+</threads>
