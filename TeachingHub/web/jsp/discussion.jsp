@@ -61,9 +61,9 @@
                     <!-- Da fare solo se sei loggato -->
                     <h1 class="longh">Rispondi</h1>
                     <div class="container">
-                        <form onsubmit="getXmlHttpRequest('newMsg'); return false;">
+                        <form class="messageform" onsubmit="getXmlHttpRequest('newMsg'); return false;">
                             Contenuto Messaggio: <br>
-                            <textarea data-bind="value: newMsgContent" class="longinput" name="message" rows="8"></textarea>
+                            <textarea data-bind="value: newMsgContent" name="message"></textarea>
                             <!--<p>Allegato: <input type="file" name="datafile" size="40">-->
                             </p>
                             <input class="btn" type="submit" value="Invia">    

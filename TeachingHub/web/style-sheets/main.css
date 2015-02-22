@@ -26,8 +26,8 @@ body{
 #content {
     float: left;
     width: 99%;
-    padding: 5px;
-    margin: 4px;
+/*    padding: 5px;
+    margin: 4px;*/
 }
 
 .container {
@@ -43,7 +43,7 @@ footer {
     height: 25px;
     color: white;
     font-weight: 10;
-    background-color: #003300;
+    background-color: #006600;
     clear: both;
 }
 
@@ -55,7 +55,7 @@ footer div{
 }
 
 footer div:hover{
-  background-color: #006600;
+  background-color: #339900;
 }
 
 header {
@@ -132,8 +132,8 @@ header img.resize {
     font-family: "Arial Black", Gadget, sans-serif;
     font-weight: 200;
     font-size: 16px;
-    width: 300px;
-    height: 32px;
+    max-width: 300px;
+    min-height: 32px;
     padding: 10px;
     padding-left: 52px;
     margin-top: 10px;
@@ -183,7 +183,7 @@ header img.resize {
     padding-left: 20px;
     padding: 5px;
     background: #006600;
-    width: 650px;
+    max-width: 650px;
     border-bottom: 5px #00cc66 solid;
     margin-bottom: 5px;
     border-radius: 8px;
@@ -272,7 +272,7 @@ header img.resize {
     text-align: center;
     float: left;
     background: #ccffcc;
-    width: 155px;
+    width: 95px;
     margin: 5px;
     padding: 5px;
     border:#00cc66 solid;
@@ -281,7 +281,7 @@ header img.resize {
 
 .message .avatar img{
     float: left;
-    width: 150px;
+    width: 90px;
     height: auto;
 }
 
@@ -388,3 +388,24 @@ header img.resize {
 #threadsblock{
     margin-top: 30px;
 }*/
+
+.messageform {
+    max-width: 500px;
+}
+
+.messageform textarea{
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; 
+    max-width: 500px;
+    min-height: 128px;
+    padding: 5px;
+    border: none;
+}
+
+.messageform .btn{
+    margin-right: 0px;
+    margin-left: auto;
+    /*clear: both;*/
+}

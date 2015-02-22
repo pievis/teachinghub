@@ -23,7 +23,7 @@ h1.longh {
     background-color: #006633;
     border-left: solid 4px #003300;
     padding: 5px;
-    padding-left: 10px;
+    /*padding-left: 10px;*/
 }
 
 .smallTxt{
@@ -61,7 +61,7 @@ h2.longh {
     background-color: #009933;
     border-left: solid 4px #003300;
     color: snow;
-    padding-left: 15px;
+    /*padding-left: 15px;*/
     border-bottom: 2px solid #003300;
 }
 
