@@ -2,7 +2,7 @@
 //    private String content;
 //    private Lastupdate lastupdate;
 //    private String autor;
-//    MISSING private Datafiles datafiles;
+//    private Datafiles datafiles;
 
 // global (private) variable
 var clientid = ""; //client's pseudo id
@@ -11,6 +11,7 @@ var answer;
 var sectionPartialUrl = "/jsp/section.jsp?sectionid=[ID]";
 var ctxUrl = $("#content").attr("ctx-url");
 var sectionId = $("#content").attr("sectionid");
+var discussionId = $("#content").attr("discid");
 
 // message class
 var Message = function(autor, cont) {
@@ -71,6 +72,7 @@ $(function() {
             askNewMsgs();
         }
     );
+    getDiscussionInfo(sectionId, discussionId);
 });
 
 //Updates the viewmodel with respect of the xml doc parameter
@@ -116,8 +118,7 @@ function updateViewModel($xml, tagName){
     });
 }
 
-function sortMessages(order)
-{
+function sortMessages(order) {
     var cmpf = function(left,right){
         if(order === "DESC")
             return left > right ? -1 : 1;
@@ -132,6 +133,7 @@ function sortMessages(order)
 //    console.log("SORTED "  + ViewModelDisc.messages.length);
 }
 
+// function used for sending a new message
 function getXmlHttpRequest() {
     
     var x = this;
@@ -172,6 +174,7 @@ function getXmlHttpRequest() {
     return false; // blocks the refresh of the page
 }
 
+//prepare the "newMsg" xml document
 function sendDataToServer() {
     //console.log("dentro la send");
     //create the new xml message
@@ -203,6 +206,7 @@ function sendDataToServer() {
     return data;
 }
 
+//prepare the "first time access" xml document, used when client contact the servlet for the first time
 function sendGreetings() {
     //create the new xml message
     var data = document.implementation.createDocument("","firstTimeAcces", null);
@@ -221,6 +225,7 @@ function sendGreetings() {
     return data;
 }
 
+// create the xml document used to ask the avatar path
 function prepareAvatarRequest(autor) {
     //creates the new xml messge
     var data = document.implementation.createDocument("", "get", null);
@@ -289,12 +294,43 @@ function askNewMsgs() {
     data.documentElement.appendChild(discussionId);
     data.documentElement.appendChild(clientIdNode);
     xmlhttpComet.send(data);
-    console.log("Async request sent");
+    //console.log("Async request sent");
 }
 
-//function getDiscussionInfo() {
-//    
-//}
+// function to ask title and description of a specific discussion
+function getDiscussionInfo(sect, disc) {
+    var data = document.implementation.createDocument("","getDiscussionInfo", null);
+    //nodes in data
+    var sectionId = data.createElement("section");
+    var discussionId = data.createElement("iddisc");
+    // content of the nodes
+    var txtSection = data.createTextNode(sect);
+    var txtDisc = data.createTextNode(disc);
+    // adds content in the nodes
+    sectionId.appendChild(txtSection);
+    discussionId.appendChild(txtDisc);
+    // add nodes in the document
+    data.documentElement.appendChild(sectionId);
+    data.documentElement.appendChild(discussionId);
+    var stringXml = new XMLSerializer().serializeToString(data);
+    $.post( "../ManageDiscussions", stringXml,
+        function( data ){
+            //This is the success function
+            var xmlDoc = data;
+//            var xmlString = (new XMLSerializer()).serializeToString(xmlDoc);
+//            console.log("log. Data: " + xmlString);
+            var $xml = $(xmlDoc);
+            var hasError = handleIfError($xml);
+            if(!hasError) {
+                ViewModelDisc.discTitleText($xml.find("title").text());
+                ViewModelDisc.discDescriptionText($xml.find("description").text());
+            }
+                
+        }
+    ).fail(function(){
+        updateErrorBox("Errore nel contattare il server remoto.");
+    });
+}
 
 function updateErrorBox(text){
     ViewModelDisc.errorMsg(text);
@@ -330,4 +366,13 @@ function parseDate(dateStr){
     var value = Date.parseExact(dateStr0, "dd/MM/yyyyHH:mm:ss");
 //    console.log("DATA: " + value + " origin "+ dateStr0);
     return value.getTime();
+}
+
+//returns true if the message contains an error 
+function handleIfError($xml){
+    var errorMsg = $xml.find("error").text();
+    if(errorMsg == null || errorMsg == undefined || errorMsg == '')
+        return false;
+    updateErrorBox(errorMsg);
+    return true;
 }

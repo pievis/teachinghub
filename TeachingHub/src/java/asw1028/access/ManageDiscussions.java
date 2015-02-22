@@ -15,7 +15,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -28,7 +27,6 @@ import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.xml.sax.SAXException;
 
 /**
  * This servlet returns a list of discussions of the specified section.
@@ -64,12 +62,14 @@ public class ManageDiscussions extends HttpServlet {
         Element root = data.getDocumentElement();
         String operation = root.getTagName();
         OutputStream out = response.getOutputStream();
-        String success;
+        
         switch(operation) {
             case "getDiscussion" : //this replace the service provided by the old servlet GetThreads
+                System.out.println("Getting all of the discussions");
                 getAllDiscussions(data, out);
                 break;
             case "getDiscussionInfo" :
+                System.out.println("Getting the discussion info");
                 getDiscussionInfo(data,out,mngXML);
                 break;
         }
@@ -117,23 +117,20 @@ public class ManageDiscussions extends HttpServlet {
             sendError("Impossibile trovare i threads della sezione specificata.", out);
             return;
         }
-        FileInputStream discussionFile = null;
-        try {
-            discussionFile = new FileInputStream(xmlThredsFilePath);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(ManageDiscussions.class.getName()).log(Level.SEVERE, null, ex);
-        }
         
         try {
-            Document discXml = ThreadsXml.getThreadById(xmlThredsFilePath, section);
-            System.out.print("Dalla servlet: ");
-            mngXML.transform(System.out, discXml);
+            Document discXml = ThreadsXml.getThreadById(xmlThredsFilePath, discussion);
+            //send to the client
+            mngXML.transform(out, discXml);
         } catch (JAXBException | TransformerConfigurationException | ParserConfigurationException ex) {
+            System.out.println("Error while getting data from database");
+            ex.printStackTrace();
             Logger.getLogger(ManageDiscussions.class.getName()).log(Level.SEVERE, null, ex);
         } catch (TransformerException | IOException ex) {
+            System.out.println("Error while sending data to the client");
+            ex.printStackTrace();
             Logger.getLogger(ManageDiscussions.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
         
         
     }
