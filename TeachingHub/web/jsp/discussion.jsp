@@ -64,7 +64,7 @@
                         <form onsubmit="getXmlHttpRequest('newMsg'); return false;">
                             Contenuto Messaggio: <br>
                             <textarea data-bind="value: newMsgContent" class="longinput" name="message" rows="8"></textarea>
-                            <p>Allegato: <input type="file" name="datafile" size="40">
+                            <!--<p>Allegato: <input type="file" name="datafile" size="40">-->
                             </p>
                             <input class="btn" type="submit" value="Invia">    
                         </form>
@@ -72,7 +72,7 @@
                     <div class="errorbox" id="errorbox" data-bind="visible: showErrorMsg() >0">
                             <!--<img src="<%=request.getContextPath()%>/multimedia/icons/delete85.png"-->
                             <p>
-                                Errore - <span data-bind="text: errorMsg"></span>
+                                <span data-bind="text: errorMsg"></span>
                             </p>
                     </div>
                 <% } %>
