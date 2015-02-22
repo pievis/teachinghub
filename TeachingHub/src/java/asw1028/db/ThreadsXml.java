@@ -13,6 +13,8 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.PropertyException;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -91,27 +93,25 @@ public class ThreadsXml {
         //unmarshall
         JAXBContext jaxbContext = JAXBContext.newInstance(Threads.class);
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-     
         Threads threads = (Threads) jaxbUnmarshaller.unmarshal( new File(filePath) );
         Thread selectedThread = null;
         for(Thread t : threads.getThread()) {
             if(t.getId().equals(id))
                 selectedThread = t;
         }
+
         if(selectedThread == null) 
-            return null; 
+            return null;         
         jaxbContext = JAXBContext.newInstance(Thread.class);
         Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
         jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-        ManageXML mngXML = new ManageXML();
-        Document threadXml = mngXML.newDocument("");
+        
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+        dbf.setNamespaceAware(true);
+        DocumentBuilder db = dbf.newDocumentBuilder();
+        Document threadXml = db.newDocument();
+        
         jaxbMarshaller.marshal(selectedThread, threadXml);
-        try {
-            mngXML.transform(System.out, threadXml);
-        } catch (Exception ex) {
-            System.out.println("Broken document");
-            Logger.getLogger(ThreadsXml.class.getName()).log(Level.SEVERE, null, ex);
-        }
         return threadXml;
     }
     
