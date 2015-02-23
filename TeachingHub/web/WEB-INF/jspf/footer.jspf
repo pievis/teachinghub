@@ -1,6 +1,6 @@
 <%-- this is the footer of the website, info and link should be provided --%>
 <%@ page pageEncoding="UTF-8" %>
-<a href="<%=request.getContextPath()%>/Docenti">
+<a href="<%=request.getContextPath()%>/ContactTeachers">
     <div class="bar_right">Lista docenti</div>
 </a>
 <a href="<%=request.getContextPath()%>/AboutUs">

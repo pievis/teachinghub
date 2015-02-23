@@ -44,9 +44,9 @@ public class UsersManager {
         return null;
     }
     
-    public List<ITeacher> getAllTeacher() {
-        //TODO add code here
-        return null;
+    public List<Teacher> getAllTeacher() throws JAXBException {
+        Teachers teachers = TeachersXml.getTeachers(teachersPath);
+        return teachers.getTeacherList();
     }
     
     public List<IStudent> getAllStudents() {

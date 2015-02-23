@@ -32,6 +32,10 @@
         <servlet-name>AboutUs</servlet-name>
         <servlet-class>asw1028.access.AboutUs</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ContactTeachers</servlet-name>
+        <servlet-class>asw1028.access.ContactTeachers</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Logout</servlet-name>
         <url-pattern>/Logout</url-pattern>
@@ -63,5 +67,9 @@
     <servlet-mapping>
         <servlet-name>AboutUs</servlet-name>
         <url-pattern>/AboutUs</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ContactTeachers</servlet-name>
+        <url-pattern>/ContactTeachers</url-pattern>
     </servlet-mapping>
 </web-app>
