@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aboutus>
     <content>
-        Questo è un messaggio di prova per l'aboutus.
-        &lt;br&gt;
+        &lt;b&gt;Teaching Hub&lt;/b&gt; è un sito destinato all'interazione tra studente e docente. L'obbiettivo del sito è fornire un ambiente interattivo in cui gli studenti possono contattare i docenti per poter porre domande sui corsi. Gli studenti possono registrarsi attraverso l'apposito form di registrazione e iniziare una discussione all'interno di una sezione. Gli studenti hanno a disposizione delle pagine scritte dai docenti all'interno delle sezioni, nelle quali possono trovare importanti risorse sulle materie studiate. 
+        &lt;br&gt;&lt;br&gt;
 Autori del sito:
 &lt;ul&gt;
 &lt;li&gt;Pierluigi Montagna&lt;/li&gt;
 &lt;li&gt;Lorenzo Rocca&lt;/li&gt;
 &lt;/ul&gt;
-&lt;br&gt;
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/eqQgJxA76Bc&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
     </content>
     <lastupdate>
             <autor>Pievis</autor>

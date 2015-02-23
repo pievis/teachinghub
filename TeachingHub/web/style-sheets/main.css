@@ -409,3 +409,33 @@ header img.resize {
     margin-left: auto;
     /*clear: both;*/
 }
+
+///HEader
+
+/* unvisited link */
+header a:link {
+    color: snow;
+}
+
+/* visited link */
+header a:visited {
+    color: snow;
+}
+
+/* mouse over link */
+header a:hover {
+    color: #ccffcc;
+}
+
+/* selected link */
+a:active {
+    color: #ccffcc;
+}
+
+footer a:link{
+    color: snow;
+}
+
+footer a:visited{
+    color: snow;
+}
