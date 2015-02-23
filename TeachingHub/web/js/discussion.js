@@ -19,10 +19,10 @@ var Message = function(autor, cont) {
     this.content = cont;
     this.lastupdate = {};
     this.avatarPath = "";
-//    this.filePath = "";
     this.hasFile = false;
     this.fileName = "";
     this.fileUrl = "";
+    this.autorProfileUrl = "";
     this.setAvatarPath = function(path) {
         avatarPath = ctxUrl + "/multimedia/avatars/" + path;
     }
@@ -34,6 +34,11 @@ var Message = function(autor, cont) {
         this.fileName = filename;
         this.fileUrl = ctxUrl + "/multimedia/attaches/" + filepath;
 //        console.log("FILE SETTED " + filename);
+    }
+    this.setAutorProfilePath = function(autor){
+        var profilePartialUrl = "/jsp/profile.jsp?userid=[USERID]";
+        this.autorProfileUrl = ctxUrl + profilePartialUrl.replace("[USERID]", autor);
+        console.log("AUTOR PATH SETTED: " + autorProfileUrl);
     }
 };
 
@@ -48,7 +53,7 @@ var ViewModelDisc = {
     discTitleText: ko.observable("Titolo"),
     discDescriptionText: ko.observable("Descrizione"),
     sectionUrl : ko.observable(),
-    sectionTxt : ko.observable()
+    sectionTxt : ko.observable(),
 };
 
 $(function() {
@@ -83,8 +88,13 @@ function updateViewModel($xml, tagName){
         var $elem = $(this);
         var content = $elem.find("content").text();
         var autor = $elem.find( "autor:first" ).text();
-        content = encodeStringForWeb(content); //Gestisce i newline
+        content = encodeStringForWeb(content); //Gestisce i newline        
         var msg = new Message(autor, content);
+        
+        //msg.setAutorProfilePath(autor);
+        var profilePartialUrl = "/jsp/profile.jsp?userid=[USERID]";
+        msg.autorProfileUrl = ctxUrl + profilePartialUrl.replace("[USERID]", autor);
+
         var $lastupdate = $elem.find( "lastupdate" );
         var $datafile = $elem.find("datafile");
         //es: 22/04/2010 11:22:44      

@@ -30,29 +30,31 @@
                     for(Teacher t : teachers) { //for each teacher, print important information
                         Subjects subs = t.getSubjects();
                     %>
-                    <div class="profileinfo">
-                        <p>
-                            <b>Username</b>: <%=t.getId()%>
-                        </p>
-                        <p>
-                            <b>Nome</b>: <%=t.getFirstname()%>
-                        </p>
-                        <p>
-                            <b>Cognome</b>: <%=t.getLastname()%>
-                        </p>
-                        <p>
-                            <b>Email</b>: <%=t.getEmail()%>
-                        </p>
-                        <%
-                        //Also print the subjects
-                        for(String s : subs.getSubject()) {
-                        %>
-                        <p>
-                            <b>Materia</b>: <%=s%>
-                        </p>
-                        <%
-                        }
-                        %>
+                    <div class="content">
+                        <div class="profileinfo">
+                            <p>
+                                <b>Username</b>: <%=t.getId()%>
+                            </p>
+                            <p>
+                                <b>Nome</b>: <%=t.getFirstname()%>
+                            </p>
+                            <p>
+                                <b>Cognome</b>: <%=t.getLastname()%>
+                            </p>
+                            <p>
+                                <b>Email</b>: <%=t.getEmail()%>
+                            </p>
+                            <%
+                            //Also print the subjects
+                            for(String s : subs.getSubject()) {
+                            %>
+                            <p>
+                                <b>Materia</b>: <%=s%>
+                            </p>
+                            <%
+                            }
+                            %>
+                        </div>
                     </div>
                     <%
                     }
@@ -64,4 +66,7 @@
           <%@include file="/WEB-INF/jspf/footer.jspf" %>
         </footer>
     </body>
+    <!-- script src="<%=request.getContextPath()%>/js/lib/jquery/jquery.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/js/lib/knockout/knockout-3.2.0.js"></script>
+    <script src="<%=request.getContextPath()%>/js/teacherList.js"></script -->
 </html>

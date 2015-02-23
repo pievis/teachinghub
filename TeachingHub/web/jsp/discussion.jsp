@@ -40,7 +40,11 @@
                     <div class="message">
                         <div class="avatar">
                             <img data-bind="attr:{src: avatarPath}"/>
-                            <b><span data-bind="text: autor"></span></b>
+                            <b>
+                                <a data-bind="attr:{href: autorProfileUrl}">
+                                <span data-bind="text: autor"></span>
+                                </a>
+                            </b>
                         </div>
                         <div class="content">
                             <content data-bind="html: content"></content>
