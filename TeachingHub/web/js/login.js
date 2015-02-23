@@ -30,7 +30,12 @@ function getXmlHttpRequest(){
             if(successTags.length > 0){
                 updateErrorBox("Accesso avvenuto!!!");
 //                location.reload();
-                //Torna alla pagina precedente
+                //Torna alla pagina precedent
+                window.onpopstate = function(event) {    
+                    if(event && event.state) {
+                        location.reload();
+                    }
+                };
                 window.history.back();
             }
         }
