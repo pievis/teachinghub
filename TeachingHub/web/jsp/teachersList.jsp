@@ -30,7 +30,7 @@
                     for(Teacher t : teachers) { //for each teacher, print important information
                         Subjects subs = t.getSubjects();
                     %>
-                    <div class="content">
+                    <div class="container">
                         <div class="profileinfo">
                             <p>
                                 <b>Username</b>: <%=t.getId()%>

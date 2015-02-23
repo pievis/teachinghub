@@ -38,7 +38,6 @@ var Message = function(autor, cont) {
     this.setAutorProfilePath = function(autor){
         var profilePartialUrl = "/jsp/profile.jsp?userid=[USERID]";
         this.autorProfileUrl = ctxUrl + profilePartialUrl.replace("[USERID]", autor);
-        console.log("AUTOR PATH SETTED: " + autorProfileUrl);
     }
 };
 
@@ -53,7 +52,7 @@ var ViewModelDisc = {
     discTitleText: ko.observable("Titolo"),
     discDescriptionText: ko.observable("Descrizione"),
     sectionUrl : ko.observable(),
-    sectionTxt : ko.observable(),
+    sectionTxt : ko.observable()
 };
 
 $(function() {
@@ -91,9 +90,9 @@ function updateViewModel($xml, tagName){
         content = encodeStringForWeb(content); //Gestisce i newline        
         var msg = new Message(autor, content);
         
-        //msg.setAutorProfilePath(autor);
-        var profilePartialUrl = "/jsp/profile.jsp?userid=[USERID]";
-        msg.autorProfileUrl = ctxUrl + profilePartialUrl.replace("[USERID]", autor);
+        msg.setAutorProfilePath(autor);
+        //var profilePartialUrl = "/jsp/profile.jsp?userid=[USERID]";
+        //msg.autorProfileUrl = ctxUrl + profilePartialUrl.replace("[USERID]", autor);
 
         var $lastupdate = $elem.find( "lastupdate" );
         var $datafile = $elem.find("datafile");
