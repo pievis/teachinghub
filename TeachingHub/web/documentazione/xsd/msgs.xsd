@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="msgs">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="xs:string" name="threadid"/>
+        <xs:element name="msg" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:string" name="id" use="required"/>
+              <xs:element type="xs:string" name="content" use="required"/>
+              <xs:element name="lastupdate">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="autor"/>
+                    <xs:element name="datetime">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:time" name="time"/>
+                          <xs:element type="xs:string" name="date"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element type="xs:string" name="autor"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

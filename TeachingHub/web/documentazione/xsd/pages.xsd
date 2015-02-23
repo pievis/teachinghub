@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="pages">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="page" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:string" name="id" use="required"/>
+              <xs:element type="xs:string" name="title" use="required"/>
+              <xs:element type="xs:string" name="autor" use="required"/>
+              <xs:element type="xs:string" name="description"/>
+              <xs:element type="xs:string" name="msg"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

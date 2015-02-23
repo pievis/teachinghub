@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="teachers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="teacher" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:string" name="id" use="required"/>
+              <xs:element type="xs:string" name="email"/>
+              <xs:element type="xs:string" name="lastname"/>
+              <xs:element type="xs:string" name="firstname"/>
+              <xs:element type="xs:string" name="avatar"/>
+              <xs:restriction type="xs:string" name="password" use="required">
+                  <xs:minLength value="5"/>
+              </xs:restriction>
+              <xs:element name="subjects">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="subject" maxOccurs="5" minOccurs="0"/>
+                    <!-- Un insegnante può avere un massimo di 5 materie -->
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

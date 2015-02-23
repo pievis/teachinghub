@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="aboutus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="xs:string" name="content"/>
+        <xs:element name="lastupdate">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:string" name="autor"/>
+              <xs:element name="datetime">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:time" name="time"/>
+                    <xs:element type="xs:string" name="date"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
