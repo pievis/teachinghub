@@ -4,7 +4,6 @@
  */
 package asw1028.access;
 
-import asw.interfaces.IUser;
 import asw1028.db.MessagesXml;
 import asw1028.db.ThreadsXml;
 import asw1028.db.structs.Datafile;
@@ -24,13 +23,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.PrintWriter;
+import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.util.Pair;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -152,9 +150,9 @@ public class NewDiscussion extends HttpServlet {
     }
     
     private void sendSuccessMsg(String threadId, OutputStream out){
-        List<Pair<String, String>> elements;
-        elements = new ArrayList<Pair<String,String>>();
-        elements.add(new Pair<String,String>("threadid", threadId));
+        List<SimpleEntry<String, String>> elements;
+        elements = new ArrayList<SimpleEntry<String,String>>();
+        elements.add(new SimpleEntry<String,String>("threadid", threadId));
         WebUtils.sendElementsMessage("success", elements, out);
     }
     

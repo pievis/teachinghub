@@ -32,7 +32,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 import javax.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerConfigurationException;
@@ -353,7 +352,7 @@ public class NewMsgAsync extends HttpServlet {
         boolean async = true;
         synchronized (this) {
             HashMap<String, Object> clients = ctxHandler.get(section+idDisc);
-            //TODO: il problema è qui!!
+            
             if(clients != null){
                 LinkedList<Document> list;
                 Object gt = clients.get(clientId);
@@ -363,7 +362,7 @@ public class NewMsgAsync extends HttpServlet {
                     //codice della richiesta che si blocca in attesa 
                     AsyncContext asyncContext = request.startAsync(); //blocca l'invio della risposta per la richiesta e restituisce un oggetto AsyncContext
                     asyncContext.setTimeout(10 * 1000); //set timeout oggetto AsyncContext
-                    asyncContext.addListener(new AsyncAdapter() {
+                    asyncContext.addListener(new AsyncAdapter(clients) {
                         @Override
                         public void onTimeout(AsyncEvent e) {
                             try {

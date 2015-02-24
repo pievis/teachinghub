@@ -2,7 +2,6 @@
 package asw1028.access;
 
 import asw1028.db.PagesXml;
-import asw1028.db.ThreadsXml;
 import asw1028.db.structs.Datafile;
 import asw1028.db.structs.Datafiles;
 import asw1028.db.structs.Page;
@@ -13,10 +12,9 @@ import asw1028.utils.xml.ManageXML;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.PrintWriter;
+import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.util.Pair;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -148,9 +146,9 @@ public class NewPage extends HttpServlet {
     }
     
     private void sendSuccessMsg(String pageId, OutputStream out){
-        List<Pair<String, String>> elements;
-        elements = new ArrayList<Pair<String,String>>();
-        elements.add(new Pair<String,String>("pageid", pageId));
+        List<SimpleEntry<String, String>> elements;
+        elements = new ArrayList<SimpleEntry<String,String>>();
+        elements.add(new SimpleEntry<String,String>("pageid", pageId));
         WebUtils.sendElementsMessage("success", elements, out);
     }
     

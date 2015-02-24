@@ -1,9 +1,7 @@
 
 package asw1028.db.structs;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import javafx.scene.input.DataFormat;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;

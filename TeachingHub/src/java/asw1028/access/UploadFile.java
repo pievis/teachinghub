@@ -4,18 +4,16 @@ package asw1028.access;
 import asw1028.utils.SysKb;
 import asw1028.utils.WebUtils;
 import asw1028.utils.xml.ManageXML;
-import com.sun.javafx.scene.accessibility.Attribute;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.PrintWriter;
+import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.util.Pair;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
@@ -23,8 +21,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 import org.w3c.dom.Document;
@@ -73,7 +69,7 @@ public class UploadFile extends HttpServlet {
         }
         String fileType = request.getParameter("filetype");
         //        System.out.println("FILE TYPE: " + fileType + "\nPart " + filePart);
-        List<Pair<String,String>> tags = new ArrayList<Pair<String,String>>(); //per memorizzare i nomi dei file da ritornare al client
+        List<SimpleEntry<String,String>> tags = new ArrayList<SimpleEntry<String,String>>(); //per memorizzare i nomi dei file da ritornare al client
         //switch sul filetype
         switch(fileType){
             case "avatar":
@@ -82,7 +78,7 @@ public class UploadFile extends HttpServlet {
                  //il nome dell'utente è il prefisso per il file
                 String newFileName = storeFileOnServer(avatarPath, userid, filePart);
                 
-                tags.add(new Pair("avatar", newFileName));
+                tags.add(new SimpleEntry("avatar", newFileName));
                 WebUtils.sendElementsMessage("success", tags, out); //ritorna il nome dell'avatar al client
                 return;
             case "attachement":
