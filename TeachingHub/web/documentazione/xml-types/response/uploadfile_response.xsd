@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+<!-- Risposta di successo del servizio /UploadFile -->
+ 
+<xs:schema version="1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+  <xs:element name="success">
+    <xs:complexType>
+      <xs:sequence>
+          <!-- Almeno un file deve essere stato caricato -->
+        <xs:element name="file" maxOccurs="unbounded" minOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:string" name="path"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

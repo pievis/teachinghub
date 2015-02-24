@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="registration">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="xs:string" name="userid" use="required"/>
+        <xs:element type="xs:string" name="password" use="required"/>
+        <xs:element type="xs:string" name="email" use="required"/>
+        <xs:element type="xs:string" name="surname"/>
+        <xs:element type="xs:string" name="name"/>
+        <xs:element type="xs:string" name="class"/>
+        <xs:element type="xs:string" name="subject"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

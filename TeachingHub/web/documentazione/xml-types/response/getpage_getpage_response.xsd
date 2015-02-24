@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+Servlet /GetPage
+-->
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="page">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="xs:string" name="id"/>
+        <xs:element type="xs:string" name="title"/>
+        <xs:element type="xs:string" name="autor"/>
+        <xs:element type="xs:string" name="description"/>
+        <xs:element type="xs:string" name="msg"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

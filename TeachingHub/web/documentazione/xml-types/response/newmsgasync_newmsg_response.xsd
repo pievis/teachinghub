@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:include schemaLocation="../db/datetime.xsd"/>
+  <xs:element name="newmsg">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="xs:string" name="section" use="required"/>
+        <xs:element type="xs:string" name="iddisc" use="required"/>
+        <xs:element type="xs:string" name="autor"/>
+        <xs:element type="xs:string" name="content"/>
+        <xs:element ref="datetime"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

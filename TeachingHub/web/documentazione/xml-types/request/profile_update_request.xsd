@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="update">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="xs:string" name="userid" use="required"/>
+        <xs:element type="xs:string" name="email"/>
+        <xs:element type="xs:string" name="fisrtname"/>
+        <xs:element type="xs:string" name="lastname"/>
+        <xs:element type="xs:string" name="classe"/>
+        <xs:element type="xs:string" name="hobby"/>
+        <xs:element type="xs:string" name="avatar"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

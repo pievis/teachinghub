@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<!--
+This is a simple error message common to all server.
+-->
+<xs:schema version="1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+<xs:element name="error" type="xs:string"/>
+</xs:schema>

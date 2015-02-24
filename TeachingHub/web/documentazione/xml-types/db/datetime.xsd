@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+Usato da altri documenti
+-->
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="datetime">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="xs:string" name="date"/>
+        <xs:element type="xs:time" name="time"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
