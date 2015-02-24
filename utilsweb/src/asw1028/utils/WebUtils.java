@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Methods in this class are meant to help the developer.
  */
 package asw1028.utils;
 
@@ -36,6 +34,8 @@ public class WebUtils {
     
     /**
      * Writes on the output stream the standard xml error message
+     * @param text error message
+     * @param out the stream where the message is sent
      **/
     public static void sendErrorMessage(String text, OutputStream out)
     {
@@ -44,7 +44,7 @@ public class WebUtils {
     
     /**
      * Writes on the output stream a simple xml in 
-     * the format of <rootTag>text</rootTag>
+     * the format of {@code <rootTag>text</rootTag> }
      * @param text
      * @param rootTag
      * @param out
@@ -66,7 +66,7 @@ public class WebUtils {
     
      /**
      * Writes on the output stream an xml specified with rootTag and elements 
-     * in the format of <rootTag><key1>value1</key1> ...</rootTag>
+     * in the format of {@code <rootTag><key1>value1</key1> ...</rootTag> }
      * @param elements a pair of key values where the key is the tag name and the
      * value is the tag content
      * @param rootTag
@@ -96,13 +96,14 @@ public class WebUtils {
      * @param path is an array of strings where each string is a node to visit
      * to get to the interested content.
      * Example:
+     * {@code
      * <root>
      *  <tag1>
      *   <tag2>
      *       content
      *   </tag2>
      *  </tag1>
-     * </root>
+     * </root> }
      * path = ["tag1","tag2"]
      * @return the content as string
      **/
@@ -126,7 +127,7 @@ public class WebUtils {
         return content;
     }
     
-        /**
+    /**
      * Get the content of the xml file and puts it on the outputstream
      * @param filePath
      * @param out
@@ -141,6 +142,12 @@ public class WebUtils {
         }
     }
     
+    /**
+     * Copies the input stream to the output
+     * @param input
+     * @param output
+     * @throws java.io.IOException
+     **/
     public static void copyStream(InputStream input, OutputStream output) throws IOException{
         byte[] buffer = new byte[1024]; // Adjust if you want
         int bytesRead;
@@ -150,6 +157,11 @@ public class WebUtils {
         }
     }
     
+    /**
+     * Validates the email address passed as input.
+     * @param email
+     * @return true if the email is valid
+     **/
     public static boolean isValidEmailAddress(String email) {
         String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
         java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
@@ -157,11 +169,23 @@ public class WebUtils {
         return m.matches();
     }
     
+    /**
+     * Returns a date string in the format of dd/MM/yyyy.
+     * Eg: 22/04/1991
+     * @param date
+     * @return date as String (dd/MM/yyyy)
+     **/
     public static String getDateStrFromDate(Date date){
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         return df.format(date);
     }
     
+    /**
+     * Returns a time string in the format of kk:mm:ss.
+     * Eg: 15:30:22
+     * @param date
+     * @return time of date as String (kk:mm:ss)
+     **/
     public static String getTimeStrFromDate(Date date){
         SimpleDateFormat df = new SimpleDateFormat("kk:mm:ss");
         return df.format(date);
@@ -172,13 +196,14 @@ public class WebUtils {
      * where the numbers are based on current creation time.
      * @param filename the name of the file you want to change
      * @param prefix the new prefix
-     * @return a new file name
+     * @return a new file name as string
      **/
     public static String newFileName(String filename, String prefix){
         String extension = filename.split("\\.")[1];
         String numbs = getTimeStrFromDate(new Date()).replace(":", "");
         return prefix + numbs + "." + extension;
     }
+    
     @Deprecated
     public static String getFileNameFromContentDisp(String contentDisposition){
 //        String cd = file.getHeader("content-disposition");
@@ -189,6 +214,15 @@ public class WebUtils {
         return filename;
     }
     
+    /**
+     * Uses JAXB to convert a POJO into an xml document.
+     * @param c classof obj
+     * @param obj object you want to marshall
+     * @return a Document that is structured as the input POJO obj
+     * @throws javax.xml.bind.PropertyException 
+     * @throws javax.xml.bind.JAXBException 
+     * @throws javax.xml.parsers.ParserConfigurationException 
+     */
     public static Document marshallObjInDocument(Class c, Object obj) throws PropertyException, JAXBException, ParserConfigurationException
     {
         // Create the Document
