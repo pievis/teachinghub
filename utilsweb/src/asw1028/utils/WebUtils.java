@@ -6,17 +6,16 @@
 package asw1028.utils;
 
 import asw1028.utils.xml.ManageXML;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
+import java.util.AbstractMap.SimpleEntry;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.util.Pair;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -73,13 +72,13 @@ public class WebUtils {
      * @param rootTag
      * @param out
      **/
-    public static void sendElementsMessage(String rootTag, List<Pair<String, String>> elements, OutputStream out)
+    public static void sendElementsMessage(String rootTag, List<SimpleEntry<String, String>> elements, OutputStream out)
     {
         try {
             ManageXML mXml = new ManageXML();
             //root elem is error
             Document doc = mXml.newDocument(rootTag);
-            for(Pair<String, String> e : elements){
+            for(SimpleEntry<String, String> e : elements){
                 Element elem = doc.createElement(e.getKey());
                 elem.appendChild(doc.createTextNode(e.getValue()));
                 doc.getDocumentElement().appendChild(elem);
