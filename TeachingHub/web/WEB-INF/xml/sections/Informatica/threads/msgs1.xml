@@ -13,4 +13,19 @@
         </lastupdate>
         <autor>Pievis</autor>
     </msg>
+    <msg>
+        <id>1</id>
+        <content>Knockout.js è una libreria javascript opensource, studiata per semplificare la realizzazione di interfacce utente complesse, che prevedono anche l'utilizzo di templates.
+Questa libreria consente di implementare, in maniera dichiarativa e con una sintassi minimale, tutto il processo di databinding client-side, tipico di diversi scenari web come ad esempio le Single Page Applications (SPA).
+
+Knockout.js prevede l'adozione di un Design Pattern molto familiare per gli sviluppatori WPF e Silverlight: Model-View-ViewModel. Questo è di fatto l'unico prerequisito significativo, in quanto l'utilizzo e l'integrazione di questa libreria è molto semplice ed a basso impatto, ma allo stesso tempo consente di risparmiare molto codice ripetitivo di infrastruttura, consentendoci di concentrarci sullo sviluppo di codice più importante riducendo gli errori.</content>
+        <lastupdate>
+            <autor>NyazProf</autor>
+            <datetime>
+                <time>12:52:07</time>
+                <date>25/02/2015</date>
+            </datetime>
+        </lastupdate>
+        <autor>NyazProf</autor>
+    </msg>
 </msgs>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<msgs>
+    <threadid>2</threadid>
+    <msg>
+        <id>0</id>
+        <content>Utilizziamo questa discussione per parlare di Java e tecnologie affini.</content>
+        <lastupdate>
+            <autor>test</autor>
+            <datetime>
+                <time>12:41:03</time>
+                <date>25/02/2015</date>
+            </datetime>
+        </lastupdate>
+        <autor>test</autor>
+    </msg>
+    <msg>
+        <id>1</id>
+        <content>potete scaricare java da:
+&lt;a href="https://java.com/it/download/"&gt; link downlaod &lt;/a&gt;</content>
+        <lastupdate>
+            <autor>NyazProf</autor>
+            <datetime>
+                <time>14:25:48</time>
+                <date>25/02/2015</date>
+            </datetime>
+        </lastupdate>
+        <autor>NyazProf</autor>
+    </msg>
+    <msg>
+        <id>2</id>
+        <content>Tutorial di oracle:
+http://docs.oracle.com/javase/tutorial/</content>
+        <lastupdate>
+            <autor>NyazProf</autor>
+            <datetime>
+                <time>14:32:22</time>
+                <date>25/02/2015</date>
+            </datetime>
+        </lastupdate>
+        <autor>NyazProf</autor>
+    </msg>
+    <msg>
+        <id>3</id>
+        <content>&lt;b&gt;Storia&lt;/b&gt;
+Java è stato creato a partire da ricerche effettuate alla Stanford University agli inizi degli anni Novanta. Nel 1992 nasce il linguaggio Oak (in italiano "quercia"), prodotto da Sun Microsystems e realizzato da un gruppo di esperti sviluppatori capitanati da James Gosling.[1] Tale nome fu successivamente cambiato in Java a causa di un problema di copyright (il linguaggio di programmazione Oak esisteva già).[2]
+
+Per facilitare il passaggio a Java ai programmatori old-fashioned, legati in particolare a linguaggi come il C++, la sintassi di base (strutture di controllo, operatori e così via) è stata mantenuta pressoché identica a quella del C++[3][4]; tuttavia, non sono state introdotte caratteristiche ritenute fonti di una complessità non necessaria a livello di linguaggio e che favoriscono l'introduzione di determinati bug durante la programmazione, come l'aritmetica dei puntatori, l'ereditarietà multipla delle classi, e l'istruzione goto.[5] Per le caratteristiche orientate agli oggetti del linguaggio ci si è ispirati al C++ e soprattutto all'Objective C.[6]
+
+In un primo momento Sun decise di destinare questo nuovo prodotto alla creazione di applicazioni complesse per piccoli dispositivi elettronici; fu solo nel 1993 con l'esplosione di internet che Java iniziò a farsi notare come strumento per iniziare a programmare per internet.
+
+Contemporaneamente Netscape Corporation annunciò la scelta di dotare il suo allora omonimo e celeberrimo browser della Java Virtual Machine (JVM). Questo segna una rivoluzione nel mondo di Internet: grazie alle applet, le pagine web diventarono interattive a livello client (ovvero le applicazioni vengono eseguite direttamente sulla macchina dell'utente di internet, e non su un server remoto). Gli utenti poterono per esempio utilizzare giochi direttamente sulle pagine web ed usufruire di chat dinamiche e interattive.
+
+Java fu annunciato ufficialmente il 23 maggio 1995 a SunWorld.
+
+Il 13 novembre 2006 la Sun Microsystems ha distribuito la sua implementazione del compilatore Java e della macchina virtuale (virtual machine) sotto licenza GPL. Non tutte le piattaforme java sono libere. L'ambiente Java libero si chiama IcedTea.[7]
+
+L'8 maggio 2007 Sun ha pubblicato anche le librerie (tranne alcune componenti non di sua proprietà) sotto licenza GPL, rendendo Java un linguaggio di programmazione la cui implementazione di riferimento è libera.[8]
+
+Il linguaggio è definito da un documento chiamato The Java Language Specification (spesso abbreviato JLS). La prima edizione del documento è stata pubblicata nel 1996.[9] Da allora il linguaggio ha subito numerose modifiche e integrazioni, aggiunte di volta in volta nelle edizioni successive. Ad oggi, la versione più recente delle specifiche è la Java SE 8 Edition (quarta).[9]
+
+
+-- fonte : wikipedia</content>
+        <lastupdate>
+            <autor>NyazProf</autor>
+            <datetime>
+                <time>14:36:22</time>
+                <date>25/02/2015</date>
+            </datetime>
+        </lastupdate>
+        <autor>NyazProf</autor>
+    </msg>
+    <msg>
+        <id>4</id>
+        <content>Spero queste informazioni siano utili :)</content>
+        <lastupdate>
+            <autor>NyazProf</autor>
+            <datetime>
+                <time>14:38:53</time>
+                <date>25/02/2015</date>
+            </datetime>
+        </lastupdate>
+        <autor>NyazProf</autor>
+    </msg>
+    <msg>
+        <id>5</id>
+        <content>Il lato server di questo sito è stato sviluppato utilizzando tecnologia Java: JSP, Servlet e Tomcat come web container.</content>
+        <lastupdate>
+            <autor>Pievis</autor>
+            <datetime>
+                <time>14:43:20</time>
+                <date>25/02/2015</date>
+            </datetime>
+        </lastupdate>
+        <autor>Pievis</autor>
+    </msg>
+</msgs>

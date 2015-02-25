@@ -19,6 +19,44 @@
             </datetime>
         </creationdate>
     </thread>
+    <thread>
+        <id>1</id>
+        <lastupdate>
+            <autor>test</autor>
+            <datetime>
+                <time>12:40:01</time>
+                <date>25/02/2015</date>
+            </datetime>
+        </lastupdate>
+        <title>Appunti di chimica</title>
+        <autor>test</autor>
+        <description>richiesta appunti</description>
+        <creationdate>
+            <datetime>
+                <time>12:40:01</time>
+                <date>25/02/2015</date>
+            </datetime>
+        </creationdate>
+    </thread>
+    <thread>
+        <id>2</id>
+        <lastupdate>
+            <autor>Prof0</autor>
+            <datetime>
+                <time>14:54:26</time>
+                <date>25/02/2015</date>
+            </datetime>
+        </lastupdate>
+        <title>10 fantastici esperimenti di scienze</title>
+        <autor>Prof0</autor>
+        <description>riuscite a dare una spiegazione per ogni esperimento? :)</description>
+        <creationdate>
+            <datetime>
+                <time>14:54:26</time>
+                <date>25/02/2015</date>
+            </datetime>
+        </creationdate>
+    </thread>
     <section>
         Scienze
     </section>

@@ -1,12 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <students>
     <student>
         <id>Nyaz</id>
         <email>lorenzo.rocca@gmail.com</email>
         <lastname>Rocca</lastname>
-        <classe>5O</classe>
         <firstname>Lorenzo</firstname>
         <avatar>avatar0.png</avatar>
         <password>pippo</password>
+        <classe>5O</classe>
         <hobby>
             Magic, Lettura
         </hobby>
@@ -15,12 +16,22 @@
         <id>Pievis</id>
         <email>p.m@gmail.com</email>
         <lastname>M</lastname>
-        <classe>5A</classe>
         <firstname>Lorenzo</firstname>
         <avatar>gearavatar.png</avatar>
         <password>123456</password>
+        <classe>5A</classe>
         <hobby>
             VideoGamez
         </hobby>
+    </student>
+    <student>
+        <id>test</id>
+        <email>test@test.it</email>
+        <lastname>test</lastname>
+        <firstname>test</firstname>
+        <avatar>test122426.png</avatar>
+        <password>asdasd</password>
+        <classe>1A</classe>
+        <hobby>testare</hobby>
     </student>
 </students>

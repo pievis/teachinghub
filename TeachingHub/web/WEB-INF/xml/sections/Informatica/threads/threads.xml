@@ -38,6 +38,44 @@
             </datetime>
         </creationdate>
     </thread>
+    <thread>
+        <id>2</id>
+        <lastupdate>
+            <autor>test</autor>
+            <datetime>
+                <time>12:41:03</time>
+                <date>25/02/2015</date>
+            </datetime>
+        </lastupdate>
+        <title>Java</title>
+        <autor>test</autor>
+        <description>parliamo qui di java</description>
+        <creationdate>
+            <datetime>
+                <time>12:41:03</time>
+                <date>25/02/2015</date>
+            </datetime>
+        </creationdate>
+    </thread>
+    <thread>
+        <id>3</id>
+        <lastupdate>
+            <autor>Pievis</autor>
+            <datetime>
+                <time>14:46:13</time>
+                <date>25/02/2015</date>
+            </datetime>
+        </lastupdate>
+        <title>Linguaggio di programmazione preferito?</title>
+        <autor>Pievis</autor>
+        <description>Qual'è il vosto linguaggio di programmazione preferito?</description>
+        <creationdate>
+            <datetime>
+                <time>14:46:13</time>
+                <date>25/02/2015</date>
+            </datetime>
+        </creationdate>
+    </thread>
     <section>
         Informatica
     </section>

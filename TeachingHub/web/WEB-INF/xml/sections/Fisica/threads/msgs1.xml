@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<msgs>
+    <threadid>1</threadid>
+    <msg>
+        <id>0</id>
+        <content>cosa si intente per moto rotatorio? riscireste a spiegarmi a parole?</content>
+        <lastupdate>
+            <autor>test</autor>
+            <datetime>
+                <time>12:42:14</time>
+                <date>25/02/2015</date>
+            </datetime>
+        </lastupdate>
+        <autor>test</autor>
+    </msg>
+    <msg>
+        <id>1</id>
+        <content>Per moto rotatorio si intende quel moto durante il quale tutti i punti del corpo si muovono descrivendo una circonferenza attorno ad un asse di rotazione di distanza r.</content>
+        <lastupdate>
+            <autor>NyazProf</autor>
+            <datetime>
+                <time>12:43:00</time>
+                <date>25/02/2015</date>
+            </datetime>
+        </lastupdate>
+        <autor>NyazProf</autor>
+    </msg>
+</msgs>

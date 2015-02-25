@@ -19,6 +19,25 @@
             </datetime>
         </creationdate>
     </thread>
+    <thread>
+        <id>1</id>
+        <lastupdate>
+            <autor>test</autor>
+            <datetime>
+                <time>12:42:14</time>
+                <date>25/02/2015</date>
+            </datetime>
+        </lastupdate>
+        <title>moto rotatorio</title>
+        <autor>test</autor>
+        <description>aiuto</description>
+        <creationdate>
+            <datetime>
+                <time>12:42:14</time>
+                <date>25/02/2015</date>
+            </datetime>
+        </creationdate>
+    </thread>
     <section>
         Fisica
     </section>

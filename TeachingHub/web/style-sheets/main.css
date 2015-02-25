@@ -400,8 +400,11 @@ header img.resize {
     box-sizing: border-box; 
     max-width: 500px;
     min-height: 128px;
+    padding-top: 10px;
+    margin-top: 5px;
     padding: 5px;
     border: none;
+    border: #006600 ridge thin;
 }
 
 .messageform .btn{
@@ -410,7 +413,12 @@ header img.resize {
     /*clear: both;*/
 }
 
+
 ///HEader
+
+header a{
+    color: whitesmoke;
+}
 
 /* unvisited link */
 header a:link {
@@ -419,7 +427,7 @@ header a:link {
 
 /* visited link */
 header a:visited {
-    color: snow;
+    color: #ffffff;
 }
 
 /* mouse over link */
@@ -428,7 +436,7 @@ header a:hover {
 }
 
 /* selected link */
-a:active {
+footer a:active {
     color: #ccffcc;
 }
 

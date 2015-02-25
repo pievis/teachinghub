@@ -33,6 +33,7 @@ function getXmlHttpRequest(){
                 //Torna alla pagina precedent
                 window.onpopstate = function(event) {    
                     if(event && event.state) {
+//                        console.log("EVENTO RELOAD");
                         location.reload();
                     }
                 };

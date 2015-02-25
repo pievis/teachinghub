@@ -1,3 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <pages>
+    <page>
+        <id>0</id>
+        <title>Risorse per il web</title>
+        <autor>NyazProf</autor>
+        <description>alcuni link utili come risorse per la programmazione web</description>
+        <msg>Siti Web:
+&lt;a href="http://www.w3schools.com/" &gt;W3Schools&lt;/a&gt;
 
+Documentazione:
+&lt;a href="http://api.jquery.com/" &gt;JQuery documentation&lt;/a&gt;
+&lt;a href="http://knockoutjs.com/documentation/introduction.html"&gt;Knockout.js documentation&lt;/a&gt;
+</msg>
+    </page>
+    <page>
+        <id>1</id>
+        <title>Pattern Model View Controller</title>
+        <autor>NyazProf</autor>
+        <description>Model View Controller</description>
+        <datafiles>
+            <datafile>
+                <name>MVC-Process.png</name>
+                <url>NyazProf1125056.png</url>
+            </datafile>
+        </datafiles>
+        <msg>Il Model-View-Controller (MVC, talvolta tradotto in italiano Modello-Vista-Controllo), in informatica, è un pattern architetturale molto diffuso nello sviluppo di sistemi software, in particolare nell'ambito della programmazione orientata agli oggetti, in grado di separare la logica di presentazione dei dati dalla logica di business.[1]
+
+Questo pattern si posiziona nel livello di presentazione in una Architettura multi-tier.
+
+[immagine in allegato]
+
+&lt;b&gt; Utilizzo &lt;/b&gt;
+Storicamente il pattern MVC è stato implementato lato server. Recentemente, con lo sviluppo e la parziale standardizzazione di JavaScript sono nate le prime implementazioni lato client.[2]
+
+Lato server[modifica | modifica wikitesto]
+Originariamente impiegato dal linguaggio Smalltalk, il pattern è stato esplicitamente o implicitamente sposato da numerose tecnologie moderne, come framework basati su PHP (Symfony, Laravel, Zend Framework CakePHP, Yii framework, CodeIgniter), su Ruby (Ruby on Rails), su Python (Django, TurboGears, Pylons, Web2py, Zope), su Java (Swing, JSF e Struts), su Objective C o su .NET.
+
+A causa della crescente diffusione di tecnologie basate su MVC nel contesto di framework o piattaforma middleware per applicazioni Web, l'espressione framework MVC o sistema MVC sta entrando nell'uso anche per indicare specificamente questa categoria di sistemi (che comprende per esempio Ruby on Rails, Struts, Spring, Tapestry e Catalyst).
+
+Lato client[modifica | modifica wikitesto]
+Recentemente è aumentata la richiesta di Rich Internet application che facciano chiamate asincrone al server (AJAX), senza fare redirect per visualizzare i risultati delle elaborazioni. Col crescere del codice JavaScript che veniva eseguito sul client, si è sentita l'esigenza di creare i primi framework che implementino MVC in puro JavaScript. Uno dei primi è stato Backbone.js, seguito da una serie interminabile di altri framework, tra cui JavascriptMVC ed AngularJS.</msg>
+    </page>
 </pages>

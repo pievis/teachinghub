@@ -67,7 +67,7 @@
                     <div class="container">
                         <form class="messageform" onsubmit="getXmlHttpRequest('newMsg'); return false;">
                             Contenuto Messaggio: <br>
-                            <textarea data-bind="value: newMsgContent" name="message"></textarea>
+                            <textarea id="txtarea" data-bind="value: newMsgContent" name="message"></textarea>
                             <!--<p>Allegato: <input type="file" name="datafile" size="40">-->
                             </p>
                             <input class="btn" type="submit" value="Invia">    

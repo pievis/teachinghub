@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<msgs>
+    <threadid>3</threadid>
+    <msg>
+        <id>0</id>
+        <content>Qual'è il vosto linguaggio di programmazione preferito in termini di espressività, uso e performance?</content>
+        <lastupdate>
+            <autor>Pievis</autor>
+            <datetime>
+                <time>14:46:13</time>
+                <date>25/02/2015</date>
+            </datetime>
+        </lastupdate>
+        <autor>Pievis</autor>
+    </msg>
+    <msg>
+        <id>1</id>
+        <content>E' difficile decidere ad un linguaggio preferito :D
+L'importante è che questi sia adatto al problema che si vuole risolvere :)</content>
+        <lastupdate>
+            <autor>Prof0</autor>
+            <datetime>
+                <time>15:01:15</time>
+                <date>25/02/2015</date>
+            </datetime>
+        </lastupdate>
+        <autor>Prof0</autor>
+    </msg>
+</msgs>

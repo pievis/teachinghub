@@ -1,36 +1,36 @@
-<?xml version="1.0"?>
-<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:include schemaLocation="datetime.xsd"/>  
-  <xs:element name="threads">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element name="thread">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element type="xs:string" name="id"/>
-              <xs:element name="lastupdate">
-                <xs:complexType>
-                  <xs:sequence>
-                    <xs:element type="xs:string" name="autor"/>
-                    <xs:element ref="datetime"/>
-                  </xs:sequence>
-                </xs:complexType>
-              </xs:element>
-              <xs:element type="xs:string" name="title"/>
-              <xs:element type="xs:string" name="autor"/>
-              <xs:element type="xs:string" name="description"/>
-              <xs:element name="creationdate">
-                <xs:complexType>
-                  <xs:sequence>
-                    <xs:element ref="datetime"/>
-                  </xs:sequence>
-                </xs:complexType>
-              </xs:element>
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element type="xs:string" name="section"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-</xs:schema>
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:include schemaLocation="datetime.xsd"/>
+       <xs:element name="threads">
+              <xs:complexType>
+                     <xs:sequence>
+                            <xs:element name="thread" maxOccurs="unbounded">
+                                   <xs:complexType>
+                                          <xs:sequence>
+                                                 <xs:element name="id" type="xs:string"></xs:element>
+                                                 <xs:element name="lastupdate">
+                                                        <xs:complexType>
+                                                               <xs:sequence>
+                                                                      <xs:element name="autor" type="xs:string"></xs:element>
+                                                                      <xs:element ref="datetime"/>
+                                                                  </xs:sequence>
+                                                           </xs:complexType>
+                                                    </xs:element>
+                                                 <xs:element name="title" type="xs:string"></xs:element>
+                                                 <xs:element name="autor" type="xs:string"></xs:element>
+                                                 <xs:element name="description"></xs:element>
+                                                 <xs:element name="creationdate">
+                                                        <xs:complexType>
+                                                               <xs:sequence>
+                                                                      <xs:element ref="datetime"/>
+                                                                  </xs:sequence>
+                                                           </xs:complexType>
+                                                    </xs:element>
+                                             </xs:sequence>
+                                      </xs:complexType>
+                               </xs:element>
+                            <xs:element name="section" type="xs:string"></xs:element>
+                        </xs:sequence>
+                 </xs:complexType>
+          </xs:element>
+   </xs:schema>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<msgs>
+    <threadid>1</threadid>
+    <msg>
+        <id>0</id>
+        <content>qualcuno avrbbe degli appunti di chimica da prestarmi?</content>
+        <lastupdate>
+            <autor>test</autor>
+            <datetime>
+                <time>12:40:01</time>
+                <date>25/02/2015</date>
+            </datetime>
+        </lastupdate>
+        <autor>test</autor>
+    </msg>
+</msgs>

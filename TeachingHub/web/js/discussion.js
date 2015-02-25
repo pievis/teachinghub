@@ -170,8 +170,16 @@ function getXmlHttpRequest() {
             }
             var successTags = xmlDoc.getElementsByTagName("success");
             if(successTags.length > 0){
-                //ricarica la pagina
-                updateErrorBox("Messaggio inviato!!!");
+                //Messaggio di success
+                updateErrorBox("Messaggio inviato!");
+                //Resetta la textarea
+//                console.log($(".messagebox textarea"));
+                $("textarea#txtarea").val("");
+                $("textarea#txtarea").text("");
+                //Nascondi l'ErrorBox dopo qualche secondo
+                setTimeout(function() {
+                        ViewModelDisc.showErrorMsg(0);
+                    } ,5000);
             }
         }
     };
