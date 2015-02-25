@@ -17,6 +17,10 @@
         <servlet-class>asw1028.access.NewDiscussion</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>NewMsgAsync</servlet-name>
+        <servlet-class>asw1028.access.NewMsgAsync</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>UploadFile</servlet-name>
         <servlet-class>asw1028.access.UploadFile</servlet-class>
     </servlet>
@@ -71,5 +75,9 @@
     <servlet-mapping>
         <servlet-name>ContactTeachers</servlet-name>
         <url-pattern>/ContactTeachers</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewMsgAsync</servlet-name>
+        <url-pattern>/NewMessage</url-pattern>
     </servlet-mapping>
 </web-app>
