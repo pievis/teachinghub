@@ -30,6 +30,7 @@ import org.w3c.dom.Element;
 
 /**
  * This servlet returns a list of discussions of the specified section.
+ * In addition, provides a method to get further information regardin a given discussion (e.g. Title and Description)
  * @author Pierluigi
  */
 public class ManageDiscussions extends HttpServlet {

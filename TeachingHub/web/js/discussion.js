@@ -1,8 +1,8 @@
-//    XXX private String id;
-//    private String content;
-//    private Lastupdate lastupdate;
-//    private String autor;
-//    private Datafiles datafiles;
+// Script for manage messages of the current discussion
+// After the page has been loaded, an AJAX request is sent to the servlet
+//  The client recive a response containing all of the messages stored in the db and load them into the page
+// Furthermore, a long polling system starts to open e connection toward the server.
+//  Client can receive message (in the form of XML) containing a new message sent by another client
 
 // global (private) variable
 var clientid = ""; //client's pseudo id

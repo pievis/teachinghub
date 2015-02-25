@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ * This servlet load the sections stored in the database and send them to the client
  * @author Pievis
  */
 public class GetSections extends HttpServlet {
