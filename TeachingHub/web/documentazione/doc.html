@@ -1,1213 +1,1239 @@
-<html>
-  <head>
-    <meta name="generator"
-    content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39" />
-    <title>Documentazione Teaching Hub</title>
-    <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
-    <link rel="stylesheet" type="text/css" href="../style-sheets/doc.css">
-  </head>
-  <body class="c22">
-    <p class="c2 c13 title">
-      <a name="h.o18qhv2g3ghc"></a>
-      <span class="c0">Teaching Hub</span>
-    </p>
-    <p class="c2">
-      <span class="c0">Progetto per il corso di Applicazioni e Servizi Web, a.a. 2014-2015</span>
-    </p>
-    <h1 class="c2 c13">
-      <a name="h.hv7ofqvhlgkh"></a>
-      <span class="c21 c0">Autori</span>
-    </h1>
-    <p class="c2">
-      <span class="c0">Studente (Capogruppo): Lorenzo Rocca</span>
-    </p>
-    <p class="c2">
-      <span class="c0">Matricola: 0000711919</span>
-    </p>
-    <p class="c2">
-    <span class="c0">Email Istituzionale:</span> 
-    <span class="c12 c0">
-      <a class="c4" href="mailto:lorenzo.rocca@studio.unibo.it">lorenzo.rocca@studio.unibo.it</a>
-    </span></p>
-    <p class="c2 c7"></p>
-    <p class="c2">
-      <span class="c0">Studente: Pierluigi Montagna</span>
-    </p>
-    <p class="c2">
-      <span class="c0">Matricola: 0000713248</span>
-    </p>
-    <p class="c2">
-    <span class="c0">Email istituzionale:</span> 
-    <span class="c12 c0">
-      <a class="c4" href="mailto:pierluigi.montagna@studio.unibo.it">pierluigi.montagna@studio.unibo.it</a>
-    </span>
-    <span class="c0"></span></p>
-    <h1 class="c2 c13">
-      <a name="h.16cjysjlb3tx"></a>
-      <span class="c21 c0">Descrizione del servizio offerto dal sito</span>
-    </h1>
-    <p class="c2 c14">
-      <span class="c0">Il sito teachingHub offre un servizio di supporto alla didattica per studenti e docenti di scuole e
-      universit஼/span>
-    </p>
-    <p class="c2 c14 c7"></p>
-    <p class="c2 c14">
-      <span class="c0">Per utilizzare il servizio, gli studenti devono iscriversi attraverso una form di registrazione o accedere
-      attraverso un login. Saranno disponibili le sezioni per diverse materie in cui sarࠠpossibile porre delle domande a gli
-      altri partecipanti. Studenti e docenti possono contribuire alle discussioni rispondendo alle domande con dei post.</span>
-    </p>
-    <p class="c2 c7 c14"></p>
-    <p class="c2 c14">
-      <span class="c0">I docenti possono inoltre creare delle pagine, utili per gli studenti, in cui sono stati caricati degli
-      appunti.</span>
-    </p>
-    <p class="c2 c14 c7"></p>
-    <p class="c2 c14">
-      <span class="c0">Contrariamente agli studenti, i docenti non hanno una form di registrazione, poich顧estiti dagi
-      amministratori del sistema, ma utilizzano la stessa form di login.</span>
-    </p>
-    <p class="c2 c14 c7"></p>
-    <p class="c2 c14">
-      <span class="c0">Obiettivo non funzionale del progetto 衩noltre quello di fornire un servizio immediato e responsivo. Questo
-      verrࠠrealizzato attraverso l&#39;utilizzo di una RIA per l&#39;invio delle risposte alle domande, in particolare sfruttando
-      la tecnologia AJAX.</span>
-    </p>
-    <h1 class="c2 c13">
-      <a name="h.r8fyytfd83y5"></a>
-      <span class="c21 c0">Utilizzo del sito</span>
-    </h1>
-    <p class="c2">
-      <span class="c0">Lutilizzo del sito pu򠶡riare in base alla categoria di utente. Sebbene sia possibile navigare il sito
-      senza essere registrati, le funzionalitࡤescritte nel seguito sono disponibili per le relativi classi di utente. Un nuovo
-      utente pu򠲥gistrarsi o effettuare il login sia come studente, sia come docente.</span>
-    </p>
-    <p class="c2 c7"></p>
-    <p class="c2">
-      <span class="c6 c0">Studente (Student)</span>
-    </p>
-    <p class="c2">
-      <span class="c0">Gli studenti sono i principali utilizzatori del sito. Possono accedere alle sezioni (matematica, scienze,
-      informatica, etc) e qui crearvi delle discussioni. Una discussione consiste in una serie di messaggi comprendenti il nickname
-      dellautore, lavatar, la data di creazione e il contenuto. Ogni studente pu򠲩spondere alle discussioni inserendo un testo
-      in fondo alla pagina di discussione. Gli studenti possono accedere al proprio profilo per modificare i campi di
-      interesse.</span>
-    </p>
-    <p class="c2 c7"></p>
-    <p class="c2">
-      <span class="c6 c0">Docente (Teacher)</span>
-    </p>
-    <p class="c2">
-      <span class="c0">I docenti assistono gli studenti partecipanti al sito. Un docente ha tutte le funzionalitࡤi uno studente:
-      pu򠤵nque accedere al proprio profilo per modificarlo e pu򠲩spondere alle discussioni seguendo lo stesso format. In pi񬍊      un docente pu򠰵bblicare del materiale. La pubblicazione avviene allinterno di una sezione e comprende sia un testo scritto
-      che viene visualizzato immediatamente allinterno della pagina creata, sia uno o pi񠤯cumenti caricati dal computer
-      locale.</span>
-    </p>
-    <p class="c2 c7"></p>
-    <p class="c2">
-      <span class="c6 c0">Amministratore</span>
-    </p>
-    <p class="c2">
-      <span class="c0">Lamministrazione del sito non avviene attraverso un web service: lamministratore dovrࡧestire manualmente
-      alcuni aspetti utili alla gestione del portale, quali la convalida dei nuovi docenti iscritti, la creazione di nuove sezioni,
-      la cancellazione e la modifica di discussioni, utenti e messaggi.</span>
-    </p>
-    <h1 class="c2 c13">
-      <a name="h.qz7ddp9dfwig"></a>
-      <span class="c0 c21">Realizzazione del sito</span>
-    </h1>
-    <h2 class="c2 c13">
-      <a name="h.nzogzozd4rdm"></a>
-      <span class="c0">Organizzazione del sito</span>
-    </h2>
-    <h3 class="c2 c13">
-      <a name="h.d0iz9cknf36n"></a>
-      <span class="c0">Descrizione sommaria</span>
-    </h3>
-    <p class="c2">
-    <span class="c0">La</span> 
-    <span class="c1 c0">computazione lato client</span>
-    <span class="c0">consiste in diverse pagine html complete di Javascript per la realizzazione di Rich Internet Application:
-    ognuna di queste pagine include anche il codice per richiedere servizi aggiuntivi al server ed elaborare le risposte
-    ottenute.</span></p>
-    <p class="c2 c7"></p>
-    <p class="c2">
-    <span class="c0">La</span> 
-    <span class="c1 c0">computazione lato server</span>
-    <span class="c0">comprende delle servlet per la realizzazione di differenti servizi e delle pagine JSP per la creazione di
-    contenuto HTML in modo dinamico. Inoltre viene realizzata una servlet per realizzare un servizio di</span> 
-    <span class="c0">Comet</span> 
-    <span class="c0">attraverso BOSH (Bi-directional-streams Over Synchronous Http).</span></p>
-    <p class="c2 c7"></p>
-    <p class="c2">
-    <span class="c0">Le</span> 
-    <span class="c1 c0">informazioni</span>
-    <span class="c0">sono memorizzate sul server sotto forma di documenti XML: studenti e docenti hanno un proprio file su cui
-    sono memorizzati i campi per caratterizzarli (nome, cognome, email, etc.), inoltre sarࡰresente un file dove memorizzare gli
-    insegnanti in attesa di convalida. Infine anche le sezioni, le discussioni, le pagine create dai docenti e i messaggi inviati
-    sono salvati su database XML.</span></p>
-    <p class="c2">
-      <span class="c0">Documenti XML sono anche scambiati tra il client e il server quando vengono effettuate delle richieste AJAX;
-      questa tecnica 衩nfatti utilizzata per la maggior parte delle pagine del portale. Inoltre la realizzazione delle notifiche
-      ha richiesto linvio di documenti xml, strutturati secondo una struttura ben definita e riportata nelle sezioni
-      successive.</span>
-    </p>
-    <p class="c2 c7"></p>
-    <h3 class="c2 c13">
-      <a name="h.udd8phrlds3h"></a>
-      <span class="c0">Computazione lato client</span>
-    </h3>
-    <p class="c2">
-      <span class="c0">Il portale 衳tato realizzato implementando molteplici RIA attraverso JavaScript, utilizzando inoltre AJAX e
-      messaggi XML scambiati con le servlet. Si hanno dunque molteplici pagine, il cui denominatore comune 衰er򠬙adesione al
-      pattern Model View View-Model (MVVM).</span>
-    </p>
-    <p class="c2 c7"></p>
-    <h4 class="c2 c13">
-      <a name="h.ani857nf12bk"></a>
-      <span>Model View View-Model (MVVM)</span>
-    </h4>
-    <p class="c2">
-      <span class="c0">Il MVVM 衵n pattern architetturale che prevede la separazione degli aspetti in tre componenti:</span>
-    </p>
-    <ul class="c10 lst-kix_fmjff96thq06-0 start">
-      <li class="c2 c11">
-        <span class="c0">Model: rappresenta il punto di accesso ai dati.</span>
-      </li>
-      <li class="c2 c11">
-        <span class="c0">View: rappresenta linterfaccia grafica dellapplicazione. Questo componente si limita a graficare quanto
-        esposto dal ViewModel, a riflettere in esso i cambi di stato e ad attivarne dei comportamenti.</span>
-      </li>
-      <li class="c2 c11">
-        <span class="c0">ViewModel: contiene la business logic, qui 衤ove i dati sono elaborati per essere passati alla view o al
-        model.</span>
-      </li>
-    </ul>
-    <p class="c2 c7"></p>
-    <p class="c9">
-      <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 527.50px; height: 395.63px;">
-
-        <img alt="MVVM.jpg" src="images/image02.jpg"
-        style="width: 527.50px; height: 395.63px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);"
-        title="" />
-      </span>
-    </p>
-    <p class="c9">
-      <span class="c0">Figura 1 - Architettura MVVM per il progetto Teaching Hub</span>
-    </p>
-    <p class="c2 c7"></p>
-    <p class="c2">
-    <span class="c0">Da Figura 1 notiamo le molteplici pagine che ricoprono il ruolo di</span> 
-    <span class="c6 c0">View</span>
-    <span class="c0">, intendendo non le Java Servlet Page indicate, poich衱ueste risiedono sul server e non fanno parte del lato
-    client, ma piuttosto il codice HTML prodotto ed inviato al browser.</span></p>
-    <p class="c2">
-      <span class="c0">Le pagine create dalle JSP sono correlate anche del codice javascript per realizzare il pattern MVVM, in
-      particolare per implementare il componente di ViewModel.</span>
-    </p>
-    <h4 class="c2 c13">
-      <a name="h.pk02vnbqf9v"></a>
-      <span>ViewModel</span>
-    </h4>
-    <p class="c2">
-    <span class="c0">Il componente</span> 
-    <span class="c6 c0">ViewModel</span>
-    <span class="c0">inserito sul client mantiene nel proprio stato le informazioni recuperate dal model e lo stato attuale della
-    view, cos졤a poter aggiornare dinamicamente luno o laltro a fronte di modifiche ai dati. Lutente interagisce con la View,
-    la cui variazione di stato viene passata al ViewModel che esegue delle operazioni di business logic ed infine contatta il model
-    per aggiornare i dati memorizzati. Si noti che le modifiche apportate nel ViewModel hanno effetto sia nel model sia nella
-    view.</span></p>
-    <p class="c2 c7"></p>
-    <p class="c2">
-    <span class="c0">Il pattern fa evidentemente uso del</span> 
-    <span class="c6 c0">data binding implicito</span>
-    <span class="c0">, che dovrࡥssere implementato allinterno del nostro progetto per far si che ogni modifica alla UI si
-    rifletta su quanto memorizzato allinterno del ViewModel. Questa funzionalitࡨ disponibile attraverso</span> 
-    <span class="c6 c0">Knockout</span>
-    <span class="c0">: si tratta di una libreria open source per JavaScript basata sul binding dichiarativo, che permette di
-    associare oggetti javascript ad elementi del DOM direttamente allinterno dellHTML. Inoltre la libreria 衩n grado di
-    riconoscere le dipendenze implicite tra oggetti Javascript per effettuare aggiornamenti in cascata dellinterfaccia utente.
-    Knockout fornisce quindi tutte le funzionalit࡮ecessarie per realizzare il binding dichiarativo.</span></p>
-    <p class="c2 c7"></p>
-    <p class="c2">
-    <span class="c0">La libreria 衩l</span> 
-    <span class="c1 c0">fattore abilitante</span>
-    <span class="c0">per la realizzazione del pattern MVVM. Essa infatti, oltre a sollevare gli sviluppatori dalla realizzazione
-    del codice per la sincronizzazione, garantisce una maggiore</span> 
-    <span class="c1 c0">separation of concern</span>
-    <span class="c0">. La separazione deriva dalla possibilitࡤi realizzare codice javascript che contiene unicamente la logica di
-    controllo della RIA, senza dover includere codice superfluo che mantiene aggiornata la View e il ViewModel. Inoltre questa
-    libreria garantisce di non dover apportare modifiche ai fogli di stile dal codice Javascript, poich衳arࡋnockout stesso a
-    cambiare la View a fronte di aggiornamenti del ViewModel (che possono provenire sia dal Model che dalla View).</span></p>
-    <p class="c2 c7"></p>
-    <p class="c2">
-      <span class="c0">Il seguente codice presenta la struttura ViewModel per il file page.js e pu򠥳sere preso come modello anche
-      per le altre pagine.</span>
-    </p>
-    <p class="c2 c18">
-    <span class="c5">var viewModel</span> 
-    <span class="c5 c27">=</span>
-    <span class="c5">{
-    <br /> datafiles: ko.observableArray(),
-    <br /> newMsgContent : ko.observable(),
-    <br /> errorMsg : ko.observable(</span>
-    <span class="c5 c25">&quot;&quot;</span>
-    <span class="c5">),
-    <br /> </span>
-    <span class="c5 c29">//Invisible at the beginning</span>
-    <span class="c5">
-    <br /> showErrorMsg : ko.observable(</span>
-    <span class="c5 c1 c23">false</span>
-    <span class="c5">),
-    <br /> discTitleText: ko.observable(</span>
-    <span class="c5 c25">&quot;Titolo&quot;</span>
-    <span class="c5">),
-    <br /> discDescriptionText: ko.observable(</span>
-    <span class="c5 c25">&quot;Descrizione&quot;</span>
-    <span class="c5">),
-    <br /> sectionUrl : ko.observable(),
-    <br /> sectionTxt : ko.observable(),
-    <br /> autor : ko.observable(),
-    <br /> content: ko.observable(),
-    <br /> autorProfileUrl: ko.observable(),
-    <br /> autorName: ko.observable()
-    <br />};
-    <br />
-    <br />ko.applyBindings(viewModel);</span></p>
-    <p class="c2 c7"></p>
-    <p class="c2">
-      <span class="c0">Sebbene la struttura del ViewModel sia simile per molte delle pagine realizzate, le funzionalitࡡggiuntive
-      di cui dispongono variano con il loro scopo. Nel seguito sono riportate le funzionalitࡣhe i javascript realizzano:</span>
-    </p>
-    <ul class="c10 lst-kix_3ikie38566f9-0 start">
-      <li class="c2 c11">
-      <span class="c0 c6">login.js</span>
-      <span class="c0">: lo script che si occupa di gestire il form di login e i messaggi di successo o errore inviati dal server.
-      Contatta la servlet</span> 
-      <span class="c1 c0">Login</span>
-      <span class="c0">.</span></li>
-      <li class="c2 c11">
-      <span class="c6 c0">registration.js</span>
-      <span class="c0">: lo script si occupa di gestire la validazione del form di registrazione. Lutilizzo del ViewModel permette
-      una maggiore responsivitࡤel servizio: se alcuni campi del form di registrazione non sono validi (come password o username
-      troppo corti, conferma password non corretta, etc.), vengono fornite informazioni utili allutente senza dover interpellare
-      il server. La servlet contattata da questi script 輯span> 
-      <span class="c1 c0">Registration</span>
-      <span class="c0">.</span></li>
-      <li class="c2 c11">
-      <span class="c6 c0">checkprofile.js</span>
-      <span class="c0">: lo script gestisce le informazioni del profilo, fornendo la possibilitࡤi modificarne i campi. Una volta
-      che il server ha dato la conferma di riuscita modifica, il ViewModel aggiorna dinamicamente la pagina, senza dover ricaricare
-      alcun elemento. La servlet contatta 輯span> 
-      <span class="c1 c0">Profile</span>
-      <span class="c0">.</span></li>
-      <li class="c2 c11">
-        <span class="c6 c0">managesection.js</span>
-        <span class="c0">: questo script richiede lestrazione delle discussioni dal database presente sul server attraverso una
-        chiamata al web service /</span>
-        <span class="c1 c0">GetSections</span>
-        <span class="c0">. Lo script 衵tilizzato allinterno di index.jsp e utilizza knockout per lupdate della view tramite la
-        modifica dellapposito viewmodel.</span>
-      </li>
-      <li class="c2 c11">
-      <span class="c6 c0">managethread.js</span>
-      <span class="c0">: si occupa della richiesta e visualizzazione di discussioni e pagine allinterno di section.jsp. Per
-      identificare la sezione per la quale si vogliono ottenere le discussioni utilizza una funzione</span> 
-      <span class="c1 c0">getParameterByName()</span> 
-      <span class="c0">con la quale ottiene il valore di sectionid presente nei parametri dellURL, quindi effettua una richiesta
-      post al servizio web</span> 
-      <span class="c1 c0">ManageDiscussion</span> 
-      <span class="c0">e</span> 
-      <span class="c0 c1">GetPage</span>
-      <span class="c0">per ottenere le informazioni desiderate. Lo script si avvale del ViewModel per fornire una pronta risposta
-      alla visualizzazione; inoltre lutilizzo di knockout permette di implementare e utilizzare in modo immediato dei metodi di
-      ordinamento sulle discussioni per facilitarne allutente la ricerca e la gestione.</span></li>
-      <li class="c2 c11">
-      <span class="c6 c0">discussion.js</span>
-      <span class="c0">: 衬o script che si occupa di gestire i messaggi per la discussione attualmente visualizzata. Al suo
-      interno presenta un modello del messaggio che viene utilizzato dal ViewModel. Dopo che la pagina 衳tata caricata viene
-      inviata una richiesta AJAX alla servlet</span> 
-      <span class="c1 c0">NewMessage</span>
-      <span class="c0">(implementata nel file NewAsyncMsg.java) per ottenere tutti i messaggi memorizzati nel database, quindi
-      invia una richiesta di dati anche alla servlet ManageDiscussion per ottenere il titolo e la descrizione della discussione.
-      Inoltre vengono periodicamente inviate delle richieste AJAX per realizzare un servizio di comet: il client invia una
-      richiesta, reiterata tutte le volte che riceve un messaggio di timeout o la ricezione di uno o pi񠭥ssaggi. Infine il client
-      contatta anche la servlet Profile per ottenere lurl degli avatar dei diversi utenti coinvolti nella discussione. Ulteriore
-      funzionalitࡣhe viene fornita dallo script 衱uella dellordinamento dei messaggi in ordine cronologico.</span></li>
-      <li class="c2 c11">
-      <span class="c6 c0">page.js</span>
-      <span class="c0">: 衬o script che gestisce la visualizzazione delle pagine scritte dal docente. Contatta la servlet</span> 
-      <span class="c1 c0">Page</span>
-      <span class="c0">.</span></li>
-      <li class="c2 c11">
-      <span class="c6 c0">managenewmsg.js</span>
-      <span class="c0">: lo script viene utilizzato per linvio dei dati per una nuova discussione o pagina, ed 衵tilizzato sia da
-      new_question.jsp che da new_page.jsp, data la stretta similitudine. Presenta funzionalitࡤi convalida analoghe a quelle di
-      registration, pertanto le ragioni per implementare questa pagina attraverso il ViewModel sono le stesse. Questo script
-      contatta sia</span> 
-      <span class="c1 c0">NewDiscussion</span>
-      <span class="c0">, sia</span> 
-      <span class="c1 c0">NewPage</span>
-      <span class="c0">.</span></li>
-    </ul>
-    <p class="c2 c7"></p>
-    <p class="c2">
-      <span class="c0">Tutti gli script precedentemente descritti utilizzano un meccanismo di chimate asincrone AJAX, scambiando
-      dati con il server sottoforma di documenti XML. Le request e le response scambiati sono descritti in maniera approfondita
-      nella sezione Tipi di informazioni scambiate via rete. Inoltre questi script presentano una funzionalitࡤi gestione e
-      cattura dei messaggi di errore restituiti dai servizi web o generati dalle richieste AJAX, tramite visualizzazione di un box
-      che contiene informazioni utili sul tipo di errore.</span>
-    </p>
-    <h4 class="c2 c13">
-      <a name="h.541kqypaelag"></a>
-      <span>Ulteriori Informaziononi</span>
-    </h4>
-    <p class="c2">
-    <span class="c0">Di particolare interesse 衬a</span> 
-    <span class="c6 c0">modalitࡤi gestione dei messaggi</span>
-    <span class="c0">, realizzata in discussion.js e descritta precedentemente. La scelta di delegare tale gestione client side 荊    stata dettata da alcune necessitࡰratiche, prima fra tutte quella di dover ordinare i messaggi visualizzati. Sarebbe stato
-    possibile leggere i messaggi memorizzati, ordinarli e quindi, attraverso la JSP, produrre il documento html da visualizzare.
-    Tuttavia, 衮oto che il sorting 衵n algoritmo non lineare e il server risulterebbe sovraccarico in momenti di massima
-    affluenza al servizio. Al contrario, i client in attesa della pagina potrebbero ottenere i documenti html e, attraverso
-    Knockout, caricare nuovi contenuti nella pagina.</span></p>
-    <p class="c2 c7"></p>
-    <p class="c2">
-    <span class="c0">La soluzione proposta per i messaggi 衳tata poi estesa a buona parte del progetto per favorire il requisito
-    non funzionale di</span> 
-    <span class="c6 c0">interoperabilit༯span>
-    <span class="c0">: in unottica futura, il passaggio ad un altro dispositivo, come unapp per smartphone, non avrࡡlcun
-    impatto sullarchitettura lato server, ma sarࡳufficiente avvalersi dei documenti XML scambiati per garantire il corretto
-    funzionamento dellapplicazione.</span></p>
-    <h3 class="c2 c13">
-      <a name="h.y7vsgk89no0b"></a>
-      <span class="c0">Computazione lato server</span>
-    </h3>
-    <p class="c2 c7"></p>
-    <p class="c2">
-      <span class="c0">Il codice lato server 衯rganizzato in quattro package:</span>
-    </p>
-    <ul class="c10 lst-kix_w37wpvbgwixk-0 start">
-      <li class="c2 c11">
-        <span class="c0">asw1028.interfaces: questa cartella ricopre un ruolo marginale allinterno del progetto, ma contiene delle
-        interfacce utili per la definizione dei modelli del database.</span>
-      </li>
-      <li class="c2 c11">
-        <span class="c0">asw1028.access: questo 衩l package dove sono memorizzate tutte le servlet che la servlet container dovr͊        compilare, istanziare e gestire al momento della richiesta del servizio.</span>
-      </li>
-      <li class="c2 c11">
-        <span class="c0">asw1028.db: in questo package sono contenute tutte le classi di accesso al database. Queste forniscono
-        metodi per la lettura e la scrittura dei documenti xml utilizzando la libreria JAXB.</span>
-      </li>
-      <li class="c2 c11">
-        <span class="c0">asw1028.db.struct: questa sottocartella del precedente package contiene le classi java che rappresentano
-        gli schemi xml del database. Queste classi sono utilizzate dalla libreria JAXB per effettuare lunmarshalling, ovvero la
-        trasformazione, dei documenti xml corrispettivi alle classi e viceversa.</span>
-      </li>
-    </ul>
-    <p class="c2 c7"></p>
-    <h4 class="c2 c13">
-      <a name="h.kg4n0vf2oi0l"></a>
-      <span>Servlet</span>
-    </h4>
-    <p class="c2">
-    <span class="c0">Le servlet sono i componenti che, insieme alle classi di accesso al database, realizzano il componente</span> 
-    <span class="c6 c0">Model</span> 
-    <span class="c0">del pattern MVVM. Queste forniscono un insieme di servizi a cui 衰ossibile accedere inviando un documento xml
-    formattatato in modo appropriato. Questa tecnica, nota come XML over HTTP, permette di realizzare una serie di servizi
-    interoperabili. Tutti i documenti utilizzati per le request e le response delle seguenti servlet sono riportati nel la sezione
-    Tipi di informazioni scambiati via rete.</span></p>
-    <p class="c2 c7"></p>
-    <ul class="c10 lst-kix_net87cbd1iqi-0 start">
-      <li class="c2 c11">
-        <span class="c0">/</span>
-        <span class="c6 c0">Login</span>
-        <span class="c0">(Login.java): si occupa di gestire il login di un utente, verificando che lusername e la password
-        ricevuti corrispondano a quelli memorizzati sul server.</span>
-      </li>
-      <li class="c2 c11">
-        <span class="c0">/</span>
-        <span class="c6 c0">Registration</span>
-        <span class="c0">(Registration.java): 衬a servlet che gestisce la registrazione degli utenti. Dopo aver estratto i dati
-        dalla request, li elabora, verificando che tutti i campi inviati siano validi. Utilizzando le opportune classi di lettura e
-        scrittura del database, aggiunge i dati relativi allo studente o al professore in attesa di conferma che si 衡ppena
-        registrato.</span>
-      </li>
-      <li class="c2 c11">
-        <span class="c0">/</span>
-        <span class="c6 c0">Profile</span>
-        <span class="c0">(Profile.java): 衵na servlet che si occupa della gestione dei profili utente, in base al tag root del
-        documento XML presente nella request compie due azioni. La prima 衩l get, ovvero trova nel database le informazioni del
-        profilo utente desiderate e le ritorna in formato XML sulla response. La seconda 衵pdate, ovvero in base alle informazioni
-        ricevute si occupa di modificare lentry relativa a quellutente nel database, solo se lutente risulta essere quello
-        loggato (in sessione).</span>
-      </li>
-      <li class="c2 c11">
-        <span class="c0">/</span>
-        <span class="c6 c0">GetSections</span>
-        <span class="c0">(GetSections.java): questa servlet carica in memoria le diverse sezioni presenti nel database
-        (matematica, informatica, scienze, etc.) e le invia al client sottoforma di documento xml. Risulta evidente come il server
-        sia notevolmente alleggerito dal gravoso compito di eseguire il sorting delle sezioni e risulti dunque pi񍊠       performante.</span>
-      </li>
-      <li class="c2 c11">
-        <span class="c0">/</span>
-        <span class="c6 c0">ManageDiscussions</span>
-        <span class="c0">(ManageDiscussions.java):la servlet fornisce due operation al client che lo contattano. La prima, dal
-        nome getDiscussion(), restituisce al client tutte le discussioni per una data sezione che riceve in input. La seconda,
-        detta getDiscussionInfo(), fornisce ulteriori informazioni per una discussione specificata come parametro
-        delloperation.</span>
-      </li>
-      <li class="c2 c11">
-        <span class="c0">/</span>
-        <span class="c6 c0">NewDiscussion</span>
-        <span class="c0">(NewDiscussion.java): questa servlet riceve le informazioni relative ad una discussione che deve essere
-        creata, controlla che i dati siano corretti e successivamente li salva sul database. Qualora i dati presentino dei
-        problemi, un messaggio di errore viene mandato al client.</span>
-      </li>
-      <li class="c2 c11">
-        <span class="c0">/</span>
-        <span class="c6 c0">GetPage</span>
-        <span class="c0">(GetPage.java): la servlet fornisce servizi per gestire le pagine caricate dagli insegnanti. Sono rese
-        disponibili due operation, la prima (getPages) per ottenere tutte le pagine di una data sezione, la seconda (getPage) per
-        ottenere il contenuto di una specifica pagina che il client ha richiesto.</span>
-      </li>
-      <li class="c2 c11">
-        <span class="c0">/</span>
-        <span class="c6 c0">NewPage</span>
-        <span class="c0">(NewPage.java): questa servlet fornisce funzionalitࡰer la creazione di una pagina. Similmente a quanto
-        avviene per la discussione, riceve le informazioni dal client, le convalida e salva sul db la nuova pagina.</span>
-      </li>
-    </ul>
-    <p class="c2 c7"></p>
-    <p class="c2">
-      <span class="c0">Non tutte le pagine sono per򠳴ate realizzate ad adesione con il pattern MVVM. Per alcune, il cui contenuto
-      衳carsamente dinamico e la computazione limitata, 衳tato adottato il pattern MVC realizzato tramite forwarding.</span>
-    </p>
-    <p class="c2 c7"></p>
-    <h5 class="c2 c13">
-      <a name="h.s1mi5z2xsg1h"></a>
-      <span>Pattern Model-View-Controller (MVC)</span>
-    </h5>
-    <p class="c2">
-      <span class="c0">MVC 衵n pattern architetturale in grado di separare la logica di presentazione dei dati dalla logica di
-      business. E basato sulla separazione dei compiti fra i componenti software che interpretano tre ruoli principali:</span>
-    </p>
-    <ul class="c10 lst-kix_osmfzr1uz3db-0 start">
-      <li class="c2 c11">
-        <span class="c0">il model fornisce i metodi per accedere ai dati utili all&#39;applicazione;</span>
-      </li>
-      <li class="c2 c11">
-        <span class="c0">il view visualizza i dati contenuti nel model e si occupa dell&#39;interazione con utenti;</span>
-      </li>
-      <li class="c2 c11">
-        <span class="c0">il controller riceve i comandi dell&#39;utente e li attua modificando lo stato degli altri due
-        componenti.</span>
-      </li>
-    </ul>
-    <p class="c2">
-      <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 624.00px; height: 361.33px;">
-
-        <img alt="MVC.jpg" src="images/image00.jpg"
-        style="width: 624.00px; height: 361.33px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);"
-        title="" />
-      </span>
-    </p>
-    <p class="c9">
-      <span class="c1 c0">Figura 2 - Larchitettura MVC adottata</span>
-    </p>
-    <p class="c2 c7"></p>
-    <p class="c2">
-      <span class="c0">Due servlet aderiscono a questo pattern: si tratta di ContactTeacher e AboutUs. La prima produce un pagina
-      che visualizza tutti i docenti che partecipano al progetto Teaching Hub, mentre la seconda fornisce delle informazioni sui
-      realizzatori del servizio.</span>
-    </p>
-    <p class="c2 c7"></p>
-    <p class="c2">
-    <span class="c0">La figura 2 mostra le interazioni che avvengono quando il client richiede la pagina relativa a ContactTeachers
-    (contactTeachers.java) o AboutUs (AboutUs.java): la servlet, ovvero il</span> 
-    <span class="c1 c0">Controller</span>
-    <span class="c0">, riceve la richiesta e predispone le classi per accedere al database. Tali classi, contenute nel package
-    asw1028.db, sono il</span> 
-    <span class="c1 c0">Model</span> 
-    <span class="c0">e si tratta di oggetti Java che, attraverso JAXB, accedono al database per recuperare le informzioni utili (ad
-    esempio, la lista dei docenti). Una volta che i dati sono stati restituiti alla servlet, questa li incapsula allinterno della
-    request ed esegue un forward alla JSP designata per la gestione del contenuto grafico. La Java Servlet Page (la</span> 
-    <span class="c1 c0">View</span>
-    <span class="c0">) estrae le informazioni dalla request, le elabora per produrre un documento HTML visualizzabile dal client e
-    invia tale pagina al browser. Nellimplementazione proposta 衡nche gestito un meccanismo di gestione degli errori: se durante
-    la lettura dei file dal DB o del forward si genera una situazione imprevista, la servlet ridirige la richiesta ad una pagina
-    error.jsp piuttosto che alle pagine teachersList.jsp o aboutUs.jsp.</span></p>
-    <p class="c2 c7"></p>
-    <p class="c2">
-      <span class="c26">Java Server Page</span>
-    </p>
-    <p class="c2">
-      <span class="c0">Ogni pagina web del sito 衤efinita attraverso luso di JSP, tecnologia che permette la definizione di
-      pagine HTML con embedding di codice Java eseguito lato server. Ogni pagina del sito presenta una struttura comune che
-      presenta linclusione di due fragment jsp.</span>
-    </p>
-    <p class="c2 c7"></p>
-    <p class="c2">
-      <span class="c8">&lt;html&gt;</span>
-    </p>
-    <p class="c2">
-      <span class="c8">  &lt;head&gt;</span>
-    </p>
-    <p class="c2">
-      <span class="c8">    &lt;title&gt;Teaching Hub&lt;/title&gt;</span>
-    </p>
-    <p class="c2">
-      <span class="c8">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span>
-    </p>
-    <p class="c2">
-      <span class="c8">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,
-      initial-scale=1.0&quot;&gt;</span>
-    </p>
-    <p class="c2">
-      <span class="c8">    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot;
-      href=&quot;style-sheets/main.css&quot;&gt;</span>
-    </p>
-    <p class="c2">
-      <span class="c8">  &lt;/head&gt;</span>
-    </p>
-    <p class="c2">
-      <span class="c8">  &lt;body&gt;</span>
-    </p>
-    <p class="c2">
-      <span class="c8">    &lt;div id=&quot;wrapper&quot;&gt;</span>
-    </p>
-    <p class="c2">
-      <span class="c8">      &lt;header&gt;</span>
-    </p>
-    <p class="c2">
-      <span class="c8">        &lt;%@include file=&quot;/WEB-INF/jspf/header.jspf&quot; %&gt;</span>
-    </p>
-    <p class="c2">
-      <span class="c8">      &lt;/header&gt;</span>
-    </p>
-    <p class="c2">
-      <span class="c8">      &lt;div id=&quot;content&quot;
-      ctx-url=&quot;&lt;%=request.getContextPath()%&gt;&quot;&gt;</span>
-    </p>
-    <p class="c2">
-      <span class="c8">      &lt;!-- CONTENUTO DELLA PAGINA --&gt;      </span>
-    </p>
-    <p class="c2 c15 c19">
-      <span class="c8">&lt;/div&gt;</span>
-    </p>
-    <p class="c2">
-      <span class="c8">      &lt;footer&gt;</span>
-    </p>
-    <p class="c2">
-      <span class="c8">        &lt;%@include file=&quot;/WEB-INF/jspf/footer.jspf&quot; %&gt;</span>
-    </p>
-    <p class="c2">
-      <span class="c8">      &lt;/footer&gt;</span>
-    </p>
-    <p class="c2">
-      <span class="c8">  &lt;/body&gt;</span>
-    </p>
-    <p class="c2">
-      <span class="c8">  &lt;script
-      src=&quot;&lt;%=request.getContextPath()%&gt;/js/lib/jquery/jquery.js&quot;&gt;&lt;/script&gt;</span>
-    </p>
-    <p class="c2">
-      <span class="c8">  &lt;script type=&quot;text/javascript&quot;
-      src=&quot;&lt;%=request.getContextPath()%&gt;/js/lib/knockout/knockout-3.2.0.js&quot;&gt;&lt;/script&gt;</span>
-    </p>
-    <p class="c2">
-      <span class="c8">&lt;!-- SCRIPT .js PER LA PAGINA --&gt;</span>
-    </p>
-    <p class="c2">
-      <span class="c8">&lt;/html&gt;</span>
-    </p>
-    <p class="c2 c7"></p>
-    <p class="c2">
-      <span class="c0">Di seguito lelenco delle pagine JSP di TeachingHub con una breve descrizione delle rispettive funzionalit͊      offerte agli utenti.</span>
-    </p>
-    <ul class="c10 lst-kix_lj36f0cfga92-0 start">
-      <li class="c2 c11">
-        <span class="c0">index.jsp: pagina di ingresso del portale, presenta le sezioni (corsi per gli studenti) del sito.</span>
-      </li>
-      <li class="c2 c11">
-        <span class="c0">jsp/aboutus.jsp: presenta una breve descrizione del portale. Utilizzata tramite pattern MVC 衲ichiamata
-        da /AboutUs.</span>
-      </li>
-      <li class="c2 c11">
-        <span class="c0">jsp/discussion.jsp: in base al sectionid e id discussione presenti come parametri nellURL, visualizza una
-        discussione.</span>
-      </li>
-      <li class="c2 c11">
-        <span class="c0">jsp/error.jsp: Utilizzata tramite pattern MVC, viene fatto il forward in caso di errore dalle servlet
-        /AboutUs e /ContactTeachers.</span>
-      </li>
-      <li class="c2 c11">
-        <span class="c0">jsp/login.jsp: presenta una form di login agli utenti ancora non loggati, con la quale 衰ossibile
-        accedere come utente registrato.</span>
-      </li>
-      <li class="c2 c11">
-        <span class="c0">jsp/new_page.jsp: tramite una form permette linvio al server di una nuova pagina, tale azione 衰ermessa
-        solo ad un utente che sia insegnante.</span>
-      </li>
-      <li class="c2 c11">
-        <span class="c0">jsp/new_question.jsp: tramite una form permette linvio al server di una nuova discussione, linvio 荊        permesso solo ad utenti loggati.</span>
-      </li>
-      <li class="c2 c11">
-        <span class="c0">jsp/page.jsp: visualizza una pagina su base dei parametri presenti nellURL che la identificano.</span>
-      </li>
-      <li class="c2 c11">
-        <span class="c0">jsp/profile.jsp: visualizza il profilo utente, se tale profilo appartiene allutente loggato mostra un
-        form con il quale 衰ossibile effettuare modifiche al profilo.</span>
-      </li>
-      <li class="c2 c11">
-        <span class="c0">jsp/registration.jsp: visualizza un form di registrazione con cui docenti e studenti possono registratsi
-        al portale.</span>
-      </li>
-      <li class="c2 c11">
-        <span class="c0">jsp/section.jsp: visualizza un elenco di discussioni e pagine appartenenti alla sezione specificata dal
-        parametro sectionid in URL.</span>
-      </li>
-      <li class="c2 c11">
-        <span class="c0">jsp/teacherList.jsp: visualizza la lista di docenti registrati al sito, su cui viene fatto il forward da
-        /ContactTeachers.</span>
-      </li>
-    </ul>
-    <p class="c2 c7"></p>
-    <h5 class="c2 c13">
-      <a name="h.uug0sunxvs3l"></a>
-      <span>JSP Fragment</span>
-    </h5>
-    <p class="c2">
-      <span class="c0">Una JSP permette linserimento di fragment nel codice, grazie al quale si rende pi񠭯dulare lo sviluppo di
-      pagine web, definendo aspetto e implementazione di componenti comuni a pi񠰡gine jsp su file .jspf.</span>
-    </p>
-    <p class="c2">
-      <span class="c0">Nel caso di Teaching Hub i due fragment utilizzati sono:</span>
-    </p>
-    <ul class="c10 lst-kix_qha6kw8sxx0v-0 start">
-      <li class="c2 c11">
-        <span class="c0">header.jspf, il cui aspetto varia in base al fatto che lutente sia loggato oppure no. Viene incluso in
-        cima ad ogni pagina e contiene la stringa userid utilizzabile dalle jsp da cui 衩ncluso.</span>
-      </li>
-      <li class="c2 c11">
-        <span class="c0">footer.jspf, posto in fondo ad ogni pagina, il footer fornisce delle funzionalitࡤi navigazione
-        aggiuntive, dando la possibilitࡤi tornare alla home page e di andare alla sezione About Us e Lista Docenti.</span>
-      </li>
-    </ul>
-    <h4 class="c2 c13">
-      <a name="h.3f50dkw22fz5"></a>
-      <span>Comet per le Discussioni</span>
-    </h4>
-    <p class="c2">
-      <span class="c0">Oltre ai servizi precedentemente descritti, 衳tato realizzato anche un sistema di Comet per garantire ai
-      client che visualizzano la discussione di averne sempre lo stato aggiornato. La figura 3 mostra le interazioni che avvengono
-      durante lutilizzo del servizio.</span>
-    </p>
-    <p class="c2 c7"></p>
-    <p class="c2">
-      <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 624.00px; height: 416.00px;">
-
-        <img alt="comet.jpg" src="images/image05.jpg"
-        style="width: 624.00px; height: 416.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);"
-        title="" />
-      </span>
-    </p>
-    <p class="c2">
-      <span class="c0">Figura 3 - Architettura per la realizzazione della Comet</span>
-    </p>
-    <p class="c2 c7"></p>
-    <p class="c2">
-      <span class="c0">Il meccanismo utilizzato per realizzare questo servizio 衱uello noto come BOSH (Bi-directional-streams Over
-      Synchronous Http). La servlet /NewMessage (NewMsgAsnc.java) fornisce tre servizi, rappresentati dai rettangoli verdi:</span>
-    </p>
-    <ul class="c10 lst-kix_vne1uy21smmj-0 start">
-      <li class="c2 c11">
-        <span class="c0">firstTimeAccess, utilizzato quando un client si collega per la prima volta alla pagina, garantisce di
-        ottenere tutti i messaggi per la discussione selezionata. Inoltre fornisce al client un id univoco per
-        identificarlo.</span>
-      </li>
-      <li class="c2 c11">
-        <span class="c0">newMsg 衬operation invocata dai client che desiderano aggiungere il messaggio al database. Questa
-        operation 衡nche quella si occupa di informare gli altri client della presenza del nuovo messaggio, inviandolo.</span>
-      </li>
-      <li class="c2 c11">
-        <span class="c0">waitMsg 衬operation che viene invocata dai client quando effettua il long polling, ogni volta che questo
-        riceve un nuovo messaggio o uno di timeout.</span>
-      </li>
-    </ul>
-    <p class="c2 c7"></p>
-    <h5 class="c2 c13">
-      <a name="h.51xebjoubg8"></a>
-      <span>Comportamento Client Side</span>
-    </h5>
-    <p class="c2">
-      <span class="c0">Per meglio comprendere il funzionamento della comet, riproponiamo brevemente il comportamento del client.
-      Appena il documento della discussione 衳tato caricato, il client effettua la richiesta del servizio firstTimeAccess,
-      ricevendo tutti i messaggi e lidentificativo, memorizzando questultimo come variabile globale javascript. Dopo che tutti i
-      messaggi sono stati visualizzati, invia una richiesta di waitMsg alla servlet. Tale richiesta 衡sincrona, dunque il client
-      predispone anche una callback da eseguire a fronte della ricezione di un messaggio. Se la risposta da parte del server
-      contiene effettivamente dei dati (ovvero uno o pi񠭥ssaggi inviati da altri client), il ViewModel dovrࡥssere aggiornato.
-      Qualunque sia il messaggio ricevuto, il client dovrࡡnche ripetere la richiesta di waitMsg, avviando un comportamento
-      iterativo.</span>
-    </p>
-    <p class="c2 c7"></p>
-    <p class="c2">
-      <span class="c0">Si noti che il meccanismo deve essere stabile anche nei momenti in cui il server non sia raggiungibile o si
-      verifichi un errore interno. La callback associata alla ricezione della risposta dovrࡱuindi gestire il caso in cui lo stato
-      della risposta sia 500 (Internal Server Error) o 404 (Server Not Found). La soluzione da noi proposta prevede di riprovare a
-      contattare il server dopo un delay di qualche secondo.</span>
-    </p>
-    <p class="c2 c7"></p>
-    <h5 class="c2 c13">
-      <a name="h.byikqyfugt93"></a>
-      <span>Comportamento ServerSide</span>
-    </h5>
-    <p class="c2">
-      <span class="c0">La servlet rimane in attesa di ricevere la richiesta di un operation da parte dei clients. Quando riceve un
-      messaggio di firstTimeAccess, dopo aver preparato i messaggi da inviare e lidentificativo da assegnare, aggiunge tale id in
-      una HashMap di client attivi associati alla discussione richiesta dal client.</span>
-    </p>
-    <p class="c2 c7"></p>
-    <p class="c2">
-      <span class="c0">Quando un client non ha fatto la richiesta di waitMsg, la servlet mantiene una coda di messaggi ad esso
-      associato; in tale coda vengono memorizzati tutti i messaggi da inviare in un futuro. La ricezione di una richiesta di
-      waitMsg pu򠱵indi arrivare in momenti in cui la coda di messaggi per il client che lha inviata non 衶uota. La servlet
-      dovrࡰreparare tutti i messaggi memorizzati in tale coda sottoforma di documento xml ed inviarlo al client. Al contrario, se
-      la coda di messaggi 衶uota, il server dovrࡰredisporre una connessione verso tale client, per poter fare forwarding dei
-      messaggi futuri. Questo avviene avviando un contesto asincrono a cui 衡ssociato lid del client che ha generato la richiesta
-      e sostituendo la lista di messaggi in coda con tale contesto appena creato. Dato che non 衰ossibile mantenere aperta la
-      connessione per un tempo illimitato, viene anche impostato un timeout per il contesto, cos졣he sia possibile generare un
-      evento appropriato al termine di tale tempo.</span>
-    </p>
-    <p class="c2 c7"></p>
-    <p class="c2">
-      <span class="c0">Infine la servlet pu򠲩cevere una richiesta del servizio newMsg: dopo che il nuovo messaggio 衳tato
-      salvato sul database, deve essere inviata una copia di tale messaggio a tutti i client che presentano contesti attivi o, in
-      caso questi non ne presentino, aggiungerlo alla coda di messaggi per evitare che siano perduti.</span>
-    </p>
-    <p class="c2 c7"></p>
-    <h3 class="c2 c13">
-      <a name="h.osklzdln89bc"></a>
-      <span class="c0">Tipi di informazione memorizzate sul server</span>
-    </h3>
-    <p class="c2 c15">
-      <span class="c0">Diverse informazioni sono memorizzate sul server in maniera persistente, di seguito una lista delle
-      informazioni memorizzate nel database attraverso luso di file XML.</span>
-    </p>
-    <ul class="c10 lst-kix_849t6x92y8v3-0 start">
-      <li class="c2 c3">
-        <span class="c0">Studenti: profilo e password degli studenti sono memorizzate nel file /WEB-INF/xml/students.xml</span>
-      </li>
-      <li class="c2 c3">
-        <span class="c0">Docenti: profilo e password dei docenti sono memorizzate nel file /WEB-INF/xml/teachers.xml</span>
-      </li>
-      <li class="c2 c3">
-        <span class="c0">Docenti in attesa di convalida: le informazioni sui docenti non ancora convalidati dallamministratore
-        sono salvate nel file /WEB-INF/xml/pendingtheachers.xml</span>
-      </li>
-      <li class="c2 c3">
-        <span class="c0">Sezioni: la lista delle sezioni con descrizione e aspetto 衭emorizzata nel file
-        /WEB-INF/xml/sections/sections.xml</span>
-      </li>
-      <li class="c2 c3">
-        <span class="c0">Pagine: le pagine scritte dai docenti sono memorizzate per ogni sezione in diversi file in un percorso
-        determinato dalla sezione di appartenenza /WEB-INF/xml/sections/[SectionId]/pages.xml</span>
-      </li>
-      <li class="c2 c3">
-        <span class="c0">Discussioni: le discussioni aperte dagli utenti del sito in una sezione sono memorizzate per ogni sezione
-        nel percorso /WEB-INF/xml/sections/[SectionId]/threads/threads.xml</span>
-      </li>
-      <li class="c2 c3">
-        <span class="c0">Messaggi: i messaggi appartenenti ad una specifica discussione sono memorizzati in diversi file il cui
-        percorso segue il pattern: /WEB-INF/xml/sections/[SectionId]/threads/msgs[DiscussionId].xml dove [SectionId] 衬a sezione a
-        cui la discussione appartiene e [DiscussionId] 衬identificativo della discussione a cui i messaggi appartengono.</span>
-      </li>
-    </ul>
-    <p class="c2 c7"></p>
-    <p class="c9">
-      <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 228.00px; height: 380.00px;">
-
-        <img alt="" src="images/image03.png"
-        style="width: 228.00px; height: 380.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);"
-        title="" />
-      </span>
-    </p>
-    <p class="c9">
-      <span class="c1 c0">Figura 4 - Un esempio di struttura dei file XML che compongono il db del sito.</span>
-    </p>
-    <p class="c2 c7"></p>
-    <p class="c2">
-      <span class="c0">Nota: la password degli utenti del sito 衩n chiaro, 衱uindi necessario in futuro adottare le adatte
-      tecniche di encriptaggio per non renderle visibili a terzi.</span>
-    </p>
-    <p class="c2 c7"></p>
-    <p class="c2">
-      <span class="c0">I file XML schema che descrivono la struttura dei suddetti file XML sono memorizzati sotto la cartella
-      /documentazione/xml-types/db e riportati di seguito:</span>
-    </p>
-    <ul class="c10 lst-kix_dxvdfhn777hi-0 start">
-      <li class="c2 c11">
-        <span class="c0">students.xsd</span>
-      </li>
-      <li class="c2 c11">
-        <span class="c0">teachers.xsd</span>
-      </li>
-      <li class="c2 c11">
-        <span class="c0">sections.xsd</span>
-      </li>
-      <li class="c2 c11">
-        <span class="c0">datetime.xsd (presenta la struttura del formato data-ora incluso poi in diversi file xsd)</span>
-      </li>
-      <li class="c2 c11">
-        <span class="c0">pages.xsd</span>
-      </li>
-      <li class="c2 c11">
-        <span class="c0">threads.xsd</span>
-      </li>
-      <li class="c2 c11">
-        <span class="c0">msgs.xsd</span>
-      </li>
-    </ul>
-    <p class="c2 c7"></p>
-    <h3 class="c2 c13">
-      <a name="h.rcn4v7uqx0oj"></a>
-      <span class="c0">Tipi di informazione scambiate via rete</span>
-    </h3>
-    <p class="c2 c15">
-      <span class="c0">Via rete sono scambiati diversi documenti XML tra le RIA Javascript e i web service con uso di XML over
-      HTTP. Le informazioni scambiate sono strutturate e sono principalmente richieste di un qualche tipo di azione da parte del
-      client e informazioni relative al contenuto del database da parte del server.</span>
-    </p>
-    <p class="c2 c7"></p>
-    <p class="c2">
-      <span class="c0">Di base ogni web service a fronte di un errore interno 衩n grado di spedire un semplice messaggio di errore
-      al client avente la struttura descritta nel file error_response.xsd.</span>
-    </p>
-    <p class="c2">
-      <span class="c0">A fronte del compimento di un azione che non necessita il ritorno di dati al client, il web server risponde
-      con un semplice messaggio di successo contenuto nel tag &lt;success&gt;.</span>
-    </p>
-    <p class="c2 c7"></p>
-    <p class="c2">
-      <span class="c0">Di seguito 衲iportata per ogni web service la struttura dei documenti xml per le request e response in
-      relazione alle specifiche azioni (identificate dal root tag della richiesta) che quel servizio implementa. Richieste e
-      risposte banali sono escluse dalla lista.</span>
-    </p>
-    <p class="c2 c7"></p>
-    <ul class="c10 lst-kix_u92k89cscx96-0 start">
-      <li class="c2 c11">
-        <span class="c0">/Login</span>
-      </li>
-    </ul>
-    <ul class="c10 lst-kix_u92k89cscx96-1 start">
-      <li class="c2 c3">
-        <span class="c0">login_request.xsd</span>
-      </li>
-      <li class="c2 c3">
-        <span class="c0">login_response.xsd</span>
-      </li>
-    </ul>
-    <ul class="c10 lst-kix_u92k89cscx96-0">
-      <li class="c2 c11">
-        <span class="c0">/Registration</span>
-      </li>
-    </ul>
-    <ul class="c10 lst-kix_u92k89cscx96-1 start">
-      <li class="c2 c3">
-        <span class="c0">registration_request.xsd</span>
-      </li>
-      <li class="c2 c3">
-        <span class="c0">risposta con &lt;success&gt;</span>
-      </li>
-    </ul>
-    <ul class="c10 lst-kix_u92k89cscx96-0">
-      <li class="c2 c11">
-        <span class="c0">/GetSections</span>
-      </li>
-    </ul>
-    <ul class="c10 lst-kix_u92k89cscx96-1 start">
-      <li class="c2 c3">
-        <span class="c0">nessun dato in input</span>
-      </li>
-      <li class="c2 c3">
-        <span class="c0">risponde con la lista delle sezioni la cui struttura 补spressa nel file db/sections.xsd</span>
-      </li>
-    </ul>
-    <ul class="c10 lst-kix_u92k89cscx96-0">
-      <li class="c2 c11">
-        <span class="c0">/GetPage risponde a due diverse azioni</span>
-      </li>
-    </ul>
-    <ul class="c10 lst-kix_u92k89cscx96-1 start">
-      <li class="c2 c3">
-        <span class="c0">getPage richiede e ritorna una specifica pagina</span>
-      </li>
-    </ul>
-    <ul class="c10 lst-kix_u92k89cscx96-2 start">
-      <li class="c2 c16">
-        <span class="c0">getpage_getpage_request.xsd</span>
-      </li>
-      <li class="c2 c16">
-        <span class="c0">getpage_getpage_response.xsd</span>
-      </li>
-    </ul>
-    <ul class="c10 lst-kix_u92k89cscx96-1">
-      <li class="c2 c3">
-        <span class="c0">getPages richiede e ritorna tutte le pagine di una data sezione</span>
-      </li>
-    </ul>
-    <ul class="c10 lst-kix_u92k89cscx96-2 start">
-      <li class="c2 c16">
-        <span class="c0">getpage_getpages_request.xsd</span>
-      </li>
-      <li class="c2 c16">
-        <span class="c0">getpage_getpages_response.xsd</span>
-      </li>
-    </ul>
-    <ul class="c10 lst-kix_u92k89cscx96-0">
-      <li class="c2 c11">
-        <span class="c0">/ManageDiscussion risponde a due diverse azioni</span>
-      </li>
-    </ul>
-    <ul class="c10 lst-kix_u92k89cscx96-1 start">
-      <li class="c2 c3">
-        <span class="c0">getDiscussion richiede e ritorna una lista di discussioni per una data sessione</span>
-      </li>
-    </ul>
-    <ul class="c10 lst-kix_u92k89cscx96-2 start">
-      <li class="c2 c16">
-        <span class="c0">managediscussion_getdiscussion_request.xsd</span>
-      </li>
-      <li class="c2 c16">
-        <span class="c0">managediscussion_getdiscussion_response.xsd</span>
-      </li>
-    </ul>
-    <ul class="c10 lst-kix_u92k89cscx96-1">
-      <li class="c2 c3">
-        <span class="c0">getDiscussionInfo richiede e ritorna le informazioni di una discussione</span>
-      </li>
-    </ul>
-    <ul class="c10 lst-kix_u92k89cscx96-2 start">
-      <li class="c2 c16">
-        <span class="c0">managediscussion_getdiscussioninfo_request.xsd</span>
-      </li>
-      <li class="c2 c16">
-        <span class="c0">managediscussion_getdiscussioninfo_response.xsd</span>
-      </li>
-    </ul>
-    <ul class="c10 lst-kix_u92k89cscx96-0">
-      <li class="c2 c11">
-        <span class="c0">/NewDiscussion</span>
-      </li>
-    </ul>
-    <ul class="c10 lst-kix_u92k89cscx96-1 start">
-      <li class="c2 c3">
-        <span class="c0">newdiscussion_request.xsd</span>
-      </li>
-      <li class="c2 c3">
-        <span class="c0">newdiscussion_response.xsd</span>
-      </li>
-    </ul>
-    <ul class="c10 lst-kix_u92k89cscx96-0">
-      <li class="c2 c11">
-        <span class="c0">/NewPage</span>
-      </li>
-    </ul>
-    <ul class="c10 lst-kix_u92k89cscx96-1 start">
-      <li class="c2 c3">
-        <span class="c0">newpage_request.xsd</span>
-      </li>
-      <li class="c2 c3">
-        <span class="c0">newpage_response.xsd</span>
-      </li>
-    </ul>
-    <ul class="c10 lst-kix_u92k89cscx96-0">
-      <li class="c2 c11">
-        <span class="c0">/Profile implementa due azioni</span>
-      </li>
-    </ul>
-    <ul class="c10 lst-kix_u92k89cscx96-1 start">
-      <li class="c2 c3">
-        <span class="c0">update</span>
-      </li>
-    </ul>
-    <ul class="c10 lst-kix_u92k89cscx96-2 start">
-      <li class="c2 c16">
-        <span class="c0">profile_update_request.xsd</span>
-      </li>
-      <li class="c2 c16">
-        <span class="c0">la risposta 衵n &lt;success&gt;</span>
-      </li>
-    </ul>
-    <ul class="c10 lst-kix_u92k89cscx96-1">
-      <li class="c2 c3">
-        <span class="c0">get</span>
-      </li>
-    </ul>
-    <ul class="c10 lst-kix_u92k89cscx96-2 start">
-      <li class="c2 c16">
-        <span class="c0">profile_get_request.xsd</span>
-      </li>
-      <li class="c2 c16">
-        <span class="c0">la risposta 衵n &lt;success&gt;</span>
-      </li>
-    </ul>
-    <ul class="c10 lst-kix_u92k89cscx96-0">
-      <li class="c2 c11">
-        <span class="c0">/UploadFile salva sul server due tipi di file identificati dal parametro filetype avatar o
-        attachement.</span>
-      </li>
-    </ul>
-    <ul class="c10 lst-kix_u92k89cscx96-1 start">
-      <li class="c2 c3">
-        <span class="c0">la request 衭ultipart (include i file)</span>
-      </li>
-      <li class="c2 c3">
-        <span class="c0">uploadfile_response.xsd</span>
-      </li>
-    </ul>
-    <ul class="c10 lst-kix_u92k89cscx96-0">
-      <li class="c2 c11">
-        <span class="c0">/NewMsgAsync gestisce linvio dei messaggi agli utenti attivi sulle relative discussioni. Implementa
-        diverse azioni:</span>
-      </li>
-    </ul>
-    <ul class="c10 lst-kix_u92k89cscx96-1 start">
-      <li class="c2 c3">
-        <span class="c0">waitMsg utilizzato per il longpolling</span>
-      </li>
-    </ul>
-    <ul class="c10 lst-kix_u92k89cscx96-2 start">
-      <li class="c2 c16">
-        <span class="c0">newmsgasync_waitmsg_request.xsd</span>
-      </li>
-    </ul>
-    <ul class="c10 lst-kix_u92k89cscx96-1">
-      <li class="c2 c3">
-        <span class="c0">newMsg segnala linserimento di un nuovo messaggio</span>
-      </li>
-    </ul>
-    <ul class="c10 lst-kix_u92k89cscx96-2 start">
-      <li class="c2 c16">
-        <span class="c0">newmsgasync_newmsg_request.xsd</span>
-      </li>
-      <li class="c2 c16">
-        <span class="c0">newmsgasync_newmsg_response.xsd 衩nviato a tutti i client attivi nella discussione.</span>
-      </li>
-    </ul>
-    <ul class="c10 lst-kix_u92k89cscx96-1">
-      <li class="c2 c3">
-        <span class="c0">firstTimeAccess segnala il primo accesso del client</span>
-      </li>
-    </ul>
-    <ul class="c10 lst-kix_u92k89cscx96-2 start">
-      <li class="c2 c16">
-        <span class="c0">newmsgasync_firsttimeaccess_request.xsd</span>
-      </li>
-      <li class="c2 c16">
-        <span class="c0">newmsgasync_greetings_response.xsd</span>
-      </li>
-      <li class="c2 c16">
-        <span class="c0">newmsgasync_cometmsgs_response.xsd ritorna tutti i messaggi persistenti nella discussione.</span>
-      </li>
-    </ul>
-    <h3 class="c2 c13">
-      <a name="h.3v2z23xfa7pu"></a>
-      <span>Librerie di utilit༯span>
-    </h3>
-    <p class="c20">
-    <span>Lato server si fa uso di una libreria di utilitࡤenominata utilsweb.</span> 
-    <span class="c1 c28">Qui mettere link</span></p>
-    <p class="c2">
-      <span class="c0">Questa libreria fornisce diverse funzionalit࡯rganizzate nei seguenti package:</span>
-    </p>
-    <p class="c2">
-      <span class="c0">    </span>
-    </p>
-    <ul class="c10 lst-kix_nbqx7rehfndc-0 start">
-      <li class="c2 c11">
-        <span class="c0">asw1028.utils.xml contiene classi per il supporto alla gestione di file XML</span>
-      </li>
-      <li class="c2 c11">
-        <span class="c0">asw1028.utils contiene classi per laiuto allo sviluppo di servizi web</span>
-      </li>
-    </ul>
-    <ul class="c10 lst-kix_nbqx7rehfndc-1 start">
-      <li class="c2 c3">
-        <span class="c0">SysKb.java funge da repository in cui sono memorizzate costanti utilizzate ricorrentemente durante lo
-        sviluppo di TeachingHub</span>
-      </li>
-      <li class="c2 c3">
-        <span class="c0">WebUtils.java contiene metodi di supporto utili durante lo sviluppo di servizi web XML over HTTP.
-        Capitalizza in alcune funzioni operazioni ricorrenti quali linvio di messaggi di errore, lettura del contenuto di un
-        singolo tag in un documento, ecc.</span>
-      </li>
-    </ul>
-    <h3 class="c2 c13">
-      <a name="h.90rsd8gp9ya2"></a>
-      <span>Ulteriori informazioni</span>
-    </h3>
-    <p class="c2">
-      <span class="c0">Linterfaccia grafica del sito 衳tata pensata per essere facilmente utilizzata da utenti che fanno uso di
-      smartphone e tablet, dato che il sito web 衰rincipalmente orientato a ragazzi.</span>
-    </p>
-    <p class="c9">
-      <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 193.52px; height: 341.50px;">
-
-        <img alt="" src="images/image04.png"
-        style="width: 193.52px; height: 341.50px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);"
-        title="" />
-      </span>
-      <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 190.50px; height: 339.40px;">
-        <img alt="" src="images/image01.png"
-        style="width: 190.50px; height: 339.40px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);"
-        title="" />
-      </span>
-      <span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 192.95px; height: 340.50px;">
-        <img alt="" src="images/image06.png"
-        style="width: 192.95px; height: 340.50px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);"
-        title="" />
-      </span>
-    </p>
-    <p class="c9 c7"></p>
-    <h3 class="c2 c13">
-      <a name="h.626x02lb8qpm"></a>
-      <span>Riferimenti</span>
-    </h3>
-    <ul class="c10 lst-kix_6chg51f6ipue-0 start">
-      <li class="c20 c11">
-        <span class="c12">
-          <a class="c4"
-          href="http://www.google.com/url?q=http%3A%2F%2Fapi.jquery.com%2F&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHS5dmhNVlJi7KCucz1BTPs6Er0bw">
-          JQuery documentation</a>
-        </span>
-      </li>
-      <li class="c11 c20">
-        <span class="c12">
-          <a class="c4"
-          href="http://www.google.com/url?q=http%3A%2F%2Fknockoutjs.com%2Fdocumentation%2Fintroduction.html&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGVvll1mG31R-pBXs9HA6qgn73Hcg">
-          Knockout.js documentation</a>
-        </span>
-      </li>
-      <li class="c20 c11">
-        <span class="c12">
-          <a class="c4"
-          href="https://www.google.com/url?q=https%3A%2F%2Fjaxb.java.net%2Fnonav%2F2.2.11%2Fdocs%2Fapi%2F&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGeRjmd4AxMtTACg0UVfe2s6rSaWg">
-          JAXB javadoc</a>
-        </span>
-      </li>
-    </ul>
-    <p class="c2 c7"></p>
-    <p class="c2 c7"></p>
-    <p class="c2">
-      <span class="c6 c0">N.B: quando si cita ua JSP, una servlet, un documentoXML o un documento XSD, specificare sempre il nome
-      utilizzato nel sorgente</span>
-    </p>
-    <p class="c2 c7"></p>
-    <p class="c2">
-      <span class="c0">[Il sito 衳tato realizzato in un ottica che permettesse la pi񠮥tta separazione tra il controllo del
-      client e server. Lidea 衣he ogni informazione richiesta dal client al server 衲icevuta sotto forma testuale in un formato
-      strutturato come xml o json, sarࡩl client poi a gestire queste informazioni adeguatamente per renderle visibile allutente.
-      Questo approccio garantisce un indipendenza tecnologica pi񠦯rte, permettendo in un futuro limplementazione di un
-      applicazione smartphone, webapp, che possa interagire con il server allo stesso modo.]</span>
-    </p>
-  </body>
-</html>
+<p dir="ltr">
+	Teaching Hub
+</p>
+<p dir="ltr">
+	Progetto per il corso di Applicazioni e Servizi Web, a.a. 2014-2015
+</p>
+<h1 dir="ltr">
+	Autori
+</h1>
+<p dir="ltr">
+	Studente (Capogruppo): Lorenzo Rocca
+</p>
+<p dir="ltr">
+	Matricola: 0000711919
+</p>
+<p dir="ltr">
+	Email Istituzionale: <a href="mailto:lorenzo.rocca@studio.unibo.it">lorenzo.rocca@studio.unibo.it</a>
+</p>
+<br/>
+<p dir="ltr">
+	Studente: Pierluigi Montagna
+</p>
+<p dir="ltr">
+	Matricola: 0000713248
+</p>
+<p dir="ltr">
+	Email istituzionale: <a href="mailto:pierluigi.montagna@studio.unibo.it">pierluigi.montagna@studio.unibo.it</a>
+</p>
+<h1 dir="ltr">
+	Descrizione del servizio offerto dal sito
+</h1>
+<p dir="ltr">
+	Il sito teachingHub offre un servizio di supporto alla didattica per studenti e docenti di scuole e universit&#224;.
+</p>
+<br/>
+<p dir="ltr">
+	Per utilizzare il servizio, gli studenti devono iscriversi attraverso una form di registrazione o accedere attraverso un login. Saranno disponibili le
+	sezioni per diverse materie in cui sar&#224; possibile porre delle domande a gli altri partecipanti. Studenti e docenti possono contribuire alle
+	discussioni rispondendo alle domande con dei post.
+</p>
+<br/>
+<p dir="ltr">
+	I docenti possono inoltre creare delle pagine, utili per gli studenti, in cui sono stati caricati degli appunti.
+</p>
+<br/>
+<p dir="ltr">
+	Contrariamente agli studenti, i docenti non hanno una form di registrazione, poich&#233; gestiti dagi amministratori del sistema, ma utilizzano la stessa
+	form di login.
+</p>
+<br/>
+<p dir="ltr">
+	Obiettivo non funzionale del progetto &#232; inoltre quello di fornire un servizio immediato e responsivo. Questo verr&#224; realizzato attraverso
+	l'utilizzo di una RIA per l'invio delle risposte alle domande, in particolare sfruttando la tecnologia AJAX.
+</p>
+<h1 dir="ltr">
+	Utilizzo del sito
+</h1>
+<p dir="ltr">
+	L&#8217;utilizzo del sito pu&#242; variare in base alla categoria di utente. Sebbene sia possibile navigare il sito senza essere registrati, le
+	funzionalit&#224; descritte nel seguito sono disponibili per le relativi classi di utente. Un nuovo utente pu&#242; registrarsi o effettuare il login sia
+	come studente, sia come docente.
+</p>
+<br/>
+<p dir="ltr">
+	Studente (Student)
+</p>
+<p dir="ltr">
+	Gli studenti sono i principali utilizzatori del sito. Possono accedere alle sezioni (matematica, scienze, informatica, etc) e qui crearvi delle
+	discussioni. Una discussione consiste in una serie di messaggi comprendenti il nickname dell&#8217;autore, l&#8217;avatar, la data di creazione e il
+	contenuto. Ogni studente pu&#242; rispondere alle discussioni inserendo un testo in fondo alla pagina di discussione. Gli studenti possono accedere al
+	proprio profilo per modificare i campi di interesse.
+</p>
+<br/>
+<p dir="ltr">
+	Docente (Teacher)
+</p>
+<p dir="ltr">
+	I docenti assistono gli studenti partecipanti al sito. Un docente ha tutte le funzionalit&#224; di uno studente: pu&#242; dunque accedere al proprio
+	profilo per modificarlo e pu&#242; rispondere alle discussioni seguendo lo stesso format. In pi&#249;, un docente pu&#242; pubblicare del materiale. La
+	pubblicazione avviene all&#8217;interno di una sezione e comprende sia un testo scritto che viene visualizzato immediatamente all&#8217;interno della
+	pagina creata, sia uno o pi&#249; documenti caricati dal computer locale.
+</p>
+<br/>
+<p dir="ltr">
+	Amministratore
+</p>
+<p dir="ltr">
+	L&#8217;amministrazione del sito non avviene attraverso un web service: l&#8217;amministratore dovr&#224; gestire manualmente alcuni aspetti utili alla
+	gestione del portale, quali la convalida dei nuovi docenti iscritti, la creazione di nuove sezioni, la cancellazione e la modifica di discussioni, utenti e
+	messaggi.
+</p>
+<h1 dir="ltr">
+	Realizzazione del sito
+</h1>
+<h2 dir="ltr">
+	Organizzazione del sito
+</h2>
+<h3 dir="ltr">
+	Descrizione sommaria
+</h3>
+<p dir="ltr">
+	La computazione lato client consiste in diverse pagine html complete di Javascript per la realizzazione di Rich Internet Application: ognuna di queste
+	pagine include anche il codice per richiedere servizi aggiuntivi al server ed elaborare le risposte ottenute.
+</p>
+<br/>
+<p dir="ltr">
+	La computazione lato server comprende delle servlet per la realizzazione di differenti servizi e delle pagine JSP per la creazione di contenuto HTML in
+	modo dinamico. Inoltre viene realizzata una servlet per realizzare un servizio di Comet attraverso BOSH (Bi-directional-streams Over Synchronous Http).
+</p>
+<br/>
+<p dir="ltr">
+	Le informazioni sono memorizzate sul server sotto forma di documenti XML: studenti e docenti hanno un proprio file su cui sono memorizzati i campi per
+	caratterizzarli (nome, cognome, email, etc.), inoltre sar&#224; presente un file dove memorizzare gli insegnanti in attesa di convalida. Infine anche le
+	sezioni, le discussioni, le pagine create dai docenti e i messaggi inviati sono salvati su database XML.
+</p>
+<p dir="ltr">
+	Documenti XML sono anche scambiati tra il client e il server quando vengono effettuate delle richieste AJAX; questa tecnica &#232; infatti utilizzata per
+	la maggior parte delle pagine del portale. Inoltre la realizzazione delle notifiche ha richiesto l&#8217;invio di documenti xml, strutturati secondo una
+	struttura ben definita e riportata nelle sezioni successive.
+</p>
+<br/>
+<h3 dir="ltr">
+	Computazione lato client
+</h3>
+<p dir="ltr">
+	Il portale &#232; stato realizzato implementando molteplici RIA attraverso JavaScript, utilizzando inoltre AJAX e messaggi XML scambiati con le servlet. Si
+	hanno dunque molteplici pagine, il cui denominatore comune &#232; per&#242; l&#8217;adesione al pattern Model View View-Model (MVVM).
+</p>
+<br/>
+<h4 dir="ltr">
+	Model View View-Model (MVVM)
+</h4>
+<p dir="ltr">
+	Il MVVM &#232; un pattern architetturale che prevede la separazione degli aspetti in tre componenti:
+</p>
+<ul>
+	<li dir="ltr">
+		<p dir="ltr">
+			Model: rappresenta il punto di accesso ai dati.
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			View: rappresenta l&#8217;interfaccia grafica dell&#8217;applicazione. Questo componente si limita a graficare quanto esposto dal ViewModel, a
+			riflettere in esso i cambi di stato e ad attivarne dei comportamenti.
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			ViewModel: contiene la business logic, qui &#232; dove i dati sono elaborati per essere passati alla view o al model.
+		</p>
+	</li>
+</ul>
+<br/>
+<p dir="ltr">
+	<img
+		src="https://lh5.googleusercontent.com/SY2MUIkd3cTqraIpjyZjFMo_k071_u6K0I0kzGAD71KqerLsViN0beHIVqcefbybAKC3h5XSRSKfz3wFLhh1JJHWyj4y6VTxT9p0h-kfP_hH1dSJcl0zpDvK4egNn8-KYx4tGI0"
+		width="528px;"
+		height="396px;"
+		alt="MVVM.jpg"
+	/>
+</p>
+<p dir="ltr">
+	Figura 1 - Architettura MVVM per il progetto Teaching Hub
+</p>
+<br/>
+<p dir="ltr">
+	Da Figura 1 notiamo le molteplici pagine che ricoprono il ruolo di View, intendendo non le Java Servlet Page indicate, poich&#232; queste risiedono sul
+	server e non fanno parte del lato client, ma piuttosto il codice HTML prodotto ed inviato al browser.
+</p>
+<p dir="ltr">
+	Le pagine create dalle JSP sono correlate anche del codice javascript per realizzare il pattern MVVM, in particolare per implementare il componente di
+	ViewModel.
+</p>
+<h4 dir="ltr">
+	ViewModel
+</h4>
+<p dir="ltr">
+	Il componente ViewModel inserito sul client mantiene nel proprio stato le informazioni recuperate dal model e lo stato attuale della view, cos&#236; da
+	poter aggiornare dinamicamente l&#8217;uno o l&#8217;altro a fronte di modifiche ai dati. L&#8217;utente interagisce con la View, la cui variazione di
+	stato viene passata al ViewModel che esegue delle operazioni di business logic ed infine contatta il model per aggiornare i dati memorizzati. Si noti che
+	le modifiche apportate nel ViewModel hanno effetto sia nel model sia nella view.
+</p>
+<br/>
+<p dir="ltr">
+	Il pattern fa evidentemente uso del data binding implicito, che dovr&#224; essere implementato all&#8217;interno del nostro progetto per far si che ogni
+	modifica alla UI si rifletta su quanto memorizzato all&#8217;interno del ViewModel. Questa funzionalit&#224; &#232; disponibile attraverso Knockout: si
+	tratta di una libreria open source per JavaScript basata sul binding dichiarativo, che permette di associare oggetti javascript ad elementi del DOM
+	direttamente all&#8217;interno dell&#8217;HTML. Inoltre la libreria &#232; in grado di riconoscere le dipendenze implicite tra oggetti Javascript per
+	effettuare aggiornamenti in cascata dell&#8217;interfaccia utente. Knockout fornisce quindi tutte le funzionalit&#224; necessarie per realizzare il binding
+	dichiarativo.
+</p>
+<br/>
+<p dir="ltr">
+	La libreria &#232; il fattore abilitante per la realizzazione del pattern MVVM. Essa infatti, oltre a sollevare gli sviluppatori dalla realizzazione del
+	codice per la sincronizzazione, garantisce una maggiore separation of concern. La separazione deriva dalla possibilit&#224; di realizzare codice javascript
+	che contiene unicamente la logica di controllo della RIA, senza dover includere codice superfluo che mantiene aggiornata la View e il ViewModel. Inoltre
+	questa libreria garantisce di non dover apportare modifiche ai fogli di stile dal codice Javascript, poich&#232; sar&#224; Knockout stesso a cambiare la
+	View a fronte di aggiornamenti del ViewModel (che possono provenire sia dal Model che dalla View).
+</p>
+<br/>
+<p dir="ltr">
+	Il seguente codice presenta la struttura ViewModel per il file page.js e pu&#242; essere preso come modello anche per le altre pagine.
+</p>
+<p dir="ltr">
+	var viewModel = {
+	<br/>
+	datafiles: ko.observableArray(),
+	<br/>
+	newMsgContent : ko.observable(),
+	<br/>
+	errorMsg : ko.observable(""),
+	<br/>
+	//Invisible at the beginning
+	<br/>
+	showErrorMsg : ko.observable(false),
+	<br/>
+	discTitleText: ko.observable("Titolo"),
+	<br/>
+	discDescriptionText: ko.observable("Descrizione"),
+	<br/>
+	sectionUrl : ko.observable(),
+	<br/>
+	sectionTxt : ko.observable(),
+	<br/>
+	autor : ko.observable(),
+	<br/>
+	content: ko.observable(),
+	<br/>
+	autorProfileUrl: ko.observable(),
+	<br/>
+	autorName: ko.observable()
+	<br/>
+	};
+	<br/>
+	<br/>
+	ko.applyBindings(viewModel);
+</p>
+<br/>
+<p dir="ltr">
+	Sebbene la struttura del ViewModel sia simile per molte delle pagine realizzate, le funzionalit&#224; aggiuntive di cui dispongono variano con il loro
+	scopo. Nel seguito sono riportate le funzionalit&#224; che i javascript realizzano:
+</p>
+<ul>
+	<li dir="ltr">
+		<p dir="ltr">
+			login.js: lo script che si occupa di gestire il form di login e i messaggi di successo o errore inviati dal server. Contatta la servlet Login.
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			registration.js: lo script si occupa di gestire la validazione del form di registrazione. L&#8217;utilizzo del ViewModel permette una maggiore
+			responsivit&#224; del servizio: se alcuni campi del form di registrazione non sono validi (come password o username troppo corti, conferma password
+			non corretta, etc.), vengono fornite informazioni utili all&#8217;utente senza dover interpellare il server. La servlet contattata da questi script
+			&#232; Registration.
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			checkprofile.js: lo script gestisce le informazioni del profilo, fornendo la possibilit&#224; di modificarne i campi. Una volta che il server ha
+			dato la conferma di riuscita modifica, il ViewModel aggiorna dinamicamente la pagina, senza dover ricaricare alcun elemento. La servlet contatta
+			&#232; Profile.
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			managesection.js: questo script richiede l&#8217;estrazione delle discussioni dal database presente sul server attraverso una chiamata al web
+			service /GetSections. Lo script &#232; utilizzato all&#8217;interno di index.jsp e utilizza knockout per l&#8217;update della view tramite la
+			modifica dell&#8217;apposito viewmodel.
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			managethread.js: si occupa della richiesta e visualizzazione di discussioni e pagine all&#8217;interno di section.jsp. Per identificare la sezione
+			per la quale si vogliono ottenere le discussioni utilizza una funzione getParameterByName() con la quale ottiene il valore di sectionid presente
+			nei parametri dell&#8217;URL, quindi effettua una richiesta post al servizio web ManageDiscussion e GetPage per ottenere le informazioni
+			desiderate. Lo script si avvale del ViewModel per fornire una pronta risposta alla visualizzazione; inoltre l&#8217;utilizzo di knockout permette
+			di implementare e utilizzare in modo immediato dei metodi di ordinamento sulle discussioni per facilitarne all&#8217;utente la ricerca e la
+			gestione.
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			discussion.js: &#232; lo script che si occupa di gestire i messaggi per la discussione attualmente visualizzata. Al suo interno presenta un modello
+			del messaggio che viene utilizzato dal ViewModel. Dopo che la pagina &#232; stata caricata viene inviata una richiesta AJAX alla servlet NewMessage
+			(implementata nel file NewAsyncMsg.java) per ottenere tutti i messaggi memorizzati nel database, quindi invia una richiesta di dati anche alla
+			servlet ManageDiscussion per ottenere il titolo e la descrizione della discussione. Inoltre vengono periodicamente inviate delle richieste AJAX per
+			realizzare un servizio di comet: il client invia una richiesta, reiterata tutte le volte che riceve un messaggio di timeout o la ricezione di uno o
+			pi&#249; messaggi. Infine il client contatta anche la servlet Profile per ottenere l&#8217;url degli avatar dei diversi utenti coinvolti nella
+			discussione. Ulteriore funzionalit&#224; che viene fornita dallo script &#232; quella dell&#8217;ordinamento dei messaggi in ordine cronologico.
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			page.js: &#232; lo script che gestisce la visualizzazione delle pagine scritte dal docente. Contatta la servlet Page.
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			managenewmsg.js: lo script viene utilizzato per l&#8217;invio dei dati per una nuova discussione o pagina, ed &#232; utilizzato sia da
+			new_question.jsp che da new_page.jsp, data la stretta similitudine. Presenta funzionalit&#224; di convalida analoghe a quelle di registration,
+			pertanto le ragioni per implementare questa pagina attraverso il ViewModel sono le stesse. Questo script contatta sia NewDiscussion, sia NewPage.
+		</p>
+	</li>
+</ul>
+<br/>
+<p dir="ltr">
+	Tutti gli script precedentemente descritti utilizzano un meccanismo di chimate asincrone AJAX, scambiando dati con il server sottoforma di documenti XML.
+	Le request e le response scambiati sono descritti in maniera approfondita nella sezione &#8220;Tipi di informazioni scambiate via rete&#8221;. Inoltre
+	questi script presentano una funzionalit&#224; di gestione e cattura dei messaggi di errore restituiti dai servizi web o generati dalle richieste AJAX,
+	tramite visualizzazione di un box che contiene informazioni utili sul tipo di errore.
+</p>
+<h4 dir="ltr">
+	Ulteriori Informaziononi
+</h4>
+<p dir="ltr">
+	Di particolare interesse &#232; la modalit&#224; di gestione dei messaggi, realizzata in discussion.js e descritta precedentemente. La scelta di delegare
+	tale gestione client side &#232; stata dettata da alcune necessit&#224; pratiche, prima fra tutte quella di dover ordinare i messaggi visualizzati. Sarebbe
+	stato possibile leggere i messaggi memorizzati, ordinarli e quindi, attraverso la JSP, produrre il documento html da visualizzare. Tuttavia, &#232; noto
+	che il sorting &#232; un algoritmo non lineare e il server risulterebbe sovraccarico in momenti di massima affluenza al servizio. Al contrario, i client in
+	attesa della pagina potrebbero ottenere i documenti html e, attraverso Knockout, caricare nuovi contenuti nella pagina.
+</p>
+<br/>
+<p dir="ltr">
+	La soluzione proposta per i messaggi &#232; stata poi estesa a buona parte del progetto per favorire il requisito non funzionale di interoperabilit&#224;:
+	in un&#8217;ottica futura, il passaggio ad un altro dispositivo, come un&#8217;app per smartphone, non avr&#224; alcun impatto sull&#8217;architettura lato
+	server, ma sar&#224; sufficiente avvalersi dei documenti XML scambiati per garantire il corretto funzionamento dell&#8217;applicazione.
+</p>
+<h3 dir="ltr">
+	Computazione lato server
+</h3>
+<br/>
+<p dir="ltr">
+	Il codice lato server &#232; organizzato in quattro package:
+</p>
+<ul>
+	<li dir="ltr">
+		<p dir="ltr">
+			asw1028.interfaces: questa cartella ricopre un ruolo marginale all&#8217;interno del progetto, ma contiene delle interfacce utili per la
+			definizione dei modelli del database.
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			asw1028.access: questo &#232; il package dove sono memorizzate tutte le servlet che la servlet container dovr&#224; compilare, istanziare e gestire
+			al momento della richiesta del servizio.
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			asw1028.db: in questo package sono contenute tutte le classi di accesso al database. Queste forniscono metodi per la lettura e la scrittura dei
+			documenti xml utilizzando la libreria JAXB.
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			asw1028.db.struct: questa sottocartella del precedente package contiene le classi java che rappresentano gli schemi xml del database. Queste classi
+			sono utilizzate dalla libreria JAXB per effettuare l&#8217;unmarshalling, ovvero la trasformazione, dei documenti xml corrispettivi alle classi e
+			viceversa.
+		</p>
+	</li>
+</ul>
+<br/>
+<h4 dir="ltr">
+	Servlet
+</h4>
+<p dir="ltr">
+	Le servlet sono i componenti che, insieme alle classi di accesso al database, realizzano il componente Model del pattern MVVM. Queste forniscono un insieme
+	di servizi a cui &#232; possibile accedere inviando un documento xml formattatato in modo appropriato. Questa tecnica, nota come XML over HTTP, permette di
+	realizzare una serie di servizi interoperabili. Tutti i documenti utilizzati per le request e le response delle seguenti servlet sono riportati nel la
+	sezione &#8220;Tipi di informazioni scambiati via rete&#8221;.
+</p>
+<br/>
+<ul>
+	<li dir="ltr">
+		<p dir="ltr">
+			/Login (Login.java): si occupa di gestire il login di un utente, verificando che l&#8217;username e la password ricevuti corrispondano a quelli
+			memorizzati sul server.
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			/Registration (Registration.java): &#232; la servlet che gestisce la registrazione degli utenti. Dopo aver estratto i dati dalla request, li
+			elabora, verificando che tutti i campi inviati siano validi. Utilizzando le opportune classi di lettura e scrittura del database, aggiunge i dati
+			relativi allo studente o al professore in attesa di conferma che si &#232; appena registrato.
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			/Profile (Profile.java): &#232; una servlet che si occupa della gestione dei profili utente, in base al tag root del documento XML presente nella
+			request compie due azioni. La prima &#232; il get, ovvero trova nel database le informazioni del profilo utente desiderate e le ritorna in formato
+			XML sulla response. La seconda &#232; update, ovvero in base alle informazioni ricevute si occupa di modificare l&#8217;entry relativa a
+			quell&#8217;utente nel database, solo se l&#8217;utente risulta essere quello loggato (in sessione).
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			/GetSections (GetSections.java): questa servlet carica in memoria le diverse sezioni presenti nel database (matematica, informatica, scienze, etc.)
+			e le invia al client sottoforma di documento xml. Risulta evidente come il server sia notevolmente alleggerito dal gravoso compito di eseguire il
+			sorting delle sezioni e risulti dunque pi&#249; performante.
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			/ManageDiscussions (ManageDiscussions.java):la servlet fornisce due operation al client che lo contattano. La prima, dal nome getDiscussion(),
+			restituisce al client tutte le discussioni per una data sezione che riceve in input. La seconda, detta getDiscussionInfo(), fornisce ulteriori
+			informazioni per una discussione specificata come parametro dell&#8217;operation.
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			/NewDiscussion (NewDiscussion.java): questa servlet riceve le informazioni relative ad una discussione che deve essere creata, controlla che i dati
+			siano corretti e successivamente li salva sul database. Qualora i dati presentino dei problemi, un messaggio di errore viene mandato al client.
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			/GetPage (GetPage.java): la servlet fornisce servizi per gestire le pagine caricate dagli insegnanti. Sono rese disponibili due operation, la prima
+			(getPages) per ottenere tutte le pagine di una data sezione, la seconda (getPage) per ottenere il contenuto di una specifica pagina che il client
+			ha richiesto.
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			/NewPage (NewPage.java): questa servlet fornisce funzionalit&#224; per la creazione di una pagina. Similmente a quanto avviene per la discussione,
+			riceve le informazioni dal client, le convalida e salva sul db la nuova pagina.
+		</p>
+	</li>
+</ul>
+<br/>
+<p dir="ltr">
+	Non tutte le pagine sono per&#242; state realizzate ad adesione con il pattern MVVM. Per alcune, il cui contenuto &#232; scarsamente dinamico e la
+	computazione limitata, &#232; stato adottato il pattern MVC realizzato tramite forwarding.
+</p>
+<br/>
+<h5 dir="ltr">
+	Pattern Model-View-Controller (MVC)
+</h5>
+<p dir="ltr">
+	MVC &#232; un pattern architetturale in grado di separare la logica di presentazione dei dati dalla logica di business. E&#8217; basato sulla separazione
+	dei compiti fra i componenti software che interpretano tre ruoli principali:
+</p>
+<ul>
+	<li dir="ltr">
+		<p dir="ltr">
+			il model fornisce i metodi per accedere ai dati utili all'applicazione;
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			il view visualizza i dati contenuti nel model e si occupa dell'interazione con utenti;
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			il controller riceve i comandi dell'utente e li attua modificando lo stato degli altri due componenti.
+		</p>
+	</li>
+</ul>
+<p dir="ltr">
+	<img
+		src="https://lh3.googleusercontent.com/Vw0-RiRQ6u-4Cd7t78GsDSp-EQ6ZRVI3RgggX0EP-hjfsIneLKUwsvINkG2RglcRzV01CLX5fl-WbiJwHijMEQp6cFTnDn658LkBAYi7M-Wg7UszE9DzNvOk52_8kBxBJ2BYgjw"
+		width="624px;"
+		height="361px;"
+		alt="MVC.jpg"
+	/>
+</p>
+<p dir="ltr">
+	Figura 2 - L&#8217;architettura MVC adottata
+</p>
+<br/>
+<p dir="ltr">
+	Due servlet aderiscono a questo pattern: si tratta di ContactTeacher e AboutUs. La prima produce un pagina che visualizza tutti i docenti che partecipano
+	al progetto Teaching Hub, mentre la seconda fornisce delle informazioni sui realizzatori del servizio.
+</p>
+<br/>
+<p dir="ltr">
+	La figura 2 mostra le interazioni che avvengono quando il client richiede la pagina relativa a ContactTeachers (contactTeachers.java) o AboutUs
+	(AboutUs.java): la servlet, ovvero il Controller, riceve la richiesta e predispone le classi per accedere al database. Tali classi, contenute nel package
+	asw1028.db, sono il Model e si tratta di oggetti Java che, attraverso JAXB, accedono al database per recuperare le informzioni utili (ad esempio, la lista
+	dei docenti). Una volta che i dati sono stati restituiti alla servlet, questa li incapsula all&#8217;interno della request ed esegue un forward alla JSP
+	designata per la gestione del contenuto grafico. La Java Servlet Page (la View) estrae le informazioni dalla request, le elabora per produrre un documento
+	HTML visualizzabile dal client e invia tale pagina al browser. Nell&#8217;implementazione proposta &#232; anche gestito un meccanismo di gestione degli
+	errori: se durante la lettura dei file dal DB o del forward si genera una situazione imprevista, la servlet ridirige la richiesta ad una pagina error.jsp
+	piuttosto che alle pagine teachersList.jsp o aboutUs.jsp.
+</p>
+<br/>
+<p dir="ltr">
+	Java Server Page
+</p>
+<p dir="ltr">
+	Ogni pagina web del sito &#232; definita attraverso l&#8217;uso di JSP, tecnologia che permette la definizione di pagine HTML con embedding di codice Java
+	eseguito lato server. Ogni pagina del sito presenta una struttura comune che presenta l&#8217;inclusione di due fragment jsp.
+</p>
+<br/>
+<p dir="ltr">
+	&lt;html&gt;
+</p>
+<p dir="ltr">
+	&lt;head&gt;
+</p>
+<p dir="ltr">
+	&lt;title&gt;Teaching Hub&lt;/title&gt;
+</p>
+<p dir="ltr">
+	&lt;meta charset="UTF-8"&gt;
+</p>
+<p dir="ltr">
+	&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+</p>
+<p dir="ltr">
+	&lt;link rel="stylesheet" type="text/css" href="style-sheets/main.css"&gt;
+</p>
+<p dir="ltr">
+	&lt;/head&gt;
+</p>
+<p dir="ltr">
+	&lt;body&gt;
+</p>
+<p dir="ltr">
+	&lt;div id="wrapper"&gt;
+</p>
+<p dir="ltr">
+	&lt;header&gt;
+</p>
+<p dir="ltr">
+	&lt;%@include file="/WEB-INF/jspf/header.jspf" %&gt;
+</p>
+<p dir="ltr">
+	&lt;/header&gt;
+</p>
+<p dir="ltr">
+	&lt;div id="content" ctx-url="&lt;%=request.getContextPath()%&gt;"&gt;
+</p>
+<p dir="ltr">
+	&lt;!-- CONTENUTO DELLA PAGINA --&gt;
+</p>
+<p dir="ltr">
+	&lt;/div&gt;
+</p>
+<p dir="ltr">
+	&lt;footer&gt;
+</p>
+<p dir="ltr">
+	&lt;%@include file="/WEB-INF/jspf/footer.jspf" %&gt;
+</p>
+<p dir="ltr">
+	&lt;/footer&gt;
+</p>
+<p dir="ltr">
+	&lt;/body&gt;
+</p>
+<p dir="ltr">
+	&lt;script src="&lt;%=request.getContextPath()%&gt;/js/lib/jquery/jquery.js"&gt;&lt;/script&gt;
+</p>
+<p dir="ltr">
+	&lt;script type="text/javascript" src="&lt;%=request.getContextPath()%&gt;/js/lib/knockout/knockout-3.2.0.js"&gt;&lt;/script&gt;
+</p>
+<p dir="ltr">
+	&lt;!-- SCRIPT .js PER LA PAGINA --&gt;
+</p>
+<p dir="ltr">
+	&lt;/html&gt;
+</p>
+<br/>
+<p dir="ltr">
+	Di seguito l&#8217;elenco delle pagine JSP di TeachingHub con una breve descrizione delle rispettive funzionalit&#224; offerte agli utenti.
+</p>
+<ul>
+	<li dir="ltr">
+		<p dir="ltr">
+			index.jsp: pagina di ingresso del portale, presenta le sezioni (corsi per gli studenti) del sito.
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			jsp/aboutus.jsp: presenta una breve descrizione del portale. Utilizzata tramite pattern MVC &#232; richiamata da /AboutUs.
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			jsp/discussion.jsp: in base al sectionid e id discussione presenti come parametri nell&#8217;URL, visualizza una discussione.
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			jsp/error.jsp: Utilizzata tramite pattern MVC, viene fatto il forward in caso di errore dalle servlet /AboutUs e /ContactTeachers.
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			jsp/login.jsp: presenta una form di login agli utenti ancora non loggati, con la quale &#232; possibile accedere come utente registrato.
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			jsp/new_page.jsp: tramite una form permette l&#8217;invio al server di una nuova pagina, tale azione &#232; permessa solo ad un utente che sia
+			insegnante.
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			jsp/new_question.jsp: tramite una form permette l&#8217;invio al server di una nuova discussione, l&#8217;invio &#232; permesso solo ad utenti
+			loggati.
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			jsp/page.jsp: visualizza una pagina su base dei parametri presenti nell&#8217;URL che la identificano.
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			jsp/profile.jsp: visualizza il profilo utente, se tale profilo appartiene all&#8217;utente loggato mostra un form con il quale &#232; possibile
+			effettuare modifiche al profilo.
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			jsp/registration.jsp: visualizza un form di registrazione con cui docenti e studenti possono registratsi al portale.
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			jsp/section.jsp: visualizza un elenco di discussioni e pagine appartenenti alla sezione specificata dal parametro sectionid in URL.
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			jsp/teacherList.jsp: visualizza la lista di docenti registrati al sito, su cui viene fatto il forward da /ContactTeachers.
+		</p>
+	</li>
+</ul>
+<br/>
+<h5 dir="ltr">
+	JSP Fragment
+</h5>
+<p dir="ltr">
+	Una JSP permette l&#8217;inserimento di fragment nel codice, grazie al quale si rende pi&#249; modulare lo sviluppo di pagine web, definendo aspetto e
+	implementazione di componenti comuni a pi&#249; pagine jsp su file .jspf.
+</p>
+<p dir="ltr">
+	Nel caso di Teaching Hub i due fragment utilizzati sono:
+</p>
+<ul>
+	<li dir="ltr">
+		<p dir="ltr">
+			header.jspf, il cui aspetto varia in base al fatto che l&#8217;utente sia loggato oppure no. Viene incluso in cima ad ogni pagina e contiene la
+			stringa userid utilizzabile dalle jsp da cui &#232; incluso.
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			footer.jspf, posto in fondo ad ogni pagina, il footer fornisce delle funzionalit&#224; di navigazione aggiuntive, dando la possibilit&#224; di
+			tornare alla home page e di andare alla sezione &#8220;About Us&#8221; e &#8220;Lista Docenti&#8221;.
+		</p>
+	</li>
+</ul>
+<h4 dir="ltr">
+	Comet per le Discussioni
+</h4>
+<p dir="ltr">
+	Oltre ai servizi precedentemente descritti, &#232; stato realizzato anche un sistema di Comet per garantire ai client che visualizzano la discussione di
+	averne sempre lo stato aggiornato. La figura 3 mostra le interazioni che avvengono durante l&#8217;utilizzo del servizio.
+</p>
+<br/>
+<p dir="ltr">
+	<img
+		src="https://lh4.googleusercontent.com/0VK-BgJ-yhvENiiS4i-_zVDnvAzE7yiYvTD5y89bXdShen612XwJtyjC2Pn5Jke3kvygxtAOlidxCKXspIt6kp_CS04sp8PbaoIY-jyTrow3637BAYB-4hl4KjSjHX7O1JE97LI"
+		width="624px;"
+		height="416px;"
+		alt="comet.jpg"
+	/>
+</p>
+<p dir="ltr">
+	Figura 3 - Architettura per la realizzazione della Comet
+</p>
+<br/>
+<p dir="ltr">
+	Il meccanismo utilizzato per realizzare questo servizio &#232; quello noto come BOSH (Bi-directional-streams Over Synchronous Http). La servlet /NewMessage
+	(NewMsgAsnc.java) fornisce tre servizi, rappresentati dai rettangoli verdi:
+</p>
+<ul>
+	<li dir="ltr">
+		<p dir="ltr">
+			firstTimeAccess, utilizzato quando un client si collega per la prima volta alla pagina, garantisce di ottenere tutti i messaggi per la discussione
+			selezionata. Inoltre fornisce al client un id univoco per identificarlo.
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			newMsg &#232; l&#8217;operation invocata dai client che desiderano aggiungere il messaggio al database. Questa operation &#232; anche quella si
+			occupa di informare gli altri client della presenza del nuovo messaggio, inviandolo.
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			waitMsg &#232; l&#8217;operation che viene invocata dai client quando effettua il long polling, ogni volta che questo riceve un nuovo messaggio o
+			uno di timeout.
+		</p>
+	</li>
+</ul>
+<br/>
+<h5 dir="ltr">
+	Comportamento Client Side
+</h5>
+<p dir="ltr">
+	Per meglio comprendere il funzionamento della comet, riproponiamo brevemente il comportamento del client. Appena il documento della discussione &#232;
+	stato caricato, il client effettua la richiesta del servizio firstTimeAccess, ricevendo tutti i messaggi e l&#8217;identificativo, memorizzando
+	quest&#8217;ultimo come variabile globale javascript. Dopo che tutti i messaggi sono stati visualizzati, invia una richiesta di waitMsg alla servlet. Tale
+	richiesta &#232; asincrona, dunque il client predispone anche una callback da eseguire a fronte della ricezione di un messaggio. Se la risposta da parte
+	del server contiene effettivamente dei dati (ovvero uno o pi&#249; messaggi inviati da altri client), il ViewModel dovr&#224; essere aggiornato. Qualunque
+	sia il messaggio ricevuto, il client dovr&#224; anche ripetere la richiesta di waitMsg, avviando un comportamento iterativo.
+</p>
+<br/>
+<p dir="ltr">
+	Si noti che il meccanismo deve essere stabile anche nei momenti in cui il server non sia raggiungibile o si verifichi un errore interno. La callback
+	associata alla ricezione della risposta dovr&#224; quindi gestire il caso in cui lo stato della risposta sia 500 (Internal Server Error) o 404 (Server Not
+	Found). La soluzione da noi proposta prevede di riprovare a contattare il server dopo un delay di qualche secondo.
+</p>
+<br/>
+<h5 dir="ltr">
+	Comportamento ServerSide
+</h5>
+<p dir="ltr">
+	La servlet rimane in attesa di ricevere la richiesta di un operation da parte dei clients. Quando riceve un messaggio di firstTimeAccess, dopo aver
+	preparato i messaggi da inviare e l&#8217;identificativo da assegnare, aggiunge tale id in una HashMap di client attivi associati alla discussione
+	richiesta dal client.
+</p>
+<br/>
+<p dir="ltr">
+	Quando un client non ha fatto la richiesta di waitMsg, la servlet mantiene una coda di messaggi ad esso associato; in tale coda vengono memorizzati tutti i
+	messaggi da inviare in un futuro. La ricezione di una richiesta di waitMsg pu&#242; quindi arrivare in momenti in cui la coda di messaggi per il client che
+	l&#8217;ha inviata non &#232; vuota. La servlet dovr&#224; preparare tutti i messaggi memorizzati in tale coda sottoforma di documento xml ed inviarlo al
+	client. Al contrario, se la coda di messaggi &#232; vuota, il server dovr&#224; predisporre una connessione verso tale client, per poter fare forwarding
+	dei messaggi futuri. Questo avviene avviando un contesto asincrono a cui &#232; associato l&#8217;id del client che ha generato la richiesta e sostituendo
+	la lista di messaggi in coda con tale contesto appena creato. Dato che non &#232; possibile mantenere aperta la connessione per un tempo illimitato, viene
+	anche impostato un timeout per il contesto, cos&#236; che sia possibile generare un evento appropriato al termine di tale tempo.
+</p>
+<br/>
+<p dir="ltr">
+	Infine la servlet pu&#242; ricevere una richiesta del servizio newMsg: dopo che il nuovo messaggio &#232; stato salvato sul database, deve essere inviata
+	una copia di tale messaggio a tutti i client che presentano contesti attivi o, in caso questi non ne presentino, aggiungerlo alla coda di messaggi per
+	evitare che siano perduti.
+</p>
+<br/>
+<h3 dir="ltr">
+	Tipi di informazione memorizzate sul server
+</h3>
+<p dir="ltr">
+	Diverse informazioni sono memorizzate sul server in maniera persistente, di seguito una lista delle informazioni memorizzate nel database attraverso
+	l&#8217;uso di file XML.
+</p>
+<ul>
+	<li dir="ltr">
+		<p dir="ltr">
+			Studenti: profilo e password degli studenti sono memorizzate nel file /WEB-INF/xml/students.xml
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			Docenti: profilo e password dei docenti sono memorizzate nel file /WEB-INF/xml/teachers.xml
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			Docenti in attesa di convalida: le informazioni sui docenti non ancora convalidati dall&#8217;amministratore sono salvate nel file
+			/WEB-INF/xml/pendingtheachers.xml
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			Sezioni: la lista delle sezioni con descrizione e aspetto &#232; memorizzata nel file /WEB-INF/xml/sections/sections.xml
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			Pagine: le pagine scritte dai docenti sono memorizzate per ogni sezione in diversi file in un percorso determinato dalla sezione di appartenenza
+			/WEB-INF/xml/sections/[SectionId]/pages.xml
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			Discussioni: le discussioni aperte dagli utenti del sito in una sezione sono memorizzate per ogni sezione nel percorso
+			/WEB-INF/xml/sections/[SectionId]/threads/threads.xml
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			Messaggi: i messaggi appartenenti ad una specifica discussione sono memorizzati in diversi file il cui percorso segue il pattern:
+			/WEB-INF/xml/sections/[SectionId]/threads/msgs[DiscussionId].xml dove [SectionId] &#232; la sezione a cui la discussione appartiene e
+			[DiscussionId] &#232; l&#8217;identificativo della discussione a cui i messaggi appartengono.
+		</p>
+	</li>
+</ul>
+<br/>
+<p dir="ltr">
+	<img
+		src="https://lh3.googleusercontent.com/wczR38vS6Uv5UFDt7WrkzunfqAHRrAm3N1vdB7lMq48pi_hFHdwI14kQ7qiStY865wLAJHFpQdSlX4XaSa8ybPI01c0JfiMbVmqcJmhQJpSXgDuEo2ILFhaRxpRGd_ohWccXxSw"
+		width="228px;"
+		height="380px;"
+	/>
+</p>
+<p dir="ltr">
+	Figura 4 - Un esempio di struttura dei file XML che compongono il db del sito.
+</p>
+<br/>
+<p dir="ltr">
+	Nota: la password degli utenti del sito &#232; in chiaro, &#232; quindi necessario in futuro adottare le adatte tecniche di encriptaggio per non renderle
+	visibili a terzi.
+</p>
+<br/>
+<p dir="ltr">
+	I file XML schema che descrivono la struttura dei suddetti file XML sono memorizzati sotto la cartella /documentazione/xml-types/db e riportati di seguito:
+</p>
+<ul>
+	<li dir="ltr">
+		<p dir="ltr">
+			students.xsd
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			teachers.xsd
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			sections.xsd
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			datetime.xsd (presenta la struttura del formato data-ora incluso poi in diversi file xsd)
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			pages.xsd
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			threads.xsd
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			msgs.xsd
+		</p>
+	</li>
+</ul>
+<br/>
+<h3 dir="ltr">
+	Tipi di informazione scambiate via rete
+</h3>
+<p dir="ltr">
+	Via rete sono scambiati diversi documenti XML tra le RIA Javascript e i web service con uso di XML over HTTP. Le informazioni scambiate sono strutturate e
+	sono principalmente richieste di un qualche tipo di azione da parte del client e informazioni relative al contenuto del database da parte del server.
+</p>
+<br/>
+<p dir="ltr">
+	Di base ogni web service a fronte di un errore interno &#232; in grado di spedire un semplice messaggio di errore al client avente la struttura descritta
+	nel file error_response.xsd.
+</p>
+<p dir="ltr">
+	A fronte del compimento di un azione che non necessita il ritorno di dati al client, il web server risponde con un semplice messaggio di successo contenuto
+	nel tag &lt;success&gt;.
+</p>
+<br/>
+<p dir="ltr">
+	Di seguito &#232; riportata per ogni web service la struttura dei documenti xml per le request e response in relazione alle specifiche azioni (identificate
+	dal root tag della richiesta) che quel servizio implementa. Richieste e risposte banali sono escluse dalla lista.
+</p>
+<br/>
+<ul>
+	<li dir="ltr">
+		<p dir="ltr">
+			/Login
+		</p>
+	</li>
+	<ul>
+		<li dir="ltr">
+			<p dir="ltr">
+				login_request.xsd
+			</p>
+		</li>
+		<li dir="ltr">
+			<p dir="ltr">
+				login_response.xsd
+			</p>
+		</li>
+	</ul>
+	<li dir="ltr">
+		<p dir="ltr">
+			/Registration
+		</p>
+	</li>
+	<ul>
+		<li dir="ltr">
+			<p dir="ltr">
+				registration_request.xsd
+			</p>
+		</li>
+		<li dir="ltr">
+			<p dir="ltr">
+				risposta con &lt;success&gt;
+			</p>
+		</li>
+	</ul>
+	<li dir="ltr">
+		<p dir="ltr">
+			/GetSections
+		</p>
+	</li>
+	<ul>
+		<li dir="ltr">
+			<p dir="ltr">
+				nessun dato in input
+			</p>
+		</li>
+		<li dir="ltr">
+			<p dir="ltr">
+				risponde con la lista delle sezioni la cui struttura &#232; espressa nel file db/sections.xsd
+			</p>
+		</li>
+	</ul>
+	<li dir="ltr">
+		<p dir="ltr">
+			/GetPage risponde a due diverse azioni
+		</p>
+	</li>
+	<ul>
+		<li dir="ltr">
+			<p dir="ltr">
+				getPage richiede e ritorna una specifica pagina
+			</p>
+		</li>
+		<ul>
+			<li dir="ltr">
+				<p dir="ltr">
+					getpage_getpage_request.xsd
+				</p>
+			</li>
+			<li dir="ltr">
+				<p dir="ltr">
+					getpage_getpage_response.xsd
+				</p>
+			</li>
+		</ul>
+		<li dir="ltr">
+			<p dir="ltr">
+				getPages richiede e ritorna tutte le pagine di una data sezione
+			</p>
+		</li>
+		<ul>
+			<li dir="ltr">
+				<p dir="ltr">
+					getpage_getpages_request.xsd
+				</p>
+			</li>
+			<li dir="ltr">
+				<p dir="ltr">
+					getpage_getpages_response.xsd
+				</p>
+			</li>
+		</ul>
+	</ul>
+	<li dir="ltr">
+		<p dir="ltr">
+			/ManageDiscussion risponde a due diverse azioni
+		</p>
+	</li>
+	<ul>
+		<li dir="ltr">
+			<p dir="ltr">
+				getDiscussion richiede e ritorna una lista di discussioni per una data sessione
+			</p>
+		</li>
+		<ul>
+			<li dir="ltr">
+				<p dir="ltr">
+					managediscussion_getdiscussion_request.xsd
+				</p>
+			</li>
+			<li dir="ltr">
+				<p dir="ltr">
+					managediscussion_getdiscussion_response.xsd
+				</p>
+			</li>
+		</ul>
+		<li dir="ltr">
+			<p dir="ltr">
+				getDiscussionInfo richiede e ritorna le informazioni di una discussione
+			</p>
+		</li>
+		<ul>
+			<li dir="ltr">
+				<p dir="ltr">
+					managediscussion_getdiscussioninfo_request.xsd
+				</p>
+			</li>
+			<li dir="ltr">
+				<p dir="ltr">
+					managediscussion_getdiscussioninfo_response.xsd
+				</p>
+			</li>
+		</ul>
+	</ul>
+	<li dir="ltr">
+		<p dir="ltr">
+			/NewDiscussion
+		</p>
+	</li>
+	<ul>
+		<li dir="ltr">
+			<p dir="ltr">
+				newdiscussion_request.xsd
+			</p>
+		</li>
+		<li dir="ltr">
+			<p dir="ltr">
+				newdiscussion_response.xsd
+			</p>
+		</li>
+	</ul>
+	<li dir="ltr">
+		<p dir="ltr">
+			/NewPage
+		</p>
+	</li>
+	<ul>
+		<li dir="ltr">
+			<p dir="ltr">
+				newpage_request.xsd
+			</p>
+		</li>
+		<li dir="ltr">
+			<p dir="ltr">
+				newpage_response.xsd
+			</p>
+		</li>
+	</ul>
+	<li dir="ltr">
+		<p dir="ltr">
+			/Profile implementa due azioni
+		</p>
+	</li>
+	<ul>
+		<li dir="ltr">
+			<p dir="ltr">
+				update
+			</p>
+		</li>
+		<ul>
+			<li dir="ltr">
+				<p dir="ltr">
+					profile_update_request.xsd
+				</p>
+			</li>
+			<li dir="ltr">
+				<p dir="ltr">
+					la risposta &#232; un &lt;success&gt;
+				</p>
+			</li>
+		</ul>
+		<li dir="ltr">
+			<p dir="ltr">
+				get
+			</p>
+		</li>
+		<ul>
+			<li dir="ltr">
+				<p dir="ltr">
+					profile_get_request.xsd
+				</p>
+			</li>
+			<li dir="ltr">
+				<p dir="ltr">
+					la risposta &#232; un &lt;success&gt;
+				</p>
+			</li>
+		</ul>
+	</ul>
+	<li dir="ltr">
+		<p dir="ltr">
+			/UploadFile salva sul server due tipi di file identificati dal parametro filetype avatar o attachement.
+		</p>
+	</li>
+	<ul>
+		<li dir="ltr">
+			<p dir="ltr">
+				la request &#232; multipart (include i file)
+			</p>
+		</li>
+		<li dir="ltr">
+			<p dir="ltr">
+				uploadfile_response.xsd
+			</p>
+		</li>
+	</ul>
+	<li dir="ltr">
+		<p dir="ltr">
+			/NewMsgAsync gestisce l&#8217;invio dei messaggi agli utenti attivi sulle relative discussioni. Implementa diverse azioni:
+		</p>
+	</li>
+	<ul>
+		<li dir="ltr">
+			<p dir="ltr">
+				waitMsg utilizzato per il longpolling
+			</p>
+		</li>
+		<ul>
+			<li dir="ltr">
+				<p dir="ltr">
+					newmsgasync_waitmsg_request.xsd
+				</p>
+			</li>
+		</ul>
+		<li dir="ltr">
+			<p dir="ltr">
+				newMsg segnala l&#8217;inserimento di un nuovo messaggio
+			</p>
+		</li>
+		<ul>
+			<li dir="ltr">
+				<p dir="ltr">
+					newmsgasync_newmsg_request.xsd
+				</p>
+			</li>
+			<li dir="ltr">
+				<p dir="ltr">
+					newmsgasync_newmsg_response.xsd &#232; inviato a tutti i client attivi nella discussione.
+				</p>
+			</li>
+		</ul>
+		<li dir="ltr">
+			<p dir="ltr">
+				firstTimeAccess segnala il primo accesso del client
+			</p>
+		</li>
+		<ul>
+			<li dir="ltr">
+				<p dir="ltr">
+					newmsgasync_firsttimeaccess_request.xsd
+				</p>
+			</li>
+			<li dir="ltr">
+				<p dir="ltr">
+					newmsgasync_greetings_response.xsd
+				</p>
+			</li>
+			<li dir="ltr">
+				<p dir="ltr">
+					newmsgasync_cometmsgs_response.xsd ritorna tutti i messaggi persistenti nella discussione.
+				</p>
+			</li>
+		</ul>
+	</ul>
+</ul>
+<h3 dir="ltr">
+	Librerie di utilit&#224;
+</h3>
+<p dir="ltr">
+	Lato server si fa uso di una libreria di utilit&#224; denominata utilsweb. Qui mettere link
+</p>
+<p dir="ltr">
+	Questa libreria fornisce diverse funzionalit&#224; organizzate nei seguenti package:
+</p>
+<ul>
+	<li dir="ltr">
+		<p dir="ltr">
+			asw1028.utils.xml contiene classi per il supporto alla gestione di file XML
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			asw1028.utils contiene classi per l&#8217;aiuto allo sviluppo di servizi web
+		</p>
+	</li>
+	<ul>
+		<li dir="ltr">
+			<p dir="ltr">
+				SysKb.java funge da repository in cui sono memorizzate costanti utilizzate ricorrentemente durante lo sviluppo di TeachingHub
+			</p>
+		</li>
+		<li dir="ltr">
+			<p dir="ltr">
+				WebUtils.java contiene metodi di supporto utili durante lo sviluppo di servizi web XML over HTTP. Capitalizza in alcune funzioni operazioni
+				ricorrenti quali l&#8217;invio di messaggi di errore, lettura del contenuto di un singolo tag in un documento, ecc.
+			</p>
+		</li>
+	</ul>
+</ul>
+<h3 dir="ltr">
+	Ulteriori informazioni
+</h3>
+<p dir="ltr">
+	L&#8217;interfaccia grafica del sito &#232; stata pensata per essere facilmente utilizzata da utenti che fanno uso di smartphone e tablet, dato che il sito
+	web &#232; principalmente orientato a ragazzi.
+</p>
+<p dir="ltr">
+	<img
+		src="https://lh4.googleusercontent.com/1zu1lUOTNGBdRyOFnbp4a0ZVnAaD513fj4lSzr8XRKXIHbVp_4hGF4FsTKqJcvC_Vn0D1KWYZC8F7iIQYYclMfRqsq3UO2fnMe4MDbncOXmNhukqsB56DOqPrnA-AUcdS3N4sIk"
+		width="194px;"
+		height="342px;"
+	/>
+	<img
+		src="https://lh4.googleusercontent.com/Nan06cOEqFCPhIb93VVbwrLmZgAXFjVCiugeRnsrOXfGa8SKS4Q9YMB9cTn3Gs-Tb0zBX3bmu0kSCO_zcExizCmq_OMXoCPiOLSDoq_Ulr2HXgGo1LJhao0NbjHSKu2XIGIIJpI"
+		width="191px;"
+		height="339px;"
+	/>
+	<img
+		src="https://lh6.googleusercontent.com/hnfoIhBd7CDtwk1SMb2T_h0u4sypYlgLpU5Odngsfn69EU5Z9lO3_TfEPkSWOykY3-O_UQlWqc1DQDCqkAfHNMmEtcGQ5-nEF-S1HjW8RwUHzDSQkts0QJg6iQjFqWjd9Tf-7pE"
+		width="193px;"
+		height="341px;"
+	/>
+</p>
+<br/>
+<h3 dir="ltr">
+	Riferimenti
+</h3>
+<ul>
+	<li dir="ltr">
+		<p dir="ltr">
+			<a href="http://api.jquery.com/">JQuery documentation</a>
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			<a href="http://knockoutjs.com/documentation/introduction.html">Knockout.js documentation</a>
+		</p>
+	</li>
+	<li dir="ltr">
+		<p dir="ltr">
+			<a href="https://jaxb.java.net/nonav/2.2.11/docs/api/">JAXB javadoc</a>
+		</p>
+	</li>
+</ul>
