@@ -22,7 +22,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import javax.xml.transform.TransformerException;
-import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+//import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+import javax.servlet.http.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -62,7 +63,8 @@ public class UploadFile extends HttpServlet {
             return;
         }
         
-        isMultipart = ServletFileUpload.isMultipartContent(request);
+//        isMultipart = ServletFileUpload.isMultipartContent(request);
+        isMultipart = true;
         if(!isMultipart){
             sendError("La request non è multipart", out);
             return;

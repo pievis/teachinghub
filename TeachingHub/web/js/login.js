@@ -31,13 +31,16 @@ function getXmlHttpRequest(){
                 updateErrorBox("Accesso avvenuto!!!");
 //                location.reload();
                 //Torna alla pagina precedent
-                window.onpopstate = function(event) {    
-                    if(event && event.state) {
-//                        console.log("EVENTO RELOAD");
-                        location.reload();
-                    }
-                };
-                window.history.back();
+//                window.onpopstate = function(event) {    
+//                    if(event && event.state) {
+////                        console.log("EVENTO RELOAD");
+//                        location.reload();
+//                    }
+//                };
+//                window.history.back();
+                setTimeout(function(){
+                    location.reload();
+                }, 2500);
             }
         }
     };
