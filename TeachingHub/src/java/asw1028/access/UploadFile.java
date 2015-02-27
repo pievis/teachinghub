@@ -78,8 +78,12 @@ public class UploadFile extends HttpServlet {
                 Part filePart = request.getPart("file"); // un solo file
                 String avatarPath = getServletContext().getRealPath(SysKb.avatarPath);
                  //il nome dell'utente è il prefisso per il file
-                String newFileName = storeFileOnServer(avatarPath, userid, filePart);
-                
+                String newFileName = storeFileOnServerDebug(avatarPath, userid, filePart, out);
+                if(newFileName == null)
+                {
+                    //Error detected
+                    return;
+                }
                 tags.add(new SimpleEntry("avatar", newFileName));
                 WebUtils.sendElementsMessage("success", tags, out); //ritorna il nome dell'avatar al client
                 return;
@@ -99,7 +103,11 @@ public class UploadFile extends HttpServlet {
                 int i = 0;
                 for(Part fp : request.getParts()){
                     if(!fp.getName().equals("filetype")){ //quel datapart è null
-                        nfn = storeFileOnServer(filesPath, prefix+i, fp);
+                        nfn = storeFileOnServerDebug(filesPath, prefix+i, fp,out);
+                        if(nfn == null){
+                            //error detected
+                            return;
+                        }
                         //aggiungo le info al successDoc
                         Element fE = successDoc.createElement("file");
                         Element fnE = successDoc.createElement("name");
@@ -148,6 +156,28 @@ public class UploadFile extends HttpServlet {
             WebUtils.copyStream(in, new FileOutputStream(newFilePath));
         } catch (IOException ex) {
             Logger.getLogger(UploadFile.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return newFileName;
+    }
+    
+    private String storeFileOnServerDebug(String filePath, String newFilePrefix, Part fileP, OutputStream out){
+        //Genero un nuovo nome per il file
+        System.out.println("Storing file part: " + fileP.getSubmittedFileName());
+        System.out.println("FP name: " + fileP.getName());
+        System.out.println("Ct: " + fileP.getContentType());
+        System.out.println("at path: " + filePath);
+        String filename = fileP.getSubmittedFileName();
+        //new file name eg: userid220915.jpg
+        String newFileName = WebUtils.newFileName(filename, newFilePrefix);
+        String newFilePath = filePath + File.separator + newFileName;
+//        System.out.println("NEW FILE: " + newFilePath);
+        try {
+            InputStream in = fileP.getInputStream();
+            WebUtils.copyStream(in, new FileOutputStream(newFilePath));
+        } catch (IOException ex) {
+            Logger.getLogger(UploadFile.class.getName()).log(Level.SEVERE, null, ex);
+            sendError(filePath, out);
+            newFileName = null;
         }
         return newFileName;
     }

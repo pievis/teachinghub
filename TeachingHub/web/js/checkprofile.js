@@ -154,6 +154,7 @@ function uploadImageAndSendInfo(){
         {
             //Errori
             console.log('ERRORS: ' + textStatus);
+            showError("Errore server interno: " + textStatus + " " + errorThrown);
             //Nascondi il loader
             viewModel.canUpdate(true);
             viewModel.showLoader(false);
