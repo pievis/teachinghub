@@ -37,7 +37,8 @@
     }
     else{
 %>
-<a href="<%=request.getContextPath()%>/jsp/login.jsp" >
+<!--a href="<%=request.getContextPath()%>/jsp/login.jsp" -->
+<a href="<%=request.getContextPath()%>/Login" >
     <div class="bar_right">
         <span>Login</span>
         <img class="resize" src="<%=request.getContextPath()%>/multimedia/icons/college.png"/>

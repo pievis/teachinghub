@@ -25,7 +25,8 @@
                     <%
                     if(userid == null){
                     %>
-                    <form onsubmit="getXmlHttpRequest(); return false;">
+                    <!--form onsubmit="getXmlHttpRequest(); return false;"-->
+                    <form action="<%=request.getContextPath()%>/Login" method="POST">
                             <p> Username: <input type="text" name="user" id="txtUser"> </p>
                             <p> Password:<input type="password" name="pass" id="txtPass"> </p>
                             <input class="btn" type="submit" value="invia dati login">
